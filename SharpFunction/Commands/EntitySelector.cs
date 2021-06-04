@@ -33,6 +33,16 @@ namespace SharpFunction.Commands
         }
 
         /// <summary>
+        /// Initialize empty entity selector
+        /// </summary>
+        /// <param name="placeholder"></param>
+        internal EntitySelector(string placeholder)
+        {
+            Selector = new Selector();
+            Parameters = new SelectorParameters();
+        }
+
+        /// <summary>
         /// Convert parameters to string
         /// </summary>
         /// <returns>Parameters as string</returns>
