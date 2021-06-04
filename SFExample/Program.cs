@@ -29,7 +29,6 @@ namespace SFExample
             say.Compile("I am a message");
             tp.Compile(new Vector3("~3 ~2 ~3.5"));
             Console.WriteLine(tp.Compiled);
-            module.Append(say, tp);
             writer.WriteCommand(module, "test_function_two");
             Console.ReadLine();
         }

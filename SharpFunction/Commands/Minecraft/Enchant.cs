@@ -17,7 +17,7 @@ namespace SharpFunction.Commands.Minecraft
         public string Compiled { get; private set; }
 
         /// <summary>
-        /// Initialize DefaultGamemode Command class.<br/>
+        /// Initialize Enchant Command class.<br/>
         /// See also: <br/>
         /// <seealso cref="EntitySelector"/>
         /// </summary>

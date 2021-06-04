@@ -26,7 +26,7 @@ namespace SharpFunction.Commands.Minecraft
         /// Compile defaultgamemode command
         /// </summary>
         /// <param name="mode">Gamemode to set default</param>
-        public void Compile(Gamemode mode)
+        public void Compile(Universal.Gamemode mode)
         {
             string gm = EnumHelper.GetStringValue(mode);
             Compiled = $"/defaultgamemode {gm}";
