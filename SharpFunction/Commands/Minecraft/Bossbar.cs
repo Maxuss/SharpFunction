@@ -137,12 +137,12 @@ namespace SharpFunction.Commands.Minecraft
     /// </summary>
     public readonly struct BossbarColor 
     {
-        public readonly string Blue { get => Color.Blue; }
-        public readonly string Green { get => Color.Green; }
+        public readonly string Blue { get => "blue"; }
+        public readonly string Green { get => "green"; }
         public readonly string Pink { get => "pink"; }
         public readonly string Purple { get => "purple"; }
-        public readonly string Red { get => Color.Red; }
-        public readonly string White { get => Color.White; }
-        public readonly string Yellow { get => Color.Yellow; }
+        public readonly string Red { get => "red"; }
+        public readonly string White { get => "white"; }
+        public readonly string Yellow { get => "yellow"; }
     }
 }

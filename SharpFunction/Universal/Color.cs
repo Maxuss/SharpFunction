@@ -3,37 +3,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using static SharpFunction.Universal.EnumHelper;
 namespace SharpFunction.Universal
 {
     /// <summary>
     /// Represents a color for Minecraft
     /// </summary>
-    public struct Color
+    public enum Color
     {
-        public static string Black { get => "black"; }
-        public static string DarkBlue { get => "dark_blue"; }
-        public static string DarkGreen { get => "dark_green"; }
-        public static string DarkAqua { get => "dark_aqua"; }
-        public static string DarkRed { get => "dark_red"; }
-        public static string DarkPurple { get => "dark_purple"; }
-        public static string Gold { get => "gold"; }
-        public static string Gray { get => "gray"; }
-        public static string Blue { get => "blue"; }
-        public static string Green { get => "green"; }
-        public static string Aqua { get => "aqua"; }
-        public static string Red { get => "red"; }
-        public static string LightPurple { get => "light_purple"; }
-        public static string Yellow { get => "yellow"; }
-        public static string White { get => "white"; }
-
-        /// <summary>
-        /// Resets color to default (<see cref="White"/>)
-        /// </summary>
-        public readonly string ResetColor { get => "reset"; }
-        /// <summary>
-        /// Provides prefix for Hex color. E.G. <code>#FF0000</code>
-        /// </summary>
-        public readonly string Hexadecimal { get => "#"; }
+        [EnumValue(@"""color"": ""black""")] Black,
+        [EnumValue(@"""color"": ""dark_blue""")] DarkBlue,
+        [EnumValue(@"""color"": ""dark_green""")] DarkGreen,
+        [EnumValue(@"""color"": ""dark_aqua""")] DarkAqua,
+        [EnumValue(@"""color"": ""dark_red""")] DarkRed,
+        [EnumValue(@"""color"": ""dark_purple""")] DarkPurple,
+        [EnumValue(@"""color"": ""gold""")] Gold,
+        [EnumValue(@"""color"": ""gray""")] Gray,
+        [EnumValue(@"""color"": ""blue""")] Blue,
+        [EnumValue(@"""color"": ""green""")] Green,
+        [EnumValue(@"""color"": ""aqua""")] Aqua,
+        [EnumValue(@"""color"": ""red""")] Red,
+        [EnumValue(@"""color"": ""light_purple""")] LightPurple,
+        [EnumValue(@"""color"": ""yellow""")] Yellow,
+        [EnumValue(@"""color"": ""white""")] White,
+        [EnumValue(@"""color"": ""reset""")] Reset
     }
 }

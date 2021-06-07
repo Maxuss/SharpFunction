@@ -19,5 +19,14 @@ namespace SharpFunction.Commands.Helper
                 case false: return "false";
             }
         }
+
+        public static string BoolToByte(bool @bool)
+        {
+            switch (@bool)
+            {
+                case true: return "1b";
+                case false: return "0b";
+            }
+        }
     }
 }

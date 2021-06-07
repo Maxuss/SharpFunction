@@ -32,6 +32,12 @@ namespace SharpFunction.Commands
             Parameters = @params;
         }
 
+        public EntitySelector(Selector sel)
+        {
+            Selector = sel;
+            Parameters = new SelectorParameters("placeholder");
+        }
+
         /// <summary>
         /// Initialize empty entity selector
         /// </summary>
