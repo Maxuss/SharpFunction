@@ -27,7 +27,7 @@ namespace SharpFunction.Universal
             /// <param name="value"></param>
             public EnumValueAttribute(string value)
             {
-                this.Value = value;
+                Value = value;
             }
         }
 

@@ -6,6 +6,7 @@ using SharpFunction.Commands;
 using SharpFunction.Commands.Minecraft;
 using System.Linq;
 using SharpFunction.Universal;
+using SharpFunction.Addons.Skyblock;
 
 namespace SFExample
 {
@@ -14,39 +15,54 @@ namespace SFExample
         static void Main(string[] args)
         {
             Console.WriteLine("This is an example/testing project for SharpFunction");
-            Project project = new Project("Example project", Path.Combine(Directory.GetCurrentDirectory(), "Example"));
+            Project project = new Project("test", Directory.GetCurrentDirectory());
             project.Generate();
             FunctionWriter writer = project.Writer;
-            var s = new EntitySelector(
-                Selector.AllEntities,
-                new SelectorParameters("type", "minecraft:armor_stand",
-                                       "name", "test"));
+            writer.CreateCategory("cool category");
+            writer.CreateFunction("epic_function");
 
-            writer.CreateCategory("another_test");
-            writer.CreateFunction("test_function_two");
-            CommandModule module = new CommandModule();
-            var tp = new Teleport(s);
-            tp.Compile(new Vector3("~3 ~2 ~3.5"));
-            var arr = new object[] { "zxy", new EntitySelector(Selector.Current)};
-            var p = new ExecuteParameters(tp, ExecuteCondition.Align, ExecuteOperator.If, ExecuteSubcondition.Entity, extraParameters:arr);
-            var e = new Execute();
-            e.Compile(p);
-            RawText l = new RawText();
-            l.AddField("I am a test", Color.Gold, RawTextFormatting.Bold);
-            l.AddField("I am cooler test", Color.Red, RawTextFormatting.Italic);
-            RawText n = new RawText();
-            n.AddField("I am a super cool name", Color.Aqua);
-            ItemDisplay display = new ItemDisplay();
-            display.AddLore(l);
-            display.AddName(n);
-            ItemNBT nb = new ItemNBT();
-            nb.Display = display;
-            Console.WriteLine(nb.Compile());
-            Item item = new Item("minecraft:green_dye", nb);
-            var give = new Give(SimpleSelector.@p);
-            give.Compile(item, 2);
-            Console.WriteLine(give.Compiled);
-            writer.WriteCommand(module, "test_function_two");
+            var l = new RawText();
+            l.AddField("I am a cool lore text",
+                        Color.DarkRed, RawTextFormatting.Straight, RawTextFormatting.Bold);
+            l.AddField("BOTTOM TEXT", Color.Gold, RawTextFormatting.Straight);
+            l.AddField("I am obfuscated!", Color.White, RawTextFormatting.Obfuscated);
+            
+            var n = new RawText();
+            n.AddField("I am a super cool name", 
+                Color.Aqua, RawTextFormatting.Underlined, RawTextFormatting.Straight);
+
+            var display = new ItemDisplay();
+            display.AddLore(l); display.AddName(n);
+            var nbt = new ItemNBT();
+            nbt.Display = display;
+            var item = new Item("minecraft:golden_sword", nbt);
+            var cmd = new Give(SimpleSelector.@p);
+            cmd.Compile(item);
+
+            CommandModule m = new();
+            
+
+            Console.WriteLine(cmd.Compiled);
+
+            SkyblockItem sb = new(ItemType.Accessory, ItemRarity.Legendary, "");
+            sb.MagicFind = 6;
+            sb.PetLuck = 6;
+            sb.SeaCreatureChance = 6;
+
+            ItemAbility ability = new(
+                "Halo of the burned",
+                "You damage enemies around you for \n2x of your Max Health every second.",
+                AbilityType.RightClick
+            );
+            sb.Ability = ability;
+            sb.AddDescription("Our lady of The Charred Visage", Color.DarkGray, RawTextFormatting.Italic);
+            sb.AddName("Eye of The Forgotten Goddess");
+            sb.Compile("minecraft:gold_nugget");
+            
+            m.Append(cmd, sb.Command);
+
+            writer.WriteCommand(m, "epic_function");
+
             Console.ReadLine();
         }
     }

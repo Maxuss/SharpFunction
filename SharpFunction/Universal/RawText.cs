@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static SharpFunction.Universal.EnumHelper;
+using static SharpFunction.Universal.NullChecker;
 namespace SharpFunction.Universal
 {
     /// <summary>
@@ -23,17 +24,36 @@ namespace SharpFunction.Universal
         }
 
         internal List<string> _lines = new List<string>();
-
         /// <summary>
         /// Generate starting raw json
         /// </summary>
         public RawText() { }
 
-        public void AddField(string text, Color color = Color.White, RawTextFormatting format = RawTextFormatting.None)
+        /// <summary>
+        /// Adds a field to raw text
+        /// </summary>
+        /// <param name="text">Text to be displayed</param>
+        /// <param name="color">Color of the text</param>
+        /// <param name="format">Formatting of the text</param>
+        /// <param name="extraFormat">Extra formattings of the text</param>
+        public void AddField(string text, Color color = Color.White, RawTextFormatting format = RawTextFormatting.None, params RawTextFormatting[] extraFormat)
         {
             string clr = EnumHelper.GetStringValue(color);
             string frm = EnumHelper.GetStringValue(format);
-            string full = $@"{{""text"": ""{text}"", {clr}, {frm}}}";
+            string extraF = string.Empty;
+            if(extraFormat is not null)
+            {
+                foreach (RawTextFormatting fr in extraFormat)
+                {
+                    if (extraFormat.Last().Equals(fr)) extraF += $"{EnumHelper.GetStringValue(fr)}";
+                    else extraF += $"{EnumHelper.GetStringValue(fr)},";
+                }
+            }
+            string full;
+            if (!IsEmpty(extraF) && !IsEmpty(frm)) full = $@"{{""text"": ""{text}"", {clr}, {frm}, {extraF}}}";
+            else if (IsEmpty(extraF) && !IsEmpty(frm)) full = $@"{{""text"": ""{text}"", {clr}, {frm}}}";
+            else if (!IsEmpty(extraF) && IsEmpty(frm)) full = $@"{{""text"": ""{text}"", {clr}, {extraF}}}";
+            else full = $@"{{""text"": ""{text}"", {clr}}}";
             _lines.Add(full);
         }
 
@@ -49,6 +69,10 @@ namespace SharpFunction.Universal
         [EnumValue(@"""obfuscated"": true")] Obfuscated,
         [EnumValue(@"""strikethrough"": true")] Strikethrough,
         [EnumValue(@"""underlined"": true")] Underlined,
+        /// <summary>
+        /// Makes the text non-italic (italic by default)
+        /// </summary>
+        [EnumValue(@"""italic"": false")] Straight,
         [EnumValue(@"")] None
     }
 }

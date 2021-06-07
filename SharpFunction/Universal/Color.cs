@@ -26,6 +26,7 @@ namespace SharpFunction.Universal
         [EnumValue(@"""color"": ""light_purple""")] LightPurple,
         [EnumValue(@"""color"": ""yellow""")] Yellow,
         [EnumValue(@"""color"": ""white""")] White,
+        [EnumValue(@"""color"": ""dark_gray""")] DarkGray,
         [EnumValue(@"""color"": ""reset""")] Reset
     }
 }

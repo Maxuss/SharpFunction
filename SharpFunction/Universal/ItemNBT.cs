@@ -73,7 +73,7 @@ namespace SharpFunction.Universal
             string full = "";
             foreach(string a in all)
             {
-                full += IsEmpty(a) ? "" : $"{a}, ";
+                full += IsEmpty(a) ? "" : (all.Last().Equals(a)) ? $"{a}" : $"{a}, ";
             }
             return $"{{{full}}}";
         }
