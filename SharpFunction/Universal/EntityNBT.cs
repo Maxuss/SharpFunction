@@ -103,11 +103,13 @@ namespace SharpFunction.Universal
             string arm = "";
             foreach(string hand in Hands)
             {
-                hs += Hands.Last().Equals(hand) ? $@"{{id: ""minecraft:{hand}"", Count: 1b}}" : $@"{{id: ""minecraft:{hand}"", Count: 1b}},";
+                string a = hand.StartsWith("minecraft:") ? hand : $"minecraft:{hand}";
+                hs += Hands.Last().Equals(hand) ? $@"{{id: ""{a}"", Count: 1b}}" : $@"{{id: ""{a}"", Count: 1b}},";
             };
             foreach(string armor in Armor)
             {
-                arm += Hands.Last().Equals(armor) ? $@"{{id: ""minecraft:{armor}"", Count: 1b}}" : $@"{{id: ""minecraft:{armor}"", Count: 1b}},";
+                string b = armor.StartsWith("minecraft:") ? armor : $"minecraft:{armor}";
+                arm += Hands.Last().Equals(armor) ? $@"{{id: ""{b}"", Count: 1b}}" : $@"{{id: ""{b}"", Count: 1b}},";
             };
             string hands = $"[{hs}]";
             string armors = $"[{arm}]";

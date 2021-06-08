@@ -26,20 +26,11 @@ namespace SFExample
 
             CommandModule m = new();
 
-            var summon = new Summon();
-            var n = new EntityNBT();
-            n.NoAI = true;
-            n.Invulnerable = true;
-            n.CustomNameVisible = true;
-            var srt = new SuperRawText();
-            srt.Append("[", Color.DarkGray); srt.Append("Lv.134", Color.Gray); srt.Append("]", Color.DarkGray);
-            srt.Append(" Amogus", Color.Red); srt.Append(" 13000", Color.Green);
-            srt.Append("/", Color.White); srt.Append("13000", Color.Green); srt.Append("❤", Color.Red);
-            n.CustomName = srt;
-            var asn = new ArmorStandNBT();
-            asn.Invisible = true;
-            Entity e = new("minecraft:armor_stand", NBTWrapper.Wrap(n.Compile(), asn.Compile()));
-            summon.Compile(e, SimpleVector.Current);
+            var e = new SkyblockEntity("blaze", "Furious Warrior", 150000, 120);
+            e.CurrentHP = 150000;
+            e.NoAI = true;
+            e.Compile();
+            var summon = e.Command;
 
             m.Append(tp, summon);
             writer.WriteCommand(m, "epic_function");
