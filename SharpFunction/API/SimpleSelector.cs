@@ -10,27 +10,27 @@ namespace SharpFunction.API
     /// <summary>
     /// Represents simple selectors to use
     /// </summary>
-    public static class SimpleSelector
+    public struct SimpleSelector
     {
         /// <summary>
         /// All players
         /// </summary>
-        public static EntitySelector @a = new EntitySelector(Selector.AllPlayers);
+        public static EntitySelector @a { get => new EntitySelector(Selector.AllPlayers); }
         /// <summary>
         /// Nearest player
         /// </summary>
-        public static EntitySelector @p = new EntitySelector(Selector.Nearest);
+        public static EntitySelector @p { get => new EntitySelector(Selector.Nearest); }
         /// <summary>
         /// Current player
         /// </summary>
-        public static EntitySelector @s = new EntitySelector(Selector.Current);
+        public static EntitySelector @s { get => new EntitySelector(Selector.Current); }
         /// <summary>
         /// All entities
         /// </summary>
-        public static EntitySelector @e = new EntitySelector(Selector.AllEntities);
+        public static EntitySelector @e { get => new EntitySelector(Selector.AllEntities); }
         /// <summary>
         /// Random player
         /// </summary>
-        public static EntitySelector @r = new EntitySelector(Selector.Random);
+        public static EntitySelector @r { get => new EntitySelector(Selector.Random); }
     }
 }

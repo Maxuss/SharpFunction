@@ -21,47 +21,29 @@ namespace SFExample
             writer.CreateCategory("cool category");
             writer.CreateFunction("epic_function");
 
-            var l = new RawText();
-            l.AddField("I am a cool lore text",
-                        Color.DarkRed, RawTextFormatting.Straight, RawTextFormatting.Bold);
-            l.AddField("BOTTOM TEXT", Color.Gold, RawTextFormatting.Straight);
-            l.AddField("I am obfuscated!", Color.White, RawTextFormatting.Obfuscated);
-            
-            var n = new RawText();
-            n.AddField("I am a super cool name", 
-                Color.Aqua, RawTextFormatting.Underlined, RawTextFormatting.Straight);
-
-            var display = new ItemDisplay();
-            display.AddLore(l); display.AddName(n);
-            var nbt = new ItemNBT();
-            nbt.Display = display;
-            var item = new Item("minecraft:golden_sword", nbt);
-            var cmd = new Give(SimpleSelector.@p);
-            cmd.Compile(item);
+            var tp = new Teleport(SimpleSelector.p);
+            tp.Compile(new Vector3("~2 ~56 3"));
 
             CommandModule m = new();
-            
 
-            Console.WriteLine(cmd.Compiled);
+            var summon = new Summon();
+            var n = new EntityNBT();
+            n.NoAI = true;
+            n.Invulnerable = true;
+            n.CustomNameVisible = true;
+            var srt = new SuperRawText();
+            srt.Append("[", Color.DarkGray); srt.Append("Lv.134", Color.Gray); srt.Append("]", Color.DarkGray);
+            srt.Append(" Amogus", Color.Red); srt.Append(" 13000", Color.Green);
+            srt.Append("/", Color.White); srt.Append("13000", Color.Green); srt.Append("❤", Color.Red);
+            n.CustomName = srt;
+            var asn = new ArmorStandNBT();
+            asn.Invisible = true;
+            Entity e = new("minecraft:armor_stand", NBTWrapper.Wrap(n.Compile(), asn.Compile()));
+            summon.Compile(e, SimpleVector.Current);
 
-            SkyblockItem sb = new(ItemType.Accessory, ItemRarity.Legendary, "");
-            sb.MagicFind = 6;
-            sb.PetLuck = 6;
-            sb.SeaCreatureChance = 6;
-
-            ItemAbility ability = new(
-                "Halo of the burned",
-                "You damage enemies around you for \n2x of your Max Health every second.",
-                AbilityType.RightClick
-            );
-            sb.Ability = ability;
-            sb.AddDescription("Our lady of The Charred Visage", Color.DarkGray, RawTextFormatting.Italic);
-            sb.AddName("Eye of The Forgotten Goddess");
-            sb.Compile("minecraft:gold_nugget");
-            
-            m.Append(cmd, sb.Command);
-
+            m.Append(tp, summon);
             writer.WriteCommand(m, "epic_function");
+            Console.WriteLine(summon.Compiled);
 
             Console.ReadLine();
         }
