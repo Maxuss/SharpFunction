@@ -26,15 +26,13 @@ namespace SFExample
 
             CommandModule m = new();
 
-            var e = new SkyblockEntity("blaze", "Furious Warrior", 150000, 120);
-            e.CurrentHP = 150000;
-            e.NoAI = true;
-            e.Compile();
-            var summon = e.Command;
-
-            m.Append(tp, summon);
-            writer.WriteCommand(m, "epic_function");
-            Console.WriteLine(summon.Compiled);
+            var result = new ChestSlot("blaze_rod", 32);
+            var recipe = new SkyblockRecipe();
+            recipe.Result = result;
+            recipe.AddIngredient(result, 2, 1);
+            string[] cmds = recipe.Compile();
+            Console.WriteLine(cmds[0]);
+            Console.WriteLine(cmds[1]);
 
             Console.ReadLine();
         }

@@ -57,6 +57,10 @@ namespace SharpFunction.Universal
         /// </summary>
         public static ItemNBT Empty { get => new ItemNBT(); }
 
+        /// <summary>
+        /// Compiles the nbt tags and wraps it
+        /// </summary>
+        /// <returns>Wrapped JSON NBT tag</returns>
         public string Compile()
         {
             string disp = !IsNull(Display) ? $"{Display.DisplayJSON}" : "";

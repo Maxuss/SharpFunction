@@ -137,10 +137,6 @@ namespace SharpFunction.Writer
 
             string category = GetCurrentCategory();
             string path = global::System.IO.Path.Combine(category, $"{name}.mcfunction");
-            foreach (string line in command.CommandLines)
-            {
-                Console.WriteLine(line);
-            }
             File.WriteAllLines(path, command.CommandLines);
         }
         #endregion Functions
