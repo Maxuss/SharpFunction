@@ -26,14 +26,6 @@ namespace SFExample
 
             CommandModule m = new();
 
-            var result = new ChestSlot("blaze_rod", 32);
-            var recipe = new SkyblockRecipe();
-            recipe.Result = result;
-            recipe.AddIngredient(result, 2, 1);
-            string[] cmds = recipe.Compile();
-            Console.WriteLine(cmds[0]);
-            Console.WriteLine(cmds[1]);
-
             Console.ReadLine();
         }
     }
