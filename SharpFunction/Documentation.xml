@@ -88,6 +88,16 @@
             Type of item
             </summary>
         </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SkyblockItem.DisplayName">
+            <summary>
+            Display name of item
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SkyblockItem.ID">
+            <summary>
+            Give ID of item
+            </summary>
+        </member>
         <member name="P:SharpFunction.Addons.Skyblock.SkyblockItem.Command">
             <summary>
             Compiled command
@@ -173,6 +183,14 @@
             Ability of an item
             </summary>
         </member>
+        <member name="M:SharpFunction.Addons.Skyblock.SkyblockItem.#ctor(SharpFunction.Addons.Skyblock.ItemType,SharpFunction.Addons.Skyblock.ItemRarity,System.String,System.String)">
+            <summary>
+            Create new Skyblock Item
+            </summary>
+            <param name="type">Type of item</param>
+            <param name="rarity">Rarity of item</param>
+            <param name="name">Display name of item</param>
+        </member>
         <member name="T:SharpFunction.Addons.Skyblock.ItemAbility">
             <summary>
             Represents incapsulated item ability
@@ -201,6 +219,45 @@
         <member name="T:SharpFunction.Addons.Skyblock.ItemRarity">
             <summary>
             Represents rarity of a custom skyblock item
+            </summary>
+        </member>
+        <member name="T:SharpFunction.Addons.Skyblock.SkyblockSlayer">
+            <summary>
+            Represents skyblock slayer
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SkyblockSlayer.SlayerItems">
+            <summary>
+            All items related to this slayer
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SkyblockSlayer.SlayerTiers">
+            <summary>
+            All slayer boss tiers of the boss
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SkyblockSlayer.Writer">
+            <summary>
+            Writer to write datapack functions
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SkyblockSlayer.SlayerBossName">
+            <summary>
+            Name of slayer boss
+            </summary>
+        </member>
+        <member name="M:SharpFunction.Addons.Skyblock.SkyblockSlayer.#ctor(SharpFunction.Addons.Skyblock.SlayerItem[],SharpFunction.Addons.Skyblock.SlayerTier[],SharpFunction.Writer.FunctionWriter,System.String)">
+            <summary>
+            Creates a new slayer
+            </summary>
+            <param name="items">Items of slayer</param>
+            <param name="tiers">Tiers of slayer bosses</param>
+            <param name="writer">FunctionWriter from project</param>
+            <param name="name">Name of slayer boss</param>
+        </member>
+        <member name="M:SharpFunction.Addons.Skyblock.SkyblockSlayer.Generate">
+            <summary>
+            Generates all the required stuff for datapack
             </summary>
         </member>
         <member name="T:SharpFunction.Addons.Skyblock.SlayerAbility">
@@ -233,6 +290,189 @@
             Compiles the slayer ability 
             </summary>
             <returns>Compiled Slayer ability</returns>
+        </member>
+        <member name="T:SharpFunction.Addons.Skyblock.SlayerDrop">
+            <summary>
+            Represents an item that is dropped from slayer
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SlayerDrop.DropRarity">
+            <summary>
+            Drop rarity of item
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SlayerDrop.ItemName">
+            <summary>
+            Item to drop
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SlayerDrop.ID">
+            <summary>
+            ID of item to give
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SlayerDrop.Rarity">
+            <summary>
+            Rarity of item
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SlayerDrop.RequiredLVL">
+            <summary>
+            Slayer Level required to obtain the drop
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SlayerDrop.MinimumTier">
+            <summary>
+            Minimum tier for this item to drop
+            </summary>
+        </member>
+        <member name="M:SharpFunction.Addons.Skyblock.SlayerDrop.#ctor(System.String,SharpFunction.Addons.Skyblock.DropRarity,SharpFunction.Addons.Skyblock.ItemRarity,System.String)">
+            <summary>
+            Create new slayer drop
+            </summary>
+            <param name="name">Name of item</param>
+            <param name="drop">Drop rarity of item</param>
+            <param name="rarity">Rarity of item</param>
+            <param name="id">ID of item to give</param>
+        </member>
+        <member name="M:SharpFunction.Addons.Skyblock.SlayerDrop.Generate">
+            <summary>
+            Generates command to give the item
+            </summary>
+            <returns>Generated command</returns>
+        </member>
+        <member name="M:SharpFunction.Addons.Skyblock.SlayerDrop.Compile">
+            <summary>
+            Generates and compiles the command, returning the string
+            </summary>
+            <returns>Compiled string command</returns>
+        </member>
+        <member name="T:SharpFunction.Addons.Skyblock.DropRarity">
+            <summary>
+            Represents rarity of slayer drop
+            </summary>
+        </member>
+        <member name="F:SharpFunction.Addons.Skyblock.DropRarity.Guaranteed">
+            <summary>
+            100%
+            </summary>
+        </member>
+        <member name="F:SharpFunction.Addons.Skyblock.DropRarity.Occasional">
+            <summary>
+            20%
+            </summary>
+        </member>
+        <member name="F:SharpFunction.Addons.Skyblock.DropRarity.Rare">
+            <summary>
+            5%
+            </summary>
+        </member>
+        <member name="F:SharpFunction.Addons.Skyblock.DropRarity.Extraordinary">
+            <summary>
+            1%
+            </summary>
+        </member>
+        <member name="F:SharpFunction.Addons.Skyblock.DropRarity.PrayRNGesus">
+            <summary>
+            lesser than 1%
+            </summary>
+        </member>
+        <member name="F:SharpFunction.Addons.Skyblock.DropRarity.RNGesusIncarnate">
+            <summary>
+            lesser than 0.01%
+            </summary>
+        </member>
+        <member name="T:SharpFunction.Addons.Skyblock.SlayerItem">
+            <summary>
+            Represents a slayer item with requirement
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SlayerItem.Name">
+            <summary>
+            Name of item
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SlayerItem.Description">
+            <summary>
+            Description of item
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SlayerItem.SlayerRequirement">
+            <summary>
+            Required level of slayer. None by default.
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SlayerItem.SlayerName">
+            <summary>
+            Type of slayer. E.G. Zombie or Enderman
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SlayerItem.ID">
+            <summary>
+            ID of item to give
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SlayerItem.Rarity">
+            <summary>
+            Rarity of item
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SlayerItem.Type">
+            <summary>
+            Type of item
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SlayerItem.Glint">
+            <summary>
+            Whether the item will have enchantment glint
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SlayerItem.HasRecipes">
+            <summary>
+            If the item has recipes
+            </summary>
+        </member>
+        <member name="M:SharpFunction.Addons.Skyblock.SlayerItem.#ctor(System.String,SharpFunction.Universal.RawText,System.String,SharpFunction.Addons.Skyblock.ItemRarity,SharpFunction.Addons.Skyblock.ItemType,System.Int32,System.String,System.Nullable{System.Boolean},System.Boolean)">
+            <summary>
+            Create new slayer item
+            </summary>
+            <param name="name">Name of item</param>
+            <param name="description">Description of item</param>
+            <param name="requirement">Requirement of slayer</param>
+            <param name="slayername">Name of slayer mob</param>
+            <param name="id">Item ID of item to give</param>
+            <param name="glint">Whether the item will have enchantment glint</param>
+            <param name="rarity">Rarity of item</param>
+            <param name="type">Type of item</param>
+            <param name="recipes">Whether the item has recipes</param>
+        </member>
+        <member name="M:SharpFunction.Addons.Skyblock.SlayerItem.#ctor(SharpFunction.Addons.Skyblock.SkyblockItem,System.Int32,System.String,System.Nullable{System.Boolean},System.Boolean)">
+            <summary>
+            Creates slayer item from pre-made skyblock item
+            </summary>
+            <param name="item">Item to gather data from</param>
+            <param name="slayername">Name of slayer mob</param>
+            <param name="glint">Whether the item will have enchantment glint</param>
+            <param name="recipes">Whether the item has recipes</param>
+            <param name="requirement">Requirement of slayer</param>
+        </member>
+        <member name="M:SharpFunction.Addons.Skyblock.SlayerItem.CompileItem">
+            <summary>
+            Compiles the item into Item object
+            </summary>
+            <returns>Compiled item</returns>
+        </member>
+        <member name="M:SharpFunction.Addons.Skyblock.SlayerItem.Generate">
+            <summary>
+            Generates the command object
+            </summary>
+            <returns>Generated command object</returns>
+        </member>
+        <member name="M:SharpFunction.Addons.Skyblock.SlayerItem.GenerateCommand">
+            <summary>
+            Generates the command
+            </summary>
+            <returns>Generated command string</returns>
         </member>
         <member name="T:SharpFunction.Addons.Skyblock.SlayerTier">
             <summary>

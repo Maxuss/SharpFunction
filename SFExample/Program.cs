@@ -3,10 +3,10 @@ using System.IO;
 using SharpFunction.API;
 using SharpFunction.Writer;
 using SharpFunction.Commands;
-using SharpFunction.Commands.Minecraft;
-using System.Linq;
-using SharpFunction.Universal;
 using SharpFunction.Addons.Skyblock;
+using static SharpFunction.Addons.Skyblock.SlayerDrop;
+using SharpFunction.Commands.Minecraft;
+using System.Collections.Generic;
 
 namespace SFExample
 {
@@ -19,24 +19,23 @@ namespace SFExample
             project.Generate();
             FunctionWriter writer = project.Writer;
             writer.CreateCategory("cool category");
-            writer.CreateFunction("epic_function");
 
-            var tp = new Teleport(SimpleSelector.p);
-            tp.Compile(new Vector3("~2 ~56 3"));
-
-            SlayerAbility abil = new SlayerAbility();
-            abil.AbilityColor = Color.Green;
-            abil.Description = "I am a test description\nI am new line";
-            abil.Name = "Ability name";
-            abil.PercentsToHappen = new int[] { 80, 60, 40, 20 };
-            SlayerTier tier = new(
-                "gold_nugget", "Gamer", 3, "Hard", 5000, 1500, 24000, "blaze", 1000, null, abil
-            );
-            tier.Compile();
+            SkyblockItem item = new(ItemType.Axe, ItemRarity.Rare, "new item", "minecraft:gold_axe");
+            item.AddDescription("very epic description");
+            item.Compile();
+            var desc = item.ItemDescription;
+            SlayerItem si = new("Item name", desc, "minecraft:gold_axe", ItemRarity.Legendary, ItemType.Accessory, 5, "Amogus", true, true);
+            string cmd = si.GenerateCommand();
+            SlayerDrop drop = new("Test drop", DropRarity.RNGesusIncarnate, ItemRarity.Legendary, "minecraft:gold_ingot");
+            drop.MinimumTier = 5;
+            drop.RequiredLVL = 7;
+            drop.TierAmounts["Tier VI"] = 1;
+            string cmd2 = drop.Generate();
             CommandModule mod = new();
-            mod.Append(tier.GiveCommand, tier.SummonCommand);
-            writer.CreateFunction("pogchamp");
-            writer.WriteCommand(mod, "pogchamp");
+            mod.Append(cmd, _cmd2.Compiled);
+            writer.CreateFunction("pogchamp2");
+            writer.WriteCommand(mod, "pogchamp2");
+
             Console.ReadLine();
         }
     }

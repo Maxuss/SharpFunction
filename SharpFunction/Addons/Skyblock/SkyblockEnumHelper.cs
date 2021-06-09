@@ -23,6 +23,24 @@ namespace SharpFunction.Addons.Skyblock
             }
         }
 
+        internal class SlayerRarityAttribute : Attribute
+        {
+            public string Message { get; protected set; }
+
+            public SlayerRarityAttribute(string msg)
+            {
+                Message = msg;
+            }
+        }
+
+        internal static string GetSlayerMessage(this Enum @enum)
+        {
+            Type type = @enum.GetType();
+            FieldInfo fieldInfo = type.GetField(@enum.ToString());
+            SlayerRarityAttribute[] attribs = fieldInfo.GetCustomAttributes(typeof(SlayerRarityAttribute), false) as SlayerRarityAttribute[];
+            return attribs.Length > 0 ? attribs[0].Message : null;
+        }
+
         internal static Color GetRarityColor(this Enum @enum)
         {
             Type type = @enum.GetType();

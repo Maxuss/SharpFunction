@@ -23,7 +23,14 @@ namespace SharpFunction.Addons.Skyblock
         /// Type of item
         /// </summary>
         public ItemType Type { get; set; }
-
+        /// <summary>
+        /// Display name of item
+        /// </summary>
+        public string DisplayName { get; set; }
+        /// <summary>
+        /// Give ID of item
+        /// </summary>
+        public string ID { get; set; }
         /// <summary>
         /// Compiled command
         /// </summary>
@@ -101,11 +108,18 @@ namespace SharpFunction.Addons.Skyblock
         public RawText ItemName { get; set; }
         public RawText ItemDescription { get; set; }
         private RawText rawDescription;
-        public SkyblockItem(ItemType type, ItemRarity rarity, string name)
+        /// <summary>
+        /// Create new Skyblock Item
+        /// </summary>
+        /// <param name="type">Type of item</param>
+        /// <param name="rarity">Rarity of item</param>
+        /// <param name="name">Display name of item</param>
+        public SkyblockItem(ItemType type, ItemRarity rarity, string name, string itemname)
         {
             Type = type;
             Rarity = rarity;
             color = SkyblockEnumHelper.GetRarityColor(rarity);
+            DisplayName = name;
             RawText _name = new();
             _name.AddField(name, color, RawTextFormatting.Straight, RawTextFormatting.None);
             ItemName = _name;
@@ -209,17 +223,27 @@ namespace SharpFunction.Addons.Skyblock
         private RawText AddRarity(RawText rawDesc)
         {
             rawDesc.AddField(" ");
+            if (Type != ItemType.ReforgeStone
+               && Type != ItemType.Shears
+               && Type != ItemType.BrewingIngredient
+               && Type != ItemType.None)
+            {
+                rawDesc.AddField("This item can be reforged!", Color.DarkGray, RawTextFormatting.Straight);
+            }
             rawDesc.AddField($"{EnumHelper.GetStringValue(Rarity)} {EnumHelper.GetStringValue(Type)}", color, RawTextFormatting.Straight, RawTextFormatting.Bold);
             return rawDesc;
         }
 
-        public string Compile(string itemname)
+        public string Compile()
         {
+            string itemname = ID;
             ItemNBT nbt = new ItemNBT();
+            nbt.HideFlags = 31;
             ItemDisplay display = new ItemDisplay();
             display.AddLore(ItemDescription);
             display.AddName(ItemName);
             nbt.Display = display;
+            nbt.Unbreakable = true;
             Item item = new Item(itemname, nbt);
             var cmd = new Give(SimpleSelector.@p);
             cmd.Compile(item);
