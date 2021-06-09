@@ -33,6 +33,18 @@ namespace SharpFunction.Addons.Skyblock
             }
         }
 
+        [AttributeUsage(AttributeTargets.Property)]
+        internal class StatNameAttribute : System.Attribute
+        {
+            public string Text { get; set; }
+
+            public StatNameAttribute(string val)
+            {
+                Text = val;
+            }
+        }
+
+
         internal static string GetSlayerMessage(this Enum @enum)
         {
             Type type = @enum.GetType();

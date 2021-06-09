@@ -87,7 +87,7 @@ namespace SharpFunction.Addons.Skyblock
         /// <param name="recipes">Whether the item has recipes</param>
         /// <param name="requirement">Requirement of slayer</param>
         public SlayerItem(SkyblockItem item, int requirement = 0, 
-            string slayername = "", bool? glint = null, bool recipes = false)
+            string slayername = "", bool? glint=false)
         {
             Description = item.ItemDescription;
             Name = item.DisplayName;
@@ -97,7 +97,7 @@ namespace SharpFunction.Addons.Skyblock
             Rarity = item.Rarity;
             Type = item.Type;
             Glint = glint;
-            HasRecipes = recipes;
+            HasRecipes = false;
         }
 
         /// <summary>
@@ -110,6 +110,11 @@ namespace SharpFunction.Addons.Skyblock
             ItemNBT nbt = new();
             nbt.EnchantmentData = Glint is null || !(bool)Glint ? null : "{}";
             nbt.HideFlags = 31;
+            int last = Description._lines.IndexOf(Description._lines.Last());
+            string j2 = Description._lines[last];
+            string j1 = Description._lines[last - 1];
+            Description._lines.RemoveAt(last);
+            Description._lines.RemoveAt(last - 1);
             ItemDisplay disp = new();
             if (HasRecipes)
             {
@@ -125,7 +130,8 @@ namespace SharpFunction.Addons.Skyblock
                 req.Append($" Requires {SlayerName} LVL {SlayerRequirement}", Color.DarkPurple, RawTextFormatting.Straight);
                 Description.AddField(req);
             }
-            Description.AddField($"{EnumHelper.GetStringValue(Rarity)} {EnumHelper.GetStringValue(Type)}", SkyblockEnumHelper.GetRarityColor(Rarity), RawTextFormatting.Bold, RawTextFormatting.Straight);
+            Description._lines.Add(j1);
+            Description._lines.Add(j2);
             disp.AddLore(Description);
             RawText name = new();
             name.AddField($"{Name}", SkyblockEnumHelper.GetRarityColor(Rarity), RawTextFormatting.Straight);

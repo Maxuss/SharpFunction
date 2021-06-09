@@ -37,14 +37,14 @@ namespace SharpFunction.Addons.Skyblock
         /// </summary>
         public int RequiredLVL { get; set; } = 0;
 
-        public Dictionary<string, int> TierAmounts = new()
+        public Dictionary<string, string> TierAmounts = new()
         {
-            { "Tier I", 0 },
-            { "Tier II", 0 },
-            { "Tier III", 0 },
-            { "Tier IV", 0 },
-            { "Tier V", 0 },
-            { "Tier VI", 0 }
+            { "Tier I", ""},
+            { "Tier II", "" },
+            { "Tier III", "" },
+            { "Tier IV", "" },
+            { "Tier V", "" },
+            { "Tier VI", "" }
         };
         /// <summary>
         /// Minimum tier for this item to drop
@@ -95,8 +95,8 @@ namespace SharpFunction.Addons.Skyblock
             RawText t = new();
             foreach(string tier in TierAmounts.Keys)
             {
-                int tr = TierAmounts[tier];
-                if (tr > 0)
+                string tr = TierAmounts[tier];
+                if (tr != "")
                 {
                     SuperRawText tx = new();
                     tx.Append($"{tier} amounts: ", Color.Gray);
@@ -159,7 +159,7 @@ namespace SharpFunction.Addons.Skyblock
         /// <summary>
         /// 20%
         /// </summary>
-        [RarityColor(Color.Blue)] [SlayerRarity("(20%)")] [EnumValue("Occassional")] Occasional,
+        [RarityColor(Color.Blue)] [SlayerRarity("(20%)")] [EnumValue("Occasional")] Occasional,
         /// <summary>
         /// 5%
         /// </summary>

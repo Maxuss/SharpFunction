@@ -103,6 +103,11 @@
             Compiled command
             </summary>
         </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SkyblockItem.HasCrafts">
+            <summary>
+            Whether the item have crafts
+            </summary>
+        </member>
         <member name="P:SharpFunction.Addons.Skyblock.SkyblockItem.Rarity">
             <summary>
             Rarity of an item
@@ -446,7 +451,7 @@
             <param name="type">Type of item</param>
             <param name="recipes">Whether the item has recipes</param>
         </member>
-        <member name="M:SharpFunction.Addons.Skyblock.SlayerItem.#ctor(SharpFunction.Addons.Skyblock.SkyblockItem,System.Int32,System.String,System.Nullable{System.Boolean},System.Boolean)">
+        <member name="M:SharpFunction.Addons.Skyblock.SlayerItem.#ctor(SharpFunction.Addons.Skyblock.SkyblockItem,System.Int32,System.String,System.Nullable{System.Boolean})">
             <summary>
             Creates slayer item from pre-made skyblock item
             </summary>
@@ -1939,6 +1944,54 @@
             <summary>
             Represents a color for Minecraft
             </summary>
+        </member>
+        <member name="T:SharpFunction.Universal.Encapsulator`2">
+            <summary>
+            Class that is used for encapsulating methods
+            </summary>
+        </member>
+        <member name="M:SharpFunction.Universal.Encapsulator`2.Encapsulate(System.Func{`0,`1})">
+            <summary>
+            Encapsulate function
+            </summary>
+            <param name="method">Lambda expression to encapsulate</param>
+            <returns>Encapsulated lambda expression</returns>
+        </member>
+        <member name="T:SharpFunction.Universal.Encapsulator`3">
+            <summary>
+            Class that is used for encapsulating methods
+            </summary>
+        </member>
+        <member name="M:SharpFunction.Universal.Encapsulator`3.Encapsulate(System.Func{`0,`1,`2})">
+            <summary>
+            Encapsulate function
+            </summary>
+            <param name="method">Lambda expression to encapsulate</param>
+            <returns>Encapsulated lambda expression</returns>
+        </member>
+        <member name="T:SharpFunction.Universal.VoidEncapsulator`1">
+            <summary>
+            Class used for encapsulating void expressions
+            </summary>
+        </member>
+        <member name="M:SharpFunction.Universal.VoidEncapsulator`1.Encapsulate(System.Action{`0})">
+            <summary>
+            Encapsulate void
+            </summary>
+            <param name="method">Lambda expression to encapsulate</param>
+            <returns>Encapsulated lambda expression</returns>
+        </member>
+        <member name="T:SharpFunction.Universal.VoidEncapsulator`2">
+            <summary>
+            Class used for encapsulating complex void expressions
+            </summary>
+        </member>
+        <member name="M:SharpFunction.Universal.VoidEncapsulator`2.Encapsulate(System.Action{`0,`1})">
+            <summary>
+            Encapsulate complex void
+            </summary>
+            <param name="method">Lambda expression to encapsulate</param>
+            <returns>Encapsulated lambda expression</returns>
         </member>
         <member name="T:SharpFunction.Universal.Entity">
             <summary>

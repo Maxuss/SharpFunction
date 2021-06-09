@@ -11,6 +11,7 @@ using SharpFunction.Universal;
 using static SharpFunction.Addons.Skyblock.SkyblockHelper;
 using SharpFunction.API;
 using SharpFunction.Commands.Minecraft;
+using System.Reflection;
 
 namespace SharpFunction.Addons.Skyblock
 {
@@ -35,7 +36,10 @@ namespace SharpFunction.Addons.Skyblock
         /// Compiled command
         /// </summary>
         public ICommand Command { get; private set; }
-
+        /// <summary>
+        /// Whether the item have crafts
+        /// </summary>
+        public bool HasCrafts { get; set; }
         /// <summary>
         /// Rarity of an item
         /// </summary>
@@ -46,59 +50,59 @@ namespace SharpFunction.Addons.Skyblock
         /// <summary>
         /// Damage of item
         /// </summary>
-        public int? Damage { get; set; } = null;
+        [StatName("Damage")] public int? Damage { get; set; } = null;
         /// <summary>
         /// Strength of item
         /// </summary>
-        public int? Strength { get; set; } = null;
+        [StatName("Strength")] public int? Strength { get; set; } = null;
         /// <summary>
         /// Defense of item
         /// </summary>
-        public int? Defense { get; set; } = null;
+        [StatName("Defense")] public int? Defense { get; set; } = null;
         /// <summary>
         /// Health of item
         /// </summary>
-        public int? Health { get; set; } = null;
+        [StatName("Health")] public int? Health { get; set; } = null;
         /// <summary>
         /// Intelligence of item
         /// </summary>
-        public int? Intelligence { get; set; } = null;
+        [StatName("Intelligence")] public int? Intelligence { get; set; } = null;
         /// <summary>
         /// Crit Chance of item
         /// </summary>
-        public int? CritChance { get; set; } = null;
+        [StatName("Crit Chance")] public int? CritChance { get; set; } = null;
         /// <summary>
         /// Crit Damage of item
         /// </summary>
-        public int? CritDamage { get; set; } = null;
+        [StatName("Crit Damage")] public int? CritDamage { get; set; } = null;
         /// <summary>
         /// Attack Speed of item
         /// </summary>
-        public int? AttackSpeed { get; set; } = null;
+        [StatName("Bonus Attack Speed")] public int? AttackSpeed { get; set; } = null;
         /// <summary>
         /// Speed of item
         /// </summary>
-        public int? Speed { get; set; } = null;
+        [StatName("Speed")] public int? Speed { get; set; } = null;
         /// <summary>
         /// True Defense of item
         /// </summary>
-        public int? TrueDefense { get; set; } = null;
+        [StatName("True Defense")] public int? TrueDefense { get; set; } = null;
         /// <summary>
         /// SCC of item
         /// </summary>
-        public int? SeaCreatureChance { get; set; } = null;
+        [StatName("Sea Creature Chance")] public int? SeaCreatureChance { get; set; } = null;
         /// <summary>
         /// Magic Find of item
         /// </summary>
-        public int? MagicFind { get; set; } = null;
+        [StatName("Magic Find")] public int? MagicFind { get; set; } = null;
         /// <summary>
         /// Pet Luck of item
         /// </summary>
-        public int? PetLuck { get; set; } = null;
+        [StatName("Pet Luck")] public int? PetLuck { get; set; } = null;
         /// <summary>
         /// Pet Luck of item
         /// </summary>
-        public int? Ferocity { get; set; } = null;
+        [StatName("Ferocity")] public int? Ferocity { get; set; } = null;
 
         /// <summary>
         /// Ability of an item
@@ -119,6 +123,7 @@ namespace SharpFunction.Addons.Skyblock
             Type = type;
             Rarity = rarity;
             color = SkyblockEnumHelper.GetRarityColor(rarity);
+            ID = itemname;
             DisplayName = name;
             RawText _name = new();
             _name.AddField(name, color, RawTextFormatting.Straight, RawTextFormatting.None);
@@ -127,49 +132,85 @@ namespace SharpFunction.Addons.Skyblock
 
         private RawText ParseStats()
         {
-            string dmg = IsNull(Damage) ? "" : $"+{Damage}{DAMAGE} Damage";
-            string str = IsNull(Strength) ? "" : $"+{Strength}{STRENGTH} Strength";
-            string def = IsNull(Defense) ? "" : $"+{Defense}{DEFENCE} Defense";
-            string hp = IsNull(Health) ? "" : $"+{Health}{HEALTH} Health";
-            string @int = IsNull(Intelligence) ? "" : $"+{Intelligence}{INTELLIGENCE} Intelligence";
-            string cc = IsNull(CritChance) ? "" : $"+{CritChance}{CRIT_CHANCE} Crit Chance";
-            string cd = IsNull(CritDamage) ? "" : $"+{CritDamage}{CRIT_DAMAGE} Crit Damage";
-            string ats = IsNull(AttackSpeed) ? "" : $"+{AttackSpeed}{AttackSpeed} Attack Speed";
-            string spd = IsNull(Speed) ? "" : $"+{Speed}{SPEED} Speed";
-            string td = IsNull(TrueDefense) ? "" : $"+{TrueDefense}{TRUE_DEFENCE} True Defense";
-            string scc = IsNull(SeaCreatureChance) ? "" : $"+{SeaCreatureChance}{SCC} Sea Creature Chance";
-            string mf = IsNull(MagicFind) ? "" : $"+{MagicFind}{MAGIC_FIND} Magic Find";
-            string pl = IsNull(PetLuck) ? "" : $"+{PetLuck}{PET_LUCK} Pet Luck";
-            string fc = IsNull(Ferocity) ? "" : $"+{Ferocity}{FEROCITY} Ferocity";
             RawText rt = new();
-            string[] red = new[] { dmg, str, hp, fc };
-            string[] light_blue = new[] { @int, mf };
-            string[] blue = new[] { cc, cd };
-            //green: def
-            //aqua: scc
-            //white: speed
-            //light_purple: pl
-            //yellow: ats
-            Parallel.ForEach(red, r =>
+            Dictionary<string, int?> red = new()
             {
-                if (!IsEmpty(r)) rt.AddField(r, Color.Red, RawTextFormatting.Straight, RawTextFormatting.None);
-            });
-            Parallel.ForEach(light_blue, l =>
+                { "Damage", Damage },
+                { "Strength", Strength },
+                { "Bonus Attack Speed", AttackSpeed },
+                { "Crit Chance", CritChance },
+                { "Crit Damage", CritDamage },
+                { "Sea Creature Chance", SeaCreatureChance }
+            };
+            Dictionary<string, int?> green = new()
             {
-                if (!IsEmpty(l)) rt.AddField(l, Color.Aqua, RawTextFormatting.Straight, RawTextFormatting.None);
-            });
-            Parallel.ForEach(blue, b =>
+                { "Health", Health},
+                { "Defense", Defense},
+                { "Speed", Speed},
+                { "Intelligence", Intelligence},
+                { "Magic Find", MagicFind},
+                { "Pet Luck", PetLuck },
+                { "True Defense", TrueDefense},
+                { "Ferocity", Ferocity}
+            };
+            List<string> percented = new[] { "Crit Chance", "Crit Damage", "Sea Creature Chance", "Bonus Attack Speed" }.ToList();
+
+            Action<RawText> space = VoidEncapsulator<RawText>.Encapsulate(m =>
             {
-                if (!IsEmpty(b)) rt.AddField(b, Color.Blue, RawTextFormatting.Straight, RawTextFormatting.None);
+                m.AddField("");
             });
-            if (!IsEmpty(def)) rt.AddField(def, Color.Green, RawTextFormatting.Straight, RawTextFormatting.None);
-            if (!IsEmpty(scc)) rt.AddField(scc, Color.DarkAqua, RawTextFormatting.Straight, RawTextFormatting.None);
-            if (!IsEmpty(spd)) rt.AddField(spd, Color.White, RawTextFormatting.Straight, RawTextFormatting.None);
-            if (!IsEmpty(pl)) rt.AddField(pl, Color.LightPurple, RawTextFormatting.Straight, RawTextFormatting.None);
-            if (!IsEmpty(ats)) rt.AddField(ats, Color.Yellow, RawTextFormatting.Straight, RawTextFormatting.None);
-            rt.AddField(" ");
+
+            var a = red.Where(predicate => 
+            {
+                return !IsNull(predicate.Value); 
+            });
+            var b = green.Where(predicate =>
+            {
+                return !IsNull(predicate.Value);
+            });
+
+            Action<KeyValuePair<string, int?>> addRed = VoidEncapsulator<KeyValuePair<string, int?>>.Encapsulate(p =>
+            {
+                string name = p.Key;
+                string stat = percented.Contains(name) ? $"+{p.Value}%" : $"+{p.Value}";
+                string n = $"{name}: ";
+                SuperRawText srt = new();
+                srt.Append(n, Color.Gray, RawTextFormatting.Straight);
+                srt.Append(stat, Color.Red, RawTextFormatting.Straight);
+                rt.AddField(srt);
+                if(a.Last().Equals(p) && b is not null)
+                {
+                    space(rt);
+                }
+            });
+
+            Action<KeyValuePair<string, int?>> addGreen = VoidEncapsulator<KeyValuePair<string, int?>>.Encapsulate(p =>
+            {
+                string name = p.Key;
+                string stat = percented.Contains(name) ? $"+{p.Value}%" : $"+{p.Value}";
+                string n = $"{name}: ";
+                SuperRawText srt = new();
+                srt.Append(n, Color.Gray, RawTextFormatting.Straight);
+                srt.Append(stat, Color.Green, RawTextFormatting.Straight);
+                rt.AddField(srt);
+            });
+
+            foreach(KeyValuePair<string, int?> r in a)
+            {
+                addRed(r);
+            }
+            foreach(KeyValuePair<string, int?> g in b)
+            {
+                addGreen(g);
+            }
+
+            if(a is not null && b is not null)
+            {
+                space(rt);
+            }   
             return rt;
         }
+
 
         public void AddDescription(string description, Color color = Color.Gray, RawTextFormatting format=RawTextFormatting.Straight)
         {
@@ -183,10 +224,7 @@ namespace SharpFunction.Addons.Skyblock
         {
             if (Ability is not null)
             {
-                string mana = Ability.ManaCost != 0 ? $"Mana Cost: {Ability.ManaCost}" : "";
-                string cd = Ability.Cooldown != 0 ? $"Cooldown: {Ability.Cooldown}s" : "";
                 string rawJson = $@"[{{""text"":""Item Ability: {Ability.Name} "",""italic"":false,""color"":""gold""}},{{""text"":""{EnumHelper.GetStringValue(Ability.Type)}"",""color"":""yellow"",""bold"":true}}]";
-                txt.AddField(" ");
                 txt._lines.Add(rawJson);
                 if (Ability.Description.Contains("\\n") || Ability.Description.Contains("\n"))
                 {
@@ -197,8 +235,21 @@ namespace SharpFunction.Addons.Skyblock
                     }
                 }
                 else txt.AddField(Ability.Description, Color.Gray, RawTextFormatting.Straight);
-                if (!IsEmpty(mana)) txt.AddField(mana, Color.Gray, RawTextFormatting.Straight);
-                if (!IsEmpty(cd)) txt.AddField(cd, Color.Gray, RawTextFormatting.Straight);
+                
+                if (Ability.ManaCost != 0)
+                {
+                    SuperRawText mana = new();
+                    mana.Append("Mana cost: ", Color.DarkGray);
+                    mana.Append($"{Ability.ManaCost}", Color.DarkAqua);
+                    txt.AddField(mana);
+                }
+                if (Ability.Cooldown != 0)
+                {
+                    SuperRawText cd = new();
+                    cd.Append("Cooldown: ", Color.Green);
+                    cd.Append($"{Ability.Cooldown}s", Color.Green);
+                    txt.AddField(cd);
+                }
             }
             return txt;
         }
@@ -222,11 +273,11 @@ namespace SharpFunction.Addons.Skyblock
 
         private RawText AddRarity(RawText rawDesc)
         {
-            rawDesc.AddField(" ");
-            if (Type != ItemType.ReforgeStone
-               && Type != ItemType.Shears
-               && Type != ItemType.BrewingIngredient
-               && Type != ItemType.None)
+            ItemType[] nonreforgeable = new[]
+            {
+                ItemType.ReforgeStone, ItemType.Shears, ItemType.BrewingIngredient, ItemType.None
+            };
+            if (!nonreforgeable.Contains(Type))
             {
                 rawDesc.AddField("This item can be reforged!", Color.DarkGray, RawTextFormatting.Straight);
             }
