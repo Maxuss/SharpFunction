@@ -2,6 +2,21 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Version>0.6.4-beta</Version>
+    <Authors>Maxus</Authors>
+    <Company>Maxus Industries</Company>
+    <Description>A .NET Library used for creating Minecraft datapacks, and most things related to them.</Description>
+    <PackageLicenseExpression></PackageLicenseExpression>
+    <PackageProjectUrl>https://maxus.space</PackageProjectUrl>
+    <PackageIcon>ICON.png</PackageIcon>
+    <RepositoryUrl>https://github.com/Maxuss/SharpFunction</RepositoryUrl>
+    <RepositoryType>GitHub Repository</RepositoryType>
+    <PackageTags>Minecraft, Datapacks, Hypixel Skyblock</PackageTags>
+    <PackageReleaseNotes>First beta release</PackageReleaseNotes>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <NeutralLanguage>C#</NeutralLanguage>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -10,6 +25,14 @@
 
   <ItemGroup>
     <None Remove="Exceptions\InvalidSelectorParameters.cs~RF38db521.TMP" />
+    <None Include="..\..\..\ICON.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="..\LICENSE.txt">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

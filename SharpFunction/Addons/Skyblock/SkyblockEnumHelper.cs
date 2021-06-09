@@ -11,9 +11,9 @@ namespace SharpFunction.Addons.Skyblock
     /// <summary>
     /// Helper class for skyblock addon related enums
     /// </summary>
-    public static class SkyblockEnumHelper
+    internal static class SkyblockEnumHelper
     {
-        public class RarityColorAttribute : Attribute
+        internal class RarityColorAttribute : Attribute
         {
             public Color Color { get; protected set; }
 
@@ -23,7 +23,7 @@ namespace SharpFunction.Addons.Skyblock
             }
         }
 
-        public static Color GetRarityColor(this Enum @enum)
+        internal static Color GetRarityColor(this Enum @enum)
         {
             Type type = @enum.GetType();
             FieldInfo fieldInfo = type.GetField(@enum.ToString());

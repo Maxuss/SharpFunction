@@ -9,7 +9,7 @@ namespace SharpFunction.Commands.Helper
     /// <summary>
     /// Helper for command
     /// </summary>
-    public static class CommandHelper
+    internal static class CommandHelper
     {
         public static string BoolToString(bool @bool)
         {

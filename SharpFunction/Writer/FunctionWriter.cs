@@ -64,7 +64,7 @@ namespace SharpFunction.Writer
         /// <summary>
         /// Checks whether the function is specified.
         /// </summary>
-        /// <returns><see cref="true"/> if specified and <see cref="false"/> if not</returns>
+        /// <returns>True if specified and False if not</returns>
         public bool FunctionSpecified()
         {
             if (function != "None") return true;
@@ -75,7 +75,7 @@ namespace SharpFunction.Writer
         /// Checks whether the function with specified name (without .mcfunction extension) exists
         /// </summary>
         /// <param name="name">Name of function</param>
-        /// <returns><see cref="true"/> if specified and <see cref="false"/> if not</returns>
+        /// <returns>True if specified and False if not</returns>
         public bool FunctionExists(string name)
         {
             if (createdFunctions.Contains(name)) return true;

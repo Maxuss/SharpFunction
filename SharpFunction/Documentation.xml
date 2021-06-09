@@ -344,6 +344,11 @@
             </summary>
             <param name="commands">Multiple compiled commands</param>
         </member>
+        <member name="T:SharpFunction.Commands.Coordinate">
+            <summary>
+            Represents a single coordinate in space
+            </summary>
+        </member>
         <member name="P:SharpFunction.Commands.Coordinate.Relative">
             <summary>
             Tells whether position is relative. E.G. ~3 is relative position
@@ -414,6 +419,12 @@
             <param name="sel">Selector for entity</param>
             <param name="params">Parameters for selector</param>
         </member>
+        <member name="M:SharpFunction.Commands.EntitySelector.#ctor(SharpFunction.Commands.Selector)">
+            <summary>
+            Create an entity selector without extra parameters
+            </summary>
+            <param name="sel"></param>
+        </member>
         <member name="M:SharpFunction.Commands.EntitySelector.#ctor(System.String)">
             <summary>
             Initialize empty entity selector
@@ -435,6 +446,12 @@
             <summary>
             Represents advancement command. Equal to Minecraft's <code>/advancement {grant/revoke} {[only {advancement}]/everything} {criterion}</code>
             </summary>
+        </member>
+        <member name="P:SharpFunction.Commands.Minecraft.Advancement.Selector">
+            <inheritdoc cref="P:SharpFunction.Commands.Minecraft.ICommand.Selector"/>
+        </member>
+        <member name="P:SharpFunction.Commands.Minecraft.Advancement.Compiled">
+            <inheritdoc cref="P:SharpFunction.Commands.Minecraft.ICommand.Compiled"/>
         </member>
         <member name="M:SharpFunction.Commands.Minecraft.Advancement.#ctor(SharpFunction.Commands.EntitySelector)">
             <summary>
@@ -1115,6 +1132,30 @@
             </summary>
             <param name="destination">Entity to teleport <i>to</i></param>
             <returns>Compiled command as string</returns>
+        </member>
+        <member name="T:SharpFunction.Commands.Minecraft.Tellraw">
+            <summary>
+            Represents tellraw command. Equal to Minecraft's <code>/tellraw {entity: EntitySelector} {rawtext}</code>
+            </summary>
+        </member>
+        <member name="M:SharpFunction.Commands.Minecraft.Tellraw.#ctor(SharpFunction.Commands.EntitySelector)">
+            <summary>
+            Initialize Tellraw Command class.<br/>
+            See also: <br/>
+            <seealso cref="T:SharpFunction.Commands.EntitySelector"/>
+            </summary>
+            <param name="selector"><see cref="T:SharpFunction.Commands.EntitySelector"/> to use</param>
+        </member>
+        <member name="M:SharpFunction.Commands.Minecraft.Tellraw.Compile(SharpFunction.Universal.SuperRawText)">
+            <summary>
+            Compiles the command
+            </summary>
+            <param name="srt">Raw text to display</param>
+        </member>
+        <member name="T:SharpFunction.Commands.Minecraft.TellText">
+            <summary>
+            Text used by Tellraw
+            </summary>
         </member>
         <member name="T:SharpFunction.Commands.Minecraft.VanillaAdvancement">
             <summary>
@@ -1874,6 +1915,26 @@
             Used for inheritance for all other writer classes
             </summary>
         </member>
+        <member name="F:SharpFunction.Writer.AbstractWriter.category">
+            <summary>
+            ID of current category
+            </summary>
+        </member>
+        <member name="F:SharpFunction.Writer.AbstractWriter.categoryName">
+            <summary>
+            Name of current category
+            </summary>
+        </member>
+        <member name="F:SharpFunction.Writer.AbstractWriter.createdCategories">
+            <summary>
+            Created categories
+            </summary>
+        </member>
+        <member name="F:SharpFunction.Writer.AbstractWriter.Writer">
+            <summary>
+            Writer that will write data to files
+            </summary>
+        </member>
         <member name="P:SharpFunction.Writer.AbstractWriter.Main">
             <summary>
             Represents main category where everything will be created
@@ -1881,12 +1942,12 @@
         </member>
         <member name="P:SharpFunction.Writer.AbstractWriter.Category">
             <summary>
-            Returns current category path. Can return <see cref="!:null"/> if not specified
+            Returns current category path. Can return null if not specified
             </summary>
         </member>
         <member name="P:SharpFunction.Writer.AbstractWriter.CategoryName">
             <summary>
-            Returns current category name. Can return <see cref="!:null"/> if not specified
+            Returns current category name. Can return null if not specified
             </summary>
         </member>
         <member name="M:SharpFunction.Writer.AbstractWriter.Initialize(System.String)">
@@ -1912,14 +1973,14 @@
             <summary>
             Checks whether the category is specified.
             </summary>
-            <returns><see cref="!:true"/> if specified and <see cref="!:false"/> if not</returns>
+            <returns>True if specified and False if not</returns>
         </member>
         <member name="M:SharpFunction.Writer.AbstractWriter.CategoryExists(System.String)">
             <summary>
             Checks whether the category with specified name exists
             </summary>
             <param name="name">Name of category</param>
-            <returns><see cref="!:true"/> if specified and <see cref="!:false"/> if not</returns>
+            <returns>True if specified and False if not</returns>
         </member>
         <member name="M:SharpFunction.Writer.AbstractWriter.GetCurrentCategory">
             <summary>
@@ -1961,14 +2022,14 @@
             <summary>
             Checks whether the function is specified.
             </summary>
-            <returns><see cref="!:true"/> if specified and <see cref="!:false"/> if not</returns>
+            <returns>True if specified and False if not</returns>
         </member>
         <member name="M:SharpFunction.Writer.FunctionWriter.FunctionExists(System.String)">
             <summary>
             Checks whether the function with specified name (without .mcfunction extension) exists
             </summary>
             <param name="name">Name of function</param>
-            <returns><see cref="!:true"/> if specified and <see cref="!:false"/> if not</returns>
+            <returns>True if specified and False if not</returns>
         </member>
         <member name="M:SharpFunction.Writer.FunctionWriter.CreateFunction(System.String)">
             <summary>

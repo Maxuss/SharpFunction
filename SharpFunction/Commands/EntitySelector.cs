@@ -32,6 +32,10 @@ namespace SharpFunction.Commands
             Parameters = @params;
         }
 
+        /// <summary>
+        /// Create an entity selector without extra parameters
+        /// </summary>
+        /// <param name="sel"></param>
         public EntitySelector(Selector sel)
         {
             Selector = sel;

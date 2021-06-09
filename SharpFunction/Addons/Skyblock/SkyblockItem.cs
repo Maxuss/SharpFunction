@@ -213,12 +213,6 @@ namespace SharpFunction.Addons.Skyblock
             return rawDesc;
         }
 
-        public void AddName(string name)
-        {
-            ItemName = new();
-            ItemName.AddField($"{name}", color, RawTextFormatting.Straight, RawTextFormatting.None);
-        }
-
         public string Compile(string itemname)
         {
             ItemNBT nbt = new ItemNBT();

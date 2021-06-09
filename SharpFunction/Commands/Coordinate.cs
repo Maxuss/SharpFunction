@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace SharpFunction.Commands
 {
+    /// <summary>
+    /// Represents a single coordinate in space
+    /// </summary>
     public struct Coordinate
     {
 #nullable enable

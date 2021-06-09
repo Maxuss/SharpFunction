@@ -13,8 +13,9 @@ namespace SharpFunction.Commands.Minecraft
     /// </summary>
     public sealed class Advancement : ICommand
     {
+        ///<inheritdoc cref="ICommand.Selector"/>
         public EntitySelector Selector { get; set; }
-
+        ///<inheritdoc cref="ICommand.Compiled"/>
         public string Compiled { get; private set; }
 
         dynamic Achievment { get; } = new Dictionary<VA, string>() {

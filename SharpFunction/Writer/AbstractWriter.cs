@@ -12,10 +12,22 @@ namespace SharpFunction.Writer
     /// </summary>
     public abstract partial class AbstractWriter
     {
+        /// <summary>
+        /// ID of current category
+        /// </summary>
         protected string category = "None";
+        /// <summary>
+        /// Name of current category
+        /// </summary>
         protected string categoryName = "None";
+        /// <summary>
+        /// Created categories
+        /// </summary>
         protected string[] createdCategories = { };
 
+        /// <summary>
+        /// Writer that will write data to files
+        /// </summary>
         protected TextWriter Writer;
 
         /// <summary>
@@ -24,11 +36,11 @@ namespace SharpFunction.Writer
         public string Main { get; set; }
 
         /// <summary>
-        /// Returns current category path. Can return <see cref="null"/> if not specified
+        /// Returns current category path. Can return null if not specified
         /// </summary>
         public string Category { get => category; set => category = value; }
         /// <summary>
-        /// Returns current category name. Can return <see cref="null"/> if not specified
+        /// Returns current category name. Can return null if not specified
         /// </summary>
         public string CategoryName { get => categoryName; set => categoryName = value; }
 
@@ -73,7 +85,7 @@ namespace SharpFunction.Writer
         /// <summary>
         /// Checks whether the category is specified.
         /// </summary>
-        /// <returns><see cref="true"/> if specified and <see cref="false"/> if not</returns>
+        /// <returns>True if specified and False if not</returns>
         public bool CategorySpecified()
         {
             if (categoryName != "None" && category != "None") return true;
@@ -84,7 +96,7 @@ namespace SharpFunction.Writer
         /// Checks whether the category with specified name exists
         /// </summary>
         /// <param name="name">Name of category</param>
-        /// <returns><see cref="true"/> if specified and <see cref="false"/> if not</returns>
+        /// <returns>True if specified and False if not</returns>
         public bool CategoryExists(string name)
         {
             if (createdCategories.Contains(name)) return true;
