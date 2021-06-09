@@ -56,7 +56,27 @@ namespace SharpFunction.Universal
             else full = $@"{{""text"": ""{text}"", {clr}}}";
             _lines.Add(full);
         }
+        /// <summary>
+        /// Add field from super raw text
+        /// </summary>
+        /// <param name="srt">Pre-Made SuperRawText</param>
+        public void AddField(SuperRawText srt)
+        {
+            string compiled = srt.Compile();
+            _lines.Add(compiled);
+        }
 
+        /// <summary>
+        /// Add field from pre-made raw text
+        /// </summary>
+        /// <param name="rt">RawText to add</param>
+        public void AddField(RawText rt)
+        {
+            int l = rt.RawJSON.Length;
+            string normal = rt.RawJSON.Replace("'", "");
+            Console.WriteLine(normal);
+            _lines.Add(normal);
+        }
     }
 
     /// <summary>

@@ -24,15 +24,19 @@ namespace SFExample
             var tp = new Teleport(SimpleSelector.p);
             tp.Compile(new Vector3("~2 ~56 3"));
 
-            var srt = new SuperRawText();
-            srt.Append("kek ", Color.White, RawTextFormatting.Bold, RawTextFormatting.Obfuscated);
-            srt.Append("I am cool gold text. ", Color.Gold, RawTextFormatting.Bold);
-            srt.Append("And I am very amazing red text.", Color.Red, RawTextFormatting.Italic);
-            srt.Append(" kek", Color.White, RawTextFormatting.Bold, RawTextFormatting.Obfuscated);
-            var tr = new Tellraw(SimpleSelector.a);
-            tr.Compile(srt);
-            Console.WriteLine(tr.Compiled);
-            CommandModule m = new();
+            SlayerAbility abil = new SlayerAbility();
+            abil.AbilityColor = Color.Green;
+            abil.Description = "I am a test description\nI am new line";
+            abil.Name = "Ability name";
+            abil.PercentsToHappen = new int[] { 80, 60, 40, 20 };
+            SlayerTier tier = new(
+                "gold_nugget", "Gamer", 3, "Hard", 5000, 1500, 24000, "blaze", 1000, null, abil
+            );
+            tier.Compile();
+            CommandModule mod = new();
+            mod.Append(tier.GiveCommand, tier.SummonCommand);
+            writer.CreateFunction("pogchamp");
+            writer.WriteCommand(mod, "pogchamp");
             Console.ReadLine();
         }
     }

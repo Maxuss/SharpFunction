@@ -203,6 +203,141 @@
             Represents rarity of a custom skyblock item
             </summary>
         </member>
+        <member name="T:SharpFunction.Addons.Skyblock.SlayerAbility">
+            <summary>
+            Represents ability of slayer
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SlayerAbility.Name">
+            <summary>
+            Name of the ability
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SlayerAbility.Description">
+            <summary>
+            Description of ability
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SlayerAbility.AbilityColor">
+            <summary>
+            Color of ability
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SlayerAbility.PercentsToHappen">
+            <summary>
+            Represents percents of slayer boss hp for this ability to trigger
+            </summary>
+        </member>
+        <member name="M:SharpFunction.Addons.Skyblock.SlayerAbility.Compile(SharpFunction.Universal.RawText)">
+            <summary>
+            Compiles the slayer ability 
+            </summary>
+            <returns>Compiled Slayer ability</returns>
+        </member>
+        <member name="T:SharpFunction.Addons.Skyblock.SlayerTier">
+            <summary>
+            Represents tier of skyblock slayer
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SlayerTier.Item">
+            <summary>
+            Represents item to give with command. E.G. Rotten flesh <br/>for revenant horror and ender pearl for voidgloom seraph
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SlayerTier.Tier">
+            <summary>
+            Tier of slayer. E.G. 1 or 4. Goes up to 6
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SlayerTier.SlayerLevel">
+            <summary>
+            Represents difficulty of slayer. E.G. "Beginner" or "Deadly"
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SlayerTier.SlayerName">
+            <summary>
+            Name of the slayer. E.G. "Revenant Horror"
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SlayerTier.HP">
+            <summary>
+            Represents HP of slayer
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SlayerTier.DPS">
+            <summary>
+            Damage per second of the boss
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SlayerTier.XP">
+            <summary>
+            Experience this tier gives on kill
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SlayerTier.Cost">
+            <summary>
+            Cost to start slayer
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SlayerTier.SlayerEnemy">
+            <summary>
+            Enemies required to kill to spawn this boss. E.G. Enderman for Enderman Slayer
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SlayerTier.Abilities">
+            <summary>
+            Abilities of the slayer
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SlayerTier.Summon">
+            <summary>
+            Command to summon slayer boss
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SlayerTier.Give">
+            <summary>
+            Command to give item representing the boss
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SlayerTier.GiveCommand">
+            <summary>
+            Compiled give command
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SlayerTier.RawMobName">
+            <summary>
+            Raw name of the mob
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SlayerTier.SummonCommand">
+            <summary>
+            Compiled summon command
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SlayerTier.Equipment">
+            <summary>
+            Equipment of slayer boss
+            </summary>
+        </member>
+        <member name="M:SharpFunction.Addons.Skyblock.SlayerTier.#ctor(System.String,System.String,System.Int32,System.String,System.Int32,System.Int32,System.Int32,System.String,System.Int32,SharpFunction.Universal.ArmorItems,SharpFunction.Addons.Skyblock.SlayerAbility[])">
+            <summary>
+            Initialize a new tier of slayer
+            </summary>
+            <param name="item">Item of slayer</param>
+            <param name="name">Name of slayer</param>
+            <param name="tier">Tier of slayer. Goes from 1 to 6 including</param>
+            <param name="difficulty">Difficulty tier of slayer</param>
+            <param name="hp">HP boss deals</param>
+            <param name="dps">DPS boss deals</param>
+            <param name="cost">Cost to summon mob in coins</param>
+            <param name="enemy">Enemy to be summoned. E.G. enderman</param>
+            <param name="abilities">Abilities of the slayer</param>
+        </member>
+        <member name="M:SharpFunction.Addons.Skyblock.SlayerTier.Compile">
+            <summary>
+            Compiles 
+            </summary>
+        </member>
         <member name="T:SharpFunction.API.PackFormat">
             <summary>
             Represents type of pack format in pack.mcmeta
@@ -1848,6 +1983,18 @@
             <param name="color">Color of the text</param>
             <param name="format">Formatting of the text</param>
             <param name="extraFormat">Extra formattings of the text</param>
+        </member>
+        <member name="M:SharpFunction.Universal.RawText.AddField(SharpFunction.Universal.SuperRawText)">
+            <summary>
+            Add field from super raw text
+            </summary>
+            <param name="srt">Pre-Made SuperRawText</param>
+        </member>
+        <member name="M:SharpFunction.Universal.RawText.AddField(SharpFunction.Universal.RawText)">
+            <summary>
+            Add field from pre-made raw text
+            </summary>
+            <param name="rt">RawText to add</param>
         </member>
         <member name="T:SharpFunction.Universal.RawTextFormatting">
             <summary>

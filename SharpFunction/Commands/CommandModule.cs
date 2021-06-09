@@ -49,7 +49,15 @@ namespace SharpFunction.Commands
             for(int i = 0; i < commands.Length; i++)
             {
                 CommandLines[i] = commands[i].Compiled;
-                Console.WriteLine(CommandLines[i]);
+            }
+        }
+
+        public void Append(params string[] commands)
+        {
+            CommandLines = new string[commands.Length];
+            for (int i = 0; i < commands.Length; i++)
+            {
+                CommandLines[i] = commands[i];
             }
         }
     }

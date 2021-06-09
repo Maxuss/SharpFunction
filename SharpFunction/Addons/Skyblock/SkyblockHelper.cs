@@ -38,5 +38,27 @@ namespace SharpFunction.Addons.Skyblock
         public const string MINING_SPEED = "⸕";
         public const string FORTUNE = "☘";
 
+        public static string ParseHP(int hp)
+        {
+            string mult = "";
+            float php;
+            // 1b
+            if (hp > 1000000000)
+            {
+                php = (hp / 1000000000);
+                mult = $"{php}B";
+            }
+            else if(hp > 1000000)
+            {
+                php = (hp / 1000000);
+                mult = $"{php}M";
+            }
+            else if(hp > 1000)
+            {
+                php = (hp / 1000);
+                mult = $"{php}K";
+            }
+            return mult;
+        }
     }
 }
