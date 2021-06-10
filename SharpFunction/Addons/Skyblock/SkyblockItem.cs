@@ -44,6 +44,10 @@ namespace SharpFunction.Addons.Skyblock
         /// Rarity of an item
         /// </summary>
         public ItemRarity Rarity { get; set; }
+        /// <summary>
+        /// Whether the item has enchantment glint
+        /// </summary>
+        public bool HasGlint { get; set; }
 
         private Color color;
 #nullable enable
@@ -111,12 +115,27 @@ namespace SharpFunction.Addons.Skyblock
         /// <summary>
         /// Slayer requirement for the item
         /// </summary>
-        public SlayerRequirement Requirement { get; set; } = null;
-
+        public SlayerRequirement Requirement { get; set; } = new();
+        /// <summary>
+        /// Dungeon stats of an item
+        /// </summary>
+        public DungeonStats DungeonStats { get; set; } = new();
 #nullable disable
+        /// <summary>
+        /// Name of the item
+        /// </summary>
         public RawText ItemName { get; set; }
+        /// <summary>
+        /// Description of the item
+        /// </summary>
         public RawText ItemDescription { get; set; }
+        /// <summary>
+        /// Description that appears under item abilities etc.
+        /// </summary>
+        public AdvancedDescription AdvancedDescription { get; set; }
+
         private RawText rawDescription;
+        
         /// <summary>
         /// Create new Skyblock Item
         /// </summary>
@@ -182,6 +201,10 @@ namespace SharpFunction.Addons.Skyblock
                 SuperRawText srt = new();
                 srt.Append(n, Color.Gray, RawTextFormatting.Straight);
                 srt.Append(stat, Color.Red, RawTextFormatting.Straight);
+                if(DungeonStats.IsDungeon)
+                {
+                    srt.Append($" (+{p.Value})", Color.DarkGray);
+                }
                 rt.AddField(srt);
                 if(a.Last().Equals(p) && b is not null)
                 {
@@ -197,8 +220,17 @@ namespace SharpFunction.Addons.Skyblock
                 SuperRawText srt = new();
                 srt.Append(n, Color.Gray, RawTextFormatting.Straight);
                 srt.Append(stat, Color.Green, RawTextFormatting.Straight);
+                if (DungeonStats.IsDungeon)
+                {
+                    srt.Append($" (+{p.Value})", Color.DarkGray);
+                }
                 rt.AddField(srt);
             });
+
+            if(DungeonStats.IsDungeon)
+            {
+                rt.AddField(DungeonStats.GetGearScore());
+            }
 
             foreach(KeyValuePair<string, int?> r in a)
             {
@@ -222,11 +254,11 @@ namespace SharpFunction.Addons.Skyblock
         /// <param name="description">Description string to add</param>
         /// <param name="color">Color of description</param>
         /// <param name="format">Formatting of description</param>
-        public void AddDescription(string description, Color color = Color.DarkGray, RawTextFormatting format=RawTextFormatting.Straight)
+        public void AddDescription(AdvancedDescription description)
         {
             RawText txt = ParseStats();
             txt = AddAbility(txt);
-            rawDescription = ParseDescription(description, color, txt, format);
+            rawDescription = ParseDescription(description, txt);
             ItemDescription = AddRarity(rawDescription);
         }
 
@@ -283,20 +315,12 @@ namespace SharpFunction.Addons.Skyblock
             return txt;
         }
 
-        private RawText ParseDescription(string description, Color color, RawText text, params RawTextFormatting[] formattings)
+        private RawText ParseDescription(AdvancedDescription description, RawText text)
         {
-            text.AddField(" ");
-            if (description.Contains("\\n") || description.Contains("\n"))
+            text.AddField("");
+            foreach(SuperRawText line in description.Lines)
             {
-                string[] lines = description.Split("\n");
-                foreach(string line in lines)
-                {
-                    text.AddField(line, color, RawTextFormatting.None, formattings);
-                }
-            }
-            else
-            {
-                text.AddField(description, color, RawTextFormatting.None, formattings);
+                text.AddField(line);
             }
             return text;
         }
@@ -312,7 +336,15 @@ namespace SharpFunction.Addons.Skyblock
             {
                 rawDesc.AddField("This item can be reforged!", Color.DarkGray, RawTextFormatting.Straight);
             }
-            rawDesc.AddField($"{EnumHelper.GetStringValue(Rarity)} {EnumHelper.GetStringValue(Type)}", color, RawTextFormatting.Straight, RawTextFormatting.Bold);
+            if (DungeonStats.IsDungeon)
+            {
+                rawDesc.AddField(DungeonStats.GetQuality());
+                rawDesc.AddField($"{EnumHelper.GetStringValue(Rarity)} DUNGEON {EnumHelper.GetStringValue(Type)}", color, RawTextFormatting.Straight, RawTextFormatting.Bold);
+            }
+            else
+            {
+                rawDesc.AddField($"{EnumHelper.GetStringValue(Rarity)} {EnumHelper.GetStringValue(Type)}", color, RawTextFormatting.Straight, RawTextFormatting.Bold);
+            }
             return rawDesc;
         }
 
@@ -330,6 +362,7 @@ namespace SharpFunction.Addons.Skyblock
             display.AddName(ItemName);
             nbt.Display = display;
             nbt.Unbreakable = true;
+            if (HasGlint) nbt.EnchantmentData = "{}";
             Item item = new Item(itemname, nbt);
             var cmd = new Give(SimpleSelector.@p);
             cmd.Compile(item);
@@ -354,7 +387,7 @@ namespace SharpFunction.Addons.Skyblock
         /// <summary>
         /// Description of ability
         /// </summary>
-        public AbilityDescription Description;
+        public AdvancedDescription Description;
         /// <summary>
         /// Mana cost of the ability
         /// </summary>
@@ -382,7 +415,7 @@ namespace SharpFunction.Addons.Skyblock
     /// <summary>
     /// Represents description of ability containing multiple super raw text lines
     /// </summary>
-    public sealed class AbilityDescription
+    public sealed class AdvancedDescription
     {
         /// <summary>
         /// Lines of super raw text
@@ -410,6 +443,48 @@ namespace SharpFunction.Addons.Skyblock
             SuperRawText tmp = new();
             tmp.Append(line, color, formatting, formattings);
             Lines.Add(tmp);
+        }
+    }
+
+    /// <summary>
+    /// Dungeon stats of an item
+    /// </summary>
+    public sealed class DungeonStats
+    {
+        /// <summary>
+        /// Whether the item is dungeon item
+        /// </summary>
+        public bool IsDungeon { get; set; } = false;
+        /// <summary>
+        /// The quality of an item
+        /// </summary>
+        public int Quality { get; set; }
+        /// <summary>
+        /// Gear score of an item
+        /// </summary>
+        public int GearScore { get; set; }
+
+        /// <summary>
+        /// Compiles the gear score into stat text
+        /// </summary>
+        /// <returns>Compiled super raw text with gear score</returns>
+        public SuperRawText GetGearScore()
+        {
+            SuperRawText t = new();
+            t.Append("Gear Score: ", Color.Gray);
+            t.Append($"{GearScore}", Color.LightPurple);
+            t.Append($" ({GearScore})", Color.DarkGray);
+            return t;
+        }
+        /// <summary>
+        /// Compiles the quality into stat text
+        /// </summary>
+        /// <returns>Compiled super raw text with quality</returns>
+        public SuperRawText GetQuality()
+        {
+            SuperRawText t = new();
+            t.Append($"Perfect {Quality} / {Quality}", Color.Green);
+            return t;
         }
     }
 

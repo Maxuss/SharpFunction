@@ -40,6 +40,10 @@ namespace SharpFunction.Addons.Skyblock
         /// </summary>
         public int DPS { get; set; }
         /// <summary>
+        /// Level of slayer boss
+        /// </summary>
+        public int LVL { get; set; } = 100;
+        /// <summary>
         /// Experience this tier gives on kill
         /// </summary>
         public int XP { get; set; }
@@ -195,7 +199,7 @@ namespace SharpFunction.Addons.Skyblock
             en.CustomNameVisible = true;
             SuperRawText enm = new();
             enm.Append("[", Color.DarkGray);
-            enm.Append("Lv.100", Color.Gray);
+            enm.Append($"Lv.{LVL}", Color.Gray);
             enm.Append("]", Color.DarkGray);
             enm.Append($" {SkyblockHelper.SLAYER_REQ} ", Color.Red);
             enm.Append($"{SlayerName} ", col[Tier]);

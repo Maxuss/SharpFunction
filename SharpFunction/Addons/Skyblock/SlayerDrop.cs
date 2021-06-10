@@ -87,6 +87,20 @@ namespace SharpFunction.Addons.Skyblock
         }
 
         /// <summary>
+        /// Generates slayer drop from pre-existing item
+        /// </summary>
+        /// <param name="item">Item to steal data from</param>
+        /// <param name="rarity">Rarity of item</param>
+        public SlayerDrop(SkyblockItem item, DropRarity rarity)
+        {
+            DropRarity = rarity;
+            ItemName = item.DisplayName;
+            Rarity = item.Rarity;
+            ID = item.ID;
+            
+        }
+
+        /// <summary>
         /// Generates command to give the item
         /// </summary>
         /// <returns>Generated command</returns>

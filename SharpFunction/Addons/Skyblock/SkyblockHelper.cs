@@ -56,7 +56,7 @@ namespace SharpFunction.Addons.Skyblock
             else if(hp > 1000)
             {
                 php = (hp / 1000);
-                mult = $"{php}K";
+                mult = $"{php}k";
             }
             return mult;
         }

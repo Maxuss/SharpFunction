@@ -16,7 +16,7 @@ namespace SharpFunction.Commands
         /// <summary>
         /// Represents all commands in the module as string array
         /// </summary>
-        public string[] CommandLines = Array.Empty<string>();
+        public List<string> CommandLines = Array.Empty<string>().ToList();
         
         /// <summary>
         /// Appends compiled command string to all lines
@@ -24,7 +24,7 @@ namespace SharpFunction.Commands
         /// <param name="command">Command string to append</param>
         public void Append(string command)
         {
-            CommandLines.Append(command);
+            CommandLines.Add(command);
         }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace SharpFunction.Commands
         [Obsolete("Use Append(params ICommand[]) instead.")]
         public void Append(ICommand command)
         {
-            CommandLines.Append(command.Compiled);
+            CommandLines.Add(command.Compiled);
         }
 
         /// <summary>
@@ -45,19 +45,21 @@ namespace SharpFunction.Commands
         /// <param name="commands">Multiple compiled commands</param>
         public void Append(params ICommand[] commands)
         {
-            CommandLines = new string[commands.Length];
-            for(int i = 0; i < commands.Length; i++)
+            foreach(ICommand cmd in commands)
             {
-                CommandLines[i] = commands[i].Compiled;
+                CommandLines.Add(cmd.Compiled);
             }
         }
 
+        /// <summary>
+        /// Append multiple string commands to lines
+        /// </summary>
+        /// <param name="commands">Multiple string commands</param>
         public void Append(params string[] commands)
         {
-            CommandLines = new string[commands.Length];
-            for (int i = 0; i < commands.Length; i++)
+            foreach (string cmd in commands)
             {
-                CommandLines[i] = commands[i];
+                CommandLines.Add(cmd);
             }
         }
     }

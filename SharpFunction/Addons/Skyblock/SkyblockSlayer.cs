@@ -16,7 +16,7 @@ namespace SharpFunction.Addons.Skyblock
         /// <summary>
         /// All items related to this slayer
         /// </summary>
-        public SlayerItem[] SlayerItems { get; set; }
+        public SkyblockItem[] SlayerItems { get; set; }
         /// <summary>
         /// All slayer boss tiers of the boss
         /// </summary>
@@ -36,7 +36,7 @@ namespace SharpFunction.Addons.Skyblock
         /// <param name="tiers">Tiers of slayer bosses</param>
         /// <param name="writer">FunctionWriter from project</param>
         /// <param name="name">Name of slayer boss</param>
-        public SkyblockSlayer(SlayerItem[] items, SlayerTier[] tiers, FunctionWriter writer, string name)
+        public SkyblockSlayer(SkyblockItem[] items, SlayerTier[] tiers, FunctionWriter writer, string name)
         {
             SlayerItems = items;
             SlayerTiers = tiers;
