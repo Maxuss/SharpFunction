@@ -129,12 +129,23 @@ namespace SFExample.Skyblock.Slayer
             deformed.NameColor = Color.DarkRed;
 
             Console.WriteLine("Finished generating mobs");
-            
+
+            // slayer leveling reward
+            SlayerLevel lvl = new("Zombie", 3, "Skilled", "diamond");
+            lvl.BeginInit();
+            lvl.AddReward(new SlayerStatReward(new EncapsulatedType<string, int, Color>("HP", 3, Color.Red)));
+            lvl.AddReward(new SlayerItemReward(new SkyblockItem(ItemType.None, ItemRarity.Rare, "Undead Catalyst", "filler")));
+            lvl.AddReward(new SlayerRecipeReward(new SkyblockItem(ItemType.None, ItemRarity.Rare, "Revenant Falchion", "filler")));
+            lvl.AddReward(new SlayerRecipeReward(new SkyblockItem(ItemType.None, ItemRarity.Rare, "Wand of Mending", "filler")));
+            lvl.AddReward(new SlayerRecipeReward(new SkyblockItem(ItemType.None, ItemRarity.Rare, "Crystallized Heart", "filler")));
+            lvl.EndInit();
+
             // everything together
             SlayerTier[] tiers = new[] { tier1, tier2, tier3, tier4 };
             SkyblockItem[] items = new[] { revFlesh, foulFlesh, smite, blade };
             SlayerDrop[] drops = new[] { rf, ff, s, sb };
             SkyblockEntity[] minibosses = new[] { sycophant, champion, deformed };
+            SlayerLevel[] levels = new[] { lvl };
 
             // initializing slayer
 
@@ -143,6 +154,7 @@ namespace SFExample.Skyblock.Slayer
             slayer.SlayerItems = items;
             slayer.SlayerDrops = drops;
             slayer.Minibosses = minibosses;
+            slayer.Levels = levels;
             slayer.SlayerBossName = "Revenant Horror";
             Console.WriteLine("Finished Initializing slayer...");
             // generate datapack
