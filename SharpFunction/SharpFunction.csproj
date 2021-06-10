@@ -4,7 +4,7 @@
     <TargetFramework>net5.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Version>0.6.4-beta</Version>
+    <Version>0.7.1-beta</Version>
     <Authors>Maxus</Authors>
     <Company>Maxus Industries</Company>
     <Description>A .NET Library used for creating Minecraft datapacks, and most things related to them.</Description>
@@ -14,9 +14,20 @@
     <RepositoryUrl>https://github.com/Maxuss/SharpFunction</RepositoryUrl>
     <RepositoryType>GitHub Repository</RepositoryType>
     <PackageTags>Minecraft, Datapacks, Hypixel Skyblock</PackageTags>
-    <PackageReleaseNotes>First beta release</PackageReleaseNotes>
+    <PackageReleaseNotes>0.7.1-beta pre-release patch notes:
+- Fixed bug, where it was impossible to launch generated datapack
+- Fixed bug, where item will not display itself properly
+- Fixed bug, where item ability would look really weird
+- Fixed bug, where command module would not parse commands
+- Changed few `string` descriptions to new AdvancedDescription class
+- Optimizied SkyblockItem class' `Compile()` method
+- Added Skyblock Slayer-related classes
+- Did some small fixes in Skyblock Addon
+- Added more documentation to certain fields
+- Changed NBT generation for Equipment
+- Small but neccessary bugfixes</PackageReleaseNotes>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-    <NeutralLanguage>C#</NeutralLanguage>
+    <NeutralLanguage>C# .NET</NeutralLanguage>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

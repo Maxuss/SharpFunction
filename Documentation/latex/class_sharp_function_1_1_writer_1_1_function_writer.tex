@@ -1,0 +1,198 @@
+\hypertarget{class_sharp_function_1_1_writer_1_1_function_writer}{}\doxysection{Sharp\+Function.\+Writer.\+Function\+Writer Class Reference}
+\label{class_sharp_function_1_1_writer_1_1_function_writer}\index{SharpFunction.Writer.FunctionWriter@{SharpFunction.Writer.FunctionWriter}}
+
+
+This class is used for writing functions to file  
+
+
+Inheritance diagram for Sharp\+Function.\+Writer.\+Function\+Writer\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_sharp_function_1_1_writer_1_1_function_writer}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_sharp_function_1_1_writer_1_1_function_writer_a710b01c64cbf995c77aa71bd86601bf9}{Function\+Writer}} (string path, string name)
+\begin{DoxyCompactList}\small\item\em Initialize a function writer \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_sharp_function_1_1_writer_1_1_function_writer_ad5cb8d6a836c73b0379611bf64991bc0}{Function\+Writer}} (\mbox{\hyperlink{class_sharp_function_1_1_a_p_i_1_1_project}{API.\+Project}} project)
+\begin{DoxyCompactList}\small\item\em Initialize a function writer \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_sharp_function_1_1_writer_1_1_function_writer_a675eb3bee8f65a18f885fb6c0a857474}{Function\+Specified}} ()
+\begin{DoxyCompactList}\small\item\em Checks whether the function is specified. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_sharp_function_1_1_writer_1_1_function_writer_aa7433cd3b804b123cea337d6f644739b}{Function\+Exists}} (string name)
+\begin{DoxyCompactList}\small\item\em Checks whether the function with specified name (without .mcfunction extension) exists \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_sharp_function_1_1_writer_1_1_function_writer_a797a2773e0ae5bf46b20b57669122a23}{Create\+Function}} (string name)
+\begin{DoxyCompactList}\small\item\em Creates an empty function with specified name in current working category.~\newline
+ Overwrites it if it exists, so be careful. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_sharp_function_1_1_writer_1_1_function_writer_acbcb482b36876cbc952443e3ed42da87}{Write\+Command}} (string command, string name)
+\begin{DoxyCompactList}\small\item\em Writes a simple command to function \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_sharp_function_1_1_writer_1_1_function_writer_a94ad4a64a325dc46a41a8d8b14acd6eb}{Write\+Command}} (\mbox{\hyperlink{class_sharp_function_1_1_commands_1_1_command_module}{Commands.\+Command\+Module}} command, string name)
+\begin{DoxyCompactList}\small\item\em Writes a command module to function \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{class_sharp_function_1_1_writer_1_1_function_writer_a51979d6973b695a94485993402ba1860}{Path}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Path for writer to write functions \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_sharp_function_1_1_writer_1_1_function_writer_a4bb8c880bbaf8d3be1261743d047b7ce}{Name}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Name of project \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+This class is used for writing functions to file 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_sharp_function_1_1_writer_1_1_function_writer_a710b01c64cbf995c77aa71bd86601bf9}\label{class_sharp_function_1_1_writer_1_1_function_writer_a710b01c64cbf995c77aa71bd86601bf9}} 
+\index{SharpFunction.Writer.FunctionWriter@{SharpFunction.Writer.FunctionWriter}!FunctionWriter@{FunctionWriter}}
+\index{FunctionWriter@{FunctionWriter}!SharpFunction.Writer.FunctionWriter@{SharpFunction.Writer.FunctionWriter}}
+\doxysubsubsection{\texorpdfstring{FunctionWriter()}{FunctionWriter()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Sharp\+Function.\+Writer.\+Function\+Writer.\+Function\+Writer (\begin{DoxyParamCaption}\item[{string}]{path,  }\item[{string}]{name }\end{DoxyParamCaption})}
+
+
+
+Initialize a function writer 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & Path where to write functions.~\newline
+ Functions will be created in ~\newline
+ 
+\begin{DoxyCode}{1}
+\DoxyCodeLine{\mbox{\hyperlink{class_sharp_function_1_1_writer_1_1_function_writer_a51979d6973b695a94485993402ba1860}{Path}}/functions/}
+
+\end{DoxyCode}
+\\
+\hline
+{\em name} & Name of project to write in.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_sharp_function_1_1_writer_1_1_function_writer_ad5cb8d6a836c73b0379611bf64991bc0}\label{class_sharp_function_1_1_writer_1_1_function_writer_ad5cb8d6a836c73b0379611bf64991bc0}} 
+\index{SharpFunction.Writer.FunctionWriter@{SharpFunction.Writer.FunctionWriter}!FunctionWriter@{FunctionWriter}}
+\index{FunctionWriter@{FunctionWriter}!SharpFunction.Writer.FunctionWriter@{SharpFunction.Writer.FunctionWriter}}
+\doxysubsubsection{\texorpdfstring{FunctionWriter()}{FunctionWriter()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Sharp\+Function.\+Writer.\+Function\+Writer.\+Function\+Writer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_sharp_function_1_1_a_p_i_1_1_project}{API.\+Project}}}]{project }\end{DoxyParamCaption})}
+
+
+
+Initialize a function writer 
+
+
+\begin{DoxyParams}{Parameters}
+{\em project} & Project to get data from\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_sharp_function_1_1_writer_1_1_function_writer_a797a2773e0ae5bf46b20b57669122a23}\label{class_sharp_function_1_1_writer_1_1_function_writer_a797a2773e0ae5bf46b20b57669122a23}} 
+\index{SharpFunction.Writer.FunctionWriter@{SharpFunction.Writer.FunctionWriter}!CreateFunction@{CreateFunction}}
+\index{CreateFunction@{CreateFunction}!SharpFunction.Writer.FunctionWriter@{SharpFunction.Writer.FunctionWriter}}
+\doxysubsubsection{\texorpdfstring{CreateFunction()}{CreateFunction()}}
+{\footnotesize\ttfamily void Sharp\+Function.\+Writer.\+Function\+Writer.\+Create\+Function (\begin{DoxyParamCaption}\item[{string}]{name }\end{DoxyParamCaption})}
+
+
+
+Creates an empty function with specified name in current working category.~\newline
+ Overwrites it if it exists, so be careful. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Name of function\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_sharp_function_1_1_writer_1_1_function_writer_aa7433cd3b804b123cea337d6f644739b}\label{class_sharp_function_1_1_writer_1_1_function_writer_aa7433cd3b804b123cea337d6f644739b}} 
+\index{SharpFunction.Writer.FunctionWriter@{SharpFunction.Writer.FunctionWriter}!FunctionExists@{FunctionExists}}
+\index{FunctionExists@{FunctionExists}!SharpFunction.Writer.FunctionWriter@{SharpFunction.Writer.FunctionWriter}}
+\doxysubsubsection{\texorpdfstring{FunctionExists()}{FunctionExists()}}
+{\footnotesize\ttfamily bool Sharp\+Function.\+Writer.\+Function\+Writer.\+Function\+Exists (\begin{DoxyParamCaption}\item[{string}]{name }\end{DoxyParamCaption})}
+
+
+
+Checks whether the function with specified name (without .mcfunction extension) exists 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Name of function\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if specified and False if not
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_sharp_function_1_1_writer_1_1_function_writer_a675eb3bee8f65a18f885fb6c0a857474}\label{class_sharp_function_1_1_writer_1_1_function_writer_a675eb3bee8f65a18f885fb6c0a857474}} 
+\index{SharpFunction.Writer.FunctionWriter@{SharpFunction.Writer.FunctionWriter}!FunctionSpecified@{FunctionSpecified}}
+\index{FunctionSpecified@{FunctionSpecified}!SharpFunction.Writer.FunctionWriter@{SharpFunction.Writer.FunctionWriter}}
+\doxysubsubsection{\texorpdfstring{FunctionSpecified()}{FunctionSpecified()}}
+{\footnotesize\ttfamily bool Sharp\+Function.\+Writer.\+Function\+Writer.\+Function\+Specified (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Checks whether the function is specified. 
+
+\begin{DoxyReturn}{Returns}
+True if specified and False if not
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_sharp_function_1_1_writer_1_1_function_writer_a94ad4a64a325dc46a41a8d8b14acd6eb}\label{class_sharp_function_1_1_writer_1_1_function_writer_a94ad4a64a325dc46a41a8d8b14acd6eb}} 
+\index{SharpFunction.Writer.FunctionWriter@{SharpFunction.Writer.FunctionWriter}!WriteCommand@{WriteCommand}}
+\index{WriteCommand@{WriteCommand}!SharpFunction.Writer.FunctionWriter@{SharpFunction.Writer.FunctionWriter}}
+\doxysubsubsection{\texorpdfstring{WriteCommand()}{WriteCommand()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Sharp\+Function.\+Writer.\+Function\+Writer.\+Write\+Command (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_sharp_function_1_1_commands_1_1_command_module}{Commands.\+Command\+Module}}}]{command,  }\item[{string}]{name }\end{DoxyParamCaption})}
+
+
+
+Writes a command module to function 
+
+
+\begin{DoxyParams}{Parameters}
+{\em command} & Command as module\\
+\hline
+{\em name} & Name of function. Not case sensitive\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_sharp_function_1_1_writer_1_1_function_writer_acbcb482b36876cbc952443e3ed42da87}\label{class_sharp_function_1_1_writer_1_1_function_writer_acbcb482b36876cbc952443e3ed42da87}} 
+\index{SharpFunction.Writer.FunctionWriter@{SharpFunction.Writer.FunctionWriter}!WriteCommand@{WriteCommand}}
+\index{WriteCommand@{WriteCommand}!SharpFunction.Writer.FunctionWriter@{SharpFunction.Writer.FunctionWriter}}
+\doxysubsubsection{\texorpdfstring{WriteCommand()}{WriteCommand()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Sharp\+Function.\+Writer.\+Function\+Writer.\+Write\+Command (\begin{DoxyParamCaption}\item[{string}]{command,  }\item[{string}]{name }\end{DoxyParamCaption})}
+
+
+
+Writes a simple command to function 
+
+
+\begin{DoxyParams}{Parameters}
+{\em command} & Command string\\
+\hline
+{\em name} & Name of function. Not case sensitive\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Property Documentation}
+\mbox{\Hypertarget{class_sharp_function_1_1_writer_1_1_function_writer_a4bb8c880bbaf8d3be1261743d047b7ce}\label{class_sharp_function_1_1_writer_1_1_function_writer_a4bb8c880bbaf8d3be1261743d047b7ce}} 
+\index{SharpFunction.Writer.FunctionWriter@{SharpFunction.Writer.FunctionWriter}!Name@{Name}}
+\index{Name@{Name}!SharpFunction.Writer.FunctionWriter@{SharpFunction.Writer.FunctionWriter}}
+\doxysubsubsection{\texorpdfstring{Name}{Name}}
+{\footnotesize\ttfamily string Sharp\+Function.\+Writer.\+Function\+Writer.\+Name\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Name of project 
+
+\mbox{\Hypertarget{class_sharp_function_1_1_writer_1_1_function_writer_a51979d6973b695a94485993402ba1860}\label{class_sharp_function_1_1_writer_1_1_function_writer_a51979d6973b695a94485993402ba1860}} 
+\index{SharpFunction.Writer.FunctionWriter@{SharpFunction.Writer.FunctionWriter}!Path@{Path}}
+\index{Path@{Path}!SharpFunction.Writer.FunctionWriter@{SharpFunction.Writer.FunctionWriter}}
+\doxysubsubsection{\texorpdfstring{Path}{Path}}
+{\footnotesize\ttfamily string Sharp\+Function.\+Writer.\+Function\+Writer.\+Path\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Path for writer to write functions 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_function_writer_8cs}{Function\+Writer.\+cs}}\end{DoxyCompactItemize}

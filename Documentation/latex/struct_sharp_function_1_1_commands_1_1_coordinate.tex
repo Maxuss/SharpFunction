@@ -1,0 +1,156 @@
+\hypertarget{struct_sharp_function_1_1_commands_1_1_coordinate}{}\doxysection{Sharp\+Function.\+Commands.\+Coordinate Struct Reference}
+\label{struct_sharp_function_1_1_commands_1_1_coordinate}\index{SharpFunction.Commands.Coordinate@{SharpFunction.Commands.Coordinate}}
+
+
+Represents a single coordinate in space  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_sharp_function_1_1_commands_1_1_coordinate_a28572964e7dbfbe0688b95e6958c7b5d}{Coordinate}} (\mbox{\hyperlink{struct_sharp_function_1_1_commands_1_1_coordinate}{Coordinate}} origin)
+\begin{DoxyCompactList}\small\item\em Copy coordinate from origin \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_sharp_function_1_1_commands_1_1_coordinate_acaa0145e7f627af77deacd7c032b6f27}{Coordinate}} (float pos)
+\begin{DoxyCompactList}\small\item\em Initialize a coordinate from position. Sets \mbox{\hyperlink{struct_sharp_function_1_1_commands_1_1_coordinate_a6cc26888b0ee221cf7d33842c4eb25bf}{Relative}} to false \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_sharp_function_1_1_commands_1_1_coordinate_a7eec0da6accdcde93042194bbabfd2be}{Coordinate}} (float pos, bool relative)
+\begin{DoxyCompactList}\small\item\em Initialize a coordinate from position and relativity \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_sharp_function_1_1_commands_1_1_coordinate_a1267484295a9342c057915e3d24e15c1}{Coordinate}} (float pos, bool? local)
+\begin{DoxyCompactList}\small\item\em Initialize a coordinate from position and relativity \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_sharp_function_1_1_commands_1_1_coordinate_af0c842a11e40addf84a7899ceebcbaa7}{Coordinate}} (string coord)
+\begin{DoxyCompactList}\small\item\em Initialize a coordinate from coordinate string \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+bool? \mbox{\hyperlink{struct_sharp_function_1_1_commands_1_1_coordinate_a6cc26888b0ee221cf7d33842c4eb25bf}{Relative}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Tells whether position is relative. E.\+G. $\sim$3 is relative position \end{DoxyCompactList}\item 
+bool? \mbox{\hyperlink{struct_sharp_function_1_1_commands_1_1_coordinate_ab5360be4cedfae1ff275b964aba7b97c}{Local}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Tells whether position is local and based on rotation. E.\+G. $^\wedge$3 is local position \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{struct_sharp_function_1_1_commands_1_1_coordinate_aad544a48abcb504340a27c6f5c5e14e6}{Value}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Shows position in space \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a single coordinate in space 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{struct_sharp_function_1_1_commands_1_1_coordinate_a28572964e7dbfbe0688b95e6958c7b5d}\label{struct_sharp_function_1_1_commands_1_1_coordinate_a28572964e7dbfbe0688b95e6958c7b5d}} 
+\index{SharpFunction.Commands.Coordinate@{SharpFunction.Commands.Coordinate}!Coordinate@{Coordinate}}
+\index{Coordinate@{Coordinate}!SharpFunction.Commands.Coordinate@{SharpFunction.Commands.Coordinate}}
+\doxysubsubsection{\texorpdfstring{Coordinate()}{Coordinate()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
+{\footnotesize\ttfamily Sharp\+Function.\+Commands.\+Coordinate.\+Coordinate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_sharp_function_1_1_commands_1_1_coordinate}{Coordinate}}}]{origin }\end{DoxyParamCaption})}
+
+
+
+Copy coordinate from origin 
+
+
+\begin{DoxyParams}{Parameters}
+{\em origin} & Original coordinate to copy from\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{struct_sharp_function_1_1_commands_1_1_coordinate_acaa0145e7f627af77deacd7c032b6f27}\label{struct_sharp_function_1_1_commands_1_1_coordinate_acaa0145e7f627af77deacd7c032b6f27}} 
+\index{SharpFunction.Commands.Coordinate@{SharpFunction.Commands.Coordinate}!Coordinate@{Coordinate}}
+\index{Coordinate@{Coordinate}!SharpFunction.Commands.Coordinate@{SharpFunction.Commands.Coordinate}}
+\doxysubsubsection{\texorpdfstring{Coordinate()}{Coordinate()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
+{\footnotesize\ttfamily Sharp\+Function.\+Commands.\+Coordinate.\+Coordinate (\begin{DoxyParamCaption}\item[{float}]{pos }\end{DoxyParamCaption})}
+
+
+
+Initialize a coordinate from position. Sets \mbox{\hyperlink{struct_sharp_function_1_1_commands_1_1_coordinate_a6cc26888b0ee221cf7d33842c4eb25bf}{Relative}} to false 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos} & Position in space\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{struct_sharp_function_1_1_commands_1_1_coordinate_a7eec0da6accdcde93042194bbabfd2be}\label{struct_sharp_function_1_1_commands_1_1_coordinate_a7eec0da6accdcde93042194bbabfd2be}} 
+\index{SharpFunction.Commands.Coordinate@{SharpFunction.Commands.Coordinate}!Coordinate@{Coordinate}}
+\index{Coordinate@{Coordinate}!SharpFunction.Commands.Coordinate@{SharpFunction.Commands.Coordinate}}
+\doxysubsubsection{\texorpdfstring{Coordinate()}{Coordinate()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
+{\footnotesize\ttfamily Sharp\+Function.\+Commands.\+Coordinate.\+Coordinate (\begin{DoxyParamCaption}\item[{float}]{pos,  }\item[{bool}]{relative }\end{DoxyParamCaption})}
+
+
+
+Initialize a coordinate from position and relativity 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos} & Position in space\\
+\hline
+{\em relative} & Whether the position relative to player/command block postion\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{struct_sharp_function_1_1_commands_1_1_coordinate_a1267484295a9342c057915e3d24e15c1}\label{struct_sharp_function_1_1_commands_1_1_coordinate_a1267484295a9342c057915e3d24e15c1}} 
+\index{SharpFunction.Commands.Coordinate@{SharpFunction.Commands.Coordinate}!Coordinate@{Coordinate}}
+\index{Coordinate@{Coordinate}!SharpFunction.Commands.Coordinate@{SharpFunction.Commands.Coordinate}}
+\doxysubsubsection{\texorpdfstring{Coordinate()}{Coordinate()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily Sharp\+Function.\+Commands.\+Coordinate.\+Coordinate (\begin{DoxyParamCaption}\item[{float}]{pos,  }\item[{bool?}]{local }\end{DoxyParamCaption})}
+
+
+
+Initialize a coordinate from position and relativity 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos} & Position in space\\
+\hline
+{\em relative} & Whether the position relative to player/command block postion\\
+\hline
+{\em caret} & Whether the position is relative to rotation. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{struct_sharp_function_1_1_commands_1_1_coordinate_af0c842a11e40addf84a7899ceebcbaa7}\label{struct_sharp_function_1_1_commands_1_1_coordinate_af0c842a11e40addf84a7899ceebcbaa7}} 
+\index{SharpFunction.Commands.Coordinate@{SharpFunction.Commands.Coordinate}!Coordinate@{Coordinate}}
+\index{Coordinate@{Coordinate}!SharpFunction.Commands.Coordinate@{SharpFunction.Commands.Coordinate}}
+\doxysubsubsection{\texorpdfstring{Coordinate()}{Coordinate()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
+{\footnotesize\ttfamily Sharp\+Function.\+Commands.\+Coordinate.\+Coordinate (\begin{DoxyParamCaption}\item[{string}]{coord }\end{DoxyParamCaption})}
+
+
+
+Initialize a coordinate from coordinate string 
+
+
+\begin{DoxyParams}{Parameters}
+{\em coord} & \mbox{\hyperlink{struct_sharp_function_1_1_commands_1_1_coordinate}{Coordinate}} string. E.\+G. \char`\"{}$\sim$3\char`\"{} or \char`\"{}3.\+31\char`\"{} or \char`\"{}$^\wedge$-\/13\char`\"{}.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Property Documentation}
+\mbox{\Hypertarget{struct_sharp_function_1_1_commands_1_1_coordinate_ab5360be4cedfae1ff275b964aba7b97c}\label{struct_sharp_function_1_1_commands_1_1_coordinate_ab5360be4cedfae1ff275b964aba7b97c}} 
+\index{SharpFunction.Commands.Coordinate@{SharpFunction.Commands.Coordinate}!Local@{Local}}
+\index{Local@{Local}!SharpFunction.Commands.Coordinate@{SharpFunction.Commands.Coordinate}}
+\doxysubsubsection{\texorpdfstring{Local}{Local}}
+{\footnotesize\ttfamily bool? Sharp\+Function.\+Commands.\+Coordinate.\+Local\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Tells whether position is local and based on rotation. E.\+G. $^\wedge$3 is local position 
+
+\mbox{\Hypertarget{struct_sharp_function_1_1_commands_1_1_coordinate_a6cc26888b0ee221cf7d33842c4eb25bf}\label{struct_sharp_function_1_1_commands_1_1_coordinate_a6cc26888b0ee221cf7d33842c4eb25bf}} 
+\index{SharpFunction.Commands.Coordinate@{SharpFunction.Commands.Coordinate}!Relative@{Relative}}
+\index{Relative@{Relative}!SharpFunction.Commands.Coordinate@{SharpFunction.Commands.Coordinate}}
+\doxysubsubsection{\texorpdfstring{Relative}{Relative}}
+{\footnotesize\ttfamily bool? Sharp\+Function.\+Commands.\+Coordinate.\+Relative\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Tells whether position is relative. E.\+G. $\sim$3 is relative position 
+
+\mbox{\Hypertarget{struct_sharp_function_1_1_commands_1_1_coordinate_aad544a48abcb504340a27c6f5c5e14e6}\label{struct_sharp_function_1_1_commands_1_1_coordinate_aad544a48abcb504340a27c6f5c5e14e6}} 
+\index{SharpFunction.Commands.Coordinate@{SharpFunction.Commands.Coordinate}!Value@{Value}}
+\index{Value@{Value}!SharpFunction.Commands.Coordinate@{SharpFunction.Commands.Coordinate}}
+\doxysubsubsection{\texorpdfstring{Value}{Value}}
+{\footnotesize\ttfamily float Sharp\+Function.\+Commands.\+Coordinate.\+Value\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Shows position in space 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_coordinate_8cs}{Coordinate.\+cs}}\end{DoxyCompactItemize}

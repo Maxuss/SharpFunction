@@ -1,0 +1,203 @@
+\hypertarget{class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop}{}\doxysection{Sharp\+Function.\+Addons.\+Skyblock.\+Slayer\+Drop Class Reference}
+\label{class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop}\index{SharpFunction.Addons.Skyblock.SlayerDrop@{SharpFunction.Addons.Skyblock.SlayerDrop}}
+
+
+Represents an item that is dropped from slayer  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop_ae09f45e23b838a78ad63e401f9a524cd}{Slayer\+Drop}} (string name, \mbox{\hyperlink{namespace_sharp_function_1_1_addons_1_1_skyblock_a9c722a22192c8a190905ba8af93e361d}{Drop\+Rarity}} drop, \mbox{\hyperlink{namespace_sharp_function_1_1_addons_1_1_skyblock_af9b084075e635925425b7b021fe0670c}{Item\+Rarity}} rarity, string id)
+\begin{DoxyCompactList}\small\item\em Create new slayer drop \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop_a8326a24a6f99f2366ca377b6b599013d}{Slayer\+Drop}} (\mbox{\hyperlink{class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_item}{Skyblock\+Item}} item, \mbox{\hyperlink{namespace_sharp_function_1_1_addons_1_1_skyblock_a9c722a22192c8a190905ba8af93e361d}{Drop\+Rarity}} rarity)
+\begin{DoxyCompactList}\small\item\em Generates slayer drop from pre-\/existing item \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_sharp_function_1_1_commands_1_1_minecraft_1_1_give}{Give}} \mbox{\hyperlink{class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop_ac3e70c0f936e8699a5e49bbbf7e42f51}{Generate}} ()
+\begin{DoxyCompactList}\small\item\em Generates command to give the item \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop_a0f4bd5dfab1aadc15a07789cbaa4947e}{Compile}} ()
+\begin{DoxyCompactList}\small\item\em Generates and compiles the command, returning the string \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Dictionary$<$ string, string $>$ \mbox{\hyperlink{class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop_a4ddf1137d62500c5a72b90c9da6b5028}{Tier\+Amounts}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespace_sharp_function_1_1_addons_1_1_skyblock_a9c722a22192c8a190905ba8af93e361d}{Drop\+Rarity}} \mbox{\hyperlink{class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop_a56a85dcfdbb2f32578bf8d2acbbc1dce}{Drop\+Rarity}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Drop rarity of item \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop_a5ca505d943d1923fd190ff733f161c39}{Item\+Name}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Item to drop \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop_ab02f2158b074f9bfb7ba470cd3503663}{ID}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em ID of item to give \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespace_sharp_function_1_1_addons_1_1_skyblock_af9b084075e635925425b7b021fe0670c}{Item\+Rarity}} \mbox{\hyperlink{class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop_ab7f3ec7dadaba0955f0e77cdd59a7dd7}{Rarity}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Rarity of item \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop_aa12aab646f6569be83aab4b83c09d61c}{Required\+LVL}} = 0\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Slayer Level required to obtain the drop \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop_a2eb22dbf257ad27d1f1e5caf0394bec7}{Minimum\+Tier}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Minimum tier for this item to drop \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents an item that is dropped from slayer 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop_ae09f45e23b838a78ad63e401f9a524cd}\label{class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop_ae09f45e23b838a78ad63e401f9a524cd}} 
+\index{SharpFunction.Addons.Skyblock.SlayerDrop@{SharpFunction.Addons.Skyblock.SlayerDrop}!SlayerDrop@{SlayerDrop}}
+\index{SlayerDrop@{SlayerDrop}!SharpFunction.Addons.Skyblock.SlayerDrop@{SharpFunction.Addons.Skyblock.SlayerDrop}}
+\doxysubsubsection{\texorpdfstring{SlayerDrop()}{SlayerDrop()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Sharp\+Function.\+Addons.\+Skyblock.\+Slayer\+Drop.\+Slayer\+Drop (\begin{DoxyParamCaption}\item[{string}]{name,  }\item[{\mbox{\hyperlink{namespace_sharp_function_1_1_addons_1_1_skyblock_a9c722a22192c8a190905ba8af93e361d}{Drop\+Rarity}}}]{drop,  }\item[{\mbox{\hyperlink{namespace_sharp_function_1_1_addons_1_1_skyblock_af9b084075e635925425b7b021fe0670c}{Item\+Rarity}}}]{rarity,  }\item[{string}]{id }\end{DoxyParamCaption})}
+
+
+
+Create new slayer drop 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Name of item\\
+\hline
+{\em drop} & Drop rarity of item\\
+\hline
+{\em rarity} & Rarity of item\\
+\hline
+{\em id} & ID of item to give\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop_a8326a24a6f99f2366ca377b6b599013d}\label{class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop_a8326a24a6f99f2366ca377b6b599013d}} 
+\index{SharpFunction.Addons.Skyblock.SlayerDrop@{SharpFunction.Addons.Skyblock.SlayerDrop}!SlayerDrop@{SlayerDrop}}
+\index{SlayerDrop@{SlayerDrop}!SharpFunction.Addons.Skyblock.SlayerDrop@{SharpFunction.Addons.Skyblock.SlayerDrop}}
+\doxysubsubsection{\texorpdfstring{SlayerDrop()}{SlayerDrop()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Sharp\+Function.\+Addons.\+Skyblock.\+Slayer\+Drop.\+Slayer\+Drop (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_item}{Skyblock\+Item}}}]{item,  }\item[{\mbox{\hyperlink{namespace_sharp_function_1_1_addons_1_1_skyblock_a9c722a22192c8a190905ba8af93e361d}{Drop\+Rarity}}}]{rarity }\end{DoxyParamCaption})}
+
+
+
+Generates slayer drop from pre-\/existing item 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item} & Item to steal data from\\
+\hline
+{\em rarity} & Rarity of item\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop_a0f4bd5dfab1aadc15a07789cbaa4947e}\label{class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop_a0f4bd5dfab1aadc15a07789cbaa4947e}} 
+\index{SharpFunction.Addons.Skyblock.SlayerDrop@{SharpFunction.Addons.Skyblock.SlayerDrop}!Compile@{Compile}}
+\index{Compile@{Compile}!SharpFunction.Addons.Skyblock.SlayerDrop@{SharpFunction.Addons.Skyblock.SlayerDrop}}
+\doxysubsubsection{\texorpdfstring{Compile()}{Compile()}}
+{\footnotesize\ttfamily string Sharp\+Function.\+Addons.\+Skyblock.\+Slayer\+Drop.\+Compile (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Generates and compiles the command, returning the string 
+
+\begin{DoxyReturn}{Returns}
+Compiled string command
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop_ac3e70c0f936e8699a5e49bbbf7e42f51}\label{class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop_ac3e70c0f936e8699a5e49bbbf7e42f51}} 
+\index{SharpFunction.Addons.Skyblock.SlayerDrop@{SharpFunction.Addons.Skyblock.SlayerDrop}!Generate@{Generate}}
+\index{Generate@{Generate}!SharpFunction.Addons.Skyblock.SlayerDrop@{SharpFunction.Addons.Skyblock.SlayerDrop}}
+\doxysubsubsection{\texorpdfstring{Generate()}{Generate()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sharp_function_1_1_commands_1_1_minecraft_1_1_give}{Give}} Sharp\+Function.\+Addons.\+Skyblock.\+Slayer\+Drop.\+Generate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Generates command to give the item 
+
+\begin{DoxyReturn}{Returns}
+Generated command
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop_a4ddf1137d62500c5a72b90c9da6b5028}\label{class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop_a4ddf1137d62500c5a72b90c9da6b5028}} 
+\index{SharpFunction.Addons.Skyblock.SlayerDrop@{SharpFunction.Addons.Skyblock.SlayerDrop}!TierAmounts@{TierAmounts}}
+\index{TierAmounts@{TierAmounts}!SharpFunction.Addons.Skyblock.SlayerDrop@{SharpFunction.Addons.Skyblock.SlayerDrop}}
+\doxysubsubsection{\texorpdfstring{TierAmounts}{TierAmounts}}
+{\footnotesize\ttfamily Dictionary$<$string, string$>$ Sharp\+Function.\+Addons.\+Skyblock.\+Slayer\+Drop.\+Tier\+Amounts}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \textcolor{keyword}{new}()}
+\DoxyCodeLine{        \{}
+\DoxyCodeLine{            \{ \textcolor{stringliteral}{"{}Tier I"{}}, \textcolor{stringliteral}{"{}"{}}\},}
+\DoxyCodeLine{            \{ \textcolor{stringliteral}{"{}Tier II"{}}, \textcolor{stringliteral}{"{}"{}} \},}
+\DoxyCodeLine{            \{ \textcolor{stringliteral}{"{}Tier III"{}}, \textcolor{stringliteral}{"{}"{}} \},}
+\DoxyCodeLine{            \{ \textcolor{stringliteral}{"{}Tier IV"{}}, \textcolor{stringliteral}{"{}"{}} \},}
+\DoxyCodeLine{            \{ \textcolor{stringliteral}{"{}Tier V"{}}, \textcolor{stringliteral}{"{}"{}} \},}
+\DoxyCodeLine{            \{ \textcolor{stringliteral}{"{}Tier VI"{}}, \textcolor{stringliteral}{"{}"{}} \}}
+\DoxyCodeLine{        \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Property Documentation}
+\mbox{\Hypertarget{class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop_a56a85dcfdbb2f32578bf8d2acbbc1dce}\label{class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop_a56a85dcfdbb2f32578bf8d2acbbc1dce}} 
+\index{SharpFunction.Addons.Skyblock.SlayerDrop@{SharpFunction.Addons.Skyblock.SlayerDrop}!DropRarity@{DropRarity}}
+\index{DropRarity@{DropRarity}!SharpFunction.Addons.Skyblock.SlayerDrop@{SharpFunction.Addons.Skyblock.SlayerDrop}}
+\doxysubsubsection{\texorpdfstring{DropRarity}{DropRarity}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_sharp_function_1_1_addons_1_1_skyblock_a9c722a22192c8a190905ba8af93e361d}{Drop\+Rarity}} Sharp\+Function.\+Addons.\+Skyblock.\+Slayer\+Drop.\+Drop\+Rarity\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Drop rarity of item 
+
+\mbox{\Hypertarget{class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop_ab02f2158b074f9bfb7ba470cd3503663}\label{class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop_ab02f2158b074f9bfb7ba470cd3503663}} 
+\index{SharpFunction.Addons.Skyblock.SlayerDrop@{SharpFunction.Addons.Skyblock.SlayerDrop}!ID@{ID}}
+\index{ID@{ID}!SharpFunction.Addons.Skyblock.SlayerDrop@{SharpFunction.Addons.Skyblock.SlayerDrop}}
+\doxysubsubsection{\texorpdfstring{ID}{ID}}
+{\footnotesize\ttfamily string Sharp\+Function.\+Addons.\+Skyblock.\+Slayer\+Drop.\+ID\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+ID of item to give 
+
+\mbox{\Hypertarget{class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop_a5ca505d943d1923fd190ff733f161c39}\label{class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop_a5ca505d943d1923fd190ff733f161c39}} 
+\index{SharpFunction.Addons.Skyblock.SlayerDrop@{SharpFunction.Addons.Skyblock.SlayerDrop}!ItemName@{ItemName}}
+\index{ItemName@{ItemName}!SharpFunction.Addons.Skyblock.SlayerDrop@{SharpFunction.Addons.Skyblock.SlayerDrop}}
+\doxysubsubsection{\texorpdfstring{ItemName}{ItemName}}
+{\footnotesize\ttfamily string Sharp\+Function.\+Addons.\+Skyblock.\+Slayer\+Drop.\+Item\+Name\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Item to drop 
+
+\mbox{\Hypertarget{class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop_a2eb22dbf257ad27d1f1e5caf0394bec7}\label{class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop_a2eb22dbf257ad27d1f1e5caf0394bec7}} 
+\index{SharpFunction.Addons.Skyblock.SlayerDrop@{SharpFunction.Addons.Skyblock.SlayerDrop}!MinimumTier@{MinimumTier}}
+\index{MinimumTier@{MinimumTier}!SharpFunction.Addons.Skyblock.SlayerDrop@{SharpFunction.Addons.Skyblock.SlayerDrop}}
+\doxysubsubsection{\texorpdfstring{MinimumTier}{MinimumTier}}
+{\footnotesize\ttfamily int Sharp\+Function.\+Addons.\+Skyblock.\+Slayer\+Drop.\+Minimum\+Tier\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Minimum tier for this item to drop 
+
+\mbox{\Hypertarget{class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop_ab7f3ec7dadaba0955f0e77cdd59a7dd7}\label{class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop_ab7f3ec7dadaba0955f0e77cdd59a7dd7}} 
+\index{SharpFunction.Addons.Skyblock.SlayerDrop@{SharpFunction.Addons.Skyblock.SlayerDrop}!Rarity@{Rarity}}
+\index{Rarity@{Rarity}!SharpFunction.Addons.Skyblock.SlayerDrop@{SharpFunction.Addons.Skyblock.SlayerDrop}}
+\doxysubsubsection{\texorpdfstring{Rarity}{Rarity}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_sharp_function_1_1_addons_1_1_skyblock_af9b084075e635925425b7b021fe0670c}{Item\+Rarity}} Sharp\+Function.\+Addons.\+Skyblock.\+Slayer\+Drop.\+Rarity\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Rarity of item 
+
+\mbox{\Hypertarget{class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop_aa12aab646f6569be83aab4b83c09d61c}\label{class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop_aa12aab646f6569be83aab4b83c09d61c}} 
+\index{SharpFunction.Addons.Skyblock.SlayerDrop@{SharpFunction.Addons.Skyblock.SlayerDrop}!RequiredLVL@{RequiredLVL}}
+\index{RequiredLVL@{RequiredLVL}!SharpFunction.Addons.Skyblock.SlayerDrop@{SharpFunction.Addons.Skyblock.SlayerDrop}}
+\doxysubsubsection{\texorpdfstring{RequiredLVL}{RequiredLVL}}
+{\footnotesize\ttfamily int Sharp\+Function.\+Addons.\+Skyblock.\+Slayer\+Drop.\+Required\+LVL = 0\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Slayer Level required to obtain the drop 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_slayer_drop_8cs}{Slayer\+Drop.\+cs}}\end{DoxyCompactItemize}

@@ -1,0 +1,113 @@
+\hypertarget{class_sharp_function_1_1_commands_1_1_command_module}{}\doxysection{Sharp\+Function.\+Commands.\+Command\+Module Class Reference}
+\label{class_sharp_function_1_1_commands_1_1_command_module}\index{SharpFunction.Commands.CommandModule@{SharpFunction.Commands.CommandModule}}
+
+
+Represents module containing multiple commands for writing into .mcfunction file  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_sharp_function_1_1_commands_1_1_command_module_a0855fb8a316b212f7256005587ccf168}{Append}} (string command)
+\begin{DoxyCompactList}\small\item\em Appends compiled command string to all lines \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_sharp_function_1_1_commands_1_1_command_module_a7d01d09f094aa7546fde70812e691fd2}{Append}} (\mbox{\hyperlink{interface_sharp_function_1_1_commands_1_1_minecraft_1_1_i_command}{ICommand}} command)
+\begin{DoxyCompactList}\small\item\em Appends compiled command value to all lines.~\newline
+ Requires compiling command before appending! \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_sharp_function_1_1_commands_1_1_command_module_a7a06681ab687399fd375bce36228687f}{Append}} (params \mbox{\hyperlink{interface_sharp_function_1_1_commands_1_1_minecraft_1_1_i_command}{ICommand}}\mbox{[}$\,$\mbox{]} commands)
+\begin{DoxyCompactList}\small\item\em Appends multiple {\bfseries{compiled}} command values to lines~\newline
+ \mbox{\hyperlink{namespace_sharp_function_1_1_commands}{Commands}} require {\bfseries{compiling}} before appending! \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_sharp_function_1_1_commands_1_1_command_module_a0d900554f88d08125a3a20596244b63b}{Append}} (params string\mbox{[}$\,$\mbox{]} commands)
+\begin{DoxyCompactList}\small\item\em Append multiple string commands to lines \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+List$<$ string $>$ \mbox{\hyperlink{class_sharp_function_1_1_commands_1_1_command_module_a7b47194480d0c01e80a3d0141af12e8d}{Command\+Lines}} = Array.\+Empty$<$string$>$().To\+List()
+\begin{DoxyCompactList}\small\item\em Represents all commands in the module as string array \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents module containing multiple commands for writing into .mcfunction file 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_sharp_function_1_1_commands_1_1_command_module_a7d01d09f094aa7546fde70812e691fd2}\label{class_sharp_function_1_1_commands_1_1_command_module_a7d01d09f094aa7546fde70812e691fd2}} 
+\index{SharpFunction.Commands.CommandModule@{SharpFunction.Commands.CommandModule}!Append@{Append}}
+\index{Append@{Append}!SharpFunction.Commands.CommandModule@{SharpFunction.Commands.CommandModule}}
+\doxysubsubsection{\texorpdfstring{Append()}{Append()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily void Sharp\+Function.\+Commands.\+Command\+Module.\+Append (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_sharp_function_1_1_commands_1_1_minecraft_1_1_i_command}{ICommand}}}]{command }\end{DoxyParamCaption})}
+
+
+
+Appends compiled command value to all lines.~\newline
+ Requires compiling command before appending! 
+
+
+\begin{DoxyParams}{Parameters}
+{\em command} & Command to append\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_sharp_function_1_1_commands_1_1_command_module_a7a06681ab687399fd375bce36228687f}\label{class_sharp_function_1_1_commands_1_1_command_module_a7a06681ab687399fd375bce36228687f}} 
+\index{SharpFunction.Commands.CommandModule@{SharpFunction.Commands.CommandModule}!Append@{Append}}
+\index{Append@{Append}!SharpFunction.Commands.CommandModule@{SharpFunction.Commands.CommandModule}}
+\doxysubsubsection{\texorpdfstring{Append()}{Append()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily void Sharp\+Function.\+Commands.\+Command\+Module.\+Append (\begin{DoxyParamCaption}\item[{params \mbox{\hyperlink{interface_sharp_function_1_1_commands_1_1_minecraft_1_1_i_command}{ICommand}}\mbox{[}$\,$\mbox{]}}]{commands }\end{DoxyParamCaption})}
+
+
+
+Appends multiple {\bfseries{compiled}} command values to lines~\newline
+ \mbox{\hyperlink{namespace_sharp_function_1_1_commands}{Commands}} require {\bfseries{compiling}} before appending! 
+
+
+\begin{DoxyParams}{Parameters}
+{\em commands} & Multiple compiled commands\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_sharp_function_1_1_commands_1_1_command_module_a0d900554f88d08125a3a20596244b63b}\label{class_sharp_function_1_1_commands_1_1_command_module_a0d900554f88d08125a3a20596244b63b}} 
+\index{SharpFunction.Commands.CommandModule@{SharpFunction.Commands.CommandModule}!Append@{Append}}
+\index{Append@{Append}!SharpFunction.Commands.CommandModule@{SharpFunction.Commands.CommandModule}}
+\doxysubsubsection{\texorpdfstring{Append()}{Append()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily void Sharp\+Function.\+Commands.\+Command\+Module.\+Append (\begin{DoxyParamCaption}\item[{params string\mbox{[}$\,$\mbox{]}}]{commands }\end{DoxyParamCaption})}
+
+
+
+Append multiple string commands to lines 
+
+
+\begin{DoxyParams}{Parameters}
+{\em commands} & Multiple string commands\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_sharp_function_1_1_commands_1_1_command_module_a0855fb8a316b212f7256005587ccf168}\label{class_sharp_function_1_1_commands_1_1_command_module_a0855fb8a316b212f7256005587ccf168}} 
+\index{SharpFunction.Commands.CommandModule@{SharpFunction.Commands.CommandModule}!Append@{Append}}
+\index{Append@{Append}!SharpFunction.Commands.CommandModule@{SharpFunction.Commands.CommandModule}}
+\doxysubsubsection{\texorpdfstring{Append()}{Append()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily void Sharp\+Function.\+Commands.\+Command\+Module.\+Append (\begin{DoxyParamCaption}\item[{string}]{command }\end{DoxyParamCaption})}
+
+
+
+Appends compiled command string to all lines 
+
+
+\begin{DoxyParams}{Parameters}
+{\em command} & Command string to append\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_sharp_function_1_1_commands_1_1_command_module_a7b47194480d0c01e80a3d0141af12e8d}\label{class_sharp_function_1_1_commands_1_1_command_module_a7b47194480d0c01e80a3d0141af12e8d}} 
+\index{SharpFunction.Commands.CommandModule@{SharpFunction.Commands.CommandModule}!CommandLines@{CommandLines}}
+\index{CommandLines@{CommandLines}!SharpFunction.Commands.CommandModule@{SharpFunction.Commands.CommandModule}}
+\doxysubsubsection{\texorpdfstring{CommandLines}{CommandLines}}
+{\footnotesize\ttfamily List$<$string$>$ Sharp\+Function.\+Commands.\+Command\+Module.\+Command\+Lines = Array.\+Empty$<$string$>$().To\+List()}
+
+
+
+Represents all commands in the module as string array 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_command_module_8cs}{Command\+Module.\+cs}}\end{DoxyCompactItemize}

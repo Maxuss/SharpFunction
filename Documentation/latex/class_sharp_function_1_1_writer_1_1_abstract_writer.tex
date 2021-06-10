@@ -1,0 +1,225 @@
+\hypertarget{class_sharp_function_1_1_writer_1_1_abstract_writer}{}\doxysection{Sharp\+Function.\+Writer.\+Abstract\+Writer Class Reference}
+\label{class_sharp_function_1_1_writer_1_1_abstract_writer}\index{SharpFunction.Writer.AbstractWriter@{SharpFunction.Writer.AbstractWriter}}
+
+
+Used for inheritance for all other writer classes  
+
+
+Inheritance diagram for Sharp\+Function.\+Writer.\+Abstract\+Writer\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_sharp_function_1_1_writer_1_1_abstract_writer}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_sharp_function_1_1_writer_1_1_abstract_writer_ab2a1b1922b2d02e4c83143488842e89a}{Initialize}} (string path)
+\begin{DoxyCompactList}\small\item\em Initialize a writer and lock it to functions directory \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_sharp_function_1_1_writer_1_1_abstract_writer_a1f57bb3b6d04200249de2133ded3ff09}{Create\+Category}} (string name)
+\begin{DoxyCompactList}\small\item\em Creates a category for commands.~\newline
+ For example\+: functions in category {\itshape name} will be executed as \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_sharp_function_1_1_writer_1_1_abstract_writer_af7de03d9ec79552c80dbba958bbd8ed3}{Change\+Category}} (string name)
+\begin{DoxyCompactList}\small\item\em Changes current category to specified.~\newline
+ If specified category does not exist, creates it. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_sharp_function_1_1_writer_1_1_abstract_writer_a802a992d1ae07ec2eda6a0ce9fcbbbb0}{Category\+Specified}} ()
+\begin{DoxyCompactList}\small\item\em Checks whether the category is specified. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_sharp_function_1_1_writer_1_1_abstract_writer_a525d7f89c252f61b9d0969b960fb52a3}{Category\+Exists}} (string name)
+\begin{DoxyCompactList}\small\item\em Checks whether the category with specified name exists \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_sharp_function_1_1_writer_1_1_abstract_writer_a782e35906eae7eaa608b6c2f882c96aa}{Get\+Current\+Category}} ()
+\begin{DoxyCompactList}\small\item\em Gets current category \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{class_sharp_function_1_1_writer_1_1_abstract_writer_aca6833f55835b8d800340f3266e6e7d6}{category}} = \char`\"{}None\char`\"{}
+\begin{DoxyCompactList}\small\item\em ID of current category \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_sharp_function_1_1_writer_1_1_abstract_writer_a7f013411c70fc67ab1fe0777ff10f743}{category\+Name}} = \char`\"{}None\char`\"{}
+\begin{DoxyCompactList}\small\item\em Name of current category \end{DoxyCompactList}\item 
+string\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{class_sharp_function_1_1_writer_1_1_abstract_writer_a64bcd66207256c93f236a002c0ad4a7e}{created\+Categories}} = \{ \}
+\begin{DoxyCompactList}\small\item\em Created categories \end{DoxyCompactList}\item 
+Text\+Writer \mbox{\hyperlink{class_sharp_function_1_1_writer_1_1_abstract_writer_a029a967613d20137a2f4c63ed2eca89d}{Writer}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{namespace_sharp_function_1_1_writer}{Writer}} that will write data to files \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{class_sharp_function_1_1_writer_1_1_abstract_writer_a7c1ac60302362974706852eda57796ba}{Main}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Represents main category where everything will be created \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_sharp_function_1_1_writer_1_1_abstract_writer_a8fa00626ef11bdfa08b5cfb4e88fc320}{Category}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Returns current category path. Can return null if not specified \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_sharp_function_1_1_writer_1_1_abstract_writer_aad6c8f36765c44dffe6264bd1e712616}{Category\+Name}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Returns current category name. Can return null if not specified \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Used for inheritance for all other writer classes 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_sharp_function_1_1_writer_1_1_abstract_writer_a525d7f89c252f61b9d0969b960fb52a3}\label{class_sharp_function_1_1_writer_1_1_abstract_writer_a525d7f89c252f61b9d0969b960fb52a3}} 
+\index{SharpFunction.Writer.AbstractWriter@{SharpFunction.Writer.AbstractWriter}!CategoryExists@{CategoryExists}}
+\index{CategoryExists@{CategoryExists}!SharpFunction.Writer.AbstractWriter@{SharpFunction.Writer.AbstractWriter}}
+\doxysubsubsection{\texorpdfstring{CategoryExists()}{CategoryExists()}}
+{\footnotesize\ttfamily bool Sharp\+Function.\+Writer.\+Abstract\+Writer.\+Category\+Exists (\begin{DoxyParamCaption}\item[{string}]{name }\end{DoxyParamCaption})}
+
+
+
+Checks whether the category with specified name exists 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Name of category\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if specified and False if not
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_sharp_function_1_1_writer_1_1_abstract_writer_a802a992d1ae07ec2eda6a0ce9fcbbbb0}\label{class_sharp_function_1_1_writer_1_1_abstract_writer_a802a992d1ae07ec2eda6a0ce9fcbbbb0}} 
+\index{SharpFunction.Writer.AbstractWriter@{SharpFunction.Writer.AbstractWriter}!CategorySpecified@{CategorySpecified}}
+\index{CategorySpecified@{CategorySpecified}!SharpFunction.Writer.AbstractWriter@{SharpFunction.Writer.AbstractWriter}}
+\doxysubsubsection{\texorpdfstring{CategorySpecified()}{CategorySpecified()}}
+{\footnotesize\ttfamily bool Sharp\+Function.\+Writer.\+Abstract\+Writer.\+Category\+Specified (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Checks whether the category is specified. 
+
+\begin{DoxyReturn}{Returns}
+True if specified and False if not
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_sharp_function_1_1_writer_1_1_abstract_writer_af7de03d9ec79552c80dbba958bbd8ed3}\label{class_sharp_function_1_1_writer_1_1_abstract_writer_af7de03d9ec79552c80dbba958bbd8ed3}} 
+\index{SharpFunction.Writer.AbstractWriter@{SharpFunction.Writer.AbstractWriter}!ChangeCategory@{ChangeCategory}}
+\index{ChangeCategory@{ChangeCategory}!SharpFunction.Writer.AbstractWriter@{SharpFunction.Writer.AbstractWriter}}
+\doxysubsubsection{\texorpdfstring{ChangeCategory()}{ChangeCategory()}}
+{\footnotesize\ttfamily void Sharp\+Function.\+Writer.\+Abstract\+Writer.\+Change\+Category (\begin{DoxyParamCaption}\item[{string}]{name }\end{DoxyParamCaption})}
+
+
+
+Changes current category to specified.~\newline
+ If specified category does not exist, creates it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Name of the category\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_sharp_function_1_1_writer_1_1_abstract_writer_a1f57bb3b6d04200249de2133ded3ff09}\label{class_sharp_function_1_1_writer_1_1_abstract_writer_a1f57bb3b6d04200249de2133ded3ff09}} 
+\index{SharpFunction.Writer.AbstractWriter@{SharpFunction.Writer.AbstractWriter}!CreateCategory@{CreateCategory}}
+\index{CreateCategory@{CreateCategory}!SharpFunction.Writer.AbstractWriter@{SharpFunction.Writer.AbstractWriter}}
+\doxysubsubsection{\texorpdfstring{CreateCategory()}{CreateCategory()}}
+{\footnotesize\ttfamily void Sharp\+Function.\+Writer.\+Abstract\+Writer.\+Create\+Category (\begin{DoxyParamCaption}\item[{string}]{name }\end{DoxyParamCaption})}
+
+
+
+Creates a category for commands.~\newline
+ For example\+: functions in category {\itshape name} will be executed as 
+
+{\ttfamily {\itshape name}/function}\mbox{\Hypertarget{class_sharp_function_1_1_writer_1_1_abstract_writer_a782e35906eae7eaa608b6c2f882c96aa}\label{class_sharp_function_1_1_writer_1_1_abstract_writer_a782e35906eae7eaa608b6c2f882c96aa}} 
+\index{SharpFunction.Writer.AbstractWriter@{SharpFunction.Writer.AbstractWriter}!GetCurrentCategory@{GetCurrentCategory}}
+\index{GetCurrentCategory@{GetCurrentCategory}!SharpFunction.Writer.AbstractWriter@{SharpFunction.Writer.AbstractWriter}}
+\doxysubsubsection{\texorpdfstring{GetCurrentCategory()}{GetCurrentCategory()}}
+{\footnotesize\ttfamily string Sharp\+Function.\+Writer.\+Abstract\+Writer.\+Get\+Current\+Category (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets current category 
+
+\begin{DoxyReturn}{Returns}
+Current category or default category if not created
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_sharp_function_1_1_writer_1_1_abstract_writer_ab2a1b1922b2d02e4c83143488842e89a}\label{class_sharp_function_1_1_writer_1_1_abstract_writer_ab2a1b1922b2d02e4c83143488842e89a}} 
+\index{SharpFunction.Writer.AbstractWriter@{SharpFunction.Writer.AbstractWriter}!Initialize@{Initialize}}
+\index{Initialize@{Initialize}!SharpFunction.Writer.AbstractWriter@{SharpFunction.Writer.AbstractWriter}}
+\doxysubsubsection{\texorpdfstring{Initialize()}{Initialize()}}
+{\footnotesize\ttfamily void Sharp\+Function.\+Writer.\+Abstract\+Writer.\+Initialize (\begin{DoxyParamCaption}\item[{string}]{path }\end{DoxyParamCaption})}
+
+
+
+Initialize a writer and lock it to functions directory 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & Path to where all the functions are stored\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_sharp_function_1_1_writer_1_1_abstract_writer_aca6833f55835b8d800340f3266e6e7d6}\label{class_sharp_function_1_1_writer_1_1_abstract_writer_aca6833f55835b8d800340f3266e6e7d6}} 
+\index{SharpFunction.Writer.AbstractWriter@{SharpFunction.Writer.AbstractWriter}!category@{category}}
+\index{category@{category}!SharpFunction.Writer.AbstractWriter@{SharpFunction.Writer.AbstractWriter}}
+\doxysubsubsection{\texorpdfstring{category}{category}}
+{\footnotesize\ttfamily string Sharp\+Function.\+Writer.\+Abstract\+Writer.\+category = \char`\"{}None\char`\"{}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+ID of current category 
+
+\mbox{\Hypertarget{class_sharp_function_1_1_writer_1_1_abstract_writer_a7f013411c70fc67ab1fe0777ff10f743}\label{class_sharp_function_1_1_writer_1_1_abstract_writer_a7f013411c70fc67ab1fe0777ff10f743}} 
+\index{SharpFunction.Writer.AbstractWriter@{SharpFunction.Writer.AbstractWriter}!categoryName@{categoryName}}
+\index{categoryName@{categoryName}!SharpFunction.Writer.AbstractWriter@{SharpFunction.Writer.AbstractWriter}}
+\doxysubsubsection{\texorpdfstring{categoryName}{categoryName}}
+{\footnotesize\ttfamily string Sharp\+Function.\+Writer.\+Abstract\+Writer.\+category\+Name = \char`\"{}None\char`\"{}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Name of current category 
+
+\mbox{\Hypertarget{class_sharp_function_1_1_writer_1_1_abstract_writer_a64bcd66207256c93f236a002c0ad4a7e}\label{class_sharp_function_1_1_writer_1_1_abstract_writer_a64bcd66207256c93f236a002c0ad4a7e}} 
+\index{SharpFunction.Writer.AbstractWriter@{SharpFunction.Writer.AbstractWriter}!createdCategories@{createdCategories}}
+\index{createdCategories@{createdCategories}!SharpFunction.Writer.AbstractWriter@{SharpFunction.Writer.AbstractWriter}}
+\doxysubsubsection{\texorpdfstring{createdCategories}{createdCategories}}
+{\footnotesize\ttfamily string \mbox{[}$\,$\mbox{]} Sharp\+Function.\+Writer.\+Abstract\+Writer.\+created\+Categories = \{ \}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Created categories 
+
+\mbox{\Hypertarget{class_sharp_function_1_1_writer_1_1_abstract_writer_a029a967613d20137a2f4c63ed2eca89d}\label{class_sharp_function_1_1_writer_1_1_abstract_writer_a029a967613d20137a2f4c63ed2eca89d}} 
+\index{SharpFunction.Writer.AbstractWriter@{SharpFunction.Writer.AbstractWriter}!Writer@{Writer}}
+\index{Writer@{Writer}!SharpFunction.Writer.AbstractWriter@{SharpFunction.Writer.AbstractWriter}}
+\doxysubsubsection{\texorpdfstring{Writer}{Writer}}
+{\footnotesize\ttfamily Text\+Writer Sharp\+Function.\+Writer.\+Abstract\+Writer.\+Writer\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+\mbox{\hyperlink{namespace_sharp_function_1_1_writer}{Writer}} that will write data to files 
+
+
+
+\doxysubsection{Property Documentation}
+\mbox{\Hypertarget{class_sharp_function_1_1_writer_1_1_abstract_writer_a8fa00626ef11bdfa08b5cfb4e88fc320}\label{class_sharp_function_1_1_writer_1_1_abstract_writer_a8fa00626ef11bdfa08b5cfb4e88fc320}} 
+\index{SharpFunction.Writer.AbstractWriter@{SharpFunction.Writer.AbstractWriter}!Category@{Category}}
+\index{Category@{Category}!SharpFunction.Writer.AbstractWriter@{SharpFunction.Writer.AbstractWriter}}
+\doxysubsubsection{\texorpdfstring{Category}{Category}}
+{\footnotesize\ttfamily string Sharp\+Function.\+Writer.\+Abstract\+Writer.\+Category\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Returns current category path. Can return null if not specified 
+
+\mbox{\Hypertarget{class_sharp_function_1_1_writer_1_1_abstract_writer_aad6c8f36765c44dffe6264bd1e712616}\label{class_sharp_function_1_1_writer_1_1_abstract_writer_aad6c8f36765c44dffe6264bd1e712616}} 
+\index{SharpFunction.Writer.AbstractWriter@{SharpFunction.Writer.AbstractWriter}!CategoryName@{CategoryName}}
+\index{CategoryName@{CategoryName}!SharpFunction.Writer.AbstractWriter@{SharpFunction.Writer.AbstractWriter}}
+\doxysubsubsection{\texorpdfstring{CategoryName}{CategoryName}}
+{\footnotesize\ttfamily string Sharp\+Function.\+Writer.\+Abstract\+Writer.\+Category\+Name\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Returns current category name. Can return null if not specified 
+
+\mbox{\Hypertarget{class_sharp_function_1_1_writer_1_1_abstract_writer_a7c1ac60302362974706852eda57796ba}\label{class_sharp_function_1_1_writer_1_1_abstract_writer_a7c1ac60302362974706852eda57796ba}} 
+\index{SharpFunction.Writer.AbstractWriter@{SharpFunction.Writer.AbstractWriter}!Main@{Main}}
+\index{Main@{Main}!SharpFunction.Writer.AbstractWriter@{SharpFunction.Writer.AbstractWriter}}
+\doxysubsubsection{\texorpdfstring{Main}{Main}}
+{\footnotesize\ttfamily string Sharp\+Function.\+Writer.\+Abstract\+Writer.\+Main\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Represents main category where everything will be created 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_abstract_writer_8cs}{Abstract\+Writer.\+cs}}\end{DoxyCompactItemize}
