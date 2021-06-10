@@ -10,6 +10,13 @@ var namespace_sharp_function_1_1_addons_1_1_skyblock =
     [ "SkyblockSlayer", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_slayer.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_slayer" ],
     [ "SlayerAbility", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_ability.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_ability" ],
     [ "SlayerDrop", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop" ],
+    [ "DropMessage", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_drop_message.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_drop_message" ],
+    [ "SlayerLevel", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_level.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_level" ],
+    [ "SlayerReward", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_reward.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_reward" ],
+    [ "SlayerItemReward", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_item_reward.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_item_reward" ],
+    [ "SlayerRecipeReward", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_recipe_reward.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_recipe_reward" ],
+    [ "SlayerStatReward", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_stat_reward.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_stat_reward" ],
+    [ "SlayerPerkReward", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_perk_reward.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_perk_reward" ],
     [ "SlayerTier", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_tier.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_tier" ],
     [ "AbilityType", "namespace_sharp_function_1_1_addons_1_1_skyblock.html#a4a3cdded12d85bab2708b338f73962d4", [
       [ "Passive", "namespace_sharp_function_1_1_addons_1_1_skyblock.html#a4a3cdded12d85bab2708b338f73962d4af80bc338b6146b566004a046f8137c85", null ],

@@ -1,5 +1,6 @@
 var namespace_sharp_function_1_1_universal =
 [
+    [ "EncapsulatedType", "class_sharp_function_1_1_universal_1_1_encapsulated_type.html", "class_sharp_function_1_1_universal_1_1_encapsulated_type" ],
     [ "Encapsulator", "class_sharp_function_1_1_universal_1_1_encapsulator.html", "class_sharp_function_1_1_universal_1_1_encapsulator" ],
     [ "VoidEncapsulator", "class_sharp_function_1_1_universal_1_1_void_encapsulator.html", "class_sharp_function_1_1_universal_1_1_void_encapsulator" ],
     [ "Entity", "class_sharp_function_1_1_universal_1_1_entity.html", "class_sharp_function_1_1_universal_1_1_entity" ],

@@ -13,7 +13,9 @@ var hierarchy =
     [ "SharpFunction.Commands.Minecraft.BossbarColor", "struct_sharp_function_1_1_commands_1_1_minecraft_1_1_bossbar_color.html", null ],
     [ "SharpFunction.Commands.CommandModule", "class_sharp_function_1_1_commands_1_1_command_module.html", null ],
     [ "SharpFunction.Commands.Coordinate", "struct_sharp_function_1_1_commands_1_1_coordinate.html", null ],
+    [ "SharpFunction.Addons.Skyblock.DropMessage", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_drop_message.html", null ],
     [ "SharpFunction.Addons.Skyblock.DungeonStats", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_dungeon_stats.html", null ],
+    [ "SharpFunction.Universal.EncapsulatedType< T1, T2, T3 >", "class_sharp_function_1_1_universal_1_1_encapsulated_type.html", null ],
     [ "SharpFunction.Universal.Encapsulator< TValue, TExtra, TResult >", "class_sharp_function_1_1_universal_1_1_encapsulator.html", null ],
     [ "SharpFunction.Universal.Entity", "class_sharp_function_1_1_universal_1_1_entity.html", null ],
     [ "SharpFunction.Universal.EntityNBT", "class_sharp_function_1_1_universal_1_1_entity_n_b_t.html", null ],
@@ -22,6 +24,7 @@ var hierarchy =
     [ "Exception", null, [
       [ "SharpFunction.Exceptions.SFException", "class_sharp_function_1_1_exceptions_1_1_s_f_exception.html", [
         [ "SharpFunction.Exceptions.FunctionNotSpecifiedException", "class_sharp_function_1_1_exceptions_1_1_function_not_specified_exception.html", null ],
+        [ "SharpFunction.Exceptions.InitializationException", "class_sharp_function_1_1_exceptions_1_1_initialization_exception.html", null ],
         [ "SharpFunction.Exceptions.InvalidSelectorParameters", "class_sharp_function_1_1_exceptions_1_1_invalid_selector_parameters.html", null ]
       ] ]
     ] ],
@@ -47,7 +50,19 @@ var hierarchy =
       [ "SharpFunction.Commands.Minecraft.Say", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_say.html", null ],
       [ "SharpFunction.Commands.Minecraft.Summon", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_summon.html", null ],
       [ "SharpFunction.Commands.Minecraft.Teleport", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_teleport.html", null ],
-      [ "SharpFunction.Commands.Minecraft.Tellraw", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_tellraw.html", null ]
+      [ "SharpFunction.Commands.Minecraft.Tellraw", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_tellraw.html", null ],
+      [ "SharpFunction.Commands.Minecraft.Title", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_title.html", null ]
+    ] ],
+    [ "SharpFunction.Commands.Minecraft.ISelectorCommand", "interface_sharp_function_1_1_commands_1_1_minecraft_1_1_i_selector_command.html", [
+      [ "SharpFunction.Commands.Minecraft.Advancement", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_advancement.html", null ],
+      [ "SharpFunction.Commands.Minecraft.Attribute", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_attribute.html", null ],
+      [ "SharpFunction.Commands.Minecraft.Ban", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_ban.html", null ],
+      [ "SharpFunction.Commands.Minecraft.Clear", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_clear.html", null ],
+      [ "SharpFunction.Commands.Minecraft.Enchant", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_enchant.html", null ],
+      [ "SharpFunction.Commands.Minecraft.Give", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_give.html", null ],
+      [ "SharpFunction.Commands.Minecraft.Teleport", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_teleport.html", null ],
+      [ "SharpFunction.Commands.Minecraft.Tellraw", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_tellraw.html", null ],
+      [ "SharpFunction.Commands.Minecraft.Title", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_title.html", null ]
     ] ],
     [ "SharpFunction.Universal.Item", "class_sharp_function_1_1_universal_1_1_item.html", null ],
     [ "SharpFunction.Addons.Skyblock.ItemAbility", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_item_ability.html", null ],
@@ -67,7 +82,14 @@ var hierarchy =
     [ "SharpFunction.Addons.Skyblock.SkyblockSlayer", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_slayer.html", null ],
     [ "SharpFunction.Addons.Skyblock.SlayerAbility", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_ability.html", null ],
     [ "SharpFunction.Addons.Skyblock.SlayerDrop", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop.html", null ],
+    [ "SharpFunction.Addons.Skyblock.SlayerLevel", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_level.html", null ],
     [ "SharpFunction.Addons.Skyblock.SlayerRequirement", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_requirement.html", null ],
+    [ "SharpFunction.Addons.Skyblock.SlayerReward", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_reward.html", [
+      [ "SharpFunction.Addons.Skyblock.SlayerItemReward", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_item_reward.html", null ],
+      [ "SharpFunction.Addons.Skyblock.SlayerPerkReward", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_perk_reward.html", null ],
+      [ "SharpFunction.Addons.Skyblock.SlayerRecipeReward", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_recipe_reward.html", null ],
+      [ "SharpFunction.Addons.Skyblock.SlayerStatReward", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_stat_reward.html", null ]
+    ] ],
     [ "SharpFunction.Addons.Skyblock.SlayerTier", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_tier.html", null ],
     [ "SharpFunction.Universal.SuperRawText", "class_sharp_function_1_1_universal_1_1_super_raw_text.html", null ],
     [ "SharpFunction.Commands.Vector3", "struct_sharp_function_1_1_commands_1_1_vector3.html", null ],

@@ -21,10 +21,12 @@ var namespace_sharp_function_1_1_commands_1_1_minecraft =
     [ "Give", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_give.html", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_give" ],
     [ "Help", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_help.html", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_help" ],
     [ "ICommand", "interface_sharp_function_1_1_commands_1_1_minecraft_1_1_i_command.html", "interface_sharp_function_1_1_commands_1_1_minecraft_1_1_i_command" ],
+    [ "ISelectorCommand", "interface_sharp_function_1_1_commands_1_1_minecraft_1_1_i_selector_command.html", "interface_sharp_function_1_1_commands_1_1_minecraft_1_1_i_selector_command" ],
     [ "Say", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_say.html", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_say" ],
     [ "Summon", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_summon.html", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_summon" ],
     [ "Teleport", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_teleport.html", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_teleport" ],
     [ "Tellraw", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_tellraw.html", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_tellraw" ],
+    [ "Title", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_title.html", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_title" ],
     [ "AnchorCondition", "namespace_sharp_function_1_1_commands_1_1_minecraft.html#aaf6c27e82ea79bbb4fcc086abfe6e2c2", [
       [ "Eyes", "namespace_sharp_function_1_1_commands_1_1_minecraft.html#aaf6c27e82ea79bbb4fcc086abfe6e2c2aae6e9b63e87076a8c0188b659ab93a28", null ],
       [ "Feet", "namespace_sharp_function_1_1_commands_1_1_minecraft.html#aaf6c27e82ea79bbb4fcc086abfe6e2c2a0f2e8e047e38898ec859c631576985e7", null ]
@@ -235,6 +237,15 @@ var namespace_sharp_function_1_1_commands_1_1_minecraft =
     [ "ScoreComparation", "namespace_sharp_function_1_1_commands_1_1_minecraft.html#a95262e3d2ae243350b14eb3ca7cac05e", [
       [ "Comparation", "namespace_sharp_function_1_1_commands_1_1_minecraft.html#a95262e3d2ae243350b14eb3ca7cac05eaeb08c43579ccd1ed7d3004bb5c6adbfd", null ],
       [ "Match", "namespace_sharp_function_1_1_commands_1_1_minecraft.html#a95262e3d2ae243350b14eb3ca7cac05ea6da89265a9a8b0b28eb4946bb2ec0c6d", null ]
+    ] ],
+    [ "TitleAction", "namespace_sharp_function_1_1_commands_1_1_minecraft.html#a59790c2bcaa0bee42cdcf2f82a82524e", [
+      [ "Clear", "namespace_sharp_function_1_1_commands_1_1_minecraft.html#a59790c2bcaa0bee42cdcf2f82a82524eadc30bc0c7914db5918da4263fce93ad2", null ],
+      [ "Reset", "namespace_sharp_function_1_1_commands_1_1_minecraft.html#a59790c2bcaa0bee42cdcf2f82a82524ea526d688f37a86d3c3f27d0c5016eb71d", null ]
+    ] ],
+    [ "TitlePosition", "namespace_sharp_function_1_1_commands_1_1_minecraft.html#a16a4e2b0cc509d6df5044c42ff8d17a5", [
+      [ "Title", "namespace_sharp_function_1_1_commands_1_1_minecraft.html#a16a4e2b0cc509d6df5044c42ff8d17a5ab78a3223503896721cca1303f776159b", null ],
+      [ "Subtitle", "namespace_sharp_function_1_1_commands_1_1_minecraft.html#a16a4e2b0cc509d6df5044c42ff8d17a5a035f4e29da2d6d31303f7d7cfa1be13b", null ],
+      [ "Actionbar", "namespace_sharp_function_1_1_commands_1_1_minecraft.html#a16a4e2b0cc509d6df5044c42ff8d17a5a4856d65bcad44e46ed3ddbef29b330ea", null ]
     ] ],
     [ "VanillaAdvancement", "namespace_sharp_function_1_1_commands_1_1_minecraft.html#a23051046cdaa27823b6ef9f6c978edda", [
       [ "Minecraft", "namespace_sharp_function_1_1_commands_1_1_minecraft.html#a23051046cdaa27823b6ef9f6c978eddaae3416675e3a20772d0b78f45f4ce995d", null ],

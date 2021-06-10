@@ -13,6 +13,13 @@ var annotated_dup =
           [ "SkyblockSlayer", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_slayer.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_slayer" ],
           [ "SlayerAbility", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_ability.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_ability" ],
           [ "SlayerDrop", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop" ],
+          [ "DropMessage", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_drop_message.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_drop_message" ],
+          [ "SlayerLevel", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_level.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_level" ],
+          [ "SlayerReward", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_reward.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_reward" ],
+          [ "SlayerItemReward", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_item_reward.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_item_reward" ],
+          [ "SlayerRecipeReward", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_recipe_reward.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_recipe_reward" ],
+          [ "SlayerStatReward", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_stat_reward.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_stat_reward" ],
+          [ "SlayerPerkReward", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_perk_reward.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_perk_reward" ],
           [ "SlayerTier", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_tier.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_tier" ]
         ] ]
       ] ],
@@ -44,10 +51,12 @@ var annotated_dup =
           [ "Give", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_give.html", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_give" ],
           [ "Help", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_help.html", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_help" ],
           [ "ICommand", "interface_sharp_function_1_1_commands_1_1_minecraft_1_1_i_command.html", "interface_sharp_function_1_1_commands_1_1_minecraft_1_1_i_command" ],
+          [ "ISelectorCommand", "interface_sharp_function_1_1_commands_1_1_minecraft_1_1_i_selector_command.html", "interface_sharp_function_1_1_commands_1_1_minecraft_1_1_i_selector_command" ],
           [ "Say", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_say.html", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_say" ],
           [ "Summon", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_summon.html", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_summon" ],
           [ "Teleport", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_teleport.html", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_teleport" ],
-          [ "Tellraw", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_tellraw.html", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_tellraw" ]
+          [ "Tellraw", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_tellraw.html", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_tellraw" ],
+          [ "Title", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_title.html", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_title" ]
         ] ],
         [ "CommandModule", "class_sharp_function_1_1_commands_1_1_command_module.html", "class_sharp_function_1_1_commands_1_1_command_module" ],
         [ "Coordinate", "struct_sharp_function_1_1_commands_1_1_coordinate.html", "struct_sharp_function_1_1_commands_1_1_coordinate" ],
@@ -57,10 +66,12 @@ var annotated_dup =
       ] ],
       [ "Exceptions", "namespace_sharp_function_1_1_exceptions.html", [
         [ "FunctionNotSpecifiedException", "class_sharp_function_1_1_exceptions_1_1_function_not_specified_exception.html", "class_sharp_function_1_1_exceptions_1_1_function_not_specified_exception" ],
+        [ "InitializationException", "class_sharp_function_1_1_exceptions_1_1_initialization_exception.html", "class_sharp_function_1_1_exceptions_1_1_initialization_exception" ],
         [ "InvalidSelectorParameters", "class_sharp_function_1_1_exceptions_1_1_invalid_selector_parameters.html", "class_sharp_function_1_1_exceptions_1_1_invalid_selector_parameters" ],
         [ "SFException", "class_sharp_function_1_1_exceptions_1_1_s_f_exception.html", "class_sharp_function_1_1_exceptions_1_1_s_f_exception" ]
       ] ],
       [ "Universal", "namespace_sharp_function_1_1_universal.html", [
+        [ "EncapsulatedType", "class_sharp_function_1_1_universal_1_1_encapsulated_type.html", "class_sharp_function_1_1_universal_1_1_encapsulated_type" ],
         [ "Encapsulator", "class_sharp_function_1_1_universal_1_1_encapsulator.html", "class_sharp_function_1_1_universal_1_1_encapsulator" ],
         [ "VoidEncapsulator", "class_sharp_function_1_1_universal_1_1_void_encapsulator.html", "class_sharp_function_1_1_universal_1_1_void_encapsulator" ],
         [ "Entity", "class_sharp_function_1_1_universal_1_1_entity.html", "class_sharp_function_1_1_universal_1_1_entity" ],

@@ -1,6 +1,7 @@
 var _slayer_drop_8cs =
 [
     [ "SlayerDrop", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop" ],
+    [ "DropMessage", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_drop_message.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_drop_message" ],
     [ "DropRarity", "_slayer_drop_8cs.html#a9c722a22192c8a190905ba8af93e361d", [
       [ "Guaranteed", "_slayer_drop_8cs.html#a9c722a22192c8a190905ba8af93e361da8447631327af77e993618ebe2aae821e", null ],
       [ "Occasional", "_slayer_drop_8cs.html#a9c722a22192c8a190905ba8af93e361da335874ad17d87f5736467a9b44575618", null ],

@@ -31,6 +31,9 @@ var files_dup =
       [ "DefaultGamemode", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_default_gamemode.html", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_default_gamemode" ]
     ] ],
     [ "EmptySelector.cs", "_empty_selector_8cs.html", null ],
+    [ "EncapsulatedType.cs", "_encapsulated_type_8cs.html", [
+      [ "EncapsulatedType", "class_sharp_function_1_1_universal_1_1_encapsulated_type.html", "class_sharp_function_1_1_universal_1_1_encapsulated_type" ]
+    ] ],
     [ "Encapsulator.cs", "_encapsulator_8cs.html", [
       [ "Encapsulator", "class_sharp_function_1_1_universal_1_1_encapsulator.html", "class_sharp_function_1_1_universal_1_1_encapsulator" ],
       [ "VoidEncapsulator", "class_sharp_function_1_1_universal_1_1_void_encapsulator.html", "class_sharp_function_1_1_universal_1_1_void_encapsulator" ]
@@ -77,8 +80,14 @@ var files_dup =
     [ "ICommand.cs", "_i_command_8cs.html", [
       [ "ICommand", "interface_sharp_function_1_1_commands_1_1_minecraft_1_1_i_command.html", "interface_sharp_function_1_1_commands_1_1_minecraft_1_1_i_command" ]
     ] ],
+    [ "InitializationException.cs", "_initialization_exception_8cs.html", [
+      [ "InitializationException", "class_sharp_function_1_1_exceptions_1_1_initialization_exception.html", "class_sharp_function_1_1_exceptions_1_1_initialization_exception" ]
+    ] ],
     [ "InvalidSelectorParameters.cs", "_invalid_selector_parameters_8cs.html", [
       [ "InvalidSelectorParameters", "class_sharp_function_1_1_exceptions_1_1_invalid_selector_parameters.html", "class_sharp_function_1_1_exceptions_1_1_invalid_selector_parameters" ]
+    ] ],
+    [ "ISelectorCommand.cs", "_i_selector_command_8cs.html", [
+      [ "ISelectorCommand", "interface_sharp_function_1_1_commands_1_1_minecraft_1_1_i_selector_command.html", "interface_sharp_function_1_1_commands_1_1_minecraft_1_1_i_selector_command" ]
     ] ],
     [ "Item.cs", "_item_8cs.html", [
       [ "Item", "class_sharp_function_1_1_universal_1_1_item.html", "class_sharp_function_1_1_universal_1_1_item" ]
@@ -136,6 +145,14 @@ var files_dup =
       [ "SlayerAbility", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_ability.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_ability" ]
     ] ],
     [ "SlayerDrop.cs", "_slayer_drop_8cs.html", "_slayer_drop_8cs" ],
+    [ "SlayerLevel.cs", "_slayer_level_8cs.html", [
+      [ "SlayerLevel", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_level.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_level" ],
+      [ "SlayerReward", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_reward.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_reward" ],
+      [ "SlayerItemReward", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_item_reward.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_item_reward" ],
+      [ "SlayerRecipeReward", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_recipe_reward.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_recipe_reward" ],
+      [ "SlayerStatReward", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_stat_reward.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_stat_reward" ],
+      [ "SlayerPerkReward", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_perk_reward.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_perk_reward" ]
+    ] ],
     [ "SlayerTier.cs", "_slayer_tier_8cs.html", [
       [ "SlayerTier", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_tier.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_tier" ]
     ] ],
@@ -152,6 +169,7 @@ var files_dup =
       [ "Tellraw", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_tellraw.html", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_tellraw" ]
     ] ],
     [ "TellText.cs", "_tell_text_8cs.html", null ],
+    [ "Title.cs", "_title_8cs.html", "_title_8cs" ],
     [ "VanillaAdvancement.cs", "_vanilla_advancement_8cs.html", "_vanilla_advancement_8cs" ],
     [ "Vector3.cs", "_vector3_8cs.html", [
       [ "Vector3", "struct_sharp_function_1_1_commands_1_1_vector3.html", "struct_sharp_function_1_1_commands_1_1_vector3" ]

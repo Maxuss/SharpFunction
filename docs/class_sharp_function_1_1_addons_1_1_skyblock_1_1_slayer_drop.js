@@ -4,6 +4,7 @@ var class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop =
     [ "SlayerDrop", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop.html#a8326a24a6f99f2366ca377b6b599013d", null ],
     [ "Compile", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop.html#a0f4bd5dfab1aadc15a07789cbaa4947e", null ],
     [ "Generate", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop.html#ac3e70c0f936e8699a5e49bbbf7e42f51", null ],
+    [ "GetDropMessage", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop.html#a45c61b4fe04087e97ad726f5b2f55204", null ],
     [ "TierAmounts", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop.html#a4ddf1137d62500c5a72b90c9da6b5028", null ],
     [ "DropRarity", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop.html#a56a85dcfdbb2f32578bf8d2acbbc1dce", null ],
     [ "ID", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop.html#ab02f2158b074f9bfb7ba470cd3503663", null ],

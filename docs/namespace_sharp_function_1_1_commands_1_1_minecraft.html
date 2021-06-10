@@ -26,9 +26,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">SharpFunction
-   &#160;<span id="projectnumber">0.7.1-beta</span>
+   &#160;<span id="projectnumber">0.7.4-beta</span>
    </div>
-   <div id="projectbrief">A C# Library for creating Minecraft datapacks</div>
+   <div id="projectbrief">Create Minecraft datapacks in C# with ease!</div>
   </td>
  </tr>
  </tbody>
@@ -155,6 +155,9 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_sharp_function_1_1_commands_1_1_minecraft_1_1_i_command.html">ICommand</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents main interface inherited by all command classes  <a href="interface_sharp_function_1_1_commands_1_1_minecraft_1_1_i_command.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_sharp_function_1_1_commands_1_1_minecraft_1_1_i_selector_command.html">ISelectorCommand</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Secondary interface for commands that have <a class="el" href="struct_sharp_function_1_1_commands_1_1_entity_selector.html" title="Represents a selector for entities with it&#39;s parameters">EntitySelector</a> field  <a href="interface_sharp_function_1_1_commands_1_1_minecraft_1_1_i_selector_command.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sharp_function_1_1_commands_1_1_minecraft_1_1_say.html">Say</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_sharp_function_1_1_commands_1_1_minecraft_1_1_say.html" title="Say command. Equal to Minecraft&#39;s">Say</a> command. Equal to <a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html">Minecraft</a>'s  <a href="class_sharp_function_1_1_commands_1_1_minecraft_1_1_say.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -169,6 +172,9 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><b>TellText</b></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Text used by <a class="el" href="class_sharp_function_1_1_commands_1_1_minecraft_1_1_tellraw.html" title="Represents tellraw command. Equal to Minecraft&#39;s">Tellraw</a> <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sharp_function_1_1_commands_1_1_minecraft_1_1_title.html">Title</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents <a class="el" href="class_sharp_function_1_1_commands_1_1_minecraft_1_1_title.html" title="Represents Title command. Equal to Minecraft&#39;s">Title</a> command. Equal to <a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html">Minecraft</a>'s  <a href="class_sharp_function_1_1_commands_1_1_minecraft_1_1_title.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
@@ -449,6 +455,17 @@ Enumerations</h2></td></tr>
  }</td></tr>
 <tr class="memdesc:a5e3cb3c819ff693f73d42ddeef0e6ed4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents different game rules  <a href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#a5e3cb3c819ff693f73d42ddeef0e6ed4">More...</a><br /></td></tr>
 <tr class="separator:a5e3cb3c819ff693f73d42ddeef0e6ed4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59790c2bcaa0bee42cdcf2f82a82524e"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#a59790c2bcaa0bee42cdcf2f82a82524e">TitleAction</a> { <a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#a59790c2bcaa0bee42cdcf2f82a82524eadc30bc0c7914db5918da4263fce93ad2">Clear</a>
+, <a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#a59790c2bcaa0bee42cdcf2f82a82524ea526d688f37a86d3c3f27d0c5016eb71d">Reset</a>
+ }</td></tr>
+<tr class="memdesc:a59790c2bcaa0bee42cdcf2f82a82524e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents action to do with title  <a href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#a59790c2bcaa0bee42cdcf2f82a82524e">More...</a><br /></td></tr>
+<tr class="separator:a59790c2bcaa0bee42cdcf2f82a82524e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16a4e2b0cc509d6df5044c42ff8d17a5"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#a16a4e2b0cc509d6df5044c42ff8d17a5">TitlePosition</a> { <a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#a16a4e2b0cc509d6df5044c42ff8d17a5ab78a3223503896721cca1303f776159b">Title</a>
+, <a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#a16a4e2b0cc509d6df5044c42ff8d17a5a035f4e29da2d6d31303f7d7cfa1be13b">Subtitle</a>
+, <a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#a16a4e2b0cc509d6df5044c42ff8d17a5a4856d65bcad44e46ed3ddbef29b330ea">Actionbar</a>
+ }</td></tr>
+<tr class="memdesc:a16a4e2b0cc509d6df5044c42ff8d17a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents position of title on the screen  <a href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#a16a4e2b0cc509d6df5044c42ff8d17a5">More...</a><br /></td></tr>
+<tr class="separator:a16a4e2b0cc509d6df5044c42ff8d17a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a23051046cdaa27823b6ef9f6c978edda"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#a23051046cdaa27823b6ef9f6c978edda">VanillaAdvancement</a> { <br />
 &#160;&#160;<a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#a23051046cdaa27823b6ef9f6c978eddaae3416675e3a20772d0b78f45f4ce995d">Minecraft</a>
 , <a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#a23051046cdaa27823b6ef9f6c978eddaaa967577ba9c5ede1df5b496677458bcb">StoneAge</a>
@@ -1369,6 +1386,68 @@ Enumerations</h2></td></tr>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a95262e3d2ae243350b14eb3ca7cac05eaeb08c43579ccd1ed7d3004bb5c6adbfd"></a>Comparation&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a95262e3d2ae243350b14eb3ca7cac05ea6da89265a9a8b0b28eb4946bb2ec0c6d"></a>Match&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a id="a59790c2bcaa0bee42cdcf2f82a82524e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59790c2bcaa0bee42cdcf2f82a82524e">&#9670;&nbsp;</a></span>TitleAction</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#a59790c2bcaa0bee42cdcf2f82a82524e">SharpFunction.Commands.Minecraft.TitleAction</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Represents action to do with title </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a59790c2bcaa0bee42cdcf2f82a82524eadc30bc0c7914db5918da4263fce93ad2"></a>Clear&#160;</td><td class="fielddoc"><p>Clears title from entities </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a59790c2bcaa0bee42cdcf2f82a82524ea526d688f37a86d3c3f27d0c5016eb71d"></a>Reset&#160;</td><td class="fielddoc"><p>Resets title display for some entities </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="a16a4e2b0cc509d6df5044c42ff8d17a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16a4e2b0cc509d6df5044c42ff8d17a5">&#9670;&nbsp;</a></span>TitlePosition</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#a16a4e2b0cc509d6df5044c42ff8d17a5">SharpFunction.Commands.Minecraft.TitlePosition</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Represents position of title on the screen </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a16a4e2b0cc509d6df5044c42ff8d17a5ab78a3223503896721cca1303f776159b"></a>Title&#160;</td><td class="fielddoc"><p>Center of screen </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a16a4e2b0cc509d6df5044c42ff8d17a5a035f4e29da2d6d31303f7d7cfa1be13b"></a>Subtitle&#160;</td><td class="fielddoc"><p>Under title </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a16a4e2b0cc509d6df5044c42ff8d17a5a4856d65bcad44e46ed3ddbef29b330ea"></a>Actionbar&#160;</td><td class="fielddoc"><p>Over hotbar </p>
+</td></tr>
 </table>
 
 </div>
