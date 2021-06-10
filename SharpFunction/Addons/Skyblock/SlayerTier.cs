@@ -58,7 +58,7 @@ namespace SharpFunction.Addons.Skyblock
         /// <summary>
         /// Abilities of the slayer
         /// </summary>
-        public SlayerAbility[] Abilities { get; set; }
+        public List<SlayerAbility> Abilities { get; set; } = new();
         /// <summary>
         /// Command to summon slayer boss
         /// </summary>
@@ -136,7 +136,7 @@ namespace SharpFunction.Addons.Skyblock
             XP = xp;
             SlayerEnemy = enemy.StartsWith("minecraft:") ? enemy : $"minecraft:{enemy.ToLower().Replace(" ", "_")}";
             RawMobName = enemy.StartsWith("minecraft:") ? enemy.Replace("_", " ") : enemy;
-            Abilities = abilities;
+            Abilities = abilities.ToList();
             Equipment = items;
         }
 

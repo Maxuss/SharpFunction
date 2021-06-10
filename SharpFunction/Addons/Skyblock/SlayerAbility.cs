@@ -19,7 +19,7 @@ namespace SharpFunction.Addons.Skyblock
         /// <summary>
         /// Description of ability
         /// </summary>
-        public string Description { get; set; }
+        public AdvancedDescription Description { get; set; } = new();
         /// <summary>
         /// Color of ability
         /// </summary>
@@ -47,16 +47,10 @@ namespace SharpFunction.Addons.Skyblock
                 }
                 r.AddField(per, Color.DarkGray, RawTextFormatting.Straight);
             }
-
-            if(Description.Contains("\n"))
+            foreach (SuperRawText line in Description.Lines)
             {
-                string[] desc = Description.Split("\n");
-                foreach(string d in desc)
-                {
-                    r.AddField($"{d}", Color.Gray, RawTextFormatting.Straight);
-                }
+                r.AddField(line);
             }
-            else r.AddField(Description, Color.Gray, RawTextFormatting.Straight);
             return r;
         }
     }

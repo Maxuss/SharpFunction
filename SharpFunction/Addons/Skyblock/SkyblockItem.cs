@@ -37,7 +37,7 @@ namespace SharpFunction.Addons.Skyblock
         /// </summary>
         public ICommand Command { get; private set; }
         /// <summary>
-        /// Whether the item have crafts
+        /// Whether the item has crafts
         /// </summary>
         public bool HasCrafts { get; set; }
         /// <summary>
@@ -48,7 +48,6 @@ namespace SharpFunction.Addons.Skyblock
         /// Whether the item has enchantment glint
         /// </summary>
         public bool HasGlint { get; set; }
-
         private Color color;
 #nullable enable
         /// <summary>
@@ -107,7 +106,6 @@ namespace SharpFunction.Addons.Skyblock
         /// Pet Luck of item
         /// </summary>
         [StatName("Ferocity")] public int? Ferocity { get; set; } = null;
-
         /// <summary>
         /// Abilities of an item
         /// </summary>
@@ -132,10 +130,12 @@ namespace SharpFunction.Addons.Skyblock
         /// <summary>
         /// Description that appears under item abilities etc.
         /// </summary>
-        public AdvancedDescription AdvancedDescription { get; set; }
-
+        public AdvancedDescription AdvancedDescription { get; set; } = new();
+        /// <summary>
+        /// Makes the item hide it's stats only show rarity+recipes
+        /// </summary>
+        public bool HideStats { get; set; } = false;
         private RawText rawDescription;
-        
         /// <summary>
         /// Create new Skyblock Item
         /// </summary>
@@ -252,21 +252,32 @@ namespace SharpFunction.Addons.Skyblock
         /// Adds description to item
         /// </summary>
         /// <param name="description">Description string to add</param>
-        /// <param name="color">Color of description</param>
-        /// <param name="format">Formatting of description</param>
         public void AddDescription(AdvancedDescription description)
         {
             RawText txt = ParseStats();
-            txt = AddAbility(txt);
-            rawDescription = ParseDescription(description, txt);
-            ItemDescription = AddRarity(rawDescription);
+            if (!HideStats)
+            {
+                txt = AddAbility(txt);
+                rawDescription = ParseDescription(description, txt);
+                ItemDescription = AddRarity(rawDescription);
+            }
+            else
+            {
+                txt.AddField("");
+                if (HasCrafts)
+                {
+                    txt.AddField("Right click to view recipes!", Color.Yellow, RawTextFormatting.Straight);
+                }
+                txt.AddField($"{EnumHelper.GetStringValue(Rarity)} {EnumHelper.GetStringValue(Type)}", color, RawTextFormatting.Straight, RawTextFormatting.Bold);
+            }
+
         }
 
         private RawText AddSlayerRequirement(RawText rt)
         {
-            rt.AddField("");
             if(Requirement is not null && Requirement.HasRequirement)
             {
+                rt.AddField("");
                 rt.AddField(Requirement.Generate());
             }
             return rt;
@@ -317,8 +328,28 @@ namespace SharpFunction.Addons.Skyblock
 
         private RawText ParseDescription(AdvancedDescription description, RawText text)
         {
-            text.AddField("");
-            foreach(SuperRawText line in description.Lines)
+            int?[] stats = new[]
+{
+                Damage ,
+                Strength,
+                AttackSpeed,
+                CritChance,
+                CritDamage,
+                SeaCreatureChance,
+                Health,
+                Defense,
+                Speed,
+                Intelligence,
+                MagicFind,
+                PetLuck,
+                TrueDefense,
+                Ferocity
+            };
+            if (stats.Any(p => !IsNull(p)))
+            {
+                text.AddField("");
+            }
+            foreach (SuperRawText line in description.Lines)
             {
                 text.AddField(line);
             }
@@ -327,6 +358,10 @@ namespace SharpFunction.Addons.Skyblock
 
         private RawText AddRarity(RawText rawDesc)
         {
+            if(HasCrafts)
+            {
+                rawDesc.AddField("Right click to view recipes!", Color.Yellow, RawTextFormatting.Straight);
+            }
             AddSlayerRequirement(rawDesc);
             ItemType[] nonreforgeable = new[]
             {

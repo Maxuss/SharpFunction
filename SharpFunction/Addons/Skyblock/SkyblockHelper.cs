@@ -58,6 +58,10 @@ namespace SharpFunction.Addons.Skyblock
                 php = (hp / 1000);
                 mult = $"{php}k";
             }
+            else
+            {
+                mult = $"{hp}";
+            }
             return mult;
         }
     }

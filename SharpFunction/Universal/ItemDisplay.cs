@@ -45,7 +45,14 @@ namespace SharpFunction.Universal
         /// <param name="lore">Raw text with field lines representing lore</param>
         public void AddLore(RawText lore)
         {
-            _lore = lore.RawJSON;
+            if (lore is not null)
+            {
+                _lore = lore.RawJSON;
+            }
+            else
+            {
+                _lore = "[]";
+            }
         }
     }
 }

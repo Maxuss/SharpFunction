@@ -1,5 +1,6 @@
 ﻿using SharpFunction.Exceptions;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace SharpFunction.Writer
@@ -116,9 +117,7 @@ namespace SharpFunction.Writer
             string category = GetCurrentCategory();
             string path = global::System.IO.Path.Combine(category, $"{name}.mcfunction");
 
-            string parsed;
-            if (command.StartsWith("/")) parsed = command.Remove(0, 1);
-            else parsed = command;
+            string parsed = command.StartsWith("/") ? command.Remove(0, 1) : command;
             File.WriteAllText(path, parsed);
         }
 
@@ -135,8 +134,14 @@ namespace SharpFunction.Writer
             else throw new FunctionNotSpecifiedException($"Function name: {name}");
 
             string category = GetCurrentCategory();
+            List<string> lines = Array.Empty<string>().ToList();
+            foreach(string line in command.CommandLines)
+            {
+                string parsed = line.Contains("/") ? line.Remove(0, 1) : line;
+                lines.Add(parsed);
+            }
             string path = global::System.IO.Path.Combine(category, $"{name}.mcfunction");
-            File.WriteAllLines(path, command.CommandLines);
+            File.WriteAllLines(path, lines);
         }
         #endregion Functions
     }

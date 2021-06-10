@@ -78,14 +78,14 @@ namespace SharpFunction.API
         {
             Writer = new FunctionWriter(this);
             string mainDir = Path.Combine(ProjectPath, "src", ProjectName);
-            string workingDir = Path.Combine(mainDir, Namespace);
             Directory.CreateDirectory(mainDir);
-            Directory.CreateDirectory(workingDir);
             string tmp = mcmeta_example
                 .Replace("{FORMAT}", $"{Array.IndexOf(Enum.GetValues(typeof(PackFormat)), Format)}")
                 .Replace("{DESCRIPTION}", Description);
             File.WriteAllText(Path.Combine(mainDir, "pack.mcmeta"), tmp);
-            string namespaceDir = Path.Combine(workingDir, "data");
+            string namespaceDir = Path.Combine(mainDir, "data", Namespace);
+            string workingDir = Path.Combine(mainDir,"data",Namespace);
+            Directory.CreateDirectory(workingDir);
             Directory.CreateDirectory(namespaceDir);
             foreach(string dir in requiredDirectories)
             {

@@ -54,6 +54,11 @@
             Command that will be available after <see cref="M:SharpFunction.Addons.Skyblock.SkyblockEntity.Compile"/>
             </summary>
         </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SkyblockEntity.NameColor">
+            <summary>
+            Color of entity's name
+            </summary>
+        </member>
         <member name="M:SharpFunction.Addons.Skyblock.SkyblockEntity.#ctor(System.String,System.String,System.Int32,System.Int32)">
             <summary>
             Creates a simple entity with base params
@@ -105,7 +110,7 @@
         </member>
         <member name="P:SharpFunction.Addons.Skyblock.SkyblockItem.HasCrafts">
             <summary>
-            Whether the item have crafts
+            Whether the item has crafts
             </summary>
         </member>
         <member name="P:SharpFunction.Addons.Skyblock.SkyblockItem.Rarity">
@@ -392,9 +397,19 @@
             All slayer boss tiers of the boss
             </summary>
         </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SkyblockSlayer.SlayerDrops">
+            <summary>
+            All slayer drops of the slayer
+            </summary>
+        </member>
         <member name="P:SharpFunction.Addons.Skyblock.SkyblockSlayer.Writer">
             <summary>
             Writer to write datapack functions
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SkyblockSlayer.Minibosses">
+            <summary>
+            Minibosses of slayer
             </summary>
         </member>
         <member name="P:SharpFunction.Addons.Skyblock.SkyblockSlayer.SlayerBossName">
@@ -402,7 +417,7 @@
             Name of slayer boss
             </summary>
         </member>
-        <member name="M:SharpFunction.Addons.Skyblock.SkyblockSlayer.#ctor(SharpFunction.Addons.Skyblock.SkyblockItem[],SharpFunction.Addons.Skyblock.SlayerTier[],SharpFunction.Writer.FunctionWriter,System.String)">
+        <member name="M:SharpFunction.Addons.Skyblock.SkyblockSlayer.#ctor(SharpFunction.Addons.Skyblock.SkyblockItem[],SharpFunction.Addons.Skyblock.SlayerTier[],SharpFunction.Addons.Skyblock.SlayerDrop[],SharpFunction.Writer.FunctionWriter,System.String)">
             <summary>
             Creates a new slayer
             </summary>
@@ -410,6 +425,11 @@
             <param name="tiers">Tiers of slayer bosses</param>
             <param name="writer">FunctionWriter from project</param>
             <param name="name">Name of slayer boss</param>
+        </member>
+        <member name="M:SharpFunction.Addons.Skyblock.SkyblockSlayer.#ctor">
+            <summary>
+            Generate an empty skyblock slayer to add all the data later
+            </summary>
         </member>
         <member name="M:SharpFunction.Addons.Skyblock.SkyblockSlayer.Generate">
             <summary>
@@ -578,6 +598,11 @@
         <member name="P:SharpFunction.Addons.Skyblock.SlayerTier.DPS">
             <summary>
             Damage per second of the boss
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SlayerTier.LVL">
+            <summary>
+            Level of slayer boss
             </summary>
         </member>
         <member name="P:SharpFunction.Addons.Skyblock.SlayerTier.XP">
@@ -789,6 +814,12 @@
             Commands require <b>compiling</b> before appending!
             </summary>
             <param name="commands">Multiple compiled commands</param>
+        </member>
+        <member name="M:SharpFunction.Commands.CommandModule.Append(System.String[])">
+            <summary>
+            Append multiple string commands to lines
+            </summary>
+            <param name="commands">Multiple string commands</param>
         </member>
         <member name="T:SharpFunction.Commands.Coordinate">
             <summary>

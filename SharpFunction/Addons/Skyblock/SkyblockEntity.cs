@@ -47,6 +47,10 @@ namespace SharpFunction.Addons.Skyblock
         /// Command that will be available after <see cref="Compile()"/>
         /// </summary>
         public Summon Command { get; private set; }
+        /// <summary>
+        /// Color of entity's name
+        /// </summary>
+        public Color NameColor { get; set; } = Color.Red;
 
         /// <summary>
         /// Creates a simple entity with base params
@@ -72,7 +76,7 @@ namespace SharpFunction.Addons.Skyblock
             srt.Append("[", Color.DarkGray);
             srt.Append($"Lv.{Level}", Color.Gray);
             srt.Append("]", Color.DarkGray);
-            srt.Append($" {Name}", Color.Red);
+            srt.Append($" {Name}", NameColor);
             srt.Append($" {CurrentHP}", Color.Green);
             srt.Append("/", Color.White);
             srt.Append($"{MaxHP}", Color.Green);
