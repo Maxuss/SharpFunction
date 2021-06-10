@@ -10,7 +10,7 @@ namespace SharpFunction.Commands.Minecraft
     /// <summary>
     /// Represents and attribute command. Equal to Minecraft's<code>/attribute {target: String} {attribute: String} {get/set}</code>
     /// </summary>
-    public sealed class Attribute : ICommand
+    public sealed class Attribute : ICommand, ISelectorCommand
     {
         public EntitySelector Selector { get; set; }
 

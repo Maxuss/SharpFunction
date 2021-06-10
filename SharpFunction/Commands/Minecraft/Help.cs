@@ -12,7 +12,7 @@ namespace SharpFunction.Commands.Minecraft
     /// </summary>
     public sealed class Help : ICommand
     {
-        public EntitySelector Selector { get; set; }
+
         
         /// <summary>
         /// Compiled string of command

@@ -10,7 +10,7 @@ namespace SharpFunction.Commands.Minecraft
     /// <summary>
     /// Represents /enchant command. Equal to Minecraft's <code>/enchat {target: EntitySelector} {enchantment: ID} {level: int}</code>
     /// </summary>
-    public sealed class Enchant : ICommand
+    public sealed class Enchant : ICommand, ISelectorCommand
     {
         public EntitySelector Selector { get; set; }
 

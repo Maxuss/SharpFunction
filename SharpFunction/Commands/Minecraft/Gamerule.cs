@@ -12,9 +12,6 @@ namespace SharpFunction.Commands.Minecraft
     /// </summary>
     public sealed class Gamerule : ICommand
     {
-        public EntitySelector Selector { get; set; }
-
-        
 
         public string Compiled { get; private set; }
 

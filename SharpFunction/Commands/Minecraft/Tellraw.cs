@@ -10,7 +10,7 @@ namespace SharpFunction.Commands.Minecraft
     /// <summary>
     /// Represents tellraw command. Equal to Minecraft's <code>/tellraw {entity: EntitySelector} {rawtext}</code>
     /// </summary>
-    public sealed class Tellraw : ICommand
+    public sealed class Tellraw : ICommand, ISelectorCommand
     {
         public EntitySelector Selector { get; set; }
 

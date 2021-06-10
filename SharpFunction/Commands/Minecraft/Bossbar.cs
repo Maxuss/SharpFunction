@@ -11,13 +11,10 @@ namespace SharpFunction.Commands.Minecraft
     /// </summary>
     public sealed class Bossbar : ICommand
     {
-        public EntitySelector Selector { get; set; }
-
         public string Compiled { get; private set; }
 
         /// <summary>
         /// Initialize Bossbar Command class.<br/>
-        /// See also: <br/>
         /// <seealso cref="EntitySelector"/>
         /// </summary>
         public Bossbar(){ }

@@ -11,7 +11,6 @@ namespace SharpFunction.Commands.Minecraft
     /// </summary>
     public sealed class DefaultGamemode : ICommand
     {
-        public EntitySelector Selector { get; set; }
 
         public string Compiled { get; private set; }
 

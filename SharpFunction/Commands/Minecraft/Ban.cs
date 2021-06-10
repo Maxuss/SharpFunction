@@ -9,7 +9,7 @@ namespace SharpFunction.Commands.Minecraft
     /// <summary>
     /// Represents ban command. Equal to Minecraft's <code>/ban {target: game_profile} {reason: String}</code>
     /// </summary>
-    public sealed class Ban : ICommand
+    public sealed class Ban : ICommand, ISelectorCommand
     {
         public EntitySelector Selector { get; set; }
 

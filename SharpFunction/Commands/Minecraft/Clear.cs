@@ -9,7 +9,7 @@ namespace SharpFunction.Commands.Minecraft
     /// <summary>
     /// Represents clear command. Equal to Minecraft's <code>/clear {target: entity} {item: String} {maxCount : int}</code>
     /// </summary>
-    public sealed class Clear : ICommand
+    public sealed class Clear : ICommand, ISelectorCommand
     {
         public EntitySelector Selector { get; set; }
 

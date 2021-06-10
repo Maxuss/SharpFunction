@@ -11,9 +11,8 @@ namespace SharpFunction.Commands.Minecraft
     /// <summary>
     /// Represents advancement command. Equal to Minecraft's <code>/advancement {grant/revoke} {[only {advancement}]/everything} {criterion}</code>
     /// </summary>
-    public sealed class Advancement : ICommand
+    public sealed class Advancement : ICommand, ISelectorCommand
     {
-        ///<inheritdoc cref="ICommand.Selector"/>
         public EntitySelector Selector { get; set; }
         ///<inheritdoc cref="ICommand.Compiled"/>
         public string Compiled { get; private set; }

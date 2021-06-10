@@ -71,6 +71,8 @@ namespace SharpFunction.Addons.Skyblock
             {6, Color.Blue}
         };
 
+
+
         /// <summary>
         /// Create new slayer drop
         /// </summary>
@@ -151,6 +153,28 @@ namespace SharpFunction.Addons.Skyblock
         }
 
         /// <summary>
+        /// Gets drop message to display
+        /// </summary>
+        /// <returns>Compiled /tellraw message</returns>
+        public Tellraw GetDropMessage()
+        {
+            var tl = new Tellraw(SimpleSelector.@p);
+            DropMessage msg = new(DropRarity, ItemName, SkyblockEnumHelper.GetRarityColor(Rarity));
+            if(msg is null)
+            {
+                SuperRawText empty = new();
+                empty.Append("");
+                tl.Compile(empty);
+            }
+            else
+            {
+                SuperRawText final = msg.GetMessage();
+                tl.Compile(final);
+            }
+            return tl;
+        }
+
+        /// <summary>
         /// Generates and compiles the command, returning the string
         /// </summary>
         /// <returns>Compiled string command</returns>
@@ -158,6 +182,79 @@ namespace SharpFunction.Addons.Skyblock
         {
             Give g = Generate();
             return g.Compiled;
+        }
+    }
+
+    /// <summary>
+    /// Represents message to be displayed when item is dropped
+    /// </summary>
+    public sealed class DropMessage
+    {
+        /// <summary>
+        /// Rarity message to be displayed. E.G. **VERY RARE DROP!** or **CRAZY RARE DROP!**
+        /// </summary>
+        public string RarityMessage { get; set; }
+        /// <summary>
+        /// Color of rarity message.
+        /// </summary>
+        public Color RarityMessageColor { get; set; }
+        /// <summary>
+        /// Name of item to show drop
+        /// </summary>
+        public string ItemName { get; set; }
+        /// <summary>
+        /// Color of item drop to show
+        /// </summary>
+        public Color ItemColor { get; set; }
+        /// <summary>
+        /// Whether the message should not be displayed. Should be displayed by default
+        /// </summary>
+        public bool HideMessage { get; set; } = false;
+        public DropMessage(DropRarity rarity, string name, Color color)
+        {
+            ItemName = name;
+            ItemColor = color;
+            switch(rarity)
+            {
+                case DropRarity.Rare:
+                    RarityMessage = "RARE DROP!";
+                    RarityMessageColor = Color.Blue;
+                    break;
+                case DropRarity.Extraordinary:
+                    RarityMessage = "VERY RARE DROP!";
+                    RarityMessageColor = Color.DarkPurple;
+                    break;
+                case DropRarity.PrayRNGesus:
+                    RarityMessage = "CRAZY RARE DROP!";
+                    RarityMessageColor = Color.LightPurple;
+                    break;
+                case DropRarity.RNGesusIncarnate:
+                    RarityMessage = "INSANE DROP!";
+                    RarityMessageColor = Color.Red;
+                    break;
+                default:
+                    HideMessage = true;
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Compiles the message to super raw text
+        /// </summary>
+        /// <returns>Compiled super raw text ready to use</returns>
+        public SuperRawText GetMessage()
+        {
+            if (!HideMessage)
+            {
+                SuperRawText srt = new();
+                srt.Append($"{RarityMessage}", RarityMessageColor, RawTextFormatting.Straight, RawTextFormatting.Bold);
+                srt.Append(" (", Color.DarkGray);
+                srt.Append($"{ItemName}", ItemColor);
+                srt.Append(" )", Color.DarkGray);
+                srt.Append(" (+121% Magic Find)", Color.Aqua);
+                return srt;
+            }
+            return null;
         }
     }
 

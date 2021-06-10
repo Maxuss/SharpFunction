@@ -21,7 +21,13 @@ namespace SFExample
             project.Format = PackFormat.DotSixteen;
             project.Generate();
             FunctionWriter w = project.Writer;
-            SlayerExample ex = new(w);
+            // SlayerExample ex = new(w);
+            var ttl = new Title(SimpleSelector.@p);
+            SuperRawText c = new();
+            c.Append("I am bold", Color.Gold, RawTextFormatting.Straight, RawTextFormatting.Bold);
+            c.Append(" i am italic", Color.Red, RawTextFormatting.Italic, RawTextFormatting.Underlined);
+            ttl.Compile(TitlePosition.Title, c);
+            Console.WriteLine(ttl.Compiled);
             Console.WriteLine("Finished generating datapack!");
             Console.ReadLine();
         }

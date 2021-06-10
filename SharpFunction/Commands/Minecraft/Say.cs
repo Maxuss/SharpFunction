@@ -11,7 +11,7 @@ namespace SharpFunction.Commands.Minecraft
     /// </summary>
     public sealed class Say : ICommand
     {
-        public EntitySelector Selector { get; set; }
+
 
         public string Compiled { get; private set; }
 

@@ -7,15 +7,13 @@ using System.Threading.Tasks;
 namespace SharpFunction.Commands.Minecraft
 {
     /// <summary>
-    /// Represents main interface inherited by all command classes
+    /// Secondary interface for commands that have EntitySelector field
     /// </summary>
-    public interface ICommand
+    public interface ISelectorCommand
     {
         /// <summary>
-        /// Represents compiled version of command
+        /// Entity selector to use
         /// </summary>
-        public string Compiled { get; }
-
-
+        public EntitySelector Selector { get; set; }
     }
 }

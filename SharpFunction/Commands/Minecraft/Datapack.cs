@@ -8,7 +8,6 @@ namespace SharpFunction.Commands.Minecraft
 {
     public sealed class Datapack : ICommand
     {
-        public EntitySelector Selector { get; set; }
 
         public string Compiled { get; private set; }
 

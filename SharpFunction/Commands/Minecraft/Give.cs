@@ -10,7 +10,7 @@ namespace SharpFunction.Commands.Minecraft
     /// <summary>
     /// Represents Give command. Equal to Minecraft's <code>/give {user} {item} {nbt} {amount}</code>
     /// </summary>
-    public sealed class Give : ICommand
+    public sealed class Give : ICommand, ISelectorCommand
     {
         public EntitySelector Selector { get; set; }
 

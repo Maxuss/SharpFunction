@@ -9,7 +9,7 @@ namespace SharpFunction.Commands.Minecraft
     /// <summary>
     /// Represents a Teleport command. Equal to Minecraft's <code>/tp {player: Entity} {position: float[3]/player: Entity}</code>
     /// </summary>
-    public sealed class Teleport : ICommand
+    public sealed class Teleport : ICommand, ISelectorCommand
     {
         public EntitySelector Selector { get; set; }
 
