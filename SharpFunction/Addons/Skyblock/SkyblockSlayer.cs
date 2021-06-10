@@ -88,9 +88,8 @@ namespace SharpFunction.Addons.Skyblock
             foreach(SlayerDrop dr in SlayerDrops)
             {
                 string d = dr.Compile();
-                drops.Append($"# Gives drop info item on {dr.ItemName}", d, " ");
-                Writer.CreateFunction($"{dr.ItemName.ToLower().Replace(" ", "_")}");
-                // TODO: Finish this later
+                
+                drops.Append($"# Gives drop info item on {dr.ItemName}", d, dr.GetDropMessage().Compiled, " ");
             }
             Writer.WriteCommand(drops, "drops");
             foreach (SkyblockEntity se in Minibosses)
