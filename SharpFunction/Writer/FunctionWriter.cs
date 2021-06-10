@@ -110,8 +110,7 @@ namespace SharpFunction.Writer
         public void WriteCommand(string command, string name)
         {
             string tmp;
-            if (FunctionSpecified()) tmp = createdFunctions.Last().ToLower().Replace(" ", "_");
-            else if (name != "Current") tmp = name.ToLower().Replace(" ", "_");
+            if (name != "Current") tmp = name.ToLower().Replace(" ", "_");
             else throw new FunctionNotSpecifiedException($"Function name: {name}");
 
             string category = GetCurrentCategory();

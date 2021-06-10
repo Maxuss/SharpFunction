@@ -105,9 +105,14 @@ namespace SharpFunction.Addons.Skyblock
         [StatName("Ferocity")] public int? Ferocity { get; set; } = null;
 
         /// <summary>
-        /// Ability of an item
+        /// Abilities of an item
         /// </summary>
-        public ItemAbility? Ability { get; set; } = null;
+        public List<ItemAbility> Abilities { get; set; } = new List<ItemAbility>();
+        /// <summary>
+        /// Slayer requirement for the item
+        /// </summary>
+        public SlayerRequirement Requirement { get; set; } = null;
+
 #nullable disable
         public RawText ItemName { get; set; }
         public RawText ItemDescription { get; set; }
@@ -211,8 +216,13 @@ namespace SharpFunction.Addons.Skyblock
             return rt;
         }
 
-
-        public void AddDescription(string description, Color color = Color.Gray, RawTextFormatting format=RawTextFormatting.Straight)
+        /// <summary>
+        /// Adds description to item
+        /// </summary>
+        /// <param name="description">Description string to add</param>
+        /// <param name="color">Color of description</param>
+        /// <param name="format">Formatting of description</param>
+        public void AddDescription(string description, Color color = Color.DarkGray, RawTextFormatting format=RawTextFormatting.Straight)
         {
             RawText txt = ParseStats();
             txt = AddAbility(txt);
@@ -220,35 +230,54 @@ namespace SharpFunction.Addons.Skyblock
             ItemDescription = AddRarity(rawDescription);
         }
 
+        private RawText AddSlayerRequirement(RawText rt)
+        {
+            rt.AddField("");
+            if(Requirement is not null && Requirement.HasRequirement)
+            {
+                rt.AddField(Requirement.Generate());
+            }
+            return rt;
+        }
+
         private RawText AddAbility(RawText txt)
         {
-            if (Ability is not null)
+            if (Abilities is not null)
             {
-                string rawJson = $@"[{{""text"":""Item Ability: {Ability.Name} "",""italic"":false,""color"":""gold""}},{{""text"":""{EnumHelper.GetStringValue(Ability.Type)}"",""color"":""yellow"",""bold"":true}}]";
-                txt._lines.Add(rawJson);
-                if (Ability.Description.Contains("\\n") || Ability.Description.Contains("\n"))
+                foreach (ItemAbility Ability in Abilities)
                 {
-                    string[] lines = Ability.Description.Split("\n");
-                    foreach (string line in lines)
+                    if (Ability is not null)
                     {
-                        txt.AddField(line, Color.Gray, RawTextFormatting.Straight);
+                        if (!Abilities.First().Equals(Ability))
+                        {
+                            txt.AddField("");
+                        }
+                        string rawJson = $@"[{{""text"":""Item Ability: {Ability.Name} "",""italic"":false,""color"":""gold""}},{{""text"":""{EnumHelper.GetStringValue(Ability.Type)}"",""color"":""yellow"",""bold"":true}}]";
+                        txt._lines.Add(rawJson);
+
+                        foreach (SuperRawText line in Ability.Description.Lines)
+                        {
+                            if (line != null)
+                            {
+                                txt.AddField(line);
+                            }
+                        }
+
+                        if (Ability.ManaCost != 0)
+                        {
+                            SuperRawText mana = new();
+                            mana.Append("Mana cost: ", Color.DarkGray);
+                            mana.Append($"{Ability.ManaCost}", Color.DarkAqua);
+                            txt.AddField(mana);
+                        }
+                        if (Ability.Cooldown != 0)
+                        {
+                            SuperRawText cd = new();
+                            cd.Append("Cooldown: ", Color.DarkGray);
+                            cd.Append($"{Ability.Cooldown}s", Color.Green);
+                            txt.AddField(cd);
+                        }
                     }
-                }
-                else txt.AddField(Ability.Description, Color.Gray, RawTextFormatting.Straight);
-                
-                if (Ability.ManaCost != 0)
-                {
-                    SuperRawText mana = new();
-                    mana.Append("Mana cost: ", Color.DarkGray);
-                    mana.Append($"{Ability.ManaCost}", Color.DarkAqua);
-                    txt.AddField(mana);
-                }
-                if (Ability.Cooldown != 0)
-                {
-                    SuperRawText cd = new();
-                    cd.Append("Cooldown: ", Color.Green);
-                    cd.Append($"{Ability.Cooldown}s", Color.Green);
-                    txt.AddField(cd);
                 }
             }
             return txt;
@@ -256,7 +285,8 @@ namespace SharpFunction.Addons.Skyblock
 
         private RawText ParseDescription(string description, Color color, RawText text, params RawTextFormatting[] formattings)
         {
-            if(description.Contains("\\n") || description.Contains("\n"))
+            text.AddField(" ");
+            if (description.Contains("\\n") || description.Contains("\n"))
             {
                 string[] lines = description.Split("\n");
                 foreach(string line in lines)
@@ -273,6 +303,7 @@ namespace SharpFunction.Addons.Skyblock
 
         private RawText AddRarity(RawText rawDesc)
         {
+            AddSlayerRequirement(rawDesc);
             ItemType[] nonreforgeable = new[]
             {
                 ItemType.ReforgeStone, ItemType.Shears, ItemType.BrewingIngredient, ItemType.None
@@ -285,6 +316,10 @@ namespace SharpFunction.Addons.Skyblock
             return rawDesc;
         }
 
+        /// <summary>
+        /// Compile the skyblock item give command
+        /// </summary>
+        /// <returns>Compiled give command</returns>
         public string Compile()
         {
             string itemname = ID;
@@ -308,26 +343,106 @@ namespace SharpFunction.Addons.Skyblock
     /// </summary>
     public sealed class ItemAbility
     {
+        /// <summary>
+        /// Name of the ability
+        /// </summary>
         public string Name;
+        /// <summary>
+        /// Type of ability. Passive will not show hint tooltip
+        /// </summary>
         public AbilityType Type;
-        public string Description;
+        /// <summary>
+        /// Description of ability
+        /// </summary>
+        public AbilityDescription Description;
+        /// <summary>
+        /// Mana cost of the ability
+        /// </summary>
         public int ManaCost;
+        /// <summary>
+        /// Cooldown of the ability
+        /// </summary>
         public int Cooldown;
 
         /// <summary>
         /// Create a new item ability
         /// </summary>
         /// <param name="name">Name of the ability</param>
-        /// <param name="description">Description of the ability</param>
         /// <param name="type">Type of the ability</param>
         /// <param name="manacost">Mana cost of the ability. 0 by default</param>
         /// <param name="cooldown">Cooldown of the ability. 0s by default.</param>
-        public ItemAbility(string name, string description, AbilityType type=AbilityType.Passive, int manacost=0, int cooldown=0)
+        public ItemAbility(string name, AbilityType type=AbilityType.Passive, int manacost=0, int cooldown=0)
         {
             Name = name;
-            Description = description;
             Type = type; ManaCost = manacost;
             Cooldown = cooldown;
+        }
+    }
+
+    /// <summary>
+    /// Represents description of ability containing multiple super raw text lines
+    /// </summary>
+    public sealed class AbilityDescription
+    {
+        /// <summary>
+        /// Lines of super raw text
+        /// </summary>
+        public List<SuperRawText> Lines { get; set; } = Array.Empty<SuperRawText>().ToList();
+
+        /// <summary>
+        /// Appends a single super raw text line. Each line with start from new line in lore!
+        /// </summary>
+        /// <param name="line">Line to append</param>
+        public void Append(SuperRawText line)
+        {
+            Lines.Add(line);
+        }
+
+        /// <summary>
+        /// Appends a simple single color line
+        /// </summary>
+        /// <param name="line">Text in line</param>
+        /// <param name="color">Color of line</param>
+        /// <param name="formatting">Formatting of line</param>
+        /// <param name="formattings">Extra formattings of line</param>
+        public void Append(string line, Color color=Color.Gray, RawTextFormatting formatting=RawTextFormatting.Straight, params RawTextFormatting[] formattings)
+        {
+            SuperRawText tmp = new();
+            tmp.Append(line, color, formatting, formattings);
+            Lines.Add(tmp);
+        }
+    }
+
+    /// <summary>
+    /// Represents specific slayer requirement on an item
+    /// </summary>
+    public sealed class SlayerRequirement
+    {
+        /// <summary>
+        /// Whether the item will have slayer requirement. False by default.
+        /// </summary>
+        public bool HasRequirement { get; set; } = false;
+
+        /// <summary>
+        /// Name of the slayer to display. E.G. Zombie, or Enderman
+        /// </summary>
+        public string SlayerName { get; set; }
+
+        /// <summary>
+        /// Level of slayer required
+        /// </summary>
+        public int SlayerLevel { get; set; }
+
+        /// <summary>
+        /// Generates the super raw text requirement field
+        /// </summary>
+        /// <returns></returns>
+        public SuperRawText Generate()
+        {
+            SuperRawText srt = new();
+            srt.Append($"{SLAYER_REQ} ", Color.Red);
+            srt.Append($"Requires {SlayerName} LVL {SlayerLevel}", Color.DarkPurple);
+            return srt;
         }
     }
 

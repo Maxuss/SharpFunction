@@ -183,9 +183,14 @@
             Pet Luck of item
             </summary>
         </member>
-        <member name="P:SharpFunction.Addons.Skyblock.SkyblockItem.Ability">
+        <member name="P:SharpFunction.Addons.Skyblock.SkyblockItem.Abilities">
             <summary>
-            Ability of an item
+            Abilities of an item
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SkyblockItem.Requirement">
+            <summary>
+            Slayer requirement for the item
             </summary>
         </member>
         <member name="M:SharpFunction.Addons.Skyblock.SkyblockItem.#ctor(SharpFunction.Addons.Skyblock.ItemType,SharpFunction.Addons.Skyblock.ItemRarity,System.String,System.String)">
@@ -196,20 +201,100 @@
             <param name="rarity">Rarity of item</param>
             <param name="name">Display name of item</param>
         </member>
+        <member name="M:SharpFunction.Addons.Skyblock.SkyblockItem.AddDescription(System.String,SharpFunction.Universal.Color,SharpFunction.Universal.RawTextFormatting)">
+            <summary>
+            Adds description to item
+            </summary>
+            <param name="description">Description string to add</param>
+            <param name="color">Color of description</param>
+            <param name="format">Formatting of description</param>
+        </member>
+        <member name="M:SharpFunction.Addons.Skyblock.SkyblockItem.Compile">
+            <summary>
+            Compile the skyblock item give command
+            </summary>
+            <returns>Compiled give command</returns>
+        </member>
         <member name="T:SharpFunction.Addons.Skyblock.ItemAbility">
             <summary>
             Represents incapsulated item ability
             </summary>
         </member>
-        <member name="M:SharpFunction.Addons.Skyblock.ItemAbility.#ctor(System.String,System.String,SharpFunction.Addons.Skyblock.AbilityType,System.Int32,System.Int32)">
+        <member name="F:SharpFunction.Addons.Skyblock.ItemAbility.Name">
+            <summary>
+            Name of the ability
+            </summary>
+        </member>
+        <member name="F:SharpFunction.Addons.Skyblock.ItemAbility.Type">
+            <summary>
+            Type of ability. Passive will not show hint tooltip
+            </summary>
+        </member>
+        <member name="F:SharpFunction.Addons.Skyblock.ItemAbility.Description">
+            <summary>
+            Description of ability
+            </summary>
+        </member>
+        <member name="F:SharpFunction.Addons.Skyblock.ItemAbility.ManaCost">
+            <summary>
+            Mana cost of the ability
+            </summary>
+        </member>
+        <member name="F:SharpFunction.Addons.Skyblock.ItemAbility.Cooldown">
+            <summary>
+            Cooldown of the ability
+            </summary>
+        </member>
+        <member name="M:SharpFunction.Addons.Skyblock.ItemAbility.#ctor(System.String,SharpFunction.Addons.Skyblock.AbilityType,System.Int32,System.Int32)">
             <summary>
             Create a new item ability
             </summary>
             <param name="name">Name of the ability</param>
-            <param name="description">Description of the ability</param>
             <param name="type">Type of the ability</param>
             <param name="manacost">Mana cost of the ability. 0 by default</param>
             <param name="cooldown">Cooldown of the ability. 0s by default.</param>
+        </member>
+        <member name="T:SharpFunction.Addons.Skyblock.AbilityDescription">
+            <summary>
+            Represents description of ability containing multiple super raw text lines
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.AbilityDescription.Lines">
+            <summary>
+            Lines of super raw text
+            </summary>
+        </member>
+        <member name="M:SharpFunction.Addons.Skyblock.AbilityDescription.Append(SharpFunction.Universal.SuperRawText)">
+            <summary>
+            Appends a single super raw text line. Each line with start from new line in lore!
+            </summary>
+            <param name="line">Line to append</param>
+        </member>
+        <member name="T:SharpFunction.Addons.Skyblock.SlayerRequirement">
+            <summary>
+            Represents specific slayer requirement on an item
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SlayerRequirement.HasRequirement">
+            <summary>
+            Whether the item will have slayer requirement. False by default.
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SlayerRequirement.SlayerName">
+            <summary>
+            Name of the slayer to display. E.G. Zombie, or Enderman
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SlayerRequirement.SlayerLevel">
+            <summary>
+            Level of slayer required
+            </summary>
+        </member>
+        <member name="M:SharpFunction.Addons.Skyblock.SlayerRequirement.Generate">
+            <summary>
+            Generates the super raw text requirement field
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:SharpFunction.Addons.Skyblock.AbilityType">
             <summary>
