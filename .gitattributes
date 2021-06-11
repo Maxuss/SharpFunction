@@ -1,26 +1,7 @@
-###############################################################################
-# Set default behavior to automatically normalize line endings.
-###############################################################################
-* text=auto
 
-###############################################################################
-# Set default behavior for command prompt diff.
-#
-# This is need for earlier builds of msysgit that does not have it on by
-# default for csharp files.
-###############################################################################
+* text=auto
 #*.cs     diff=csharp
 
-###############################################################################
-# Set the merge driver for project and solution files
-#
-# Merging from the command prompt will add diff markers to the files if there
-# are conflicts (Merging from VS is not affected by the settings below, in VS
-# the diff markers are never inserted). Diff markers may cause the following 
-# file extensions to fail to load in VS. An alternative would be to treat
-# these files as binary and thus will always conflict and require user
-# intervention with every merge. To do so, just uncomment the entries below
-###############################################################################
 #*.sln       merge=binary
 #*.csproj    merge=binary
 #*.vbproj    merge=binary
@@ -33,23 +14,9 @@
 #*.modelproj merge=binary
 #*.sqlproj   merge=binary
 #*.wwaproj   merge=binary
-
-###############################################################################
-# behavior for image files
-#
-# image files are treated as binary by default.
-###############################################################################
 #*.jpg   binary
 #*.png   binary
 #*.gif   binary
-
-###############################################################################
-# diff behavior for common document formats
-# 
-# Convert binary document formats to text before diffing them. This feature
-# is only available from the command line. Turn it on by uncommenting the 
-# entries below.
-###############################################################################
 #*.doc   diff=astextplain
 #*.DOC   diff=astextplain
 #*.docx  diff=astextplain
@@ -60,3 +27,162 @@
 #*.PDF   diff=astextplain
 #*.rtf   diff=astextplain
 #*.RTF   diff=astextplain
+
+*.bash            text eol=lf
+*.bat             text eol=crlf
+*.cmd             text eol=crlf
+*.coffee          text
+*.css             text diff=css
+*.htm             text diff=html
+*.html            text diff=html
+*.html.           text diff=html
+*.inc             text
+*.ini             text
+*.js              text
+*.js.             text
+*.json            text
+*.jsx             text
+*.less            text
+*.ls              text
+*.map             text -diff
+*.od              text
+*.onlydata        text
+*.php             text diff=php
+*.pl              text
+*.ps1             text eol=crlf
+*.py              text diff=python
+*.rb              text diff=ruby
+*.sass            text
+*.scm             text
+*.scss            text diff=css
+*.sh              text eol=lf
+*.sql             text
+*.styl            text
+*.tag             text
+*.ts              text
+*.tsx             text
+*.xml             text
+*.xhtml           text diff=html
+Dockerfile        text
+*.ipynb           text
+*.markdown        text diff=markdown
+*.md              text diff=markdown
+*.mdwn            text diff=markdown
+*.mdown           text diff=markdown
+*.mkd             text diff=markdown
+*.mkdn            text diff=markdown
+*.mdtxt           text
+*.mdtext          text
+*.txt             text
+AUTHORS           text
+CHANGELOG         text
+CHANGES           text
+CONTRIBUTING      text
+COPYING           text
+copyright         text
+*COPYRIGHT*       text
+INSTALL           text
+license           text
+LICENSE           text
+NEWS              text
+readme            text
+*README*          text
+TODO              text
+*.dot             text
+*.ejs             text
+*.haml            text
+*.handlebars      text
+*.hbs             text
+*.hbt             text
+*.jade            text
+*.latte           text
+*.mustache        text
+*.njk             text
+*.phtml           text
+*.tmpl            text
+*.tpl             text
+*.twig            text
+*.vue             text
+*.cnf             text
+*.conf            text
+*.config          text
+.editorconfig     text
+.env              text
+.gitattributes    text
+.gitconfig        text
+.htaccess         text
+*.lock            text -diff
+package.json      text eol=lf
+package-lock.json text -diff
+pnpm-lock.yaml    text eol=lf -diff
+yarn.lock         text -diff
+*.toml            text
+*.yaml            text
+*.yml             text
+browserslist      text
+Makefile          text
+makefile          text
+Procfile          text
+*.ai              binary
+*.bmp             binary
+*.eps             binary
+*.gif             binary
+*.gifv            binary
+*.ico             binary
+*.jng             binary
+*.jp2             binary
+*.jpg             binary
+*.jpeg            binary
+*.jpx             binary
+*.jxr             binary
+*.pdf             binary
+*.png             binary
+*.psb             binary
+*.psd             binary
+*.svg             text
+# *.svg           binary
+*.svgz            binary
+*.tif             binary
+*.tiff            binary
+*.wbmp            binary
+*.webp            binary
+*.kar             binary
+*.m4a             binary
+*.mid             binary
+*.midi            binary
+*.mp3             binary
+*.ogg             binary
+*.ra              binary
+*.3gpp            binary
+*.3gp             binary
+*.as              binary
+*.asf             binary
+*.asx             binary
+*.avi             binary
+*.fla             binary
+*.flv             binary
+*.m4v             binary
+*.mng             binary
+*.mov             binary
+*.mp4             binary
+*.mpeg            binary
+*.mpg             binary
+*.ogv             binary
+*.swc             binary
+*.swf             binary
+*.webm            binary
+*.7z              binary
+*.gz              binary
+*.jar             binary
+*.rar             binary
+*.tar             binary
+*.zip             binary
+*.ttf             binary
+*.eot             binary
+*.otf             binary
+*.woff            binary
+*.woff2           binary
+*.exe             binary
+*.pyc             binary
+*.*rc             text
+*.*ignore         text

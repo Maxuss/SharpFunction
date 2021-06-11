@@ -25,6 +25,13 @@
 var NAVTREE =
 [
   [ "SharpFunction", "index.html", [
+    [ "Installation", "index.html#autotoc_md1", null ],
+    [ "Usage", "index.html#autotoc_md2", null ],
+    [ "Addons", "index.html#autotoc_md3", [
+      [ "Skyblock", "index.html#autotoc_md4", null ]
+    ] ],
+    [ "Plans for future", "index.html#autotoc_md5", null ],
+    [ "License", "index.html#autotoc_md6", null ],
     [ "Packages", "namespaces.html", [
       [ "Packages", "namespaces.html", "namespaces_dup" ],
       [ "Package Functions", "namespacemembers.html", [
@@ -59,8 +66,8 @@ var NAVTREEINDEX =
 "_meta_reader_8cs.html",
 "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_helper.html#a96869e176d15bb414b79b9d5b7d1eabf",
 "class_sharp_function_1_1_commands_1_1_minecraft_1_1_title.html#afc7751c94b9488467752c4a01677219d",
-"namespace_sharp_function_1_1_addons_1_1_skyblock.html#af9b084075e635925425b7b021fe0670cab4c2b550635fe54fd29f2b64dfaca55d",
-"namespace_sharp_function_1_1_commands_1_1_minecraft.html#aaf6c27e82ea79bbb4fcc086abfe6e2c2aae6e9b63e87076a8c0188b659ab93a28"
+"namespace_sharp_function_1_1_addons_1_1_skyblock.html#af9b084075e635925425b7b021fe0670c",
+"namespace_sharp_function_1_1_commands_1_1_minecraft.html#a9e13aee7ef0bed66866612bc2e973d9ea0ebe6df8a3ac338e0512acc741823fdb"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
