@@ -47,9 +47,9 @@ GEN=${GENERATED}
 ";
 
         /// <summary>
-        /// Writes .sfmeta file to src directory
+        /// Creates .sfmeta file to be written to src directory
         /// </summary>
-        public void CreateMeta()
+        public string CreateMeta()
         {
             string src = Path.Combine(Directory, "src");
             string prd = Path.Combine(src, ProjectName);
@@ -70,7 +70,7 @@ GEN=${GENERATED}
             string init = CommandHelper.BoolToByte(initialized).Replace("b", "");
 
             string filled = template.Replace("${SOURCE}", src).Replace("${DATAPATH}", data).Replace("${NAME}", ProjectName).Replace("${GENERATED}", init);
-            File.WriteAllText(Directory, filled);
+            return filled;
         }
     }
 }

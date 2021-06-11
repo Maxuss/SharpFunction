@@ -223,6 +223,11 @@
             Description that appears under item abilities etc.
             </summary>
         </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SkyblockItem.HideStats">
+            <summary>
+            Makes the item hide it's stats only show rarity+recipes
+            </summary>
+        </member>
         <member name="M:SharpFunction.Addons.Skyblock.SkyblockItem.#ctor(SharpFunction.Addons.Skyblock.ItemType,SharpFunction.Addons.Skyblock.ItemRarity,System.String,System.String)">
             <summary>
             Create new Skyblock Item
@@ -236,8 +241,6 @@
             Adds description to item
             </summary>
             <param name="description">Description string to add</param>
-            <param name="color">Color of description</param>
-            <param name="format">Formatting of description</param>
         </member>
         <member name="M:SharpFunction.Addons.Skyblock.SkyblockItem.Compile">
             <summary>
@@ -402,6 +405,11 @@
             All slayer drops of the slayer
             </summary>
         </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SkyblockSlayer.Levels">
+            <summary>
+            Leveling rewards for slayer
+            </summary>
+        </member>
         <member name="P:SharpFunction.Addons.Skyblock.SkyblockSlayer.Writer">
             <summary>
             Writer to write datapack functions
@@ -417,7 +425,7 @@
             Name of slayer boss
             </summary>
         </member>
-        <member name="M:SharpFunction.Addons.Skyblock.SkyblockSlayer.#ctor(SharpFunction.Addons.Skyblock.SkyblockItem[],SharpFunction.Addons.Skyblock.SlayerTier[],SharpFunction.Addons.Skyblock.SlayerDrop[],SharpFunction.Writer.FunctionWriter,System.String)">
+        <member name="M:SharpFunction.Addons.Skyblock.SkyblockSlayer.#ctor(SharpFunction.Addons.Skyblock.SkyblockItem[],SharpFunction.Addons.Skyblock.SlayerTier[],SharpFunction.Addons.Skyblock.SlayerDrop[],SharpFunction.Addons.Skyblock.SlayerLevel[],SharpFunction.Writer.FunctionWriter,System.String)">
             <summary>
             Creates a new slayer
             </summary>
@@ -524,11 +532,53 @@
             </summary>
             <returns>Generated command</returns>
         </member>
+        <member name="M:SharpFunction.Addons.Skyblock.SlayerDrop.GetDropMessage">
+            <summary>
+            Gets drop message to display
+            </summary>
+            <returns>Compiled /tellraw message</returns>
+        </member>
         <member name="M:SharpFunction.Addons.Skyblock.SlayerDrop.Compile">
             <summary>
             Generates and compiles the command, returning the string
             </summary>
             <returns>Compiled string command</returns>
+        </member>
+        <member name="T:SharpFunction.Addons.Skyblock.DropMessage">
+            <summary>
+            Represents message to be displayed when item is dropped
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.DropMessage.RarityMessage">
+            <summary>
+            Rarity message to be displayed. E.G. **VERY RARE DROP!** or **CRAZY RARE DROP!**
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.DropMessage.RarityMessageColor">
+            <summary>
+            Color of rarity message.
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.DropMessage.ItemName">
+            <summary>
+            Name of item to show drop
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.DropMessage.ItemColor">
+            <summary>
+            Color of item drop to show
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.DropMessage.HideMessage">
+            <summary>
+            Whether the message should not be displayed. Should be displayed by default
+            </summary>
+        </member>
+        <member name="M:SharpFunction.Addons.Skyblock.DropMessage.GetMessage">
+            <summary>
+            Compiles the message to super raw text
+            </summary>
+            <returns>Compiled super raw text ready to use</returns>
         </member>
         <member name="T:SharpFunction.Addons.Skyblock.DropRarity">
             <summary>
@@ -564,6 +614,135 @@
             <summary>
             lesser than 0.01%
             </summary>
+        </member>
+        <member name="T:SharpFunction.Addons.Skyblock.SlayerLevel">
+            <summary>
+            Represents rewards obtainable after reaching certain level of slayer
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SlayerLevel.GeneratedDescription">
+            <summary>
+            This description will be accessable only after initializing level
+            </summary>
+            <exception cref="T:SharpFunction.Exceptions.InitializationException">If accessed before finishing initialization</exception>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SlayerLevel.SlayerMob">
+            <summary>
+            Name of slayer mob. E.G. Zombie or Enderman
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SlayerLevel.Level">
+            <summary>
+            Level required to obtain rewards
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SlayerLevel.SkillName">
+            <summary>
+            Name describing this level. E.G. "Skilled" or "Novice" etc.
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SlayerLevel.ItemID">
+            <summary>
+            ID of item to give
+            </summary>
+        </member>
+        <member name="M:SharpFunction.Addons.Skyblock.SlayerLevel.#ctor(System.String,System.Int32,System.String,System.String)">
+            <summary>
+            Create new Slayer Level class instance
+            </summary>
+            <param name="slayermob">Mob name representing Slayer Boss</param>
+            <param name="lvl">Level of this slayer level</param>
+            <param name="skillname">Name describing this level. E.G. "Skilled" or "Novice" etc.</param>
+            <param name="itemid">ID of item to give</param>
+        </member>
+        <member name="M:SharpFunction.Addons.Skyblock.SlayerLevel.BeginInit">
+            <summary>
+            Begins the initialization of compilator. After use of that method <br/>you can use all methods until <see cref="M:SharpFunction.Addons.Skyblock.SlayerLevel.EndInit"/> is called.
+            </summary>
+        </member>
+        <member name="M:SharpFunction.Addons.Skyblock.SlayerLevel.AddReward(SharpFunction.Addons.Skyblock.SlayerReward)">
+            <summary>
+            Adds a reward to level's rewards
+            </summary>
+            <param name="compiledReward">Compiled reward to add</param>
+            <exception cref="T:SharpFunction.Exceptions.InitializationException">If accessed before starting initialization</exception>
+        </member>
+        <member name="M:SharpFunction.Addons.Skyblock.SlayerLevel.EndInit">
+            <summary>
+            Ends the initialization making it possible to <see cref="P:SharpFunction.Addons.Skyblock.SlayerLevel.GeneratedDescription"/>
+            </summary>
+        </member>
+        <member name="M:SharpFunction.Addons.Skyblock.SlayerLevel.Compile">
+            <summary>
+            Compiles item into give command
+            </summary>
+            <returns>Compiled give command</returns>
+        </member>
+        <member name="T:SharpFunction.Addons.Skyblock.SlayerReward">
+            <summary>
+            Class representing simple slayer reward. Inherited by other slayer reward classes
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SlayerReward.Compiled">
+            <summary>
+            Compiled SRT to add to display
+            </summary>
+        </member>
+        <member name="T:SharpFunction.Addons.Skyblock.SlayerItemReward">
+            <summary>
+            Represents simple slayer reward with just item
+            </summary>
+        </member>
+        <member name="M:SharpFunction.Addons.Skyblock.SlayerItemReward.Compile(SharpFunction.Addons.Skyblock.SkyblockItem)">
+            <summary>
+            Creates a new slayer reward
+            </summary>
+            <param name="item">Item to copy data from</param>
+        </member>
+        <member name="M:SharpFunction.Addons.Skyblock.SlayerItemReward.#ctor(SharpFunction.Addons.Skyblock.SkyblockItem)">
+            <inheritdoc cref="M:SharpFunction.Addons.Skyblock.SlayerItemReward.Compile(SharpFunction.Addons.Skyblock.SkyblockItem)"/>
+        </member>
+        <member name="T:SharpFunction.Addons.Skyblock.SlayerRecipeReward">
+            <summary>
+            Slightly complex slayer reward with recipe reward
+            </summary>
+        </member>
+        <member name="M:SharpFunction.Addons.Skyblock.SlayerRecipeReward.Compile(SharpFunction.Addons.Skyblock.SkyblockItem)">
+            <summary>
+            Creates a new slayer reward
+            </summary>
+            <param name="item">Item to copy data from</param>
+        </member>
+        <member name="M:SharpFunction.Addons.Skyblock.SlayerRecipeReward.#ctor(SharpFunction.Addons.Skyblock.SkyblockItem)">
+            <inheritdoc cref="M:SharpFunction.Addons.Skyblock.SlayerRecipeReward.Compile(SharpFunction.Addons.Skyblock.SkyblockItem)"/>
+        </member>
+        <member name="T:SharpFunction.Addons.Skyblock.SlayerStatReward">
+            <summary>
+            Complex reward, rewarding a permanent stat boost
+            </summary>
+        </member>
+        <member name="M:SharpFunction.Addons.Skyblock.SlayerStatReward.Compile(SharpFunction.Universal.EncapsulatedType{System.String,System.Int32,SharpFunction.Universal.Color})">
+            <summary>
+            Creates a new slayer reward
+            </summary>        
+            <param name="item">Data to gather from encapsulated type. Value 1: name of stat. Value 2: increase of stat. Value 3: color of stat</param>
+        </member>
+        <member name="M:SharpFunction.Addons.Skyblock.SlayerStatReward.#ctor(SharpFunction.Universal.EncapsulatedType{System.String,System.Int32,SharpFunction.Universal.Color})">
+            <inheritdoc cref="M:SharpFunction.Addons.Skyblock.SlayerStatReward.Compile(SharpFunction.Universal.EncapsulatedType{System.String,System.Int32,SharpFunction.Universal.Color})"/>
+        </member>
+        <member name="T:SharpFunction.Addons.Skyblock.SlayerPerkReward">
+            <summary>
+            Complex reward, rewarding a permanent perk for player.
+            </summary>
+        </member>
+        <member name="M:SharpFunction.Addons.Skyblock.SlayerPerkReward.Compile(SharpFunction.Universal.RawText)">
+            <summary>
+            Creates a new slayer reward
+            </summary>
+            <param name="rt">RT containing data of perk</param>
+        </member>
+        <member name="M:SharpFunction.Addons.Skyblock.SlayerPerkReward.#ctor(SharpFunction.Universal.RawText)">
+            <inheritdoc cref="M:SharpFunction.Addons.Skyblock.SlayerPerkReward.Compile(SharpFunction.Universal.RawText)"/>
         </member>
         <member name="T:SharpFunction.Addons.Skyblock.SlayerTier">
             <summary>
@@ -742,6 +921,19 @@
             <param name="name">Name of root datapack folder, a.k.a. datapack name.</param>
             <param name="path">Path where root folder should be created.</param>
         </member>
+        <member name="M:SharpFunction.API.Project.Load(System.String)">
+            <summary>
+            Loads the project from directory if .sfmeta file exists
+            </summary>
+            <param name="path">Path to directory with src folder and .sfmeta file</param>
+            <returns>Loaded project</returns>
+            <exception cref="T:SharpFunction.Exceptions.MetaFileNotFound">If .sfmeta file does not exist</exception>
+        </member>
+        <member name="M:SharpFunction.API.Project.GenerateLoad(System.String)">
+            <summary>
+            Initializes the datapack without generating files
+            </summary>
+        </member>
         <member name="M:SharpFunction.API.Project.Generate">
             <summary>Initializes a datapack, allowing the use of <see cref="T:SharpFunction.Writer.FunctionWriter"/></summary>
         </member>
@@ -916,16 +1108,13 @@
         </member>
         <member name="T:SharpFunction.Commands.Helper.CommandHelper">
             <summary>
-            Helper for command
+            Helper for commands
             </summary>
         </member>
         <member name="T:SharpFunction.Commands.Minecraft.Advancement">
             <summary>
             Represents advancement command. Equal to Minecraft's <code>/advancement {grant/revoke} {[only {advancement}]/everything} {criterion}</code>
             </summary>
-        </member>
-        <member name="P:SharpFunction.Commands.Minecraft.Advancement.Selector">
-            <inheritdoc cref="P:SharpFunction.Commands.Minecraft.ICommand.Selector"/>
         </member>
         <member name="P:SharpFunction.Commands.Minecraft.Advancement.Compiled">
             <inheritdoc cref="P:SharpFunction.Commands.Minecraft.ICommand.Compiled"/>
@@ -1047,7 +1236,6 @@
         <member name="M:SharpFunction.Commands.Minecraft.Bossbar.#ctor">
             <summary>
             Initialize Bossbar Command class.<br/>
-            See also: <br/>
             <seealso cref="T:SharpFunction.Commands.EntitySelector"/>
             </summary>
         </member>
@@ -1215,6 +1403,11 @@
         <member name="T:SharpFunction.Commands.Minecraft.ExtraCloneParams">
             <summary>
             Extra parameters for cloning the structure
+            </summary>
+        </member>
+        <member name="T:SharpFunction.Commands.Minecraft.Datapack">
+            <summary>
+            Represents minecraft datapack command. Equal to Minecraft's <code>/datapack {action} {ActionParams}</code>
             </summary>
         </member>
         <member name="M:SharpFunction.Commands.Minecraft.Datapack.#ctor">
@@ -1534,14 +1727,19 @@
             Represents main interface inherited by all command classes
             </summary>
         </member>
-        <member name="P:SharpFunction.Commands.Minecraft.ICommand.Selector">
-            <summary>
-            Selector for entities
-            </summary>
-        </member>
         <member name="P:SharpFunction.Commands.Minecraft.ICommand.Compiled">
             <summary>
             Represents compiled version of command
+            </summary>
+        </member>
+        <member name="T:SharpFunction.Commands.Minecraft.ISelectorCommand">
+            <summary>
+            Secondary interface for commands that have EntitySelector field
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Commands.Minecraft.ISelectorCommand.Selector">
+            <summary>
+            Entity selector to use
             </summary>
         </member>
         <member name="T:SharpFunction.Commands.Minecraft.Say">
@@ -1632,6 +1830,75 @@
         <member name="T:SharpFunction.Commands.Minecraft.TellText">
             <summary>
             Text used by Tellraw
+            </summary>
+        </member>
+        <member name="T:SharpFunction.Commands.Minecraft.Title">
+            <summary>
+            Represents Title command. Equal to Minecraft's <code>/title {params: TitleParameters}</code>
+            </summary>
+        </member>
+        <member name="M:SharpFunction.Commands.Minecraft.Title.#ctor(SharpFunction.Commands.EntitySelector)">
+            <summary>
+            Initialize Title Command class.<br/>
+            See also: <br/>
+            <seealso cref="T:SharpFunction.Commands.EntitySelector"/>
+            </summary>
+            <param name="selector"><see cref="T:SharpFunction.Commands.EntitySelector"/> to use</param>
+        </member>
+        <member name="M:SharpFunction.Commands.Minecraft.Title.Compile(SharpFunction.Commands.Minecraft.TitleAction)">
+            <summary>
+            Compiles the /title (clear|reset) command
+            </summary>
+            <param name="action">Action to do with title for selected entities</param>
+        </member>
+        <member name="M:SharpFunction.Commands.Minecraft.Title.Compile(SharpFunction.Commands.Minecraft.TitlePosition,SharpFunction.Universal.SuperRawText)">
+            <summary>
+            Compiles the /title (title|subtitle|actionbar) (title) command
+            </summary>
+            <param name="position">Position to display title</param>
+            <param name="title">Title SuperRawText</param>
+        </member>
+        <member name="M:SharpFunction.Commands.Minecraft.Title.Compile(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Compiles the /title times (in) (stay) (out)
+            </summary>
+            <param name="fadeIn">Fade in time for all titles</param>
+            <param name="stay">Stay time for all titles</param>
+            <param name="fadeOut">Fade out time for all titles</param>
+        </member>
+        <member name="T:SharpFunction.Commands.Minecraft.TitleAction">
+            <summary>
+            Represents action to do with title
+            </summary>
+        </member>
+        <member name="F:SharpFunction.Commands.Minecraft.TitleAction.Clear">
+            <summary>
+            Clears title from entities
+            </summary>
+        </member>
+        <member name="F:SharpFunction.Commands.Minecraft.TitleAction.Reset">
+            <summary>
+            Resets title display for some entities
+            </summary>
+        </member>
+        <member name="T:SharpFunction.Commands.Minecraft.TitlePosition">
+            <summary>
+            Represents position of title on the screen
+            </summary>
+        </member>
+        <member name="F:SharpFunction.Commands.Minecraft.TitlePosition.Title">
+            <summary>
+            Center of screen
+            </summary>
+        </member>
+        <member name="F:SharpFunction.Commands.Minecraft.TitlePosition.Subtitle">
+            <summary>
+            Under title
+            </summary>
+        </member>
+        <member name="F:SharpFunction.Commands.Minecraft.TitlePosition.Actionbar">
+            <summary>
+            Over hotbar
             </summary>
         </member>
         <member name="T:SharpFunction.Commands.Minecraft.VanillaAdvancement">
@@ -2023,6 +2290,20 @@
         <member name="M:SharpFunction.Exceptions.FunctionNotSpecifiedException.#ctor(System.String,System.Exception)">
             <inheritdoc cref="M:System.Exception.#ctor(System.String,System.Exception)"/>
         </member>
+        <member name="T:SharpFunction.Exceptions.InitializationException">
+            <summary>
+            Thrown when initialization did not yet began but post-init method was invoked
+            </summary>
+        </member>
+        <member name="M:SharpFunction.Exceptions.InitializationException.#ctor">
+            <inheritdoc cref="M:SharpFunction.Exceptions.SFException.#ctor"/>
+        </member>
+        <member name="M:SharpFunction.Exceptions.InitializationException.#ctor(System.String)">
+            <inheritdoc cref="M:SharpFunction.Exceptions.SFException.#ctor(System.String)"/>
+        </member>
+        <member name="M:SharpFunction.Exceptions.InitializationException.#ctor(System.String,System.Exception)">
+            <inheritdoc cref="M:SharpFunction.Exceptions.SFException.#ctor(System.String,System.Exception)"/>
+        </member>
         <member name="M:SharpFunction.Exceptions.InvalidSelectorParameters.#ctor">
             <inheritdoc cref="M:System.Exception.#ctor"/>
         </member>
@@ -2032,15 +2313,84 @@
         <member name="M:SharpFunction.Exceptions.InvalidSelectorParameters.#ctor(System.String,System.Exception)">
             <inheritdoc cref="M:System.Exception.#ctor(System.String,System.Exception)"/>
         </member>
+        <member name="T:SharpFunction.Exceptions.MetaFileNotFound">
+            <summary>
+            Thrown when could not find .sfmeta file in project
+            </summary>
+        </member>
+        <member name="M:SharpFunction.Exceptions.MetaFileNotFound.#ctor">
+            <inheritdoc cref="T:SharpFunction.Exceptions.SFException"/>
+        </member>
         <member name="T:SharpFunction.Exceptions.SFException">
             <summary>
             Represents main class for SharpFunction exceptions inheritance
+            </summary>
+        </member>
+        <member name="T:SharpFunction.Meta.MetaReader">
+            <summary>
+            Class used for reading .sfmeta files
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Meta.MetaReader.NonParseable">
+            <summary>
+            KeyValuePairs of values that werent parsed
+            </summary>
+        </member>
+        <member name="M:SharpFunction.Meta.MetaReader.#ctor(System.String)">
+            <summary>
+            Initialize new instance of MetaReader class. It will try to read and parse .sfmeta contents
+            </summary>
+            <param name="dir">Directory that (might) store .sfmeta file</param>
+            <exception cref="T:System.IO.FileNotFoundException">If .sfmeta file does not exist</exception>
+        </member>
+        <member name="T:SharpFunction.Meta.MetaWriter">
+            <summary>
+            Class required for writing .sfmeta files
+            </summary>
+        </member>
+        <member name="M:SharpFunction.Meta.MetaWriter.#ctor(System.String,System.String)">
+            <summary>
+            Initialize a new instance of meta file writer
+            </summary>
+            <param name="dir">Directory to write .sfmeta file. Should contain src folder!</param>
+            <param name="project">Non-formatted name of project</param>
+        </member>
+        <member name="M:SharpFunction.Meta.MetaWriter.CreateMeta">
+            <summary>
+            Creates .sfmeta file to be written to src directory
             </summary>
         </member>
         <member name="T:SharpFunction.Universal.Color">
             <summary>
             Represents a color for Minecraft
             </summary>
+        </member>
+        <member name="T:SharpFunction.Universal.EncapsulatedType`3">
+            <summary>
+            Represents encapsulator to store more than one type inside a single type param
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Universal.EncapsulatedType`3.VALUE1">
+            <summary>
+            First encapsulated type value
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Universal.EncapsulatedType`3.VALUE2">
+            <summary>
+            Second encapsulated type value
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Universal.EncapsulatedType`3.VALUE3">
+            <summary>
+            Third encapsulated type value
+            </summary>
+        </member>
+        <member name="M:SharpFunction.Universal.EncapsulatedType`3.#ctor(`0,`1,`2)">
+            <summary>
+            Initialize encapsulated type 
+            </summary>
+            <param name="v1">First value to store</param>
+            <param name="v2">Second value to store</param>
         </member>
         <member name="T:SharpFunction.Universal.Encapsulator`2">
             <summary>

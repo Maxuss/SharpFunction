@@ -17,11 +17,13 @@ namespace SFExample
         static void Main(string[] args)
         {
             Console.WriteLine("This is an example/testing project for SharpFunction");
-            Project project = new Project("ShaprFunction Sample", $@"{Directory.GetCurrentDirectory()}\Samples");
-            project.Format = PackFormat.DotSixteen;
-            project.Generate();
+            // Project project = new Project("ShaprFunction Sample 2", $@"{Directory.GetCurrentDirectory()}\Sample2");
+            // project.Format = PackFormat.DotSixteen;
+            // project.Generate();
+            Project project = Project.Load($@"{Directory.GetCurrentDirectory()}\Sample2");
             FunctionWriter w = project.Writer;
             SlayerExample ex = new(w);
+            Console.WriteLine(project.ProjectPath);
             Console.WriteLine("Finished generating datapack!");
             Console.ReadLine();
         }

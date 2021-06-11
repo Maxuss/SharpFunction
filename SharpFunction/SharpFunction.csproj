@@ -43,4 +43,10 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Meta\template.sfmeta">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

@@ -124,8 +124,9 @@ namespace SharpFunction.API
                 Directory.CreateDirectory(Path.Combine(namespaceDir, dir));
             }
             Writer.Initialize(Path.Combine(namespaceDir, "functions"));
-            MetaWriter writer = new(Path.Combine(ProjectPath, "src"), ProjectName);
-            writer.CreateMeta();
+            MetaWriter writer = new(Path.Combine(ProjectPath), ProjectName);
+            string d = writer.CreateMeta();
+            File.WriteAllText(Path.Combine(ProjectPath, ".sfmeta"), d);
         }
     }
 }

@@ -12,6 +12,6 @@ namespace SharpFunction.Exceptions
     public class MetaFileNotFound : SFException
     {
         /// <inheritdoc cref="SFException"/>
-        public MetaFileNotFound() : base("Could not locate .sfmeta project file!") { };
+        public MetaFileNotFound() : base("Could not locate .sfmeta project file!") { }
     }
 }
