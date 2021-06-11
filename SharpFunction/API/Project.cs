@@ -5,6 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SharpFunction.Writer;
+using SharpFunction.Meta;
+using SharpFunction.Exceptions;
+
 namespace SharpFunction.API
 {
     /// <summary>
@@ -65,13 +68,42 @@ namespace SharpFunction.API
 }
 ";
 
+        /// <summary>
+        /// Loads the project from directory if .sfmeta file exists
+        /// </summary>
+        /// <param name="path">Path to directory with src folder and .sfmeta file</param>
+        /// <returns>Loaded project</returns>
+        /// <exception cref="MetaFileNotFound">If .sfmeta file does not exist</exception>
+        public static Project Load(string path)
+        {
+            try
+            {
+                MetaReader reader = new(path);
+                Project project = new(reader.ProjectName, reader.SourceDirectory);
+                if(reader.FullyGenerated) project.GenerateLoad(Path.Combine(reader.DataDirectory, project.Namespace));
+                else project.Generate();
+                return project;
+            }
+            catch(FileNotFoundException)
+            {
+                throw new MetaFileNotFound();
+            }
+        }
+
         private string[] requiredDirectories =
         {
             "functions", "loot_tables", "structures", "worldgen",
             "advancements", "recipes", "tags", "predicates", "dimension"
         };
 
-
+        /// <summary>
+        /// Initializes the datapack without generating files
+        /// </summary>
+        internal void GenerateLoad(string namespaced)
+        {
+            Writer = new(this);
+            Writer.Initialize(Path.Combine(namespaced, "functions"));
+        }
 
         /// <summary>Initializes a datapack, allowing the use of <see cref="Writer.FunctionWriter"/></summary>
         public void Generate()
@@ -92,6 +124,8 @@ namespace SharpFunction.API
                 Directory.CreateDirectory(Path.Combine(namespaceDir, dir));
             }
             Writer.Initialize(Path.Combine(namespaceDir, "functions"));
+            MetaWriter writer = new(Path.Combine(ProjectPath, "src"), ProjectName);
+            writer.CreateMeta();
         }
     }
 }

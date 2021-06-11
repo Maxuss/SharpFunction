@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace SharpFunction.Commands.Helper
 {
     /// <summary>
-    /// Helper for command
+    /// Helper for commands
     /// </summary>
     internal static class CommandHelper
     {
@@ -26,6 +26,16 @@ namespace SharpFunction.Commands.Helper
             {
                 case true: return "1b";
                 case false: return "0b";
+            }
+        }
+
+        public static bool ByteToBool(string @byte)
+        {
+            switch(@byte)
+            {
+                case "0": return false;
+                case "1": return true;
+                default: throw new FormatException(".sfmeta File is corrupted or written wrongly!");
             }
         }
     }
