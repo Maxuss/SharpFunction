@@ -18,7 +18,7 @@ namespace SharpFunction.Addons.Skyblock
     /// <summary>
     /// Represents 'fake' item from Hypixel Skyblock
     /// </summary>
-    public sealed class SkyblockItem
+    public partial class SkyblockItem
     {
         /// <summary>
         /// Type of item
@@ -387,7 +387,7 @@ namespace SharpFunction.Addons.Skyblock
         /// Compile the skyblock item give command
         /// </summary>
         /// <returns>Compiled give command</returns>
-        public string Compile()
+        public virtual string Compile()
         {
             string itemname = ID;
             ItemNBT nbt = new ItemNBT();

@@ -385,6 +385,245 @@
             Represents rarity of a custom skyblock item
             </summary>
         </member>
+        <member name="T:SharpFunction.Addons.Skyblock.SkyblockPet">
+            <summary>
+            Represents a *fake* skyblock pet
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SkyblockPet.Type">
+            <summary>
+            What skill the pet is related to?
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SkyblockPet.Name">
+            <summary>
+            Name of the pet
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SkyblockPet.Abilities">
+            <summary>
+            All the abilities of the pet
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SkyblockPet.Rarity">
+            <summary>
+            Rarity of the pet
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SkyblockPet.SkullOwner">
+            <summary>
+            Skull owner of the pet head
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SkyblockPet.Damage">
+            <summary>
+            Damage of pet
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SkyblockPet.Strength">
+            <summary>
+            Strength of pet
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SkyblockPet.Defense">
+            <summary>
+            Defense of pet
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SkyblockPet.Health">
+            <summary>
+            Health of pet
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SkyblockPet.Intelligence">
+            <summary>
+            Intelligence of pet
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SkyblockPet.CritChance">
+            <summary>
+            Crit Chance of pet
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SkyblockPet.CritDamage">
+            <summary>
+            Crit Damage of pet
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SkyblockPet.AttackSpeed">
+            <summary>
+            Attack Speed of pet
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SkyblockPet.Speed">
+            <summary>
+            Speed of pet
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SkyblockPet.TrueDefense">
+            <summary>
+            True Defense of pet
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SkyblockPet.SeaCreatureChance">
+            <summary>
+            SCC of pet
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SkyblockPet.MagicFind">
+            <summary>
+            Magic Find of pet
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SkyblockPet.PetLuck">
+            <summary>
+            Pet Luck of pet
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SkyblockPet.Ferocity">
+            <summary>
+            Pet Luck of pet
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SkyblockPet.IsPreview">
+            <summary>
+            Preview pets will not have experience bar in description.
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SkyblockPet.MaxLevel">
+            <summary>
+            If max level it will have MAX LEVEL display instead of progress bar
+            </summary>
+        </member>
+        <member name="M:SharpFunction.Addons.Skyblock.SkyblockPet.#ctor(System.String,System.String,SharpFunction.Addons.Skyblock.ItemRarity,SharpFunction.Addons.Skyblock.PetType)">
+            <summary>
+            Initialize a new skyblock pet
+            </summary>
+            <param name="name">Name of the pet</param>
+            <param name="skullOwner">Player name owning the head of pet. Can also be NBT texture data</param>
+            <param name="rarity">Rarity of the pet</param>
+            <param name="type">Type of pet</param>
+        </member>
+        <member name="M:SharpFunction.Addons.Skyblock.SkyblockPet.Generate">
+            <summary>
+            Generates the give command
+            </summary>
+            <returns>Compilde give command to obtain the pet item</returns>
+        </member>
+        <member name="M:SharpFunction.Addons.Skyblock.SkyblockPet.Compile">
+            <summary>
+            Generates the /give command and compiles it to string
+            </summary>
+            <returns>Compiled /give command</returns>
+        </member>
+        <member name="T:SharpFunction.Addons.Skyblock.PetAbility">
+            <summary>
+            Represents a single pet ability
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.PetAbility.AbilityName">
+            <summary>
+            Represents name of the ability
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.PetAbility.AbilityDescription">
+            <summary>
+            Description of the ability
+            </summary>
+        </member>
+        <member name="M:SharpFunction.Addons.Skyblock.PetAbility.#ctor(System.String)">
+            <summary>
+            Initialize a new pet ability
+            </summary>
+            <param name="name">Name of the ability</param>
+        </member>
+        <member name="M:SharpFunction.Addons.Skyblock.PetAbility.GetAbility">
+            <summary>
+            Compiles the description into single description
+            </summary>
+            <returns>Raw ability as AdvancedDescription</returns>
+        </member>
+        <member name="T:SharpFunction.Addons.Skyblock.PetType">
+            <summary>
+            Represents type of pet
+            </summary>
+        </member>
+        <member name="F:SharpFunction.Addons.Skyblock.PetType.Farming">
+            <summary>
+            Farming pet
+            </summary>
+        </member>
+        <member name="F:SharpFunction.Addons.Skyblock.PetType.Mining">
+            <summary>
+            Mining pet
+            </summary>
+        </member>
+        <member name="F:SharpFunction.Addons.Skyblock.PetType.Combat">
+            <summary>
+            Combat pet
+            </summary>
+        </member>
+        <member name="F:SharpFunction.Addons.Skyblock.PetType.Foraging">
+            <summary>
+            Foraging pet
+            </summary>
+        </member>
+        <member name="F:SharpFunction.Addons.Skyblock.PetType.Fishing">
+            <summary>
+            Fishing pet
+            </summary>
+        </member>
+        <member name="F:SharpFunction.Addons.Skyblock.PetType.Enchanting">
+            <summary>
+            Enchanting pet
+            </summary>
+        </member>
+        <member name="F:SharpFunction.Addons.Skyblock.PetType.Alchemy">
+            <summary>
+            Alchemy pet
+            </summary>
+        </member>
+        <member name="F:SharpFunction.Addons.Skyblock.PetType.Slayer">
+            <summary>
+            Slayer pet (custom)
+            </summary>
+        </member>
+        <member name="F:SharpFunction.Addons.Skyblock.PetType.Runecrafting">
+            <summary>
+            Runecrafting pet (custom)
+            </summary>
+        </member>
+        <member name="F:SharpFunction.Addons.Skyblock.PetType.Carpentry">
+            <summary>
+            Carpentry pet (custom)
+            </summary>
+        </member>
+        <member name="F:SharpFunction.Addons.Skyblock.PetType.Dungeon">
+            <summary>
+            Dungeons pet (custom)
+            </summary>
+        </member>
+        <member name="T:SharpFunction.Addons.Skyblock.SkyblockSkull">
+            <summary>
+            Represents skyblock-like skull item
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Addons.Skyblock.SkyblockSkull.SkullOwner">
+            <summary>
+            The owner of the skull
+            </summary>
+        </member>
+        <member name="M:SharpFunction.Addons.Skyblock.SkyblockSkull.#ctor(SharpFunction.Addons.Skyblock.ItemType,SharpFunction.Addons.Skyblock.ItemRarity,System.String,System.String)">
+            <inheritdoc cref="M:SharpFunction.Addons.Skyblock.SkyblockItem.#ctor(SharpFunction.Addons.Skyblock.ItemType,SharpFunction.Addons.Skyblock.ItemRarity,System.String,System.String)"/>
+            <param name="skullOwner">Owner of the skull. Can also be nbt texture data</param>
+            <param name="itemname">ID of item to give</param>
+            <param name="name">Display name of item</param>
+            <param name="rarity">Rarity of item</param>
+            <param name="type">Type of item</param>
+        </member>
+        <member name="M:SharpFunction.Addons.Skyblock.SkyblockSkull.Compile">
+            <inheritdoc cref="M:SharpFunction.Addons.Skyblock.SkyblockItem.Compile"/>
+        </member>
         <member name="T:SharpFunction.Addons.Skyblock.SkyblockSlayer">
             <summary>
             Represents skyblock slayer
@@ -2699,6 +2938,44 @@
             <summary>
             Helper for null checks
             </summary>
+        </member>
+        <member name="T:SharpFunction.Universal.PlayerSkull">
+            <summary>
+            Represents player skull item. This is mostly just item nbt
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Universal.PlayerSkull.SkullOwner">
+            <summary>
+            Owner of skull to be displayed. Can also contain custom texture nbt data
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Universal.PlayerSkull.ItemDescripion">
+            <summary>
+            Description of the skull. None by default.
+            </summary>
+        </member>
+        <member name="P:SharpFunction.Universal.PlayerSkull.ItemName">
+            <summary>
+            Name of skull to be shown. None by default.
+            </summary>
+        </member>
+        <member name="M:SharpFunction.Universal.PlayerSkull.#ctor(System.String)">
+            <summary>
+            Initialize new player skull class instance
+            </summary>
+            <param name="skullOwner">Skull owner. Can also be custom texture nbt data.</param>
+        </member>
+        <member name="M:SharpFunction.Universal.PlayerSkull.GenerateCommand">
+            <summary>
+            Generates give command to get the skull and compiles it
+            </summary>
+            <returns>Generated and compiled give command</returns>
+        </member>
+        <member name="M:SharpFunction.Universal.PlayerSkull.Compile">
+            <summary>
+            Generates the command and compiles it into string
+            </summary>
+            <returns>Compiled give command to obtain this item</returns>
         </member>
         <member name="T:SharpFunction.Universal.RawText">
             <summary>

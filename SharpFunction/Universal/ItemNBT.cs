@@ -67,7 +67,7 @@ namespace SharpFunction.Universal
             string unbr = !IsNull(Unbreakable) ? $"Unbreakable: {Commands.Helper.CommandHelper.BoolToByte((bool)Unbreakable)}" : "";
             string dmg = !IsNull(Damage) ? $"Damage: {Damage}" : "";
             string cmd = !IsNull(CustomModelData) ? $"CustomModelData: {CustomModelData}" : "";
-            string ct = !IsNull(CustomTags) ? $"CustomTags: {CustomTags}" : "";
+            string ct = !IsNull(CustomTags) ? $"{CustomTags}" : "";
             string cpo = !IsNull(CanPlaceOn) ? $"CanPlaceOn: [{CanPlaceOn}]" : "";
             string cd = !IsNull(CanDestroy) ? $"CanDestroy: [{CanDestroy}]" : "";
             string hfl = !IsNull(HideFlags) ? $"HideFlags: {HideFlags}" : "";
