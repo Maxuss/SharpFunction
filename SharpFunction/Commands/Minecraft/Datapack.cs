@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace SharpFunction.Commands.Minecraft
 {
+    /// <summary>
+    /// Represents minecraft datapack command. Equal to Minecraft's <code>/datapack {action} {ActionParams}</code>
+    /// </summary>
     public sealed class Datapack : ICommand
     {
 

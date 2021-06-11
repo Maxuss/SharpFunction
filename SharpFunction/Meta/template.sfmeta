@@ -1,0 +1,16 @@
+﻿! This file is used for storing 
+! meta information related to
+! SharpFunction project
+! If you want to learn more
+! about .sfmeta check documentation
+
+! path to 'src' directory
+SRC=${SOURCE}
+! path to 'data' directory
+DAT=${DATAPATH}
+! pack.mcmeta project description
+META_DESC=${DESCRIPTION}
+! formatted name of datapack
+NAME=${NAME}
+! whether all required folders were generated 0/1 for false/true
+GEN=${GENERATED}
