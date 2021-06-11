@@ -34,7 +34,10 @@ namespace SharpFunction.Meta
 ! meta information related to
 ! SharpFunction project
 ! If you want to learn more
-! about .sfmeta check documentation
+! about .sfmeta check documentation here:
+! https://github.com/Maxuss/SharpFunction/wiki/.sfmeta-information
+
+! ####################### !
 
 ! path to 'src' directory
 SRC=${SOURCE}
@@ -44,6 +47,9 @@ DAT=${DATAPATH}
 NAME=${NAME}
 ! whether all required folders were generated 0/1 for false/true
 GEN=${GENERATED}
+
+! ####################### !
+! Append your data here
 ";
 
         /// <summary>
