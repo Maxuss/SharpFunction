@@ -82,7 +82,7 @@ var NAVTREEINDEX0 =
 "_datapack_8cs.html#a971eb578a9f98ae1a812a66fe6454e4ca00d23a76e43b46dae9ec7aa9dcbebb32":[2,0,15,2,0],
 "_datapack_8cs.html#a971eb578a9f98ae1a812a66fe6454e4cab1c94ca2fbc3e78fc30069c8d0f01680":[2,0,15,2,1],
 "_debug_2net5_80_2_8_n_e_t_core_app_00_version_0av5_80_8_assembly_attributes_8cs.html":[2,0,0],
-"_debug_2net5_80_2_sharp_function_8_assembly_info_8cs.html":[2,0,53],
+"_debug_2net5_80_2_sharp_function_8_assembly_info_8cs.html":[2,0,56],
 "_default_gamemode_8cs.html":[2,0,16],
 "_empty_selector_8cs.html":[2,0,17],
 "_encapsulated_type_8cs.html":[2,0,18],
@@ -249,5 +249,5 @@ var NAVTREEINDEX0 =
 "_item_8cs.html":[2,0,40],
 "_item_display_8cs.html":[2,0,41],
 "_item_n_b_t_8cs.html":[2,0,42],
-"_n_b_t_path_8cs.html":[2,0,43]
+"_meta_file_not_found_8cs.html":[2,0,43]
 };

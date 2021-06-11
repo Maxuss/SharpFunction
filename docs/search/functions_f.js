@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['wrap_925',['Wrap',['../class_sharp_function_1_1_universal_1_1_n_b_t_wrapper.html#acbd1fd9bd09742b71e4842db8cd4f9f4',1,'SharpFunction::Universal::NBTWrapper']]],
-  ['writecommand_926',['WriteCommand',['../class_sharp_function_1_1_writer_1_1_function_writer.html#acbcb482b36876cbc952443e3ed42da87',1,'SharpFunction.Writer.FunctionWriter.WriteCommand(string command, string name)'],['../class_sharp_function_1_1_writer_1_1_function_writer.html#a94ad4a64a325dc46a41a8d8b14acd6eb',1,'SharpFunction.Writer.FunctionWriter.WriteCommand(Commands.CommandModule command, string name)']]]
+  ['teleport_947',['Teleport',['../class_sharp_function_1_1_commands_1_1_minecraft_1_1_teleport.html#a53cb62d802efb9b1b99b14a30385e1de',1,'SharpFunction::Commands::Minecraft::Teleport']]],
+  ['tellraw_948',['Tellraw',['../class_sharp_function_1_1_commands_1_1_minecraft_1_1_tellraw.html#a90c7fce21cfe1e27d1e69c2dbf4bfe21',1,'SharpFunction::Commands::Minecraft::Tellraw']]],
+  ['title_949',['Title',['../class_sharp_function_1_1_commands_1_1_minecraft_1_1_title.html#afc7751c94b9488467752c4a01677219d',1,'SharpFunction::Commands::Minecraft::Title']]]
 ];

@@ -1,24 +1,4 @@
 var searchData=
 [
-  ['say_727',['Say',['../class_sharp_function_1_1_commands_1_1_minecraft_1_1_say.html',1,'SharpFunction::Commands::Minecraft']]],
-  ['selectorparameters_728',['SelectorParameters',['../struct_sharp_function_1_1_commands_1_1_selector_parameters.html',1,'SharpFunction::Commands']]],
-  ['sfexception_729',['SFException',['../class_sharp_function_1_1_exceptions_1_1_s_f_exception.html',1,'SharpFunction::Exceptions']]],
-  ['simpleselector_730',['SimpleSelector',['../struct_sharp_function_1_1_a_p_i_1_1_simple_selector.html',1,'SharpFunction::API']]],
-  ['simplevector_731',['SimpleVector',['../struct_sharp_function_1_1_a_p_i_1_1_simple_vector.html',1,'SharpFunction::API']]],
-  ['skyblockentity_732',['SkyblockEntity',['../class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_entity.html',1,'SharpFunction::Addons::Skyblock']]],
-  ['skyblockhelper_733',['SkyblockHelper',['../class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_helper.html',1,'SharpFunction::Addons::Skyblock']]],
-  ['skyblockitem_734',['SkyblockItem',['../class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_item.html',1,'SharpFunction::Addons::Skyblock']]],
-  ['skyblockslayer_735',['SkyblockSlayer',['../class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_slayer.html',1,'SharpFunction::Addons::Skyblock']]],
-  ['slayerability_736',['SlayerAbility',['../class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_ability.html',1,'SharpFunction::Addons::Skyblock']]],
-  ['slayerdrop_737',['SlayerDrop',['../class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop.html',1,'SharpFunction::Addons::Skyblock']]],
-  ['slayeritemreward_738',['SlayerItemReward',['../class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_item_reward.html',1,'SharpFunction::Addons::Skyblock']]],
-  ['slayerlevel_739',['SlayerLevel',['../class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_level.html',1,'SharpFunction::Addons::Skyblock']]],
-  ['slayerperkreward_740',['SlayerPerkReward',['../class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_perk_reward.html',1,'SharpFunction::Addons::Skyblock']]],
-  ['slayerrecipereward_741',['SlayerRecipeReward',['../class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_recipe_reward.html',1,'SharpFunction::Addons::Skyblock']]],
-  ['slayerrequirement_742',['SlayerRequirement',['../class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_requirement.html',1,'SharpFunction::Addons::Skyblock']]],
-  ['slayerreward_743',['SlayerReward',['../class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_reward.html',1,'SharpFunction::Addons::Skyblock']]],
-  ['slayerstatreward_744',['SlayerStatReward',['../class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_stat_reward.html',1,'SharpFunction::Addons::Skyblock']]],
-  ['slayertier_745',['SlayerTier',['../class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_tier.html',1,'SharpFunction::Addons::Skyblock']]],
-  ['summon_746',['Summon',['../class_sharp_function_1_1_commands_1_1_minecraft_1_1_summon.html',1,'SharpFunction::Commands::Minecraft']]],
-  ['superrawtext_747',['SuperRawText',['../class_sharp_function_1_1_universal_1_1_super_raw_text.html',1,'SharpFunction::Universal']]]
+  ['rawtext_743',['RawText',['../class_sharp_function_1_1_universal_1_1_raw_text.html',1,'SharpFunction::Universal']]]
 ];

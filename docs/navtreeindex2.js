@@ -1,5 +1,9 @@
 var NAVTREEINDEX2 =
 {
+"class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_helper.html#a96869e176d15bb414b79b9d5b7d1eabf":[1,0,0,0,0,1,4],
+"class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_helper.html#a9ba8c1f691baf2731390dba5868af87c":[1,0,0,0,0,1,15],
+"class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_helper.html#aa86f6065e481b1450c75ce4b871a2103":[1,0,0,0,0,1,18],
+"class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_helper.html#aa9304d2cbe21235cbed40ec7eaf8716d":[1,0,0,0,0,1,1],
 "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_helper.html#ab480661afeda7c4d4cec140c88961d6c":[1,0,0,0,0,1,14],
 "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_helper.html#abcd96416e3f52d6891cb72209e3126f0":[1,0,0,0,0,1,0],
 "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_helper.html#ac81ed66365a1e51d7f897abddf44d109":[1,0,0,0,0,1,6],
@@ -245,9 +249,5 @@ var NAVTREEINDEX2 =
 "class_sharp_function_1_1_commands_1_1_minecraft_1_1_title.html#a10c647f2cbf154db03c057f69905bdb8":[1,0,0,2,0,26,1],
 "class_sharp_function_1_1_commands_1_1_minecraft_1_1_title.html#a9a4e8bceb2245794aafe2ce4080cc40b":[1,0,0,2,0,26,3],
 "class_sharp_function_1_1_commands_1_1_minecraft_1_1_title.html#aabc845e79832303d59c36d2ae0e2263d":[1,0,0,2,0,26,4],
-"class_sharp_function_1_1_commands_1_1_minecraft_1_1_title.html#ad5f2c23ab28157ee87fe3f0b0153bf3a":[1,0,0,2,0,26,2],
-"class_sharp_function_1_1_commands_1_1_minecraft_1_1_title.html#afc7751c94b9488467752c4a01677219d":[1,0,0,2,0,26,0],
-"class_sharp_function_1_1_exceptions_1_1_function_not_specified_exception.html":[1,0,0,3,0],
-"class_sharp_function_1_1_exceptions_1_1_function_not_specified_exception.html#a00ca05a98822ce2412b1f82854476c21":[1,0,0,3,0,2],
-"class_sharp_function_1_1_exceptions_1_1_function_not_specified_exception.html#a294ab8cbb24471cdf0d93989d40cba0a":[1,0,0,3,0,1]
+"class_sharp_function_1_1_commands_1_1_minecraft_1_1_title.html#ad5f2c23ab28157ee87fe3f0b0153bf3a":[1,0,0,2,0,26,2]
 };

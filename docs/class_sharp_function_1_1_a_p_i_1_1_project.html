@@ -17,6 +17,8 @@
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidenav.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -26,7 +28,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">SharpFunction
-   &#160;<span id="projectnumber">0.7.4-beta</span>
+   &#160;<span id="projectnumber">0.7.7-beta</span>
    </div>
    <div id="projectbrief">Create Minecraft datapacks in C# with ease!</div>
   </td>
@@ -85,6 +87,7 @@ $(document).ready(function(){initNavTree('class_sharp_function_1_1_a_p_i_1_1_pro
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#properties">Properties</a> &#124;
 <a href="class_sharp_function_1_1_a_p_i_1_1_project-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -103,6 +106,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a725c5de8cb5c520c06722f40b48c96f6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sharp_function_1_1_a_p_i_1_1_project.html#a725c5de8cb5c520c06722f40b48c96f6">Generate</a> ()</td></tr>
 <tr class="memdesc:a725c5de8cb5c520c06722f40b48c96f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a datapack, allowing the use of <a class="el" href="class_sharp_function_1_1_writer_1_1_function_writer.html" title="This class is used for writing functions to file">Writer.FunctionWriter</a>  <a href="class_sharp_function_1_1_a_p_i_1_1_project.html#a725c5de8cb5c520c06722f40b48c96f6">More...</a><br /></td></tr>
 <tr class="separator:a725c5de8cb5c520c06722f40b48c96f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a7c1c61e4271fb7d1cbf5e075f985ce63"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_sharp_function_1_1_a_p_i_1_1_project.html">Project</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sharp_function_1_1_a_p_i_1_1_project.html#a7c1c61e4271fb7d1cbf5e075f985ce63">Load</a> (string path)</td></tr>
+<tr class="memdesc:a7c1c61e4271fb7d1cbf5e075f985ce63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads the project from directory if .sfmeta file exists  <a href="class_sharp_function_1_1_a_p_i_1_1_project.html#a7c1c61e4271fb7d1cbf5e075f985ce63">More...</a><br /></td></tr>
+<tr class="separator:a7c1c61e4271fb7d1cbf5e075f985ce63"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
@@ -183,6 +192,47 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Initializes a datapack, allowing the use of <a class="el" href="class_sharp_function_1_1_writer_1_1_function_writer.html" title="This class is used for writing functions to file">Writer.FunctionWriter</a> </p>
+
+</div>
+</div>
+<a id="a7c1c61e4271fb7d1cbf5e075f985ce63"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c1c61e4271fb7d1cbf5e075f985ce63">&#9670;&nbsp;</a></span>Load()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="class_sharp_function_1_1_a_p_i_1_1_project.html">Project</a> SharpFunction.API.Project.Load </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Loads the project from directory if .sfmeta file exists </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>Path to directory with src folder and .sfmeta file</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Loaded project</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">MetaFileNotFound</td><td>If .sfmeta file does not exist</td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

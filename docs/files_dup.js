@@ -98,6 +98,15 @@ var files_dup =
     [ "ItemNBT.cs", "_item_n_b_t_8cs.html", [
       [ "ItemNBT", "class_sharp_function_1_1_universal_1_1_item_n_b_t.html", "class_sharp_function_1_1_universal_1_1_item_n_b_t" ]
     ] ],
+    [ "MetaFileNotFound.cs", "_meta_file_not_found_8cs.html", [
+      [ "MetaFileNotFound", "class_sharp_function_1_1_exceptions_1_1_meta_file_not_found.html", "class_sharp_function_1_1_exceptions_1_1_meta_file_not_found" ]
+    ] ],
+    [ "MetaReader.cs", "_meta_reader_8cs.html", [
+      [ "MetaReader", "class_sharp_function_1_1_meta_1_1_meta_reader.html", "class_sharp_function_1_1_meta_1_1_meta_reader" ]
+    ] ],
+    [ "MetaWriter.cs", "_meta_writer_8cs.html", [
+      [ "MetaWriter", "class_sharp_function_1_1_meta_1_1_meta_writer.html", "class_sharp_function_1_1_meta_1_1_meta_writer" ]
+    ] ],
     [ "NBTPath.cs", "_n_b_t_path_8cs.html", [
       [ "NBTPath", "class_sharp_function_1_1_universal_1_1_n_b_t_path.html", "class_sharp_function_1_1_universal_1_1_n_b_t_path" ]
     ] ],

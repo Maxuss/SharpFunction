@@ -25,7 +25,8 @@ var hierarchy =
       [ "SharpFunction.Exceptions.SFException", "class_sharp_function_1_1_exceptions_1_1_s_f_exception.html", [
         [ "SharpFunction.Exceptions.FunctionNotSpecifiedException", "class_sharp_function_1_1_exceptions_1_1_function_not_specified_exception.html", null ],
         [ "SharpFunction.Exceptions.InitializationException", "class_sharp_function_1_1_exceptions_1_1_initialization_exception.html", null ],
-        [ "SharpFunction.Exceptions.InvalidSelectorParameters", "class_sharp_function_1_1_exceptions_1_1_invalid_selector_parameters.html", null ]
+        [ "SharpFunction.Exceptions.InvalidSelectorParameters", "class_sharp_function_1_1_exceptions_1_1_invalid_selector_parameters.html", null ],
+        [ "SharpFunction.Exceptions.MetaFileNotFound", "class_sharp_function_1_1_exceptions_1_1_meta_file_not_found.html", null ]
       ] ]
     ] ],
     [ "SharpFunction.Commands.Minecraft.ExecuteParameters", "struct_sharp_function_1_1_commands_1_1_minecraft_1_1_execute_parameters.html", null ],
@@ -68,6 +69,8 @@ var hierarchy =
     [ "SharpFunction.Addons.Skyblock.ItemAbility", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_item_ability.html", null ],
     [ "SharpFunction.Universal.ItemDisplay", "class_sharp_function_1_1_universal_1_1_item_display.html", null ],
     [ "SharpFunction.Universal.ItemNBT", "class_sharp_function_1_1_universal_1_1_item_n_b_t.html", null ],
+    [ "SharpFunction.Meta.MetaReader", "class_sharp_function_1_1_meta_1_1_meta_reader.html", null ],
+    [ "SharpFunction.Meta.MetaWriter", "class_sharp_function_1_1_meta_1_1_meta_writer.html", null ],
     [ "SharpFunction.Universal.NBTPath", "class_sharp_function_1_1_universal_1_1_n_b_t_path.html", null ],
     [ "SharpFunction.Universal.NBTWrapper", "class_sharp_function_1_1_universal_1_1_n_b_t_wrapper.html", null ],
     [ "SharpFunction.Universal.NullChecker", "class_sharp_function_1_1_universal_1_1_null_checker.html", null ],

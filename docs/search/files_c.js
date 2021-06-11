@@ -1,20 +1,6 @@
 var searchData=
 [
-  ['say_2ecs_814',['Say.cs',['../_say_8cs.html',1,'']]],
-  ['selector_2ecs_815',['Selector.cs',['../_selector_8cs.html',1,'']]],
-  ['selectorparameters_2ecs_816',['SelectorParameters.cs',['../_selector_parameters_8cs.html',1,'']]],
-  ['sfexception_2ecs_817',['SFException.cs',['../_s_f_exception_8cs.html',1,'']]],
-  ['simpleselector_2ecs_818',['SimpleSelector.cs',['../_simple_selector_8cs.html',1,'']]],
-  ['simplevector_2ecs_819',['SimpleVector.cs',['../_simple_vector_8cs.html',1,'']]],
-  ['skyblockentity_2ecs_820',['SkyblockEntity.cs',['../_skyblock_entity_8cs.html',1,'']]],
-  ['skyblockenumhelper_2ecs_821',['SkyblockEnumHelper.cs',['../_skyblock_enum_helper_8cs.html',1,'']]],
-  ['skyblockhelper_2ecs_822',['SkyblockHelper.cs',['../_skyblock_helper_8cs.html',1,'']]],
-  ['skyblockitem_2ecs_823',['SkyblockItem.cs',['../_skyblock_item_8cs.html',1,'']]],
-  ['skyblockslayer_2ecs_824',['SkyblockSlayer.cs',['../_skyblock_slayer_8cs.html',1,'']]],
-  ['slayerability_2ecs_825',['SlayerAbility.cs',['../_slayer_ability_8cs.html',1,'']]],
-  ['slayerdrop_2ecs_826',['SlayerDrop.cs',['../_slayer_drop_8cs.html',1,'']]],
-  ['slayerlevel_2ecs_827',['SlayerLevel.cs',['../_slayer_level_8cs.html',1,'']]],
-  ['slayertier_2ecs_828',['SlayerTier.cs',['../_slayer_tier_8cs.html',1,'']]],
-  ['summon_2ecs_829',['Summon.cs',['../_summon_8cs.html',1,'']]],
-  ['superrawtext_2ecs_830',['SuperRawText.cs',['../_super_raw_text_8cs.html',1,'']]]
+  ['_2enetcoreapp_2cversion_3dv5_2e0_2eassemblyattributes_2ecs_832',['.NETCoreApp,Version=v5.0.AssemblyAttributes.cs',['../_release_2net5_80_2_8_n_e_t_core_app_00_version_0av5_80_8_assembly_attributes_8cs.html',1,'']]],
+  ['rawtext_2ecs_833',['RawText.cs',['../_raw_text_8cs.html',1,'']]],
+  ['sharpfunction_2eassemblyinfo_2ecs_834',['SharpFunction.AssemblyInfo.cs',['../_release_2net5_80_2_sharp_function_8_assembly_info_8cs.html',1,'']]]
 ];
