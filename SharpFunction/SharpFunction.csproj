@@ -4,7 +4,7 @@
     <TargetFramework>net5.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Version>0.7.4-beta</Version>
+    <Version>0.7.4.8-hot</Version>
     <Authors>Maxus</Authors>
     <Company>Maxus Industries</Company>
     <Description>A .NET Library used for creating Minecraft datapacks, and most things related to them.</Description>
@@ -14,15 +14,13 @@
     <RepositoryUrl>https://github.com/Maxuss/SharpFunction</RepositoryUrl>
     <RepositoryType>GitHub Repository</RepositoryType>
     <PackageTags>Minecraft, Datapacks, Hypixel Skyblock</PackageTags>
-    <PackageReleaseNotes>0.7.4-beta pre-release patch notes:
-- Did a hotfix adding some necessary things
-- Fixed few bugs, causing crashes
-- Optimised code in Skyblock Addon
-- You can now create leveling rewards for slayer
-- Updated SkyblockSlayer class
-- Changed inheritance system for commands
-- Added few new commands and fixed some old ones
-- More documentation to the god of documentation!</PackageReleaseNotes>
+    <PackageReleaseNotes>0.7.4-beta hotfix
+- Fixed multiple bugs related to slayers
+- Added simpler support for skull items
+- Added skyblock pets
+- Fixed license a bit
+- Some more documentation
+From this on, all versions before 0.7.4 are **not supported anymore**. They have lots of bugs, please switch to newer version.</PackageReleaseNotes>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <NeutralLanguage>C# .NET</NeutralLanguage>
   </PropertyGroup>

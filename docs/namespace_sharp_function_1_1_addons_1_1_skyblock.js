@@ -7,6 +7,9 @@ var namespace_sharp_function_1_1_addons_1_1_skyblock =
     [ "AdvancedDescription", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_advanced_description.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_advanced_description" ],
     [ "DungeonStats", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_dungeon_stats.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_dungeon_stats" ],
     [ "SlayerRequirement", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_requirement.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_requirement" ],
+    [ "SkyblockPet", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_pet.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_pet" ],
+    [ "PetAbility", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_pet_ability.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_pet_ability" ],
+    [ "SkyblockSkull", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_skull.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_skull" ],
     [ "SkyblockSlayer", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_slayer.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_slayer" ],
     [ "SlayerAbility", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_ability.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_ability" ],
     [ "SlayerDrop", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop" ],
@@ -40,7 +43,9 @@ var namespace_sharp_function_1_1_addons_1_1_skyblock =
       [ "Legendary", "namespace_sharp_function_1_1_addons_1_1_skyblock.html#af9b084075e635925425b7b021fe0670ca9461cd71b44420aa1d0e6487f1b7bb60", null ],
       [ "Mythic", "namespace_sharp_function_1_1_addons_1_1_skyblock.html#af9b084075e635925425b7b021fe0670ca69e275fa2f3c2d7ccf0cc139572aecc0", null ],
       [ "Special", "namespace_sharp_function_1_1_addons_1_1_skyblock.html#af9b084075e635925425b7b021fe0670cab4c2b550635fe54fd29f2b64dfaca55d", null ],
-      [ "VerySpecial", "namespace_sharp_function_1_1_addons_1_1_skyblock.html#af9b084075e635925425b7b021fe0670caab9de442c4d362be2ab923481a72c9e9", null ]
+      [ "VerySpecial", "namespace_sharp_function_1_1_addons_1_1_skyblock.html#af9b084075e635925425b7b021fe0670caab9de442c4d362be2ab923481a72c9e9", null ],
+      [ "Trash", "namespace_sharp_function_1_1_addons_1_1_skyblock.html#af9b084075e635925425b7b021fe0670caa7e253cd8dd95da3e20daf45519a8dc2", null ],
+      [ "Supreme", "namespace_sharp_function_1_1_addons_1_1_skyblock.html#af9b084075e635925425b7b021fe0670cacbd0d0f5c3850644db55689e6194c968", null ]
     ] ],
     [ "ItemType", "namespace_sharp_function_1_1_addons_1_1_skyblock.html#a83494d7258d1e0f540d5a96309b627e1", [
       [ "Sword", "namespace_sharp_function_1_1_addons_1_1_skyblock.html#a83494d7258d1e0f540d5a96309b627e1a6c198603789a4928477eccd5d550b6b2", null ],
@@ -59,5 +64,18 @@ var namespace_sharp_function_1_1_addons_1_1_skyblock =
       [ "Shears", "namespace_sharp_function_1_1_addons_1_1_skyblock.html#a83494d7258d1e0f540d5a96309b627e1afa23fe9f06b06fb5620b67b2512d06df", null ],
       [ "BrewingIngredient", "namespace_sharp_function_1_1_addons_1_1_skyblock.html#a83494d7258d1e0f540d5a96309b627e1acb1187482533498eb19568c31f38567c", null ],
       [ "None", "namespace_sharp_function_1_1_addons_1_1_skyblock.html#a83494d7258d1e0f540d5a96309b627e1a6adf97f83acf6453d4a6a4b1070f3754", null ]
+    ] ],
+    [ "PetType", "namespace_sharp_function_1_1_addons_1_1_skyblock.html#aae5437c4f8cc9a510ed54ce0c94ee876", [
+      [ "Farming", "namespace_sharp_function_1_1_addons_1_1_skyblock.html#aae5437c4f8cc9a510ed54ce0c94ee876a236a2610241c5bed3ca0cb569fb36015", null ],
+      [ "Mining", "namespace_sharp_function_1_1_addons_1_1_skyblock.html#aae5437c4f8cc9a510ed54ce0c94ee876aefdd60c5f1997dc427101df42ff74cf2", null ],
+      [ "Combat", "namespace_sharp_function_1_1_addons_1_1_skyblock.html#aae5437c4f8cc9a510ed54ce0c94ee876a30ad1054cf7ad7636a26844a6f782e1f", null ],
+      [ "Foraging", "namespace_sharp_function_1_1_addons_1_1_skyblock.html#aae5437c4f8cc9a510ed54ce0c94ee876a31aed6be5750b5cf7cf6510c71f58725", null ],
+      [ "Fishing", "namespace_sharp_function_1_1_addons_1_1_skyblock.html#aae5437c4f8cc9a510ed54ce0c94ee876afb34369d75850f95670125cb259dbd38", null ],
+      [ "Enchanting", "namespace_sharp_function_1_1_addons_1_1_skyblock.html#aae5437c4f8cc9a510ed54ce0c94ee876a82268b83dd8ae0fb1a93d3582e665095", null ],
+      [ "Alchemy", "namespace_sharp_function_1_1_addons_1_1_skyblock.html#aae5437c4f8cc9a510ed54ce0c94ee876a8722f0c2535bfbf5c7678824e2287f43", null ],
+      [ "Slayer", "namespace_sharp_function_1_1_addons_1_1_skyblock.html#aae5437c4f8cc9a510ed54ce0c94ee876a121189969c46f49b8249633c2d5a7bfa", null ],
+      [ "Runecrafting", "namespace_sharp_function_1_1_addons_1_1_skyblock.html#aae5437c4f8cc9a510ed54ce0c94ee876a0e78a4de25a93a896a293631e6e3b9ae", null ],
+      [ "Carpentry", "namespace_sharp_function_1_1_addons_1_1_skyblock.html#aae5437c4f8cc9a510ed54ce0c94ee876ac6dca424bd638bb28dde3fe3b3860e70", null ],
+      [ "Dungeon", "namespace_sharp_function_1_1_addons_1_1_skyblock.html#aae5437c4f8cc9a510ed54ce0c94ee876acd701b6fb06d4e424da1010f9bf86fe3", null ]
     ] ]
 ];

@@ -30,6 +30,7 @@ var files_dup =
     [ "DefaultGamemode.cs", "_default_gamemode_8cs.html", [
       [ "DefaultGamemode", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_default_gamemode.html", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_default_gamemode" ]
     ] ],
+    [ "Effect.cs", "_effect_8cs.html", "_effect_8cs" ],
     [ "EmptySelector.cs", "_empty_selector_8cs.html", null ],
     [ "EncapsulatedType.cs", "_encapsulated_type_8cs.html", [
       [ "EncapsulatedType", "class_sharp_function_1_1_universal_1_1_encapsulated_type.html", "class_sharp_function_1_1_universal_1_1_encapsulated_type" ]
@@ -117,6 +118,9 @@ var files_dup =
       [ "NullChecker", "class_sharp_function_1_1_universal_1_1_null_checker.html", "class_sharp_function_1_1_universal_1_1_null_checker" ]
     ] ],
     [ "PackFormat.cs", "_pack_format_8cs.html", "_pack_format_8cs" ],
+    [ "PlayerSkull.cs", "_player_skull_8cs.html", [
+      [ "PlayerSkull", "class_sharp_function_1_1_universal_1_1_player_skull.html", "class_sharp_function_1_1_universal_1_1_player_skull" ]
+    ] ],
     [ "Project.cs", "_project_8cs.html", [
       [ "Project", "class_sharp_function_1_1_a_p_i_1_1_project.html", "class_sharp_function_1_1_a_p_i_1_1_project" ]
     ] ],
@@ -147,6 +151,10 @@ var files_dup =
       [ "SkyblockHelper", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_helper.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_helper" ]
     ] ],
     [ "SkyblockItem.cs", "_skyblock_item_8cs.html", "_skyblock_item_8cs" ],
+    [ "SkyblockPet.cs", "_skyblock_pet_8cs.html", "_skyblock_pet_8cs" ],
+    [ "SkyblockSkull.cs", "_skyblock_skull_8cs.html", [
+      [ "SkyblockSkull", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_skull.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_skull" ]
+    ] ],
     [ "SkyblockSlayer.cs", "_skyblock_slayer_8cs.html", [
       [ "SkyblockSlayer", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_slayer.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_slayer" ]
     ] ],

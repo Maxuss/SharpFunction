@@ -14,6 +14,7 @@ var namespace_sharp_function_1_1_universal =
     [ "NBTPath", "class_sharp_function_1_1_universal_1_1_n_b_t_path.html", "class_sharp_function_1_1_universal_1_1_n_b_t_path" ],
     [ "NBTWrapper", "class_sharp_function_1_1_universal_1_1_n_b_t_wrapper.html", "class_sharp_function_1_1_universal_1_1_n_b_t_wrapper" ],
     [ "NullChecker", "class_sharp_function_1_1_universal_1_1_null_checker.html", "class_sharp_function_1_1_universal_1_1_null_checker" ],
+    [ "PlayerSkull", "class_sharp_function_1_1_universal_1_1_player_skull.html", "class_sharp_function_1_1_universal_1_1_player_skull" ],
     [ "RawText", "class_sharp_function_1_1_universal_1_1_raw_text.html", "class_sharp_function_1_1_universal_1_1_raw_text" ],
     [ "SuperRawText", "class_sharp_function_1_1_universal_1_1_super_raw_text.html", "class_sharp_function_1_1_universal_1_1_super_raw_text" ],
     [ "VectorHelper", "class_sharp_function_1_1_universal_1_1_vector_helper.html", "class_sharp_function_1_1_universal_1_1_vector_helper" ],

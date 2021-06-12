@@ -1,0 +1,27 @@
+var class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_pet =
+[
+    [ "SkyblockPet", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_pet.html#a17160214e217df73545bf0e0b8564305", null ],
+    [ "Compile", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_pet.html#a6fbf01f9ac195e98098bb6dd896aba83", null ],
+    [ "Generate", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_pet.html#add45c6b62f39177f26d8ebf04702fcb6", null ],
+    [ "Abilities", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_pet.html#aa851200542f88e5471d395e074d099e5", null ],
+    [ "AttackSpeed", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_pet.html#a206f92fc2ca25de7016ac34aaad064b1", null ],
+    [ "CritChance", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_pet.html#aac5c7a574bb866d12ca40b757343714f", null ],
+    [ "CritDamage", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_pet.html#a07f6972afe0beee517c45a22350c9428", null ],
+    [ "Damage", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_pet.html#a0391fa397b03959227f957fa71aa18a5", null ],
+    [ "Defense", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_pet.html#af63f8b9e09da853a1e24240bfe2448a8", null ],
+    [ "Ferocity", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_pet.html#abe6e99e34da73e72d54db5de00e59ee3", null ],
+    [ "Health", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_pet.html#a79d69a71c7c83595251bae321076108c", null ],
+    [ "Intelligence", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_pet.html#a70001febc78e172b73e810869d8154f4", null ],
+    [ "IsPreview", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_pet.html#add1d4c0e2c2a5ea50ed87a6714ed76f0", null ],
+    [ "MagicFind", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_pet.html#a491caed0468de9e9c0540e8c0bf4292f", null ],
+    [ "MaxLevel", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_pet.html#ab0ca96a9ba58e3b5b99863fc269f1939", null ],
+    [ "Name", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_pet.html#abb37e28064e17f4cb4a5d7b5a9a61fbb", null ],
+    [ "PetLuck", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_pet.html#a951973361aa5ba5c4b9c08a079b4aa5c", null ],
+    [ "Rarity", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_pet.html#af7c1979aa13ae6d98c00b8e0bd44def8", null ],
+    [ "SeaCreatureChance", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_pet.html#af14ee69b43a5d129a3173b6b4adb7663", null ],
+    [ "SkullOwner", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_pet.html#ad54909a240dff937c25ab99747bf5b46", null ],
+    [ "Speed", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_pet.html#ac96a8eb6ecf8c0a858a30316d57ec9d9", null ],
+    [ "Strength", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_pet.html#adbde536c5ca85e472f71397666d8e172", null ],
+    [ "TrueDefense", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_pet.html#affb1414acc5b10743fd67d29bc8f7663", null ],
+    [ "Type", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_pet.html#a7f56c2a3ef97e5ac549b348d1b1e523c", null ]
+];

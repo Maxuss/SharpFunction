@@ -20,7 +20,9 @@ var _skyblock_item_8cs =
       [ "Legendary", "_skyblock_item_8cs.html#af9b084075e635925425b7b021fe0670ca9461cd71b44420aa1d0e6487f1b7bb60", null ],
       [ "Mythic", "_skyblock_item_8cs.html#af9b084075e635925425b7b021fe0670ca69e275fa2f3c2d7ccf0cc139572aecc0", null ],
       [ "Special", "_skyblock_item_8cs.html#af9b084075e635925425b7b021fe0670cab4c2b550635fe54fd29f2b64dfaca55d", null ],
-      [ "VerySpecial", "_skyblock_item_8cs.html#af9b084075e635925425b7b021fe0670caab9de442c4d362be2ab923481a72c9e9", null ]
+      [ "VerySpecial", "_skyblock_item_8cs.html#af9b084075e635925425b7b021fe0670caab9de442c4d362be2ab923481a72c9e9", null ],
+      [ "Trash", "_skyblock_item_8cs.html#af9b084075e635925425b7b021fe0670caa7e253cd8dd95da3e20daf45519a8dc2", null ],
+      [ "Supreme", "_skyblock_item_8cs.html#af9b084075e635925425b7b021fe0670cacbd0d0f5c3850644db55689e6194c968", null ]
     ] ],
     [ "ItemType", "_skyblock_item_8cs.html#a83494d7258d1e0f540d5a96309b627e1", [
       [ "Sword", "_skyblock_item_8cs.html#a83494d7258d1e0f540d5a96309b627e1a6c198603789a4928477eccd5d550b6b2", null ],

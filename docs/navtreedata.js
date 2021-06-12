@@ -63,11 +63,12 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_abstract_writer_8cs.html",
-"_meta_reader_8cs.html",
-"class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_helper.html#a96869e176d15bb414b79b9d5b7d1eabf",
-"class_sharp_function_1_1_commands_1_1_minecraft_1_1_title.html#afc7751c94b9488467752c4a01677219d",
-"namespace_sharp_function_1_1_addons_1_1_skyblock.html#af9b084075e635925425b7b021fe0670c",
-"namespace_sharp_function_1_1_commands_1_1_minecraft.html#a9e13aee7ef0bed66866612bc2e973d9ea0ebe6df8a3ac338e0512acc741823fdb"
+"_gamerule_value_8cs.html#a5e3cb3c819ff693f73d42ddeef0e6ed4a5724b4d275dd7e99970519c5043747f1",
+"class_sharp_function_1_1_addons_1_1_skyblock_1_1_advanced_description.html",
+"class_sharp_function_1_1_commands_1_1_minecraft_1_1_bossbar.html#a1d985778c29643baa2a737c9ceee5d59",
+"functions_d.html",
+"namespace_sharp_function_1_1_commands_1_1_minecraft.html#a23051046cdaa27823b6ef9f6c978eddaac34631f4890d84298d085f373f8b7df5",
+"struct_sharp_function_1_1_commands_1_1_entity_selector.html#ad85496e5da0a755969bcdf14db1c8c0b"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

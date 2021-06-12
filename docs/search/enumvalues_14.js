@@ -1,8 +1,9 @@
 var searchData=
 [
-  ['value_1309',['Value',['../namespace_sharp_function_1_1_commands_1_1_minecraft.html#a57f834db81b3afb85435dc529a9a6c84a689202409e48743b914713f96d93947c',1,'SharpFunction.Commands.Minecraft.Value()'],['../namespace_sharp_function_1_1_commands_1_1_minecraft.html#a2bf6d68044857f821787e089a8ec9cf3a689202409e48743b914713f96d93947c',1,'SharpFunction.Commands.Minecraft.Value()']]],
-  ['veryspecial_1310',['VerySpecial',['../namespace_sharp_function_1_1_addons_1_1_skyblock.html#af9b084075e635925425b7b021fe0670caab9de442c4d362be2ab923481a72c9e9',1,'SharpFunction::Addons::Skyblock']]],
-  ['veryveryfrightening_1311',['VeryVeryFrightening',['../namespace_sharp_function_1_1_commands_1_1_minecraft.html#a23051046cdaa27823b6ef9f6c978eddaab23c1be5f6b070a5ff63f9816e4b4e9d',1,'SharpFunction::Commands::Minecraft']]],
-  ['visible_1312',['Visible',['../namespace_sharp_function_1_1_commands_1_1_minecraft.html#a57f834db81b3afb85435dc529a9a6c84aec24d78ce33048dc73a2b6b1a0690192',1,'SharpFunction.Commands.Minecraft.Visible()'],['../namespace_sharp_function_1_1_commands_1_1_minecraft.html#a2bf6d68044857f821787e089a8ec9cf3aec24d78ce33048dc73a2b6b1a0690192',1,'SharpFunction.Commands.Minecraft.Visible()']]],
-  ['voluntaryexile_1313',['VoluntaryExile',['../namespace_sharp_function_1_1_commands_1_1_minecraft.html#a23051046cdaa27823b6ef9f6c978eddaadb760ee4451e8cfc437ade561222f4a1',1,'SharpFunction::Commands::Minecraft']]]
+  ['unbreaking_1425',['Unbreaking',['../namespace_sharp_function_1_1_commands_1_1_minecraft.html#a1daac6ebad44fca6d72cec6295b4053aab0986cdca50356b72403ac1c5f510730',1,'SharpFunction::Commands::Minecraft']]],
+  ['uncommon_1426',['Uncommon',['../namespace_sharp_function_1_1_addons_1_1_skyblock.html#af9b084075e635925425b7b021fe0670caa4fd1ff3ab1075fe7f3fb30ec3829a00',1,'SharpFunction::Addons::Skyblock']]],
+  ['underlined_1427',['Underlined',['../namespace_sharp_function_1_1_universal.html#acb5e0aaf77c3c8e61a4fa89776d64ea3aefbed21c7db81f58e97c79ae9e73c714',1,'SharpFunction::Universal']]],
+  ['uneasyalliance_1428',['UneasyAlliance',['../namespace_sharp_function_1_1_commands_1_1_minecraft.html#a23051046cdaa27823b6ef9f6c978eddaaddf76314afbb35b4fd9e6329c888ebc4',1,'SharpFunction::Commands::Minecraft']]],
+  ['universalanger_1429',['UniversalAnger',['../namespace_sharp_function_1_1_commands_1_1_minecraft.html#a5e3cb3c819ff693f73d42ddeef0e6ed4af0f806c0e18c628e66f6e0859e3ebf3b',1,'SharpFunction::Commands::Minecraft']]],
+  ['unless_1430',['Unless',['../namespace_sharp_function_1_1_commands_1_1_minecraft.html#a3a688c2725a58bd48b92910aa1161d2caf3d8d8a4ef720cd41a9ed8fa0d490565',1,'SharpFunction::Commands::Minecraft']]]
 ];

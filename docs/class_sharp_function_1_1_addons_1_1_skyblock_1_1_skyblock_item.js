@@ -2,7 +2,7 @@ var class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_item =
 [
     [ "SkyblockItem", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_item.html#aeaf9a754fb76186225f220c723dd4fb7", null ],
     [ "AddDescription", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_item.html#a9311ab4fe25e66bf04e53ab5a5a7a9ad", null ],
-    [ "Compile", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_item.html#ab5d6dace9f38f6a7316d11101448ecb7", null ],
+    [ "Compile", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_item.html#aa7f129d3d52ae38e90de3fabf2c1e1af", null ],
     [ "Abilities", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_item.html#afbc74f421d54bf50e1d9341b25146af2", null ],
     [ "AdvancedDescription", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_item.html#a32e778fa533be43b3a3a629949bcd6bf", null ],
     [ "AttackSpeed", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_item.html#aca32fcf8a71b2887e35764569b923cd4", null ],
