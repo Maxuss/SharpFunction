@@ -3,8 +3,9 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	<GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Version>0.7.4.8-hot</Version>
+    <Version>0.7.4.9-hot</Version>
     <Authors>Maxus</Authors>
     <Company>Maxus Industries</Company>
     <Description>A .NET Library used for creating Minecraft datapacks, and most things related to them.</Description>
@@ -19,14 +20,15 @@
 - Added simpler support for skull items
 - Added skyblock pets
 - Fixed license a bit
-- Some more documentation
+- Some more documentatio
+- Fixed documentation not showing up
 From this on, all versions before 0.7.4 are **not supported anymore**. They have lots of bugs, please switch to newer version.</PackageReleaseNotes>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <NeutralLanguage>C# .NET</NeutralLanguage>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>D:\SharpFunction\SharpFunction\SharpFunction\Documentation.xml</DocumentationFile>
+	  <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
