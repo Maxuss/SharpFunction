@@ -17,6 +17,10 @@ namespace SharpFunction.Universal
         public string Line { get; private set; }
 
         private List<string> lines = new List<string>();
+        /// <summary>
+        /// Initialize new super raw text
+        /// </summary>
+        public SuperRawText() { }
 
         /// <summary>
         /// Appends pre-baked json text formatting to line

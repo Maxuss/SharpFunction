@@ -8,7 +8,7 @@ namespace SharpFunction.Writer
     /// <summary>
     /// This class is used for writing functions to file
     /// </summary>
-    public sealed class FunctionWriter : AbstractWriter
+    public sealed partial class FunctionWriter : AbstractWriter
     {
         #region Data
 

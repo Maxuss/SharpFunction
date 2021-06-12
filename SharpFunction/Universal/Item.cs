@@ -1,8 +1,10 @@
-﻿using System;
+﻿using SharpFunction.Commands;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SharpFunction.Commands.Minecraft;
 
 namespace SharpFunction.Universal
 {
@@ -18,7 +20,7 @@ namespace SharpFunction.Universal
         /// <summary>
         /// ID of item
         /// </summary>
-        public string ID;
+        public string ID { get; set; }
 
         /// <summary>
         /// Initialize an item

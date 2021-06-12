@@ -595,13 +595,25 @@ namespace SharpFunction.Addons.Skyblock
     /// </summary>
     public enum ItemRarity
     {
+        /// <summary><b>COMMON</b></summary>
         [RarityColor(Color.White)] [EnumValue("COMMON")] Common,
+        /// <summary><b>UNCOMMON</b></summary>
         [RarityColor(Color.Green)] [EnumValue("UNCOMMON")] Uncommon,
+        /// <summary><b>RARE</b></summary>
         [RarityColor(Color.Blue)] [EnumValue("RARE")] Rare,
+        /// <summary><b>EPIC</b></summary>
         [RarityColor(Color.DarkPurple)] [EnumValue("EPIC")] Epic,
+        /// <summary><b>LEGENDARY</b></summary>
         [RarityColor(Color.Gold)] [EnumValue("LEGENDARY")] Legendary,
+        /// <summary><b>MYTHIC</b></summary>
         [RarityColor(Color.LightPurple)] [EnumValue("MYTHIC")] Mythic,
+        /// <summary><b>SPECIAL</b></summary>
         [RarityColor(Color.Red)] [EnumValue("SPECIAL")] Special,
-        [RarityColor(Color.Red)] [EnumValue("VERY SPECIAL")] VerySpecial
+        /// <summary><b>VERY SPECIAL</b></summary>
+        [RarityColor(Color.Red)] [EnumValue("VERY SPECIAL")] VerySpecial,
+        /// <summary><b>TRASH</b> (custom)</summary>
+        [RarityColor(Color.Gray)] [EnumValue("VERY SPECIAL")] Trash,
+        /// <summary><b>SUPREME</b></summary>
+        [RarityColor(Color.DarkRed)] [EnumValue("VERY SPECIAL")] Supreme
     }
 }

@@ -385,6 +385,36 @@
             Represents rarity of a custom skyblock item
             </summary>
         </member>
+        <member name="F:SharpFunction.Addons.Skyblock.ItemRarity.Common">
+            <summary><b>COMMON</b></summary>
+        </member>
+        <member name="F:SharpFunction.Addons.Skyblock.ItemRarity.Uncommon">
+            <summary><b>UNCOMMON</b></summary>
+        </member>
+        <member name="F:SharpFunction.Addons.Skyblock.ItemRarity.Rare">
+            <summary><b>RARE</b></summary>
+        </member>
+        <member name="F:SharpFunction.Addons.Skyblock.ItemRarity.Epic">
+            <summary><b>EPIC</b></summary>
+        </member>
+        <member name="F:SharpFunction.Addons.Skyblock.ItemRarity.Legendary">
+            <summary><b>LEGENDARY</b></summary>
+        </member>
+        <member name="F:SharpFunction.Addons.Skyblock.ItemRarity.Mythic">
+            <summary><b>MYTHIC</b></summary>
+        </member>
+        <member name="F:SharpFunction.Addons.Skyblock.ItemRarity.Special">
+            <summary><b>SPECIAL</b></summary>
+        </member>
+        <member name="F:SharpFunction.Addons.Skyblock.ItemRarity.VerySpecial">
+            <summary><b>VERY SPECIAL</b></summary>
+        </member>
+        <member name="F:SharpFunction.Addons.Skyblock.ItemRarity.Trash">
+            <summary><b>TRASH</b> (custom)</summary>
+        </member>
+        <member name="F:SharpFunction.Addons.Skyblock.ItemRarity.Supreme">
+            <summary><b>SUPREME</b></summary>
+        </member>
         <member name="T:SharpFunction.Addons.Skyblock.SkyblockPet">
             <summary>
             Represents a *fake* skyblock pet

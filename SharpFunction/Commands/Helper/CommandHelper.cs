@@ -13,11 +13,7 @@ namespace SharpFunction.Commands.Helper
     {
         public static string BoolToString(bool @bool)
         {
-            switch(@bool)
-            {
-                case true: return "true";
-                case false: return "false";
-            }
+            return @bool.ToString().ToLower();
         }
 
         public static string BoolToByte(bool @bool)
