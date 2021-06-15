@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static SharpFunction.Universal.EnumHelper;
 using static SharpFunction.Addons.Skyblock.SkyblockEnumHelper;
 using Color = SharpFunction.Universal.Color;
@@ -11,7 +9,6 @@ using SharpFunction.Universal;
 using static SharpFunction.Addons.Skyblock.SkyblockHelper;
 using SharpFunction.API;
 using SharpFunction.Commands.Minecraft;
-using System.Reflection;
 
 namespace SharpFunction.Addons.Skyblock
 {
@@ -47,65 +44,76 @@ namespace SharpFunction.Addons.Skyblock
         /// <summary>
         /// Whether the item has enchantment glint
         /// </summary>
-        public bool HasGlint { get; set; }
+        public bool HasGlint { get; set; } = false;
+        /// <summary>
+        /// Should item have empty lines between stats etc.
+        /// </summary>
+        /// <value></value>
+        public bool MakeEmptyLines {get; set;} = true;
+        /// <summary>
+        /// Extra color for name different from rarity color. Useful for creating runes.
+        /// </summary>
+        /// <value></value>
+        public Color NameColor {get; set;} = Color.Default;
+
         private Color color;
 #nullable enable
         /// <summary>
         /// Damage of item
         /// </summary>
-        [StatName("Damage")] public int? Damage { get; set; } = null;
+        public int? Damage { get; set; } = null;
         /// <summary>
         /// Strength of item
         /// </summary>
-        [StatName("Strength")] public int? Strength { get; set; } = null;
+        public int? Strength { get; set; } = null;
         /// <summary>
         /// Defense of item
         /// </summary>
-        [StatName("Defense")] public int? Defense { get; set; } = null;
+        public int? Defense { get; set; } = null;
         /// <summary>
         /// Health of item
         /// </summary>
-        [StatName("Health")] public int? Health { get; set; } = null;
+        public int? Health { get; set; } = null;
         /// <summary>
         /// Intelligence of item
         /// </summary>
-        [StatName("Intelligence")] public int? Intelligence { get; set; } = null;
+        public int? Intelligence { get; set; } = null;
         /// <summary>
         /// Crit Chance of item
         /// </summary>
-        [StatName("Crit Chance")] public int? CritChance { get; set; } = null;
+        public int? CritChance { get; set; } = null;
         /// <summary>
         /// Crit Damage of item
         /// </summary>
-        [StatName("Crit Damage")] public int? CritDamage { get; set; } = null;
+        public int? CritDamage { get; set; } = null;
         /// <summary>
         /// Attack Speed of item
         /// </summary>
-        [StatName("Bonus Attack Speed")] public int? AttackSpeed { get; set; } = null;
+        public int? AttackSpeed { get; set; } = null;
         /// <summary>
         /// Speed of item
         /// </summary>
-        [StatName("Speed")] public int? Speed { get; set; } = null;
+        public int? Speed { get; set; } = null;
         /// <summary>
         /// True Defense of item
         /// </summary>
-        [StatName("True Defense")] public int? TrueDefense { get; set; } = null;
+        public int? TrueDefense { get; set; } = null;
         /// <summary>
         /// SCC of item
         /// </summary>
-        [StatName("Sea Creature Chance")] public int? SeaCreatureChance { get; set; } = null;
+        public int? SeaCreatureChance { get; set; } = null;
         /// <summary>
         /// Magic Find of item
         /// </summary>
-        [StatName("Magic Find")] public int? MagicFind { get; set; } = null;
+        public int? MagicFind { get; set; } = null;
         /// <summary>
         /// Pet Luck of item
         /// </summary>
-        [StatName("Pet Luck")] public int? PetLuck { get; set; } = null;
+        public int? PetLuck { get; set; } = null;
         /// <summary>
         /// Pet Luck of item
         /// </summary>
-        [StatName("Ferocity")] public int? Ferocity { get; set; } = null;
+        public int? Ferocity { get; set; } = null;
         /// <summary>
         /// Abilities of an item
         /// </summary>
@@ -142,11 +150,16 @@ namespace SharpFunction.Addons.Skyblock
         /// <param name="type">Type of item</param>
         /// <param name="rarity">Rarity of item</param>
         /// <param name="name">Display name of item</param>
+        /// <param name="itemname">ID name of item to give</param>
         public SkyblockItem(ItemType type, ItemRarity rarity, string name, string itemname)
         {
             Type = type;
             Rarity = rarity;
             color = SkyblockEnumHelper.GetRarityColor(rarity);
+            if(color != NameColor && NameColor != Color.Default)
+            {
+                color = NameColor;
+            }
             ID = itemname;
             DisplayName = name;
             RawText _name = new();

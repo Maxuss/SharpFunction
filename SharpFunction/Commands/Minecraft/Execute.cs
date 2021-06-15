@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static SharpFunction.Universal.EnumHelper;
 using SharpFunction.Universal;
 namespace SharpFunction.Commands.Minecraft
@@ -12,7 +8,10 @@ namespace SharpFunction.Commands.Minecraft
     /// </summary>
     public sealed class Execute : ICommand
     {
-
+        /// <summary>
+        /// Compiled command string
+        /// </summary>
+        /// <value></value>
         public string Compiled { get; private set; }
 
         /// <summary>
@@ -42,15 +41,237 @@ namespace SharpFunction.Commands.Minecraft
 #nullable enable
 
         /// <summary>
-        /// Too complex so it won't fit here. See wiki for details.
+        /// Execute command has a very complex syntax tree<br/>
+        /// <b>Execute parameters</b>
+        /// <para>
+        /// 
+        /// <para>
+        /// 1. <see cref="ExecuteCondition.Align"/><br/>
+        /// Updates the command's execution position, aligning to its current block position.<br/>
+        /// <i>Syntax:</i><br/>
+        /// <paramref name="extraParameters"/>[0] should have swizzle of coordinates.<br/>
+        /// Example: "xzy" or "yz"
+        /// </para>
+        /// 
+        /// <para>
+        /// 2. <see cref="ExecuteCondition.Anchored"/><br/>
+        /// Sets the execution anchor to the eyes or feet. Defaults to feet.<br/>
+        /// <i>Syntax:</i><br/>
+        /// <paramref name="extraParameters"/>[0] should be <see cref="AnchorCondition"/><br/>
+        /// </para>
+        /// 
+        /// <para>
+        /// 3. <see cref="ExecuteCondition.As"/><br/>
+        /// Sets the command's executor to target entity, without 
+        /// changing execution position, rotation, dimension, or anchor<br/>
+        /// <i>Syntax:</i><br/>
+        /// <paramref name="extraParameters"/>[0] should be <see cref="EntitySelector"/>
+        /// </para>
+        /// 
+        /// <para>
+        /// 4. <see cref="ExecuteCondition.At"/><br/>
+        /// Sets the execution position, rotation, and dimension to 
+        /// match those of an entity; does not change executor.<br/>
+        /// <i>Syntax:</i><br/>
+        /// <paramref name="extraParameters"/>[0] should be <see cref="EntitySelector"/>
+        /// </para>
+        /// 
+        /// <para>
+        /// 5. <see cref="ExecuteCondition.Facing"/><br/>
+        /// Sets the execution rotation to face a given point, as 
+        /// viewed from its anchor (either the eyes or the feet)<br/>
+        /// <i>Syntax:</i><br/>
+        /// <paramref name="extraParameters"/>[0] should be <see cref="FacingCondition"/><br/>
+        /// First option (<see cref="FacingCondition.Position"/>): <br/>
+        /// <paramref name="extraParameters"/>[1] should be <see cref="Vector3"/>)<br/>
+        /// Second option (<see cref="FacingCondition.Entity"/>): <br/>
+        /// <paramref name="extraParameters"/>[1] should be <see cref="EntitySelector"/> entity<br/>
+        /// <paramref name="extraParameters"/>[2] should be <see cref="AnchorCondition"/> anchor <br/>
+        /// </para>
+        /// 
+        /// <para>
+        /// 6. <see cref="ExecuteCondition.In"/><br/>
+        /// Sets the execution dimension and position<br/>
+        /// <i>Syntax:</i><br/>
+        /// <paramref name="extraParameters"/>[0] should be dimension 
+        /// string ("overworld"|"the_nether"|"the_end"|"custom dimension")<br/>
+        /// </para>
+        /// 
+        /// <para>
+        /// 7. <see cref="ExecuteCondition.Positioned"/><br/>
+        /// Sets the execution position, without changing execution 
+        /// rotation or dimension;<br/>
+        /// <i>Syntax:</i><br/>
+        /// <paramref name="extraParameters"/>[0] should be <see cref="Vector3"/>
+        /// </para>
+        /// 
+        /// <para>
+        /// 8. <see cref="ExecuteCondition.PositionedAs"/><br/>
+        /// Works like <see cref="ExecuteCondition.Positioned"/> but anchors at 
+        /// entity<br/>
+        /// <i>Syntax:</i><br/>
+        /// <paramref name="extraParameters"/>[0] should be <see cref="EntitySelector"/>
+        /// </para>
+        /// 
+        /// <para>
+        /// 9. <see cref="ExecuteCondition.Rotated"/><br/>
+        /// Sets the execution rotation<br/>
+        /// <i>Syntax:</i><br/>
+        /// <paramref name="extraParameters"/>[0] should be yaw float<br/>
+        /// <paramref name="extraParameters"/>[1] should be pitch float<br/>
+        /// </para>
+        ///       
+        /// <para>
+        /// 10. <see cref="ExecuteCondition.RotatedAs"/><br/>
+        /// Sets the execution rotation to entity's rotation<br/>
+        /// <i>Syntax:</i><br/>
+        /// <paramref name="extraParameters"/>[0] should be <see cref="EntitySelector"/> entity<br/>
+        /// </para>
+        /// </para>
+        /// 
+        /// <b>Execute Conditions (if/unless)</b>
+        /// <para>
+        /// 
+        /// <para>
+        /// 1. <see cref="ExecuteSubcondition.Block"/><br/>
+        /// Compares the block at a given position to 
+        /// a given block ID or block tag.<br/>
+        /// <i>Syntax:</i><br/>
+        /// <paramref name="extraParameters"/>[0] should be <see cref="Vector3"/><br/>
+        /// <paramref name="extraParameters"/>[1] should be string block predicate tag in format of namespaced_id[predicate_states]{nbt_tags}<br/>
+        /// </para>
+        /// 
+        /// <para>
+        /// 2. <see cref="ExecuteSubcondition.Blocks"/><br/>
+        /// Compares the blocks in two equally sized volumes<br/>
+        /// <i>Syntax:</i><br/>
+        /// <paramref name="extraParameters"/>[0] should be <see cref="Vector3"/> array, where [0] is beginning of volume,
+        /// [1] is end of volume and [2] is destination of volume<br/>
+        /// <paramref name="extraParameters"/>[1] should be <see cref="ScanningMode"/><br/>
+        /// </para>
+        /// 
+        /// <para>
+        /// 3. <see cref="ExecuteSubcondition.NBTData"/><br/>
+        /// Checks whether the targeted block, entity or 
+        /// storage has any data tag for a given path<br/>
+        /// <i>Syntax:</i><br/>
+        /// <paramref name="extraParameters"/>[0] should be <see cref="NBTDataType"/>
+        /// and depending on it should be <paramref name="extraParameters"/>[1]<br/>
+        /// <paramref name="extraParameters"/>[2] should always be nbt data string to check for.<br/>
+        /// 3.1. <see cref="NBTDataType.Block"/><br/>
+        /// <paramref name="extraParameters"/>[1] should be <see cref="Vector3"/> block pos to check<br/>
+        /// 3.2. <see cref="NBTDataType.Entity"/><br/>
+        /// <paramref name="extraParameters"/>[1] should be <see cref="EntitySelector"/> entity to check<br/>
+        /// 3.3. <see cref="NBTDataType.Storage"/><br/>
+        /// <paramref name="extraParameters"/>[1] should be string namespaced id to check<br/>
+        /// </para>
+        /// 
+        /// <para>
+        /// 4. <see cref="ExecuteSubcondition.Entity"/><br/>
+        /// Checks whether one or more entities exist.<br/>
+        /// <i>Syntax:</i><br/>
+        /// <paramref name="extraParameters"/>[0] should be <see cref="EntitySelector"/> entity to check for.<br/>
+        /// </para>
+        /// 
+        /// <para>
+        /// 5. <see cref="ExecuteSubcondition.Predicate"/><br/>
+        /// Checks whether the predicate evaluates to a positive result.<br/>
+        /// <i>Syntax:</i><br/>
+        /// <paramref name="extraParameters"/>[0] should be namespaced id for predicate to seek.<br/>
+        /// </para>
+        /// 
+        /// <para>
+        /// 6. <see cref="ExecuteSubcondition.Scoreboard"/><br/>
+        /// Check whether a score has the specific relation to 
+        /// another score, or whether it is in a given range.<br/>
+        /// <i>Syntax:</i><br/>
+        /// <paramref name="extraParameters"/>[0] should be <see cref="ScoreComparation"/> 
+        /// and other params will be dependant on it's value.<br/>
+        /// 
+        /// 6.1. <see cref="ScoreComparation.Comparation"/><br/>
+        /// Other params should go this way:<br/>
+        /// <see cref="EntitySelector"/> holder of the objective to be compared.<br/>
+        /// <see cref="string"/> name of the objective to be compared the value.<br/>
+        /// <see cref="Comparator"/> comparator to compare the value.<br/>
+        /// <see cref="EntitySelector"/> holder of the objective to compare.<br/>
+        /// <see cref="string"/> name of the objective to compare the value.<br/>
+        /// 
+        /// 6.2. <see cref="ScoreComparation.Match"/><br/>
+        /// Other params should go this way:<br/>
+        /// <see cref="EntitySelector"/> holder of the objective to be matched.<br/>
+        /// <see cref="string"/> name of the objective to be matched the value.<br/>
+        /// </para>
+        /// 
+        /// </para>
+        /// 
+        /// <para>
+        /// <b>Execute Store (result|success)</b>
+        /// 
+        /// <para>
+        /// 1. <see cref="ExecuteStore.Block"/><br/>
+        /// Saves the final command's return value as 
+        /// tag data within a block entity. Store as a 
+        /// byte, short, int, long, float, or double.<br/>
+        /// <i>Syntax:</i><br/>
+        /// <paramref name="extraParameters"/>[0] should be <see cref="Vector3"/> of block<br/>
+        /// <paramref name="extraParameters"/>[1] should be <see cref="NBTPath"/> to store data<br/>
+        /// <paramref name="extraParameters"/>[2] should be <see cref="Type"/> of data to be stored<br/>
+        /// <paramref name="extraParameters"/>[3] should be <see cref="double"/> scale for value to be rounded if it is decimal<br/>
+        /// </para>
+        /// 
+        /// <para>
+        /// 2. <see cref="ExecuteStore.Bossbar"/><br/>
+        /// Saves the final command's return value in either 
+        /// a bossbar's current value or its maximum value<br/>
+        /// <i>Syntax:</i><br/>
+        /// <paramref name="extraParameters"/>[0] should be <see cref="string"/> namespaced id of bossbar to store data<br/>
+        /// <paramref name="extraParameters"/>[1] should be <see cref="BossbarOverwrite"/> of value to overwrite (current or max)<br/>
+        /// </para>
+        /// 
+        /// <para>
+        /// 3. <see cref="ExecuteStore.Entity"/><br/>
+        /// Save the final command's return value in one of an entity's data 
+        /// tags. Store as a byte, short, int, long, float, or double.
+        /// Like the /data command, /execute store entity  cannot modify player's NBT.<br/>
+        /// <i>Syntax:</i><br/>
+        /// <paramref name="extraParameters"/>[0] should be <see cref="EntitySelector"/> of entity<br/>
+        /// <paramref name="extraParameters"/>[1] should be <see cref="NBTPath"/> to store data<br/>
+        /// <paramref name="extraParameters"/>[2] should be <see cref="Type"/> of data to be stored<br/>
+        /// <paramref name="extraParameters"/>[3] should be <see cref="double"/> scale for value to be rounded if it is decimal<br/>
+        /// </para>
+        /// 
+        /// <para>
+        /// 4. <see cref="ExecuteStore.Score"/><br/>
+        /// Overrides the score held by targets on the given 
+        /// objective with the final command's return value.<br/>
+        /// <i>Syntax:</i><br/>
+        /// <paramref name="extraParameters"/>[0] should be <see cref="EntitySelector"/> of score holder<br/>
+        /// <paramref name="extraParameters"/>[1] should be <see cref="string"/> namespaced id of scoreboard<br/>
+        /// </para>
+        /// 
+        /// <para>
+        /// 5. <see cref="ExecuteStore.Storage"/><br/>
+        /// Uses the path within storage target to store the return value in. 
+        /// Store as a byte, short, int, long, float, or double.
+        /// If the storage does not yet exist, it gets created.<br/>
+        /// <i>Syntax:</i><br/>
+        /// <paramref name="extraParameters"/>[0] should be <see cref="string"/> namespaced id of storage to store data<br/>
+        /// <paramref name="extraParameters"/>[1] should be <see cref="NBTPath"/> to store data<br/>
+        /// <paramref name="extraParameters"/>[2] should be <see cref="Type"/> of data to be stored<br/>
+        /// <paramref name="extraParameters"/>[3] should be <see cref="double"/> scale for value to be rounded if it is decimal<br/>
+        /// </para>        
+        /// </para>
         /// </summary>
-        /// <param name="cmd"></param>
-        /// <param name="cond"></param>
-        /// <param name="oper"></param>
-        /// <param name="subcond"></param>
-        /// <param name="store"></param>
-        /// <param name="cont"></param>
-        /// <param name="extraParameters"></param>
+        /// <remarks>
+        /// Most information taken from <a href="https://minecraft.fandom.com/wiki/Commands/execute">Minecraft Wiki page</a>.<br/>
+        /// </remarks>
+        /// <param name="cmd">Compiled command to be ran</param>
+        /// <param name="cond">Extra execute params</param>
+        /// <param name="oper">Execute operator (if|unless)</param>
+        /// <param name="subcond">Condition to execute the command. See <paramref name="oper"/></param>
+        /// <param name="store">Specific data that should be stored after command execution</param>
+        /// <param name="cont">What the command should store</param>
+        /// <param name="extraParameters">See summary on method</param>
         public ExecuteParameters(
             ICommand cmd,
             ExecuteCondition? cond = null,
@@ -196,7 +417,8 @@ namespace SharpFunction.Commands.Minecraft
                                         stmp22 = "";
                                         break;
                                 }
-                                tmpOper += $" {stmp22}";
+                                tmpOper += $" {stmp22} {(string)extraParameters[i]}";
+                                i++;
                                 break;
                             case ExecuteSubcondition.Entity:
                                 var atmp = (EntitySelector)extraParameters[i];
@@ -228,9 +450,13 @@ namespace SharpFunction.Commands.Minecraft
                                         fstmp = $" {ettmp.String()} {objtmp} {EnumHelper.GetStringValue(ctmp)} {srchtmp} {srctmp}";
                                         break;
                                     case ScoreComparation.Match:
+                                        var ex1 = (EntitySelector)extraParameters[i];
+                                        i++;
+                                        var ex2 = (string)extraParameters[i];
+                                        i++;
                                         var comptmp = (string)extraParameters[i];
                                         i++;
-                                        fstmp = $" matches {comptmp}";
+                                        fstmp = $"{ex1.String()} {ex2} matches {comptmp}";
                                         break;
                                     default:
                                         fstmp = "";
@@ -265,7 +491,7 @@ namespace SharpFunction.Commands.Minecraft
                             case ExecuteStore.Bossbar:
                                 var tmpid = (string)extraParameters[i];
                                 i++;
-                                BossbarOverwrite tmpbo = (BossbarOverwrite)extraParameters[i];
+                                var tmpbo = (BossbarOverwrite)extraParameters[i];
                                 i++;
                                 fstr = $" {tmpid} {EnumHelper.GetStringValue(tmpbo)}";
                                 break;
