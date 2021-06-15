@@ -13,11 +13,17 @@ namespace SharpFunction.Universal
     public sealed class EntityNBT
     {
 #nullable enable
+        ///<summary>If the entity will have AI</summary>
         public bool? NoAI { get; set; } = null;
+        ///<summary>If the will produce sounds</summary>
         public bool? Silent { get; set; } = null;
+        ///<summary>If the entity will not take damage</summary>
         public bool? Invulnerable { get; set; } = null;
+        ///<summary>If the entity will be glowing</summary>
         public bool? Glowing { get; set; } = null;
+        ///<summary>If the entity will have its custom name visible all the time</summary>
         public bool? CustomNameVisible { get; set; } = null;
+        ///<summary>Custom name of entity</summary>
         public SuperRawText? CustomName { get; set; } = null;
 #nullable disable
 
@@ -45,10 +51,30 @@ namespace SharpFunction.Universal
     public sealed class ArmorStandNBT
     {
 #nullable enable
+        /// <summary>
+        /// Will the armor stand have arms
+        /// </summary>
+        /// <value></value>
         public bool? ShowArms { get; set; } = null;
+        /// <summary>
+        /// Will the armor stand be invisible and have small hitbox
+        /// </summary>
+        /// <value></value>
         public bool? Marker { get; set; } = null;
+        /// <summary>
+        /// Will the armor stand be invisible
+        /// </summary>
+        /// <value></value>
         public bool? Invisible { get; set; } = null;
+        /// <summary>
+        /// Will the armor stand have plate 
+        /// </summary>
+        /// <value></value>
         public bool? NoBasePlate { get; set; } = null;
+        /// <summary>
+        /// Will the armor stand be small
+        /// </summary>
+        /// <value></value>
         public bool? Small { get; set; } = null;
 #nullable disable
 
@@ -78,7 +104,8 @@ namespace SharpFunction.Universal
         /// </summary>
         public string[] Hands { get; set; } = new string[2] {"", ""};
         /// <summary>
-        /// [0] are boots<br/>[1] are legs<br/>[2] is body<br/>[3] is head
+        /// [0] are boots<br/>[1] are legs<br/>[2] is body<br/>[3] is head<br/>
+        /// Should be wrapped in quotes(e.g. \"value\")
         /// </summary>
         public string[] Armor { get; set; } = new string[4] { "", "", "", "" };
 
@@ -109,7 +136,7 @@ namespace SharpFunction.Universal
             foreach(string armor in Armor)
             {
                 string b = armor;
-                arm += Hands.Last().Equals(armor) ? $@"{{id: {b}, Count: 1b}}" : $@"{{id: {b}, Count: 1b}},";
+                arm += Armor.Last().Equals(armor) ? $@"{{id: {b}, Count: 1b}}" : $@"{{id: {b}, Count: 1b}},";
             };
             string hands = $"[{hs}]";
             string armors = $"[{arm}]";
