@@ -194,7 +194,7 @@ namespace SharpFunction.Addons.Skyblock
 
             Action<RawText> space = VoidEncapsulator<RawText>.Encapsulate(m =>
             {
-                m.AddField("");
+                if(MakeEmptyLines) m.AddField("");
             });
 
             var a = red.Where(predicate => 
@@ -290,7 +290,7 @@ namespace SharpFunction.Addons.Skyblock
         {
             if(Requirement is not null && Requirement.HasRequirement)
             {
-                rt.AddField("");
+                if(MakeEmptyLines) rt.AddField("");
                 rt.AddField(Requirement.Generate());
             }
             return rt;
@@ -306,7 +306,7 @@ namespace SharpFunction.Addons.Skyblock
                     {
                         if (!Abilities.First().Equals(Ability))
                         {
-                            txt.AddField("");
+                            if(MakeEmptyLines) txt.AddField("");
                         }
                         string rawJson = $@"[{{""text"":""Item Ability: {Ability.Name} "",""italic"":false,""color"":""gold""}},{{""text"":""{EnumHelper.GetStringValue(Ability.Type)}"",""color"":""yellow"",""bold"":true}}]";
                         txt._lines.Add(rawJson);
@@ -360,7 +360,7 @@ namespace SharpFunction.Addons.Skyblock
             };
             if (stats.Any(p => !IsNull(p)))
             {
-                text.AddField("");
+                if(MakeEmptyLines) text.AddField("");
             }
             foreach (SuperRawText line in description.Lines)
             {
@@ -600,6 +600,7 @@ namespace SharpFunction.Addons.Skyblock
         [EnumValue("HOE")] Hoe,
         [EnumValue("SHEARS")] Shears,
         [EnumValue("BREWING INGREDIENT")] BrewingIngredient,
+        [EnumValue("COSMETIC")] Cosmetic,
         [EnumValue("")] None
     }
 
