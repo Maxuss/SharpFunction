@@ -99,6 +99,9 @@ var files_dup =
     [ "ItemNBT.cs", "_item_n_b_t_8cs.html", [
       [ "ItemNBT", "class_sharp_function_1_1_universal_1_1_item_n_b_t.html", "class_sharp_function_1_1_universal_1_1_item_n_b_t" ]
     ] ],
+    [ "Kill.cs", "_kill_8cs.html", [
+      [ "Kill", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_kill.html", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_kill" ]
+    ] ],
     [ "MetaFileNotFound.cs", "_meta_file_not_found_8cs.html", [
       [ "MetaFileNotFound", "class_sharp_function_1_1_exceptions_1_1_meta_file_not_found.html", "class_sharp_function_1_1_exceptions_1_1_meta_file_not_found" ]
     ] ],

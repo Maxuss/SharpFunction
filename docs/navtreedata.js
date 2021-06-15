@@ -63,12 +63,12 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_abstract_writer_8cs.html",
-"_gamerule_value_8cs.html#a5e3cb3c819ff693f73d42ddeef0e6ed4a5724b4d275dd7e99970519c5043747f1",
-"class_sharp_function_1_1_addons_1_1_skyblock_1_1_advanced_description.html",
-"class_sharp_function_1_1_commands_1_1_minecraft_1_1_bossbar.html#a1d985778c29643baa2a737c9ceee5d59",
-"functions_d.html",
-"namespace_sharp_function_1_1_commands_1_1_minecraft.html#a23051046cdaa27823b6ef9f6c978eddaac34631f4890d84298d085f373f8b7df5",
-"struct_sharp_function_1_1_commands_1_1_entity_selector.html#ad85496e5da0a755969bcdf14db1c8c0b"
+"_gamerule_value_8cs.html#a5e3cb3c819ff693f73d42ddeef0e6ed4a558cb5820eed86d02612f856348cc4e9",
+"class_sharp_function_1_1_a_p_i_1_1_project.html#a725c5de8cb5c520c06722f40b48c96f6",
+"class_sharp_function_1_1_commands_1_1_minecraft_1_1_ban_i_p.html#ad1d7dfea302644dc32d9de314c271356",
+"class_sharp_function_1_1_writer_1_1_function_writer.html#a797a2773e0ae5bf46b20b57669122a23",
+"namespace_sharp_function_1_1_commands_1_1_minecraft.html#a23051046cdaa27823b6ef9f6c978eddaa95c47947d4e0aaa66dd910ec95378820",
+"struct_sharp_function_1_1_a_p_i_1_1_simple_vector.html#a7d363e42c70e4eb3710d123dc08e0402"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -23,6 +23,8 @@ var class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_item =
     [ "ItemDescription", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_item.html#ac0b3630f9ae15f8dd30c080475f7d207", null ],
     [ "ItemName", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_item.html#ae8d70f932d20ce214c410da232bea458", null ],
     [ "MagicFind", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_item.html#a988806cefb870523deb5be0197e51015", null ],
+    [ "MakeEmptyLines", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_item.html#a871f23ee4e083eea22cecd0de4ba45fd", null ],
+    [ "NameColor", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_item.html#a067ea45425cb49e32944bbc5ee67dde8", null ],
     [ "PetLuck", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_item.html#a68bf87efd47aeb7c6b252d615e17e12a", null ],
     [ "Rarity", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_item.html#a4b5f75d86a3df5b0b35ab3d8261f00ba", null ],
     [ "Requirement", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_item.html#a9f2e54e9d5667257bd9924fba3dace6e", null ],

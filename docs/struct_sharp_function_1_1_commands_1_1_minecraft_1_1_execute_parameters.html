@@ -29,7 +29,7 @@
   <td id="projectlogo"><img alt="Logo" src="ICON.svg"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">SharpFunction
-   &#160;<span id="projectnumber">0.7.4.8-hotfix</span>
+   &#160;<span id="projectnumber">0.7.5.3-beta</span>
    </div>
    <div id="projectbrief">Create Minecraft datapacks in C# with ease!</div>
   </td>
@@ -100,7 +100,8 @@ $(document).ready(function(){initNavTree('struct_sharp_function_1_1_commands_1_1
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ac72332e5bf029db6284cdc9608a8aed7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_sharp_function_1_1_commands_1_1_minecraft_1_1_execute_parameters.html#ac72332e5bf029db6284cdc9608a8aed7">ExecuteParameters</a> (<a class="el" href="interface_sharp_function_1_1_commands_1_1_minecraft_1_1_i_command.html">ICommand</a> cmd, <a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#acf23e1875c9616bb9a082b43bba7e025">ExecuteCondition</a>? cond=null, <a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#a3a688c2725a58bd48b92910aa1161d2c">ExecuteOperator</a>? oper=null, <a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#a1f81198a7e8c3e34141a1fb0b4769016">ExecuteSubcondition</a>? subcond=null, <a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#ab620f0e32db22d70a40dd9488d7c8161">ExecuteStore</a>? store=null, <a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#abc158bda79f1140795e62fccf6270218">ExecuteStoreContainer</a>? cont=null, params object[]? extraParameters)</td></tr>
-<tr class="memdesc:ac72332e5bf029db6284cdc9608a8aed7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Too complex so it won't fit here. See wiki for details.  <a href="struct_sharp_function_1_1_commands_1_1_minecraft_1_1_execute_parameters.html#ac72332e5bf029db6284cdc9608a8aed7">More...</a><br /></td></tr>
+<tr class="memdesc:ac72332e5bf029db6284cdc9608a8aed7"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_sharp_function_1_1_commands_1_1_minecraft_1_1_execute.html" title="Represents /execute command. Equal to Minecraft&#39;s">Execute</a> command has a very complex syntax tree<br  />
+ <b><a class="el" href="class_sharp_function_1_1_commands_1_1_minecraft_1_1_execute.html" title="Represents /execute command. Equal to Minecraft&#39;s">Execute</a> parameters</b>  <a href="struct_sharp_function_1_1_commands_1_1_minecraft_1_1_execute_parameters.html#ac72332e5bf029db6284cdc9608a8aed7">More...</a><br /></td></tr>
 <tr class="separator:ac72332e5bf029db6284cdc9608a8aed7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -162,16 +163,205 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Too complex so it won't fit here. See wiki for details. </p>
+<p><a class="el" href="class_sharp_function_1_1_commands_1_1_minecraft_1_1_execute.html" title="Represents /execute command. Equal to Minecraft&#39;s">Execute</a> command has a very complex syntax tree<br  />
+ <b><a class="el" href="class_sharp_function_1_1_commands_1_1_minecraft_1_1_execute.html" title="Represents /execute command. Equal to Minecraft&#39;s">Execute</a> parameters</b> </p>
+<ol type="1">
+<li><a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#acf23e1875c9616bb9a082b43bba7e025ad12fbc9a2ba3b0b91a4190959b4c966b">ExecuteCondition.Align</a><br  />
+ Updates the command's execution position, aligning to its current block position.<br  />
+ <em>Syntax:</em><br  />
+ <em>extraParameters</em> [0] should have swizzle of coordinates.<br  />
+ Example: "xzy" or "yz" </li>
+</ol>
+<ol type="1">
+<li><a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#acf23e1875c9616bb9a082b43bba7e025ac49640afe1366cd0158d41c440d817cf">ExecuteCondition.Anchored</a><br  />
+ Sets the execution anchor to the eyes or feet. Defaults to feet.<br  />
+ <em>Syntax:</em><br  />
+ <em>extraParameters</em> [0] should be <a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#aaf6c27e82ea79bbb4fcc086abfe6e2c2" title="Represents type of anchor">AnchorCondition</a><br  />
+ </li>
+</ol>
+<ol type="1">
+<li><a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#acf23e1875c9616bb9a082b43bba7e025a27baf79af932bd1592a6f4d5d61e96a9">ExecuteCondition.As</a><br  />
+ Sets the command's executor to target entity, without changing execution position, rotation, dimension, or anchor<br  />
+ <em>Syntax:</em><br  />
+ <em>extraParameters</em> [0] should be <a class="el" href="struct_sharp_function_1_1_commands_1_1_entity_selector.html" title="Represents a selector for entities with it&#39;s parameters">EntitySelector</a> </li>
+</ol>
+<ol type="1">
+<li><a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#acf23e1875c9616bb9a082b43bba7e025adc5f499e83aef4f6811faa4081631740">ExecuteCondition.At</a><br  />
+ Sets the execution position, rotation, and dimension to match those of an entity; does not change executor.<br  />
+ <em>Syntax:</em><br  />
+ <em>extraParameters</em> [0] should be <a class="el" href="struct_sharp_function_1_1_commands_1_1_entity_selector.html" title="Represents a selector for entities with it&#39;s parameters">EntitySelector</a> </li>
+</ol>
+<ol type="1">
+<li><a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#acf23e1875c9616bb9a082b43bba7e025aa6c610e0dc2c127157f0722b59e2ad9d">ExecuteCondition.Facing</a><br  />
+ Sets the execution rotation to face a given point, as viewed from its anchor (either the eyes or the feet)<br  />
+ <em>Syntax:</em><br  />
+ <em>extraParameters</em> [0] should be <a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#afd83866adee4445985142c2bb14bc6ba" title="Represents type of facing">FacingCondition</a><br  />
+ First option (<a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#afd83866adee4445985142c2bb14bc6baa52f5e0bc3859bc5f5e25130b6c7e8881">FacingCondition.Position</a>): <br  />
+ <em>extraParameters</em> [1] should be <a class="el" href="struct_sharp_function_1_1_commands_1_1_vector3.html" title="Represents coordinates in ingame world">Vector3</a>)<br  />
+ Second option (<a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#afd83866adee4445985142c2bb14bc6baa1a434befae3f49ae09347ded52032f6f">FacingCondition.Entity</a>): <br  />
+ <em>extraParameters</em> [1] should be <a class="el" href="struct_sharp_function_1_1_commands_1_1_entity_selector.html" title="Represents a selector for entities with it&#39;s parameters">EntitySelector</a> entity<br  />
+ <em>extraParameters</em> [2] should be <a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#aaf6c27e82ea79bbb4fcc086abfe6e2c2" title="Represents type of anchor">AnchorCondition</a> anchor <br  />
+ </li>
+</ol>
+<ol type="1">
+<li><a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#acf23e1875c9616bb9a082b43bba7e025aefeb369cccbd560588a756610865664c">ExecuteCondition.In</a><br  />
+ Sets the execution dimension and position<br  />
+ <em>Syntax:</em><br  />
+ <em>extraParameters</em> [0] should be dimension string ("overworld"|"the_nether"|"the_end"|"custom dimension")<br  />
+ </li>
+</ol>
+<ol type="1">
+<li><a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#acf23e1875c9616bb9a082b43bba7e025a621ce9f1f51ab6dd2d25c75b0fb9fc77">ExecuteCondition.Positioned</a><br  />
+ Sets the execution position, without changing execution rotation or dimension;<br  />
+ <em>Syntax:</em><br  />
+ <em>extraParameters</em> [0] should be <a class="el" href="struct_sharp_function_1_1_commands_1_1_vector3.html" title="Represents coordinates in ingame world">Vector3</a> </li>
+</ol>
+<ol type="1">
+<li><a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#acf23e1875c9616bb9a082b43bba7e025acd169c23c8a48e519fdc9baf5abac972">ExecuteCondition.PositionedAs</a><br  />
+ Works like <a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#acf23e1875c9616bb9a082b43bba7e025a621ce9f1f51ab6dd2d25c75b0fb9fc77">ExecuteCondition.Positioned</a> but anchors at entity<br  />
+ <em>Syntax:</em><br  />
+ <em>extraParameters</em> [0] should be <a class="el" href="struct_sharp_function_1_1_commands_1_1_entity_selector.html" title="Represents a selector for entities with it&#39;s parameters">EntitySelector</a> </li>
+</ol>
+<ol type="1">
+<li><a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#acf23e1875c9616bb9a082b43bba7e025a4f8d7de5d5a3860f0a27f8848de1ba40">ExecuteCondition.Rotated</a><br  />
+ Sets the execution rotation<br  />
+ <em>Syntax:</em><br  />
+ <em>extraParameters</em> [0] should be yaw float<br  />
+ <em>extraParameters</em> [1] should be pitch float<br  />
+ </li>
+</ol>
+<ol type="1">
+<li><a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#acf23e1875c9616bb9a082b43bba7e025aba4eb33e6c0d5ddd1f28f2a6a8c6e3c5">ExecuteCondition.RotatedAs</a><br  />
+ Sets the execution rotation to entity's rotation<br  />
+ <em>Syntax:</em><br  />
+ <em>extraParameters</em> [0] should be <a class="el" href="struct_sharp_function_1_1_commands_1_1_entity_selector.html" title="Represents a selector for entities with it&#39;s parameters">EntitySelector</a> entity<br  />
+ </li>
+</ol>
+<p><b><a class="el" href="class_sharp_function_1_1_commands_1_1_minecraft_1_1_execute.html" title="Represents /execute command. Equal to Minecraft&#39;s">Execute</a> Conditions (if/unless)</b> </p>
+<ol type="1">
+<li><a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#a1f81198a7e8c3e34141a1fb0b4769016ae1e4c8c9ccd9fc39c391da4bcd093fb2">ExecuteSubcondition.Block</a><br  />
+ Compares the block at a given position to a given block ID or block tag.<br  />
+ <em>Syntax:</em><br  />
+ <em>extraParameters</em> [0] should be <a class="el" href="struct_sharp_function_1_1_commands_1_1_vector3.html" title="Represents coordinates in ingame world">Vector3</a><br  />
+ <em>extraParameters</em> [1] should be string block predicate tag in format of namespaced_id[predicate_states]{nbt_tags}<br  />
+ </li>
+</ol>
+<ol type="1">
+<li><a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#a1f81198a7e8c3e34141a1fb0b4769016a04c4f9f595c4f21d1de65eb07056c15a">ExecuteSubcondition.Blocks</a><br  />
+ Compares the blocks in two equally sized volumes<br  />
+ <em>Syntax:</em><br  />
+ <em>extraParameters</em> [0] should be <a class="el" href="struct_sharp_function_1_1_commands_1_1_vector3.html" title="Represents coordinates in ingame world">Vector3</a> array, where [0] is beginning of volume, [1] is end of volume and [2] is destination of volume<br  />
+ <em>extraParameters</em> [1] should be <a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#a64dca7e47ced46b2193410148de60e63" title="Represents scanning mode for execute command">ScanningMode</a><br  />
+ </li>
+</ol>
+<ol type="1">
+<li><a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#a1f81198a7e8c3e34141a1fb0b4769016a574bcf8d77d414ea7a7f31888a68ff60">ExecuteSubcondition.NBTData</a><br  />
+ Checks whether the targeted block, entity or storage has any data tag for a given path<br  />
+ <em>Syntax:</em><br  />
+ <em>extraParameters</em> [0] should be <a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#a58a062196683d4c246b358639ebb5f4a" title="Represents type of data in execute command">NBTDataType</a> and depending on it should be <em>extraParameters</em> [1]<br  />
+ <em>extraParameters</em> [2] should always be nbt data string to check for.<br  />
+ 3.1. <a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#a58a062196683d4c246b358639ebb5f4aae1e4c8c9ccd9fc39c391da4bcd093fb2">NBTDataType.Block</a><br  />
+ <em>extraParameters</em> [1] should be <a class="el" href="struct_sharp_function_1_1_commands_1_1_vector3.html" title="Represents coordinates in ingame world">Vector3</a> block pos to check<br  />
+ 3.2. <a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#a58a062196683d4c246b358639ebb5f4aa1a434befae3f49ae09347ded52032f6f">NBTDataType.Entity</a><br  />
+ <em>extraParameters</em> [1] should be <a class="el" href="struct_sharp_function_1_1_commands_1_1_entity_selector.html" title="Represents a selector for entities with it&#39;s parameters">EntitySelector</a> entity to check<br  />
+ 3.3. <a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#a58a062196683d4c246b358639ebb5f4aa8c4aa541ee911e8d80451ef8cc304806">NBTDataType.Storage</a><br  />
+ <em>extraParameters</em> [1] should be string namespaced id to check<br  />
+ </li>
+</ol>
+<ol type="1">
+<li><a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#a1f81198a7e8c3e34141a1fb0b4769016a1a434befae3f49ae09347ded52032f6f">ExecuteSubcondition.Entity</a><br  />
+ Checks whether one or more entities exist.<br  />
+ <em>Syntax:</em><br  />
+ <em>extraParameters</em> [0] should be <a class="el" href="struct_sharp_function_1_1_commands_1_1_entity_selector.html" title="Represents a selector for entities with it&#39;s parameters">EntitySelector</a> entity to check for.<br  />
+ </li>
+</ol>
+<ol type="1">
+<li><a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#a1f81198a7e8c3e34141a1fb0b4769016a3b1b1a93a9b97ec3c8f2636fc6d54d0f">ExecuteSubcondition.Predicate</a><br  />
+ Checks whether the predicate evaluates to a positive result.<br  />
+ <em>Syntax:</em><br  />
+ <em>extraParameters</em> [0] should be namespaced id for predicate to seek.<br  />
+ </li>
+</ol>
+<ol type="1">
+<li><a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#a1f81198a7e8c3e34141a1fb0b4769016a1a32a037bf544849d300e042e5181f59">ExecuteSubcondition.Scoreboard</a><br  />
+ Check whether a score has the specific relation to another score, or whether it is in a given range.<br  />
+ <em>Syntax:</em><br  />
+ <em>extraParameters</em> [0] should be <a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#a95262e3d2ae243350b14eb3ca7cac05e" title="Represents type of comparing scoreboards">ScoreComparation</a> and other params will be dependant on it's value.<br  />
+</li>
+</ol>
+<p>6.1. <a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#a95262e3d2ae243350b14eb3ca7cac05eaeb08c43579ccd1ed7d3004bb5c6adbfd">ScoreComparation.Comparation</a><br  />
+ Other params should go this way:<br  />
+ <a class="el" href="struct_sharp_function_1_1_commands_1_1_entity_selector.html" title="Represents a selector for entities with it&#39;s parameters">EntitySelector</a> holder of the objective to be compared.<br  />
+ string name of the objective to be compared the value.<br  />
+ <a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#a420972e9f4cad7d32993f9f101817dc7" title="Represents comparator oper to compare values">Comparator</a> comparator to compare the value.<br  />
+ <a class="el" href="struct_sharp_function_1_1_commands_1_1_entity_selector.html" title="Represents a selector for entities with it&#39;s parameters">EntitySelector</a> holder of the objective to compare.<br  />
+ string name of the objective to compare the value.<br  />
+</p>
+<p>6.2. <a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#a95262e3d2ae243350b14eb3ca7cac05ea6da89265a9a8b0b28eb4946bb2ec0c6d">ScoreComparation.Match</a><br  />
+ Other params should go this way:<br  />
+ <a class="el" href="struct_sharp_function_1_1_commands_1_1_entity_selector.html" title="Represents a selector for entities with it&#39;s parameters">EntitySelector</a> holder of the objective to be matched.<br  />
+ string name of the objective to be matched the value.<br  />
+ </p>
+<p><b><a class="el" href="class_sharp_function_1_1_commands_1_1_minecraft_1_1_execute.html" title="Represents /execute command. Equal to Minecraft&#39;s">Execute</a> Store (result|success)</b></p>
+<ol type="1">
+<li><a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#ab620f0e32db22d70a40dd9488d7c8161ae1e4c8c9ccd9fc39c391da4bcd093fb2">ExecuteStore.Block</a><br  />
+ Saves the final command's return value as tag data within a block entity. Store as a byte, short, int, long, float, or double.<br  />
+ <em>Syntax:</em><br  />
+ <em>extraParameters</em> [0] should be <a class="el" href="struct_sharp_function_1_1_commands_1_1_vector3.html" title="Represents coordinates in ingame world">Vector3</a> of block<br  />
+ <em>extraParameters</em> [1] should be NBTPath to store data<br  />
+ <em>extraParameters</em> [2] should be Type of data to be stored<br  />
+ <em>extraParameters</em> [3] should be double scale for value to be rounded if it is decimal<br  />
+ </li>
+</ol>
+<ol type="1">
+<li><a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#ab620f0e32db22d70a40dd9488d7c8161ad1ff1f36d7c5780f1fa9cd829c91cafe">ExecuteStore.Bossbar</a><br  />
+ Saves the final command's return value in either a bossbar's current value or its maximum value<br  />
+ <em>Syntax:</em><br  />
+ <em>extraParameters</em> [0] should be string namespaced id of bossbar to store data<br  />
+ <em>extraParameters</em> [1] should be <a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#ab1d153e465e69c489f576acf0ae1d3b8" title="Specifies which value of boss bar to overwrite">BossbarOverwrite</a> of value to overwrite (current or max)<br  />
+ </li>
+</ol>
+<ol type="1">
+<li><a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#ab620f0e32db22d70a40dd9488d7c8161a1a434befae3f49ae09347ded52032f6f">ExecuteStore.Entity</a><br  />
+ Save the final command's return value in one of an entity's data tags. Store as a byte, short, int, long, float, or double. Like the /data command, /execute store entity cannot modify player's NBT.<br  />
+ <em>Syntax:</em><br  />
+ <em>extraParameters</em> [0] should be <a class="el" href="struct_sharp_function_1_1_commands_1_1_entity_selector.html" title="Represents a selector for entities with it&#39;s parameters">EntitySelector</a> of entity<br  />
+ <em>extraParameters</em> [1] should be NBTPath to store data<br  />
+ <em>extraParameters</em> [2] should be Type of data to be stored<br  />
+ <em>extraParameters</em> [3] should be double scale for value to be rounded if it is decimal<br  />
+ </li>
+</ol>
+<ol type="1">
+<li><a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#ab620f0e32db22d70a40dd9488d7c8161a5dd135d1bcfa7f63c3b7f25425c2a4a1">ExecuteStore.Score</a><br  />
+ Overrides the score held by targets on the given objective with the final command's return value.<br  />
+ <em>Syntax:</em><br  />
+ <em>extraParameters</em> [0] should be <a class="el" href="struct_sharp_function_1_1_commands_1_1_entity_selector.html" title="Represents a selector for entities with it&#39;s parameters">EntitySelector</a> of score holder<br  />
+ <em>extraParameters</em> [1] should be string namespaced id of scoreboard<br  />
+ </li>
+</ol>
+<ol type="1">
+<li><a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#ab620f0e32db22d70a40dd9488d7c8161a8c4aa541ee911e8d80451ef8cc304806">ExecuteStore.Storage</a><br  />
+ Uses the path within storage target to store the return value in. Store as a byte, short, int, long, float, or double. If the storage does not yet exist, it gets created.<br  />
+ <em>Syntax:</em><br  />
+ <em>extraParameters</em> [0] should be string namespaced id of storage to store data<br  />
+ <em>extraParameters</em> [1] should be NBTPath to store data<br  />
+ <em>extraParameters</em> [2] should be Type of data to be stored<br  />
+ <em>extraParameters</em> [3] should be double scale for value to be rounded if it is decimal<br  />
+ </li>
+</ol>
+<p><br  />
+ </p>
+<p>Most information taken from <a href="https://minecraft.fandom.com/wiki/Commands/execute">Minecraft Wiki page</a>.<br  />
+ </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">cmd</td><td></td></tr>
-    <tr><td class="paramname">cond</td><td></td></tr>
-    <tr><td class="paramname">oper</td><td></td></tr>
-    <tr><td class="paramname">subcond</td><td></td></tr>
-    <tr><td class="paramname">store</td><td></td></tr>
-    <tr><td class="paramname">cont</td><td></td></tr>
-    <tr><td class="paramname">extraParameters</td><td></td></tr>
+    <tr><td class="paramname">cmd</td><td>Compiled command to be ran</td></tr>
+    <tr><td class="paramname">cond</td><td>Extra execute params</td></tr>
+    <tr><td class="paramname">oper</td><td><a class="el" href="class_sharp_function_1_1_commands_1_1_minecraft_1_1_execute.html" title="Represents /execute command. Equal to Minecraft&#39;s">Execute</a> operator (if|unless)</td></tr>
+    <tr><td class="paramname">subcond</td><td>Condition to execute the command. See <em>oper</em> </td></tr>
+    <tr><td class="paramname">store</td><td>Specific data that should be stored after command execution</td></tr>
+    <tr><td class="paramname">cont</td><td>What the command should store</td></tr>
+    <tr><td class="paramname">extraParameters</td><td>See summary on method</td></tr>
   </table>
   </dd>
 </dl>

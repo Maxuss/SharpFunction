@@ -35,7 +35,8 @@ var namespace_sharp_function_1_1_universal =
       [ "Yellow", "namespace_sharp_function_1_1_universal.html#aaa29119654d5b41b033c59313dfb8e3aa51e6cd92b6c45f9affdc158ecca2b8b8", null ],
       [ "White", "namespace_sharp_function_1_1_universal.html#aaa29119654d5b41b033c59313dfb8e3aa25a81701fbfa4a1efdf660a950c1d006", null ],
       [ "DarkGray", "namespace_sharp_function_1_1_universal.html#aaa29119654d5b41b033c59313dfb8e3aa91e93fc984985226ad4d319a4e4134ab", null ],
-      [ "Reset", "namespace_sharp_function_1_1_universal.html#aaa29119654d5b41b033c59313dfb8e3aa526d688f37a86d3c3f27d0c5016eb71d", null ]
+      [ "Reset", "namespace_sharp_function_1_1_universal.html#aaa29119654d5b41b033c59313dfb8e3aa526d688f37a86d3c3f27d0c5016eb71d", null ],
+      [ "Default", "namespace_sharp_function_1_1_universal.html#aaa29119654d5b41b033c59313dfb8e3aa7a1920d61156abc05a60135aefe8bc67", null ]
     ] ],
     [ "Gamemode", "namespace_sharp_function_1_1_universal.html#a8a20741d28775dedc293e7b6b9dcd954", [
       [ "Survival", "namespace_sharp_function_1_1_universal.html#a8a20741d28775dedc293e7b6b9dcd954a521100d075c1284b944841394e157744", null ],

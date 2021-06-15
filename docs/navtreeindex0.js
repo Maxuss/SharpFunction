@@ -54,6 +54,7 @@ var NAVTREEINDEX0 =
 "_color_8cs.html#aaa29119654d5b41b033c59313dfb8e3aa25a81701fbfa4a1efdf660a950c1d006":[7,0,11,0,14],
 "_color_8cs.html#aaa29119654d5b41b033c59313dfb8e3aa51e6cd92b6c45f9affdc158ecca2b8b8":[7,0,11,0,13],
 "_color_8cs.html#aaa29119654d5b41b033c59313dfb8e3aa526d688f37a86d3c3f27d0c5016eb71d":[7,0,11,0,16],
+"_color_8cs.html#aaa29119654d5b41b033c59313dfb8e3aa7a1920d61156abc05a60135aefe8bc67":[7,0,11,0,17],
 "_color_8cs.html#aaa29119654d5b41b033c59313dfb8e3aa8746d21f8164452063398744f06307dd":[7,0,11,0,4],
 "_color_8cs.html#aaa29119654d5b41b033c59313dfb8e3aa877716336e4eb22ac67faaa9c2b86635":[7,0,11,0,1],
 "_color_8cs.html#aaa29119654d5b41b033c59313dfb8e3aa90560ef02b14d3d79cd3eede43686611":[7,0,11,0,3],
@@ -82,7 +83,7 @@ var NAVTREEINDEX0 =
 "_datapack_8cs.html#a971eb578a9f98ae1a812a66fe6454e4ca00d23a76e43b46dae9ec7aa9dcbebb32":[7,0,15,2,0],
 "_datapack_8cs.html#a971eb578a9f98ae1a812a66fe6454e4cab1c94ca2fbc3e78fc30069c8d0f01680":[7,0,15,2,1],
 "_debug_2net5_80_2_8_n_e_t_core_app_00_version_0av5_80_8_assembly_attributes_8cs.html":[7,0,0],
-"_debug_2net5_80_2_sharp_function_8_assembly_info_8cs.html":[7,0,58],
+"_debug_2net5_80_2_sharp_function_8_assembly_info_8cs.html":[7,0,59],
 "_default_gamemode_8cs.html":[7,0,16],
 "_effect_8cs.html":[7,0,17],
 "_effect_8cs.html#ad94736af0133e75cbae24dcf7c28329a":[7,0,17,1],
@@ -248,6 +249,5 @@ var NAVTREEINDEX0 =
 "_gamerule_value_8cs.html#a5e3cb3c819ff693f73d42ddeef0e6ed4a0dac079049e4d21297ad8bb153471465":[7,0,34,0,6],
 "_gamerule_value_8cs.html#a5e3cb3c819ff693f73d42ddeef0e6ed4a1a5bcd2cf32f1889efea187fa8c299ad":[7,0,34,0,19],
 "_gamerule_value_8cs.html#a5e3cb3c819ff693f73d42ddeef0e6ed4a1c14224a98f09378316139c8a75f84aa":[7,0,34,0,13],
-"_gamerule_value_8cs.html#a5e3cb3c819ff693f73d42ddeef0e6ed4a212ea9fc10d1ed7d42edee0ae69bc6d1":[7,0,34,0,28],
-"_gamerule_value_8cs.html#a5e3cb3c819ff693f73d42ddeef0e6ed4a558cb5820eed86d02612f856348cc4e9":[7,0,34,0,3]
+"_gamerule_value_8cs.html#a5e3cb3c819ff693f73d42ddeef0e6ed4a212ea9fc10d1ed7d42edee0ae69bc6d1":[7,0,34,0,28]
 };

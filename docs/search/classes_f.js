@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['vector3_837',['Vector3',['../struct_sharp_function_1_1_commands_1_1_vector3.html',1,'SharpFunction::Commands']]],
-  ['vectorhelper_838',['VectorHelper',['../class_sharp_function_1_1_universal_1_1_vector_helper.html',1,'SharpFunction::Universal']]],
-  ['voidencapsulator_839',['VoidEncapsulator',['../class_sharp_function_1_1_universal_1_1_void_encapsulator.html',1,'SharpFunction::Universal']]]
+  ['teleport_842',['Teleport',['../class_sharp_function_1_1_commands_1_1_minecraft_1_1_teleport.html',1,'SharpFunction::Commands::Minecraft']]],
+  ['tellraw_843',['Tellraw',['../class_sharp_function_1_1_commands_1_1_minecraft_1_1_tellraw.html',1,'SharpFunction::Commands::Minecraft']]],
+  ['title_844',['Title',['../class_sharp_function_1_1_commands_1_1_minecraft_1_1_title.html',1,'SharpFunction::Commands::Minecraft']]]
 ];

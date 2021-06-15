@@ -17,6 +17,7 @@ var _color_8cs =
       [ "Yellow", "_color_8cs.html#aaa29119654d5b41b033c59313dfb8e3aa51e6cd92b6c45f9affdc158ecca2b8b8", null ],
       [ "White", "_color_8cs.html#aaa29119654d5b41b033c59313dfb8e3aa25a81701fbfa4a1efdf660a950c1d006", null ],
       [ "DarkGray", "_color_8cs.html#aaa29119654d5b41b033c59313dfb8e3aa91e93fc984985226ad4d319a4e4134ab", null ],
-      [ "Reset", "_color_8cs.html#aaa29119654d5b41b033c59313dfb8e3aa526d688f37a86d3c3f27d0c5016eb71d", null ]
+      [ "Reset", "_color_8cs.html#aaa29119654d5b41b033c59313dfb8e3aa526d688f37a86d3c3f27d0c5016eb71d", null ],
+      [ "Default", "_color_8cs.html#aaa29119654d5b41b033c59313dfb8e3aa7a1920d61156abc05a60135aefe8bc67", null ]
     ] ]
 ];

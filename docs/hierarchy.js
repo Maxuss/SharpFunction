@@ -49,6 +49,7 @@ var hierarchy =
       [ "SharpFunction.Commands.Minecraft.Gamerule", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_gamerule.html", null ],
       [ "SharpFunction.Commands.Minecraft.Give", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_give.html", null ],
       [ "SharpFunction.Commands.Minecraft.Help", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_help.html", null ],
+      [ "SharpFunction.Commands.Minecraft.Kill", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_kill.html", null ],
       [ "SharpFunction.Commands.Minecraft.Say", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_say.html", null ],
       [ "SharpFunction.Commands.Minecraft.Summon", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_summon.html", null ],
       [ "SharpFunction.Commands.Minecraft.Teleport", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_teleport.html", null ],
@@ -63,6 +64,7 @@ var hierarchy =
       [ "SharpFunction.Commands.Minecraft.Effect", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_effect.html", null ],
       [ "SharpFunction.Commands.Minecraft.Enchant", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_enchant.html", null ],
       [ "SharpFunction.Commands.Minecraft.Give", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_give.html", null ],
+      [ "SharpFunction.Commands.Minecraft.Kill", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_kill.html", null ],
       [ "SharpFunction.Commands.Minecraft.Teleport", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_teleport.html", null ],
       [ "SharpFunction.Commands.Minecraft.Tellraw", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_tellraw.html", null ],
       [ "SharpFunction.Commands.Minecraft.Title", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_title.html", null ]

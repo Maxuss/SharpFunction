@@ -3,9 +3,9 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-	<GenerateDocumentationFile>true</GenerateDocumentationFile>
+	  <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Version>0.7.4.9-hot</Version>
+    <Version>0.7.5.3-beta</Version>
     <Authors>Maxus</Authors>
     <Company>Maxus Industries</Company>
     <Description>A .NET Library used for creating Minecraft datapacks, and most things related to them.</Description>
@@ -15,14 +15,12 @@
     <RepositoryUrl>https://github.com/Maxuss/SharpFunction</RepositoryUrl>
     <RepositoryType>GitHub Repository</RepositoryType>
     <PackageTags>Minecraft, Datapacks, Hypixel Skyblock</PackageTags>
-    <PackageReleaseNotes>0.7.4-beta hotfix
-- Fixed multiple bugs related to slayers
-- Added simpler support for skull items
-- Added skyblock pets
-- Fixed license a bit
-- Some more documentatio
-- Fixed documentation not showing up
-From this on, all versions before 0.7.4 are **not supported anymore**. They have lots of bugs, please switch to newer version.</PackageReleaseNotes>
+    <PackageReleaseNotes>0.7.5.3 changelog
+    - Added multiple new commands
+    - Simplified work with SuperRawText, RawText and AdvancedDescription
+    - Some more parameters for SkyblockItem
+    - Bugfixes.
+    </PackageReleaseNotes>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <NeutralLanguage>C# .NET</NeutralLanguage>
   </PropertyGroup>

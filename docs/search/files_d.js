@@ -1,22 +1,7 @@
 var searchData=
 [
-  ['say_2ecs_907',['Say.cs',['../_say_8cs.html',1,'']]],
-  ['selector_2ecs_908',['Selector.cs',['../_selector_8cs.html',1,'']]],
-  ['selectorparameters_2ecs_909',['SelectorParameters.cs',['../_selector_parameters_8cs.html',1,'']]],
-  ['sfexception_2ecs_910',['SFException.cs',['../_s_f_exception_8cs.html',1,'']]],
-  ['simpleselector_2ecs_911',['SimpleSelector.cs',['../_simple_selector_8cs.html',1,'']]],
-  ['simplevector_2ecs_912',['SimpleVector.cs',['../_simple_vector_8cs.html',1,'']]],
-  ['skyblockentity_2ecs_913',['SkyblockEntity.cs',['../_skyblock_entity_8cs.html',1,'']]],
-  ['skyblockenumhelper_2ecs_914',['SkyblockEnumHelper.cs',['../_skyblock_enum_helper_8cs.html',1,'']]],
-  ['skyblockhelper_2ecs_915',['SkyblockHelper.cs',['../_skyblock_helper_8cs.html',1,'']]],
-  ['skyblockitem_2ecs_916',['SkyblockItem.cs',['../_skyblock_item_8cs.html',1,'']]],
-  ['skyblockpet_2ecs_917',['SkyblockPet.cs',['../_skyblock_pet_8cs.html',1,'']]],
-  ['skyblockskull_2ecs_918',['SkyblockSkull.cs',['../_skyblock_skull_8cs.html',1,'']]],
-  ['skyblockslayer_2ecs_919',['SkyblockSlayer.cs',['../_skyblock_slayer_8cs.html',1,'']]],
-  ['slayerability_2ecs_920',['SlayerAbility.cs',['../_slayer_ability_8cs.html',1,'']]],
-  ['slayerdrop_2ecs_921',['SlayerDrop.cs',['../_slayer_drop_8cs.html',1,'']]],
-  ['slayerlevel_2ecs_922',['SlayerLevel.cs',['../_slayer_level_8cs.html',1,'']]],
-  ['slayertier_2ecs_923',['SlayerTier.cs',['../_slayer_tier_8cs.html',1,'']]],
-  ['summon_2ecs_924',['Summon.cs',['../_summon_8cs.html',1,'']]],
-  ['superrawtext_2ecs_925',['SuperRawText.cs',['../_super_raw_text_8cs.html',1,'']]]
+  ['_2enetcoreapp_2cversion_3dv5_2e0_2eassemblyattributes_2ecs_912',['.NETCoreApp,Version=v5.0.AssemblyAttributes.cs',['../_release_2net5_80_2_8_n_e_t_core_app_00_version_0av5_80_8_assembly_attributes_8cs.html',1,'']]],
+  ['rawtext_2ecs_913',['RawText.cs',['../_raw_text_8cs.html',1,'']]],
+  ['readme_2emd_914',['README.md',['../_r_e_a_d_m_e_8md.html',1,'']]],
+  ['sharpfunction_2eassemblyinfo_2ecs_915',['SharpFunction.AssemblyInfo.cs',['../_release_2net5_80_2_sharp_function_8_assembly_info_8cs.html',1,'']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['load_1001',['Load',['../class_sharp_function_1_1_a_p_i_1_1_project.html#a7c1c61e4271fb7d1cbf5e075f985ce63',1,'SharpFunction::API::Project']]]
+  ['kill_1010',['Kill',['../class_sharp_function_1_1_commands_1_1_minecraft_1_1_kill.html#a79f9d61c720016f927256342cbd3ceba',1,'SharpFunction::Commands::Minecraft::Kill']]]
 ];

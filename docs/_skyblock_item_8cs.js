@@ -40,6 +40,7 @@ var _skyblock_item_8cs =
       [ "Hoe", "_skyblock_item_8cs.html#a83494d7258d1e0f540d5a96309b627e1a43ea9920cd6451af2dfb8d2f467cf56f", null ],
       [ "Shears", "_skyblock_item_8cs.html#a83494d7258d1e0f540d5a96309b627e1afa23fe9f06b06fb5620b67b2512d06df", null ],
       [ "BrewingIngredient", "_skyblock_item_8cs.html#a83494d7258d1e0f540d5a96309b627e1acb1187482533498eb19568c31f38567c", null ],
+      [ "Cosmetic", "_skyblock_item_8cs.html#a83494d7258d1e0f540d5a96309b627e1ae6a567ca3cf62657e2c1b5d1ab31abba", null ],
       [ "None", "_skyblock_item_8cs.html#a83494d7258d1e0f540d5a96309b627e1a6adf97f83acf6453d4a6a4b1070f3754", null ]
     ] ]
 ];

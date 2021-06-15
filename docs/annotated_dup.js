@@ -56,6 +56,7 @@ var annotated_dup =
           [ "Help", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_help.html", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_help" ],
           [ "ICommand", "interface_sharp_function_1_1_commands_1_1_minecraft_1_1_i_command.html", "interface_sharp_function_1_1_commands_1_1_minecraft_1_1_i_command" ],
           [ "ISelectorCommand", "interface_sharp_function_1_1_commands_1_1_minecraft_1_1_i_selector_command.html", "interface_sharp_function_1_1_commands_1_1_minecraft_1_1_i_selector_command" ],
+          [ "Kill", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_kill.html", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_kill" ],
           [ "Say", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_say.html", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_say" ],
           [ "Summon", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_summon.html", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_summon" ],
           [ "Teleport", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_teleport.html", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_teleport" ],
