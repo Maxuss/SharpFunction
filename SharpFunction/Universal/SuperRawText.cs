@@ -26,9 +26,10 @@ namespace SharpFunction.Universal
         /// Appends pre-baked json text formatting to line
         /// </summary>
         /// <param name="text">Text with field defined</param>
-        public void Append(RawText text)
+        public SuperRawText Append(RawText text)
         {
             lines.Add(text._lines[0]);
+            return this;
         }
 
         /// <summary>
@@ -38,11 +39,12 @@ namespace SharpFunction.Universal
         /// <param name="color">Color of text</param>
         /// <param name="format">Formatting of text</param>
         /// <param name="formattings">Extra formattings of text</param>
-        public void Append(string text, Color color=Color.White, RawTextFormatting format=RawTextFormatting.Straight, params RawTextFormatting[] formattings)
+        public SuperRawText Append(string text, Color color=Color.White, RawTextFormatting format=RawTextFormatting.Straight, params RawTextFormatting[] formattings)
         {
             RawText txt = new();
             txt.AddField(text, color, format, formattings);
             lines.Add(txt._lines[0]);
+            return this;
         }
 
         /// <summary>

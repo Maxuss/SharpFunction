@@ -474,9 +474,10 @@ namespace SharpFunction.Addons.Skyblock
         /// Appends a single super raw text line. Each line with start from new line in lore!
         /// </summary>
         /// <param name="line">Line to append</param>
-        public void Append(SuperRawText line)
+        public AdvancedDescription Append(SuperRawText line)
         {
             Lines.Add(line);
+            return this;
         }
 
         /// <summary>
@@ -486,11 +487,12 @@ namespace SharpFunction.Addons.Skyblock
         /// <param name="color">Color of line</param>
         /// <param name="formatting">Formatting of line</param>
         /// <param name="formattings">Extra formattings of line</param>
-        public void Append(string line, Color color=Color.Gray, RawTextFormatting formatting=RawTextFormatting.Straight, params RawTextFormatting[] formattings)
+        public AdvancedDescription Append(string line, Color color=Color.Gray, RawTextFormatting formatting=RawTextFormatting.Straight, params RawTextFormatting[] formattings)
         {
             SuperRawText tmp = new();
             tmp.Append(line, color, formatting, formattings);
             Lines.Add(tmp);
+            return this;
         }
     }
 

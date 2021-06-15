@@ -37,6 +37,10 @@ namespace SharpFunction.Addons.Skyblock
         /// </summary>
         public int RequiredLVL { get; set; } = 0;
 
+        /// <summary>
+        /// Amount of drops per certain tier
+        /// </summary>
+        /// <returns></returns>
         public Dictionary<string, string> TierAmounts = new()
         {
             { "Tier I", ""},

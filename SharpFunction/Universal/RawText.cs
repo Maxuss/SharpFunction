@@ -36,7 +36,7 @@ namespace SharpFunction.Universal
         /// <param name="color">Color of the text</param>
         /// <param name="format">Formatting of the text</param>
         /// <param name="extraFormat">Extra formattings of the text</param>
-        public void AddField(string text, Color color = Color.White, RawTextFormatting format = RawTextFormatting.None, params RawTextFormatting[] extraFormat)
+        public RawText AddField(string text, Color color = Color.White, RawTextFormatting format = RawTextFormatting.None, params RawTextFormatting[] extraFormat)
         {
             string clr = EnumHelper.GetStringValue(color);
             string frm = EnumHelper.GetStringValue(format);
@@ -55,27 +55,17 @@ namespace SharpFunction.Universal
             else if (!IsEmpty(extraF) && IsEmpty(frm)) full = $@"{{""text"": ""{text}"", {clr}, {extraF}}}";
             else full = $@"{{""text"": ""{text}"", {clr}}}";
             _lines.Add(full);
+            return this;
         }
         /// <summary>
         /// Add field from super raw text
         /// </summary>
         /// <param name="srt">Pre-Made SuperRawText</param>
-        public void AddField(SuperRawText srt)
+        public RawText AddField(SuperRawText srt)
         {
             string compiled = srt.Compile();
             _lines.Add(compiled);
-        }
-
-        /// <summary>
-        /// Add field from pre-made raw text
-        /// </summary>
-        /// <param name="rt">RawText to add</param>
-        public void AddField(RawText rt)
-        {
-            int l = rt.RawJSON.Length;
-            string normal = rt.RawJSON.Replace("'", "");
-            Console.WriteLine(normal);
-            _lines.Add(normal);
+            return this;
         }
     }
 

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using SharpFunction.API;
 using SharpFunction.Commands.Minecraft;
 using SharpFunction.Universal;
@@ -53,6 +52,18 @@ namespace SharpFunction.Addons.Skyblock
         public Color NameColor { get; set; } = Color.Red;
 
         /// <summary>
+        /// Whether the entity is armor stand
+        /// </summary>
+        /// <value></value>
+        public bool IsArmorStand { get; set; } = false;
+
+        /// <summary>
+        /// NBT of armor stand if the enity is AS
+        /// </summary>
+        /// <value></value>
+        public ArmorStandNBT StandNBT { get; set; } = null;
+
+        /// <summary>
         /// Creates a simple entity with base params
         /// </summary>
         /// <param name="mob">Vanilla mob to spaw</param>
@@ -63,6 +74,7 @@ namespace SharpFunction.Addons.Skyblock
         {
             Name = name;
             VanillaEntity = mob.StartsWith("minecraft:") ? mob : $"minecraft:{mob}";
+            IsArmorStand = mob == "armor_stand";
             MaxHP = maxHP;
             Level = level;
         }
@@ -70,7 +82,8 @@ namespace SharpFunction.Addons.Skyblock
         /// <summary>
         /// Compiles data to <see cref="Command"/>, which can then be invoked.
         /// </summary>
-        public void Compile()
+        /// <returns>Compiled string of command</returns>
+        public string Compile()
         {
             var srt = new SuperRawText();
             srt.Append("[", Color.DarkGray);
@@ -81,7 +94,6 @@ namespace SharpFunction.Addons.Skyblock
             srt.Append("/", Color.White);
             srt.Append($"{MaxHP}", Color.Green);
             srt.Append("❤", Color.Red);
-
             EntityNBT nbt = new EntityNBT();
             nbt.CustomName = srt;
             nbt.CustomNameVisible = true;
@@ -91,12 +103,21 @@ namespace SharpFunction.Addons.Skyblock
 
             string mainNBT = nbt.Compile();
 
-            TheEntity = NullChecker.IsNull(Equipment) 
-                ? new Entity(VanillaEntity, NBTWrapper.Wrap(mainNBT)) 
-                : new Entity(VanillaEntity, NBTWrapper.Wrap(mainNBT, Equipment.Compile()));
-
+            if(IsArmorStand && !NullChecker.IsNull(StandNBT))
+            {
+                TheEntity = NullChecker.IsNull(Equipment) 
+                ? new Entity(VanillaEntity, NBTWrapper.Wrap(mainNBT, StandNBT.Compile())) 
+                : new Entity(VanillaEntity, NBTWrapper.Wrap(mainNBT, StandNBT.Compile(),Equipment.Compile()));
+            }
+            else 
+            {
+                TheEntity = NullChecker.IsNull(Equipment) 
+                    ? new Entity(VanillaEntity, NBTWrapper.Wrap(mainNBT)) 
+                    : new Entity(VanillaEntity, NBTWrapper.Wrap(mainNBT, Equipment.Compile()));
+            }
             Command = new Summon();
             Command.Compile(TheEntity, SimpleVector.Current);
+            return Command.Compiled;
         }
     }
 }
