@@ -143,6 +143,15 @@ namespace SharpFunction.Addons.Skyblock
         /// Makes the item hide it's stats only show rarity+recipes
         /// </summary>
         public bool HideStats { get; set; } = false;
+        /// <summary>
+        /// Marks that the item is leather armor
+        /// </summary>
+        public bool IsLeather { get; set; } = false;
+        /// <summary>
+        /// If marked that <see cref="IsLeather"/> this is hex color code for leather armor
+        /// </summary>
+        public string LeatherColorHex { get; set; }
+
         private RawText rawDescription;
         /// <summary>
         /// Create new Skyblock Item
@@ -156,15 +165,8 @@ namespace SharpFunction.Addons.Skyblock
             Type = type;
             Rarity = rarity;
             color = SkyblockEnumHelper.GetRarityColor(rarity);
-            if(color != NameColor && NameColor != Color.Default)
-            {
-                color = NameColor;
-            }
             ID = itemname;
             DisplayName = name;
-            RawText _name = new();
-            _name.AddField(name, color, RawTextFormatting.Straight, RawTextFormatting.None);
-            ItemName = _name;
         }
 
         private RawText ParseStats()
@@ -209,14 +211,14 @@ namespace SharpFunction.Addons.Skyblock
             Action<KeyValuePair<string, int?>> addRed = VoidEncapsulator<KeyValuePair<string, int?>>.Encapsulate(p =>
             {
                 string name = p.Key;
-                string stat = percented.Contains(name) ? $"+{p.Value}%" : $"+{p.Value}";
+                string stat = percented.Contains(name) ? $"{ParseStat(p.Value)}%" : $"{ParseStat(p.Value)}";
                 string n = $"{name}: ";
                 SuperRawText srt = new();
                 srt.Append(n, Color.Gray, RawTextFormatting.Straight);
                 srt.Append(stat, Color.Red, RawTextFormatting.Straight);
                 if(DungeonStats.IsDungeon)
                 {
-                    srt.Append($" (+{p.Value})", Color.DarkGray);
+                    srt.Append($" ({ParseStat(p.Value)})", Color.DarkGray);
                 }
                 rt.AddField(srt);
                 if(a.Last().Equals(p) && b is not null)
@@ -228,14 +230,14 @@ namespace SharpFunction.Addons.Skyblock
             Action<KeyValuePair<string, int?>> addGreen = VoidEncapsulator<KeyValuePair<string, int?>>.Encapsulate(p =>
             {
                 string name = p.Key;
-                string stat = percented.Contains(name) ? $"+{p.Value}%" : $"+{p.Value}";
+                string stat = percented.Contains(name) ? $"{ParseStat(p.Value)}%" : $"{ParseStat(p.Value)}";
                 string n = $"{name}: ";
                 SuperRawText srt = new();
                 srt.Append(n, Color.Gray, RawTextFormatting.Straight);
                 srt.Append(stat, Color.Green, RawTextFormatting.Straight);
                 if (DungeonStats.IsDungeon)
                 {
-                    srt.Append($" (+{p.Value})", Color.DarkGray);
+                    srt.Append($" ({ParseStat(p.Value)})", Color.DarkGray);
                 }
                 rt.AddField(srt);
             });
@@ -267,6 +269,16 @@ namespace SharpFunction.Addons.Skyblock
         /// <param name="description">Description string to add</param>
         public void AddDescription(AdvancedDescription description)
         {
+            // parse name so custom color works
+            if (color != NameColor && NameColor != Color.Default)
+            {
+                color = NameColor;
+            }
+            RawText _name = new();
+            _name.AddField(DisplayName, color, RawTextFormatting.Straight, RawTextFormatting.None);
+            ItemName = _name;
+            
+            // parse description and stuff
             RawText txt = ParseStats();
             if (!HideStats)
             {
@@ -284,6 +296,12 @@ namespace SharpFunction.Addons.Skyblock
                 txt.AddField($"{EnumHelper.GetStringValue(Rarity)} {EnumHelper.GetStringValue(Type)}", color, RawTextFormatting.Straight, RawTextFormatting.Bold);
             }
 
+        }
+
+        private string ParseStat(int? stat)
+        {
+            if (stat <= 0) return $"{stat}";
+            return $"+{stat};";
         }
 
         private RawText AddSlayerRequirement(RawText rt)
@@ -411,6 +429,11 @@ namespace SharpFunction.Addons.Skyblock
             nbt.Display = display;
             nbt.Unbreakable = true;
             if (HasGlint) nbt.EnchantmentData = "{}";
+            if(IsLeather && !IsNull(LeatherColorHex))
+            {
+                int colorCode = ArmorHelper.ParseHex(LeatherColorHex);
+                nbt.Display.AddColor(colorCode);
+            }
             Item item = new Item(itemname, nbt);
             var cmd = new Give(SimpleSelector.@p);
             cmd.Compile(item);

@@ -24,8 +24,15 @@ namespace SFExample
             //Project project = Project.Load($@"{Directory.GetCurrentDirectory()}\Sample2");
             //FunctionWriter w = project.Writer;
             // SlayerExample ex = new(w);
-            SuperRawText test = new();
-            Console.WriteLine(test.Append("test", Color.Gray).Append(" another test", Color.Red, RawTextFormatting.Bold).Compile());
+
+            SkyblockItem test = new(ItemType.Bow, ItemRarity.Trash, "TEST", "leather_helmet");
+            test.NameColor = Color.Red;
+            test.MagicFind = -999;
+            test.IsLeather = true;
+            test.LeatherColorHex = "#403b8c";
+            test.AddDescription(new AdvancedDescription().Append("Testy"));
+            Console.WriteLine(test.Compile());
+
             Console.WriteLine("Finished generating datapack!");
             Console.ReadLine();
         }

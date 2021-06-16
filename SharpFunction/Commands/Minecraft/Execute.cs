@@ -554,16 +554,49 @@ namespace SharpFunction.Commands.Minecraft
     /// </summary>
     public enum ExecuteCondition
     {
+        /// <summary>
+        /// align as swizzle of coordinates
+        /// </summary>
         [EnumValue("align")] Align,
+        /// <summary>
+        /// anchor to entity/pos
+        /// </summary>
         [EnumValue("anchored")] Anchored,
+        /// <summary>
+        /// execute as entity
+        /// </summary>
         [EnumValue("as")] As,
+        /// <summary>
+        /// execute at entity/pos
+        /// </summary>
         [EnumValue("at")] At,
+        /// <summary>
+        /// execute facing entity/pos
+        /// </summary>
         [EnumValue("facing")] Facing,
+        /// <summary>
+        /// execute in
+        /// </summary>
         [EnumValue("in")] In,
+        /// <summary>
+        /// execute positioned at pos
+        /// </summary>
         [EnumValue("positoned")] Positioned,
+        /// <summary>
+        /// execute positioned as entity
+        /// </summary>
         [EnumValue("positoned as")] PositionedAs,
+        /// <summary>
+        /// execute rotated with certain yaw and pitch
+        /// </summary>
         [EnumValue("rotated")] Rotated,
+        /// <summary>
+        /// execute rotated as entity
+        /// </summary>
         [EnumValue("rotated as")] RotatedAs,
+        /// <summary>
+        /// 
+        /// </summary>
         [EnumValue("")] None
     }
     /// <summary>
