@@ -25,6 +25,8 @@ namespace SharpFunction.Universal
         public bool? CustomNameVisible { get; set; } = null;
         ///<summary>Custom name of entity</summary>
         public SuperRawText? CustomName { get; set; } = null;
+        /// <summary>Passengers, sitting on entity</summary>
+        public EntityPassenger[]? Passengers { get; set; } = null;
 #nullable disable
 
         /// <summary>
@@ -34,13 +36,33 @@ namespace SharpFunction.Universal
         public string Compile()
         {
             string full = string.Empty;
-            string rawName = CustomName.Compile();
-            full += IsNull(NoAI) ? "" : $"NoAI: {BoolToByte((bool)NoAI)},";
-            full += IsNull(Silent) ? "" : $"Silent: {BoolToByte((bool)Silent)},";
-            full += IsNull(Invulnerable) ? "" : $"Invulnerable: {BoolToByte((bool)Invulnerable)},";
-            full += IsNull(Glowing) ? "" : $"Glowing: {BoolToByte((bool)Glowing)},";
-            full += IsNull(CustomName) ? "" : $"CustomName: '{rawName}',";
-            full += IsNull(CustomNameVisible) ? "" : $"CustomNameVisible: {BoolToByte((bool)CustomNameVisible)}";
+            // again, not the best practice but i dont really
+            // know how to optimise this thing
+
+            bool aiN = IsNull(NoAI);
+            bool sN = IsNull(Silent);
+            bool iN = IsNull(Invulnerable);
+            bool gN = IsNull(Glowing);
+            bool cnN = IsNull(CustomName);
+            bool cnvN = IsNull(CustomNameVisible);
+            bool pN = IsNull(Passengers);
+
+            full += aiN ? "" : $"NoAI: {BoolToByte((bool)NoAI)},";
+            full += sN ? "" : $"Silent: {BoolToByte((bool)Silent)},";
+            full += iN ? "" : $"Invulnerable: {BoolToByte((bool)Invulnerable)},";
+            full += gN ? "" : $"Glowing: {BoolToByte((bool)Glowing)},";
+            full += cnN ? "" : $"CustomName: '{CustomName.Compile()}',";
+            full += cnvN ? "" : $"CustomNameVisible: {BoolToByte((bool)CustomNameVisible)},";
+            if (!pN)
+            {
+                full += "Passengers:[";
+                foreach(EntityPassenger p in Passengers)
+                {
+                    full += IsNull(p.NBT) ? $"{{id:{p.ID}}}" : $"{{id:{p.ID}, {p.NBT}}}";
+                    full += Passengers.Last().Equals(p) ? "" : ",";
+                }
+                full += "]";
+            }
             return full;
         }
     }

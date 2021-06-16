@@ -5,7 +5,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	  <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Version>0.7.5.4-beta</Version>
+    <Version>0.7.5.5-beta</Version>
     <Authors>Maxus</Authors>
     <Company>Maxus Industries</Company>
     <Description>A .NET Library used for creating Minecraft datapacks, and most things related to them.</Description>
@@ -15,11 +15,9 @@
     <RepositoryUrl>https://github.com/Maxuss/SharpFunction</RepositoryUrl>
     <RepositoryType>GitHub Repository</RepositoryType>
     <PackageTags>Minecraft, Datapacks, Skyblock</PackageTags>
-    <PackageReleaseNotes>0.7.5.4 changelog
-	- Multiple bugfixes
-	- SkyblockItem now supports negative stats
-	- SkyblockItem now supports different color item names
-	- ItemDisplay now can AddColor for leather items
+    <PackageReleaseNotes>0.7.5.5 changelog
+	- Fixed weird bug that broke NBT data structures
+	- Added entity passengers
     </PackageReleaseNotes>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <NeutralLanguage>C# .NET</NeutralLanguage>

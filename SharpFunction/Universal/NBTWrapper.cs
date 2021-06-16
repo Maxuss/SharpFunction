@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace SharpFunction.Universal
@@ -23,7 +24,12 @@ namespace SharpFunction.Universal
             {
                 full += tags.Last().Equals(tag) ? tag : $"{tag},";
             });
-            return $"{{{full}}}";
+            // sometimes wrapper bugs and creates two commas
+            // replaces two commas by one
+            // not the best practice tho, but its the only safe
+            // exit because i dont really know what causes the bug
+            string tf = Regex.Replace(Regex.Replace(full, ",,(?=([^\"]* \"[^\"]*\")*[^\"]*$)", ","), ",,(?=([^']* '[^']*')*[^']*$)", ",");
+            return $"{{{tf}}}";
         }
     }
 }
