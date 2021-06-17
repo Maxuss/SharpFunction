@@ -3,9 +3,9 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-	  <GenerateDocumentationFile>true</GenerateDocumentationFile>
+	<GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Version>0.7.5.5-beta</Version>
+    <Version>0.7.5.59-beta</Version>
     <Authors>Maxus</Authors>
     <Company>Maxus Industries</Company>
     <Description>A .NET Library used for creating Minecraft datapacks, and most things related to them.</Description>
@@ -15,9 +15,11 @@
     <RepositoryUrl>https://github.com/Maxuss/SharpFunction</RepositoryUrl>
     <RepositoryType>GitHub Repository</RepositoryType>
     <PackageTags>Minecraft, Datapacks, Skyblock</PackageTags>
-    <PackageReleaseNotes>0.7.5.5 changelog
-	- Fixed weird bug that broke NBT data structures
-	- Added entity passengers
+    <PackageReleaseNotes>0.7.5.7 changelog
+	- Fixed critical bug related to item coloring
+	- Added SkyblockLocation
+	- Added SkyblockNPC
+	- Fixed some command-related bugs
     </PackageReleaseNotes>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <NeutralLanguage>C# .NET</NeutralLanguage>

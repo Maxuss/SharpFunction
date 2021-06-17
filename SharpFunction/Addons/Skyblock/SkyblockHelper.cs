@@ -37,6 +37,8 @@ namespace SharpFunction.Addons.Skyblock
         public const string ABILITY_DAMAGE = "๑";
         public const string MINING_SPEED = "⸕";
         public const string FORTUNE = "☘";
+        public const string ARR = "\\u27A4";
+
 
         public static string ParseHP(int hp)
         {

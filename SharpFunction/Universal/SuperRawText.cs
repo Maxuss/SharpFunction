@@ -50,7 +50,7 @@ namespace SharpFunction.Universal
         /// <summary>
         /// Bakes the formatting string
         /// </summary>
-        /// <returns>Compiled string</returns>
+        /// <returns>Compiled string of SRT</returns>
         public string Compile()
         {
             string a = string.Empty;
@@ -61,5 +61,6 @@ namespace SharpFunction.Universal
             Line = $"[{a}]";
             return Line;
         }
+
     }
 }

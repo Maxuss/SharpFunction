@@ -18,14 +18,14 @@ namespace SharpFunction.Universal
         {
             get
             {
-                return $"display: {{Name: '{_name}', Lore: {_lore}, color: {_colr} }}";
+                return string.IsNullOrEmpty(_colr) ? $"display: {{Name: '{_name}', Lore: {_lore}}}" : $"display: {{Name: '{_name}', Lore: {_lore}, color: {_colr} }}";
             }
         }
 
 
         private string _lore;
         private string _name;
-        private string _colr;
+        private string _colr = "";
         /// <summary>
         /// Initialize an item display json data
         /// </summary>
