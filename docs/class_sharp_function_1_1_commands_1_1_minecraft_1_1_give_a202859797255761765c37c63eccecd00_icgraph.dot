@@ -1,0 +1,30 @@
+digraph "SharpFunction.Commands.Minecraft.Give.Compile"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="SharpFunction.Commands.Minecraft.\lGive.Compile",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="SharpFunction.Addons.Skyblock.\lSlayerLevel.Compile",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_level.html#ade5da1e4973a33f655a67594e02de4d5",tooltip="Compiles item into give command"];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="SharpFunction.Addons.Skyblock.\lSkyblockSlayer.Generate",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_slayer.html#ac7d9e7e6984ef528eb26ed95383a8d0b",tooltip="Generates all the required stuff for datapack"];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="SharpFunction.Addons.Skyblock.\lSlayerTier.Compile",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_tier.html#a46ec37a0348b0fc6f6e1b34f64f369fd",tooltip="Compiles"];
+  Node4 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="SharpFunction.Addons.Skyblock.\lSkyblockPet.Generate",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_pet.html#add45c6b62f39177f26d8ebf04702fcb6",tooltip="Generates the give command"];
+  Node5 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="SharpFunction.Addons.Skyblock.\lSkyblockPet.Compile",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_pet.html#a6fbf01f9ac195e98098bb6dd896aba83",tooltip="Generates the /give command and compiles it to string"];
+  Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="SharpFunction.Addons.Skyblock.\lSlayerDrop.Generate",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop.html#ac3e70c0f936e8699a5e49bbbf7e42f51",tooltip="Generates command to give the item"];
+  Node7 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="SharpFunction.Addons.Skyblock.\lSlayerDrop.Compile",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop.html#a0f4bd5dfab1aadc15a07789cbaa4947e",tooltip="Generates and compiles the command, returning the string"];
+  Node8 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="SharpFunction.Universal.\lPlayerSkull.GenerateCommand",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_sharp_function_1_1_universal_1_1_player_skull.html#a11de98e13303f0c94bbc71d02ec87b7b",tooltip="Generates give command to get the skull and compiles it"];
+  Node9 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="SharpFunction.Universal.\lPlayerSkull.Compile",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_sharp_function_1_1_universal_1_1_player_skull.html#ac6eba84d57298185924a3efaba5c7755",tooltip="Generates the command and compiles it into string"];
+  Node1 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="SharpFunction.Addons.Skyblock.\lSkyblockSeaCreature.GenerateItem",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_sea_creature.html#acc001263e5a75c199028453b73c8704e",tooltip="Generates the item representing sea creature"];
+}

@@ -2,6 +2,7 @@ var class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_helper =
 [
     [ "ParseHP", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_helper.html#abcd96416e3f52d6891cb72209e3126f0", null ],
     [ "ABILITY_DAMAGE", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_helper.html#aa9304d2cbe21235cbed40ec7eaf8716d", null ],
+    [ "ARR", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_helper.html#a28e0f49de345206e78c8d420f500404f", null ],
     [ "ATTACK_SPEED", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_helper.html#a621a11491594e1b0cd398558f6540968", null ],
     [ "CATA_REQ", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_helper.html#a35644343542815c9bd74bfce6032f3bd", null ],
     [ "COMBAT_REQ", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_helper.html#a96869e176d15bb414b79b9d5b7d1eabf", null ],

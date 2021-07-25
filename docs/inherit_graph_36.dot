@@ -1,0 +1,8 @@
+digraph "Graphical Class Hierarchy"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node0 [label="SharpFunction.Universal.\lArmorStandNBT",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_sharp_function_1_1_universal_1_1_armor_stand_n_b_t.html",tooltip="Represents specific NBT data for Armor Stands"];
+}

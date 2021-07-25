@@ -1,0 +1,16 @@
+digraph "SharpFunction.Addons.Skyblock.SkyblockItem.Compile"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="SharpFunction.Addons.Skyblock.\lSkyblockItem.Compile",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Compile the skyblock item give command"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="SharpFunction.Universal.\lItemDisplay.AddColor",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_sharp_function_1_1_universal_1_1_item_display.html#a525da169b7aca9991d44846004c4188a",tooltip="Adds color to leather item"];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="SharpFunction.Universal.\lItemDisplay.AddLore",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_sharp_function_1_1_universal_1_1_item_display.html#a08137dd575139a74281c3a25efb0df8d",tooltip="Adds a lore for item's display"];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="SharpFunction.Universal.\lItemDisplay.AddName",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_sharp_function_1_1_universal_1_1_item_display.html#aa8517ef2a39604ba3a2e9bbf2a7eacec",tooltip="Adds a name for item's display"];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="SharpFunction.Universal.\lArmorHelper.ParseHex",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_sharp_function_1_1_universal_1_1_armor_helper.html#a4dc1c5f2117dd8e512cf8c9c84393138",tooltip="Parses the hex to int"];
+}

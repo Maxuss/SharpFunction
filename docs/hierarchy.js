@@ -4,6 +4,7 @@ var hierarchy =
       [ "SharpFunction.Writer.FunctionWriter", "class_sharp_function_1_1_writer_1_1_function_writer.html", null ]
     ] ],
     [ "SharpFunction.Addons.Skyblock.AdvancedDescription", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_advanced_description.html", null ],
+    [ "SharpFunction.Universal.ArmorHelper", "class_sharp_function_1_1_universal_1_1_armor_helper.html", null ],
     [ "SharpFunction.Universal.ArmorItems", "class_sharp_function_1_1_universal_1_1_armor_items.html", null ],
     [ "SharpFunction.Universal.ArmorStandNBT", "class_sharp_function_1_1_universal_1_1_armor_stand_n_b_t.html", null ],
     [ "System.Attribute", null, [
@@ -11,6 +12,7 @@ var hierarchy =
     ] ],
     [ "SharpFunction.Commands.Minecraft.Banlist", "class_sharp_function_1_1_commands_1_1_minecraft_1_1_banlist.html", null ],
     [ "SharpFunction.Commands.Minecraft.BossbarColor", "struct_sharp_function_1_1_commands_1_1_minecraft_1_1_bossbar_color.html", null ],
+    [ "SharpFunction.Universal.ColorHelper", "class_sharp_function_1_1_universal_1_1_color_helper.html", null ],
     [ "SharpFunction.Commands.CommandModule", "class_sharp_function_1_1_commands_1_1_command_module.html", null ],
     [ "SharpFunction.Commands.Coordinate", "struct_sharp_function_1_1_commands_1_1_coordinate.html", null ],
     [ "SharpFunction.Addons.Skyblock.DropMessage", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_drop_message.html", null ],
@@ -19,6 +21,7 @@ var hierarchy =
     [ "SharpFunction.Universal.Encapsulator< TValue, TExtra, TResult >", "class_sharp_function_1_1_universal_1_1_encapsulator.html", null ],
     [ "SharpFunction.Universal.Entity", "class_sharp_function_1_1_universal_1_1_entity.html", null ],
     [ "SharpFunction.Universal.EntityNBT", "class_sharp_function_1_1_universal_1_1_entity_n_b_t.html", null ],
+    [ "SharpFunction.Universal.EntityPassenger", "class_sharp_function_1_1_universal_1_1_entity_passenger.html", null ],
     [ "SharpFunction.Commands.EntitySelector", "struct_sharp_function_1_1_commands_1_1_entity_selector.html", null ],
     [ "SharpFunction.Universal.EnumHelper", "class_sharp_function_1_1_universal_1_1_enum_helper.html", null ],
     [ "Exception", null, [
@@ -90,7 +93,10 @@ var hierarchy =
     [ "SharpFunction.Addons.Skyblock.SkyblockItem", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_item.html", [
       [ "SharpFunction.Addons.Skyblock.SkyblockSkull", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_skull.html", null ]
     ] ],
+    [ "SharpFunction.Addons.Skyblock.SkyblockLocation", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_location.html", null ],
+    [ "SharpFunction.Addons.Skyblock.SkyblockNPC", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_n_p_c.html", null ],
     [ "SharpFunction.Addons.Skyblock.SkyblockPet", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_pet.html", null ],
+    [ "SharpFunction.Addons.Skyblock.SkyblockSeaCreature", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_sea_creature.html", null ],
     [ "SharpFunction.Addons.Skyblock.SkyblockSlayer", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_slayer.html", null ],
     [ "SharpFunction.Addons.Skyblock.SlayerAbility", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_ability.html", null ],
     [ "SharpFunction.Addons.Skyblock.SlayerDrop", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_drop.html", null ],

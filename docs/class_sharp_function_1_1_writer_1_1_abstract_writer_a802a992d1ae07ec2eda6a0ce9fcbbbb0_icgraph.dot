@@ -1,0 +1,17 @@
+digraph "SharpFunction.Writer.AbstractWriter.CategorySpecified"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="SharpFunction.Writer.Abstract\lWriter.CategorySpecified",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Checks whether the category is specified."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="SharpFunction.Writer.Function\lWriter.CreateFunction",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_sharp_function_1_1_writer_1_1_function_writer.html#a797a2773e0ae5bf46b20b57669122a23",tooltip="Creates an empty function with specified name in current working category.  Overwrites it if it exist..."];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="SharpFunction.Addons.Skyblock.\lSkyblockSlayer.Generate",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_slayer.html#ac7d9e7e6984ef528eb26ed95383a8d0b",tooltip="Generates all the required stuff for datapack"];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="SharpFunction.Writer.Abstract\lWriter.GetCurrentCategory",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_sharp_function_1_1_writer_1_1_abstract_writer.html#a782e35906eae7eaa608b6c2f882c96aa",tooltip="Gets current category"];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="SharpFunction.Writer.Function\lWriter.WriteCommand",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_sharp_function_1_1_writer_1_1_function_writer.html#acbcb482b36876cbc952443e3ed42da87",tooltip="Writes a simple command to function"];
+  Node5 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

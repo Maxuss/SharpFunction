@@ -1,0 +1,56 @@
+digraph "SharpFunction.Commands.Minecraft.ICommand"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="SharpFunction.Commands.Minecraft.\lICommand",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Represents main interface inherited by all command classes"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="SharpFunction.Commands.Minecraft.\lAdvancement",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_sharp_function_1_1_commands_1_1_minecraft_1_1_advancement.html",tooltip="Represents advancement command. Equal to Minecraft's"];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="SharpFunction.Commands.Minecraft.\lAttribute",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_sharp_function_1_1_commands_1_1_minecraft_1_1_attribute.html",tooltip="Represents and attribute command. Equal to Minecraft's"];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="SharpFunction.Commands.Minecraft.Ban",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_sharp_function_1_1_commands_1_1_minecraft_1_1_ban.html",tooltip="Represents ban command. Equal to Minecraft's"];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="SharpFunction.Commands.Minecraft.\lBanIP",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_sharp_function_1_1_commands_1_1_minecraft_1_1_ban_i_p.html",tooltip="Represents ban-ip command. Equal to Minecraft's"];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="SharpFunction.Commands.Minecraft.\lBossbar",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_sharp_function_1_1_commands_1_1_minecraft_1_1_bossbar.html",tooltip="Represents bossbar command. Equal to Minecraft's"];
+  Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="SharpFunction.Commands.Minecraft.\lClear",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_sharp_function_1_1_commands_1_1_minecraft_1_1_clear.html",tooltip="Represents clear command. Equal to Minecraft's"];
+  Node1 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="SharpFunction.Commands.Minecraft.\lClone",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_sharp_function_1_1_commands_1_1_minecraft_1_1_clone.html",tooltip="Represents clone command. Equal to Minecraft's"];
+  Node1 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="SharpFunction.Commands.Minecraft.\lDatapack",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_sharp_function_1_1_commands_1_1_minecraft_1_1_datapack.html",tooltip="Represents minecraft datapack command. Equal to Minecraft's"];
+  Node1 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="SharpFunction.Commands.Minecraft.\lDefaultGamemode",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_sharp_function_1_1_commands_1_1_minecraft_1_1_default_gamemode.html",tooltip="Represents defaultgamemode command. Equal to Minecraft's"];
+  Node1 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="SharpFunction.Commands.Minecraft.\lEffect",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_sharp_function_1_1_commands_1_1_minecraft_1_1_effect.html",tooltip="Represents effect command. Equal to Minecraft's"];
+  Node1 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="SharpFunction.Commands.Minecraft.\lEnchant",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_sharp_function_1_1_commands_1_1_minecraft_1_1_enchant.html",tooltip="Represents /enchant command. Equal to Minecraft's"];
+  Node1 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="SharpFunction.Commands.Minecraft.\lExecute",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_sharp_function_1_1_commands_1_1_minecraft_1_1_execute.html",tooltip="Represents /execute command. Equal to Minecraft's"];
+  Node1 -> Node14 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 [label="SharpFunction.Commands.Minecraft.Fill",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_sharp_function_1_1_commands_1_1_minecraft_1_1_fill.html",tooltip="Represents fill command. Equal to Minecraft's"];
+  Node1 -> Node15 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node15 [label="SharpFunction.Commands.Minecraft.\lFunction",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_sharp_function_1_1_commands_1_1_minecraft_1_1_function.html",tooltip="Represents function command. Equal to Minecraft's"];
+  Node1 -> Node16 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node16 [label="SharpFunction.Commands.Minecraft.\lGamemode",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_sharp_function_1_1_commands_1_1_minecraft_1_1_gamemode.html",tooltip="Represents gamemode command. Equal to Minecraft's"];
+  Node1 -> Node17 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node17 [label="SharpFunction.Commands.Minecraft.\lGamerule",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_sharp_function_1_1_commands_1_1_minecraft_1_1_gamerule.html",tooltip="Represents Gamerule command. Equal to Minecraft's"];
+  Node1 -> Node18 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node18 [label="SharpFunction.Commands.Minecraft.Give",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_sharp_function_1_1_commands_1_1_minecraft_1_1_give.html",tooltip="Represents Give command. Equal to Minecraft's"];
+  Node1 -> Node19 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node19 [label="SharpFunction.Commands.Minecraft.Help",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_sharp_function_1_1_commands_1_1_minecraft_1_1_help.html",tooltip="Represents a /help Command. Equal to Minecraft's"];
+  Node1 -> Node20 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node20 [label="SharpFunction.Commands.Minecraft.Kill",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_sharp_function_1_1_commands_1_1_minecraft_1_1_kill.html",tooltip="Represents kill command. Equal to Minecraft's"];
+  Node1 -> Node21 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node21 [label="SharpFunction.Commands.Minecraft.Say",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_sharp_function_1_1_commands_1_1_minecraft_1_1_say.html",tooltip="Say command. Equal to Minecraft's"];
+  Node1 -> Node22 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node22 [label="SharpFunction.Commands.Minecraft.\lSummon",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_sharp_function_1_1_commands_1_1_minecraft_1_1_summon.html",tooltip="Represents Summon command. Equal to Minecraft's"];
+  Node1 -> Node23 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node23 [label="SharpFunction.Commands.Minecraft.\lTeleport",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_sharp_function_1_1_commands_1_1_minecraft_1_1_teleport.html",tooltip="Represents a Teleport command. Equal to Minecraft's"];
+  Node1 -> Node24 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node24 [label="SharpFunction.Commands.Minecraft.\lTellraw",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_sharp_function_1_1_commands_1_1_minecraft_1_1_tellraw.html",tooltip="Represents tellraw command. Equal to Minecraft's"];
+  Node1 -> Node25 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node25 [label="SharpFunction.Commands.Minecraft.\lTitle",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_sharp_function_1_1_commands_1_1_minecraft_1_1_title.html",tooltip="Represents Title command. Equal to Minecraft's"];
+}

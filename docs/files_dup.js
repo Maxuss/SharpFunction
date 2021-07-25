@@ -6,6 +6,9 @@ var files_dup =
       [ "AbstractWriter", "class_sharp_function_1_1_writer_1_1_abstract_writer.html", "class_sharp_function_1_1_writer_1_1_abstract_writer" ]
     ] ],
     [ "Advancement.cs", "_advancement_8cs.html", "_advancement_8cs" ],
+    [ "ArmorHelper.cs", "_armor_helper_8cs.html", [
+      [ "ArmorHelper", "class_sharp_function_1_1_universal_1_1_armor_helper.html", "class_sharp_function_1_1_universal_1_1_armor_helper" ]
+    ] ],
     [ "Attribute.cs", "_attribute_8cs.html", "_attribute_8cs" ],
     [ "AttributeAction.cs", "_attribute_action_8cs.html", "_attribute_action_8cs" ],
     [ "Ban.cs", "_ban_8cs.html", "_ban_8cs" ],
@@ -19,6 +22,9 @@ var files_dup =
     ] ],
     [ "Clone.cs", "_clone_8cs.html", "_clone_8cs" ],
     [ "Color.cs", "_color_8cs.html", "_color_8cs" ],
+    [ "ColorHelper.cs", "_color_helper_8cs.html", [
+      [ "ColorHelper", "class_sharp_function_1_1_universal_1_1_color_helper.html", "class_sharp_function_1_1_universal_1_1_color_helper" ]
+    ] ],
     [ "CommandHelper.cs", "_command_helper_8cs.html", null ],
     [ "CommandModule.cs", "_command_module_8cs.html", [
       [ "CommandModule", "class_sharp_function_1_1_commands_1_1_command_module.html", "class_sharp_function_1_1_commands_1_1_command_module" ]
@@ -47,6 +53,9 @@ var files_dup =
       [ "EntityNBT", "class_sharp_function_1_1_universal_1_1_entity_n_b_t.html", "class_sharp_function_1_1_universal_1_1_entity_n_b_t" ],
       [ "ArmorStandNBT", "class_sharp_function_1_1_universal_1_1_armor_stand_n_b_t.html", "class_sharp_function_1_1_universal_1_1_armor_stand_n_b_t" ],
       [ "ArmorItems", "class_sharp_function_1_1_universal_1_1_armor_items.html", "class_sharp_function_1_1_universal_1_1_armor_items" ]
+    ] ],
+    [ "EntityPassenger.cs", "_entity_passenger_8cs.html", [
+      [ "EntityPassenger", "class_sharp_function_1_1_universal_1_1_entity_passenger.html", "class_sharp_function_1_1_universal_1_1_entity_passenger" ]
     ] ],
     [ "EntitySelector.cs", "_entity_selector_8cs.html", [
       [ "EntitySelector", "struct_sharp_function_1_1_commands_1_1_entity_selector.html", "struct_sharp_function_1_1_commands_1_1_entity_selector" ]
@@ -154,7 +163,16 @@ var files_dup =
       [ "SkyblockHelper", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_helper.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_helper" ]
     ] ],
     [ "SkyblockItem.cs", "_skyblock_item_8cs.html", "_skyblock_item_8cs" ],
+    [ "SkyblockLocation.cs", "_skyblock_location_8cs.html", [
+      [ "SkyblockLocation", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_location.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_location" ]
+    ] ],
+    [ "SkyblockNPC.cs", "_skyblock_n_p_c_8cs.html", [
+      [ "SkyblockNPC", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_n_p_c.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_n_p_c" ]
+    ] ],
     [ "SkyblockPet.cs", "_skyblock_pet_8cs.html", "_skyblock_pet_8cs" ],
+    [ "SkyblockSeaCreature.cs", "_skyblock_sea_creature_8cs.html", [
+      [ "SkyblockSeaCreature", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_sea_creature.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_sea_creature" ]
+    ] ],
     [ "SkyblockSkull.cs", "_skyblock_skull_8cs.html", [
       [ "SkyblockSkull", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_skull.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_skull" ]
     ] ],

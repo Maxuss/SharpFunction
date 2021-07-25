@@ -29,7 +29,7 @@
   <td id="projectlogo"><img alt="Logo" src="ICON.svg"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">SharpFunction
-   &#160;<span id="projectnumber">0.7.5.3-beta</span>
+   &#160;<span id="projectnumber">v1.0-final</span>
    </div>
    <div id="projectbrief">Create Minecraft datapacks in C# with ease!</div>
   </td>
@@ -166,33 +166,33 @@ Public Member Functions</h2></td></tr>
 <p><a class="el" href="class_sharp_function_1_1_commands_1_1_minecraft_1_1_execute.html" title="Represents /execute command. Equal to Minecraft&#39;s">Execute</a> command has a very complex syntax tree<br  />
  <b><a class="el" href="class_sharp_function_1_1_commands_1_1_minecraft_1_1_execute.html" title="Represents /execute command. Equal to Minecraft&#39;s">Execute</a> parameters</b> </p>
 <ol type="1">
-<li><a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#acf23e1875c9616bb9a082b43bba7e025ad12fbc9a2ba3b0b91a4190959b4c966b">ExecuteCondition.Align</a><br  />
+<li><a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#acf23e1875c9616bb9a082b43bba7e025ad12fbc9a2ba3b0b91a4190959b4c966b" title="align as swizzle of coordinates">ExecuteCondition.Align</a><br  />
  Updates the command's execution position, aligning to its current block position.<br  />
  <em>Syntax:</em><br  />
  <em>extraParameters</em> [0] should have swizzle of coordinates.<br  />
  Example: "xzy" or "yz" </li>
 </ol>
 <ol type="1">
-<li><a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#acf23e1875c9616bb9a082b43bba7e025ac49640afe1366cd0158d41c440d817cf">ExecuteCondition.Anchored</a><br  />
+<li><a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#acf23e1875c9616bb9a082b43bba7e025ac49640afe1366cd0158d41c440d817cf" title="anchor to entity/pos">ExecuteCondition.Anchored</a><br  />
  Sets the execution anchor to the eyes or feet. Defaults to feet.<br  />
  <em>Syntax:</em><br  />
  <em>extraParameters</em> [0] should be <a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#aaf6c27e82ea79bbb4fcc086abfe6e2c2" title="Represents type of anchor">AnchorCondition</a><br  />
  </li>
 </ol>
 <ol type="1">
-<li><a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#acf23e1875c9616bb9a082b43bba7e025a27baf79af932bd1592a6f4d5d61e96a9">ExecuteCondition.As</a><br  />
+<li><a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#acf23e1875c9616bb9a082b43bba7e025a27baf79af932bd1592a6f4d5d61e96a9" title="execute as entity">ExecuteCondition.As</a><br  />
  Sets the command's executor to target entity, without changing execution position, rotation, dimension, or anchor<br  />
  <em>Syntax:</em><br  />
  <em>extraParameters</em> [0] should be <a class="el" href="struct_sharp_function_1_1_commands_1_1_entity_selector.html" title="Represents a selector for entities with it&#39;s parameters">EntitySelector</a> </li>
 </ol>
 <ol type="1">
-<li><a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#acf23e1875c9616bb9a082b43bba7e025adc5f499e83aef4f6811faa4081631740">ExecuteCondition.At</a><br  />
+<li><a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#acf23e1875c9616bb9a082b43bba7e025adc5f499e83aef4f6811faa4081631740" title="execute at entity/pos">ExecuteCondition.At</a><br  />
  Sets the execution position, rotation, and dimension to match those of an entity; does not change executor.<br  />
  <em>Syntax:</em><br  />
  <em>extraParameters</em> [0] should be <a class="el" href="struct_sharp_function_1_1_commands_1_1_entity_selector.html" title="Represents a selector for entities with it&#39;s parameters">EntitySelector</a> </li>
 </ol>
 <ol type="1">
-<li><a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#acf23e1875c9616bb9a082b43bba7e025aa6c610e0dc2c127157f0722b59e2ad9d">ExecuteCondition.Facing</a><br  />
+<li><a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#acf23e1875c9616bb9a082b43bba7e025aa6c610e0dc2c127157f0722b59e2ad9d" title="execute facing entity/pos">ExecuteCondition.Facing</a><br  />
  Sets the execution rotation to face a given point, as viewed from its anchor (either the eyes or the feet)<br  />
  <em>Syntax:</em><br  />
  <em>extraParameters</em> [0] should be <a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#afd83866adee4445985142c2bb14bc6ba" title="Represents type of facing">FacingCondition</a><br  />
@@ -204,26 +204,26 @@ Public Member Functions</h2></td></tr>
  </li>
 </ol>
 <ol type="1">
-<li><a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#acf23e1875c9616bb9a082b43bba7e025aefeb369cccbd560588a756610865664c">ExecuteCondition.In</a><br  />
+<li><a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#acf23e1875c9616bb9a082b43bba7e025aefeb369cccbd560588a756610865664c" title="execute in">ExecuteCondition.In</a><br  />
  Sets the execution dimension and position<br  />
  <em>Syntax:</em><br  />
  <em>extraParameters</em> [0] should be dimension string ("overworld"|"the_nether"|"the_end"|"custom dimension")<br  />
  </li>
 </ol>
 <ol type="1">
-<li><a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#acf23e1875c9616bb9a082b43bba7e025a621ce9f1f51ab6dd2d25c75b0fb9fc77">ExecuteCondition.Positioned</a><br  />
+<li><a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#acf23e1875c9616bb9a082b43bba7e025a621ce9f1f51ab6dd2d25c75b0fb9fc77" title="execute positioned at pos">ExecuteCondition.Positioned</a><br  />
  Sets the execution position, without changing execution rotation or dimension;<br  />
  <em>Syntax:</em><br  />
  <em>extraParameters</em> [0] should be <a class="el" href="struct_sharp_function_1_1_commands_1_1_vector3.html" title="Represents coordinates in ingame world">Vector3</a> </li>
 </ol>
 <ol type="1">
-<li><a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#acf23e1875c9616bb9a082b43bba7e025acd169c23c8a48e519fdc9baf5abac972">ExecuteCondition.PositionedAs</a><br  />
- Works like <a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#acf23e1875c9616bb9a082b43bba7e025a621ce9f1f51ab6dd2d25c75b0fb9fc77">ExecuteCondition.Positioned</a> but anchors at entity<br  />
+<li><a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#acf23e1875c9616bb9a082b43bba7e025acd169c23c8a48e519fdc9baf5abac972" title="execute positioned as entity">ExecuteCondition.PositionedAs</a><br  />
+ Works like <a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#acf23e1875c9616bb9a082b43bba7e025a621ce9f1f51ab6dd2d25c75b0fb9fc77" title="execute positioned at pos">ExecuteCondition.Positioned</a> but anchors at entity<br  />
  <em>Syntax:</em><br  />
  <em>extraParameters</em> [0] should be <a class="el" href="struct_sharp_function_1_1_commands_1_1_entity_selector.html" title="Represents a selector for entities with it&#39;s parameters">EntitySelector</a> </li>
 </ol>
 <ol type="1">
-<li><a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#acf23e1875c9616bb9a082b43bba7e025a4f8d7de5d5a3860f0a27f8848de1ba40">ExecuteCondition.Rotated</a><br  />
+<li><a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#acf23e1875c9616bb9a082b43bba7e025a4f8d7de5d5a3860f0a27f8848de1ba40" title="execute rotated with certain yaw and pitch">ExecuteCondition.Rotated</a><br  />
  Sets the execution rotation<br  />
  <em>Syntax:</em><br  />
  <em>extraParameters</em> [0] should be yaw float<br  />
@@ -231,7 +231,7 @@ Public Member Functions</h2></td></tr>
  </li>
 </ol>
 <ol type="1">
-<li><a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#acf23e1875c9616bb9a082b43bba7e025aba4eb33e6c0d5ddd1f28f2a6a8c6e3c5">ExecuteCondition.RotatedAs</a><br  />
+<li><a class="el" href="namespace_sharp_function_1_1_commands_1_1_minecraft.html#acf23e1875c9616bb9a082b43bba7e025aba4eb33e6c0d5ddd1f28f2a6a8c6e3c5" title="execute rotated as entity">ExecuteCondition.RotatedAs</a><br  />
  Sets the execution rotation to entity's rotation<br  />
  <em>Syntax:</em><br  />
  <em>extraParameters</em> [0] should be <a class="el" href="struct_sharp_function_1_1_commands_1_1_entity_selector.html" title="Represents a selector for entities with it&#39;s parameters">EntitySelector</a> entity<br  />
@@ -365,6 +365,11 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="struct_sharp_function_1_1_commands_1_1_minecraft_1_1_execute_parameters_ac72332e5bf029db6284cdc9608a8aed7_cgraph.png" border="0" usemap="#astruct_sharp_function_1_1_commands_1_1_minecraft_1_1_execute_parameters_ac72332e5bf029db6284cdc9608a8aed7_cgraph" alt=""/></div>
+</div>
 
 </div>
 </div>

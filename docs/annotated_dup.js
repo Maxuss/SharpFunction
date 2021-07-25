@@ -10,8 +10,11 @@ var annotated_dup =
           [ "AdvancedDescription", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_advanced_description.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_advanced_description" ],
           [ "DungeonStats", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_dungeon_stats.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_dungeon_stats" ],
           [ "SlayerRequirement", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_requirement.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_requirement" ],
+          [ "SkyblockLocation", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_location.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_location" ],
+          [ "SkyblockNPC", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_n_p_c.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_n_p_c" ],
           [ "SkyblockPet", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_pet.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_pet" ],
           [ "PetAbility", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_pet_ability.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_pet_ability" ],
+          [ "SkyblockSeaCreature", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_sea_creature.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_sea_creature" ],
           [ "SkyblockSkull", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_skull.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_skull" ],
           [ "SkyblockSlayer", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_slayer.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_skyblock_slayer" ],
           [ "SlayerAbility", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_ability.html", "class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_ability" ],
@@ -81,6 +84,8 @@ var annotated_dup =
         [ "MetaWriter", "class_sharp_function_1_1_meta_1_1_meta_writer.html", "class_sharp_function_1_1_meta_1_1_meta_writer" ]
       ] ],
       [ "Universal", "namespace_sharp_function_1_1_universal.html", [
+        [ "ArmorHelper", "class_sharp_function_1_1_universal_1_1_armor_helper.html", "class_sharp_function_1_1_universal_1_1_armor_helper" ],
+        [ "ColorHelper", "class_sharp_function_1_1_universal_1_1_color_helper.html", "class_sharp_function_1_1_universal_1_1_color_helper" ],
         [ "EncapsulatedType", "class_sharp_function_1_1_universal_1_1_encapsulated_type.html", "class_sharp_function_1_1_universal_1_1_encapsulated_type" ],
         [ "Encapsulator", "class_sharp_function_1_1_universal_1_1_encapsulator.html", "class_sharp_function_1_1_universal_1_1_encapsulator" ],
         [ "VoidEncapsulator", "class_sharp_function_1_1_universal_1_1_void_encapsulator.html", "class_sharp_function_1_1_universal_1_1_void_encapsulator" ],
@@ -88,6 +93,7 @@ var annotated_dup =
         [ "EntityNBT", "class_sharp_function_1_1_universal_1_1_entity_n_b_t.html", "class_sharp_function_1_1_universal_1_1_entity_n_b_t" ],
         [ "ArmorStandNBT", "class_sharp_function_1_1_universal_1_1_armor_stand_n_b_t.html", "class_sharp_function_1_1_universal_1_1_armor_stand_n_b_t" ],
         [ "ArmorItems", "class_sharp_function_1_1_universal_1_1_armor_items.html", "class_sharp_function_1_1_universal_1_1_armor_items" ],
+        [ "EntityPassenger", "class_sharp_function_1_1_universal_1_1_entity_passenger.html", "class_sharp_function_1_1_universal_1_1_entity_passenger" ],
         [ "EnumHelper", "class_sharp_function_1_1_universal_1_1_enum_helper.html", "class_sharp_function_1_1_universal_1_1_enum_helper" ],
         [ "Item", "class_sharp_function_1_1_universal_1_1_item.html", "class_sharp_function_1_1_universal_1_1_item" ],
         [ "ItemDisplay", "class_sharp_function_1_1_universal_1_1_item_display.html", "class_sharp_function_1_1_universal_1_1_item_display" ],

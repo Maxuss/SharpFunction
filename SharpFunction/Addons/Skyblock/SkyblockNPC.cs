@@ -27,6 +27,14 @@ namespace SharpFunction.Addons.Skyblock
         /// </summary>
         public Color ReplicColor { get; set; } = Color.Yellow;
         /// <summary>
+        /// Type of entity to be summoned
+        /// </summary>
+        public string EntityType { get; set; }
+        /// <summary>
+        /// NBT of entity to be summoned. null by default
+        /// </summary>
+        public EntityNBT? EntityNBT { get; set; }
+        /// <summary>
         /// Generates replics of NPC
         /// </summary>
         /// <param name="replics">Replics for NPC to say</param>
@@ -42,6 +50,31 @@ namespace SharpFunction.Addons.Skyblock
                 ds.Add(tl.Compiled);
             }
             return ds;
+        }
+
+        /// <summary>
+        /// Generates command to summon the NPC
+        /// </summary>
+        /// <returns>Generated command for summoning the NPC</returns>
+        public string GenerateEntity()
+        {
+            EntityNBT nbt;
+            if (EntityNBT is null)
+            {
+                nbt = new();
+                nbt.CustomNameVisible = true;
+                nbt.CustomName = new();
+                nbt.CustomName
+                    .Append(Name, Color.Yellow)
+                    .Append(" CLICK", Color.Gold, RawTextFormatting.Straight, RawTextFormatting.Bold);
+                nbt.NoAI = true;
+                nbt.Invulnerable = true;
+            }
+            else nbt = EntityNBT;
+            Entity e = new(EntityType, nbt.Compile());
+            Summon s = new();
+            s.Compile(e, SimpleVector.Current);
+            return s.Compiled;
         }
     }
 }

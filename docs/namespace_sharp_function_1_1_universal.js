@@ -1,5 +1,7 @@
 var namespace_sharp_function_1_1_universal =
 [
+    [ "ArmorHelper", "class_sharp_function_1_1_universal_1_1_armor_helper.html", "class_sharp_function_1_1_universal_1_1_armor_helper" ],
+    [ "ColorHelper", "class_sharp_function_1_1_universal_1_1_color_helper.html", "class_sharp_function_1_1_universal_1_1_color_helper" ],
     [ "EncapsulatedType", "class_sharp_function_1_1_universal_1_1_encapsulated_type.html", "class_sharp_function_1_1_universal_1_1_encapsulated_type" ],
     [ "Encapsulator", "class_sharp_function_1_1_universal_1_1_encapsulator.html", "class_sharp_function_1_1_universal_1_1_encapsulator" ],
     [ "VoidEncapsulator", "class_sharp_function_1_1_universal_1_1_void_encapsulator.html", "class_sharp_function_1_1_universal_1_1_void_encapsulator" ],
@@ -7,6 +9,7 @@ var namespace_sharp_function_1_1_universal =
     [ "EntityNBT", "class_sharp_function_1_1_universal_1_1_entity_n_b_t.html", "class_sharp_function_1_1_universal_1_1_entity_n_b_t" ],
     [ "ArmorStandNBT", "class_sharp_function_1_1_universal_1_1_armor_stand_n_b_t.html", "class_sharp_function_1_1_universal_1_1_armor_stand_n_b_t" ],
     [ "ArmorItems", "class_sharp_function_1_1_universal_1_1_armor_items.html", "class_sharp_function_1_1_universal_1_1_armor_items" ],
+    [ "EntityPassenger", "class_sharp_function_1_1_universal_1_1_entity_passenger.html", "class_sharp_function_1_1_universal_1_1_entity_passenger" ],
     [ "EnumHelper", "class_sharp_function_1_1_universal_1_1_enum_helper.html", "class_sharp_function_1_1_universal_1_1_enum_helper" ],
     [ "Item", "class_sharp_function_1_1_universal_1_1_item.html", "class_sharp_function_1_1_universal_1_1_item" ],
     [ "ItemDisplay", "class_sharp_function_1_1_universal_1_1_item_display.html", "class_sharp_function_1_1_universal_1_1_item_display" ],

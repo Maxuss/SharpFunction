@@ -1,0 +1,18 @@
+digraph "SharpFunction.Exceptions.SFException"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="SharpFunction.Exceptions.\lSFException",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Represents main class for SharpFunction exceptions inheritance"];
+  Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="Exception",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="SharpFunction.Exceptions.\lFunctionNotSpecifiedException",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_sharp_function_1_1_exceptions_1_1_function_not_specified_exception.html",tooltip="Occurs when function is not specified"];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="SharpFunction.Exceptions.\lInitializationException",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_sharp_function_1_1_exceptions_1_1_initialization_exception.html",tooltip="Thrown when initialization did not yet began but post-init method was invoked"];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="SharpFunction.Exceptions.\lInvalidSelectorParameters",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_sharp_function_1_1_exceptions_1_1_invalid_selector_parameters.html",tooltip=" "];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="SharpFunction.Exceptions.\lMetaFileNotFound",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_sharp_function_1_1_exceptions_1_1_meta_file_not_found.html",tooltip="Thrown when could not find .sfmeta file in project"];
+}

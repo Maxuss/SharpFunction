@@ -45,7 +45,7 @@ var NAVTREE =
       [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
       [ "Class Members", "functions.html", [
         [ "All", "functions.html", "functions_dup" ],
-        [ "Functions", "functions_func.html", null ],
+        [ "Functions", "functions_func.html", "functions_func" ],
         [ "Variables", "functions_vars.html", null ],
         [ "Properties", "functions_prop.html", "functions_prop" ]
       ] ]
@@ -63,12 +63,12 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_abstract_writer_8cs.html",
-"_gamerule_value_8cs.html#a5e3cb3c819ff693f73d42ddeef0e6ed4a558cb5820eed86d02612f856348cc4e9",
-"class_sharp_function_1_1_a_p_i_1_1_project.html#a725c5de8cb5c520c06722f40b48c96f6",
-"class_sharp_function_1_1_commands_1_1_minecraft_1_1_ban_i_p.html#ad1d7dfea302644dc32d9de314c271356",
-"class_sharp_function_1_1_writer_1_1_function_writer.html#a797a2773e0ae5bf46b20b57669122a23",
-"namespace_sharp_function_1_1_commands_1_1_minecraft.html#a23051046cdaa27823b6ef9f6c978eddaa95c47947d4e0aaa66dd910ec95378820",
-"struct_sharp_function_1_1_a_p_i_1_1_simple_vector.html#a7d363e42c70e4eb3710d123dc08e0402"
+"_gamerule_value_8cs.html#a5e3cb3c819ff693f73d42ddeef0e6ed4a1a5bcd2cf32f1889efea187fa8c299ad",
+"class_sharp_function_1_1_a_p_i_1_1_project.html#a0dc198ed77020b53cb21301085875b8c",
+"class_sharp_function_1_1_addons_1_1_skyblock_1_1_slayer_tier.html#a95f799652f7bba4fdddc2993af32c2f0",
+"class_sharp_function_1_1_universal_1_1_null_checker.html#a232bedea6113ec57a4a53dac2e26a3b0",
+"namespace_sharp_function_1_1_commands_1_1_minecraft.html#a1daac6ebad44fca6d72cec6295b4053aad6eddac552a45b54adf46d83ef2d8667",
+"namespace_sharp_function_1_1_commands_1_1_minecraft.html#ad94736af0133e75cbae24dcf7c28329aa7331c59041b71c4be48361b85c639bdd"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
