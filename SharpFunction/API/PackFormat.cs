@@ -14,18 +14,18 @@ namespace SharpFunction.API
         /// <summary>
         /// 1.13-1.14.4
         /// </summary>
-        DotThirteen = 4,
+        v1_13 = 4,
         /// <summary>
         /// 1.15-1.16.1
         /// </summary>
-        DotFifteen = 5,
+        v1_15 = 5,
         /// <summary>
         /// 1.16.2-1.16.5
         /// </summary>
-        DotSixteen = 6,
+        v1_16 = 6,
         /// <summary>
         /// 1.17+
         /// </summary>
-        DotSeventeen = 7
+        v1_17 = 7
     }
 }

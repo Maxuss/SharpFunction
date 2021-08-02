@@ -5,7 +5,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	<GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Version>0.7.5.7-beta</Version>
+    <Version>1.0-final</Version>
     <Authors>Maxus</Authors>
     <Company>Maxus Industries</Company>
     <Description>A .NET Library used for creating Minecraft datapacks, and most things related to them.</Description>
@@ -15,14 +15,13 @@
     <RepositoryUrl>https://github.com/Maxuss/SharpFunction</RepositoryUrl>
     <RepositoryType>GitHub Repository</RepositoryType>
     <PackageTags>Minecraft, Datapacks, Skyblock</PackageTags>
-    <PackageReleaseNotes>0.7.5.7 changelog
-	- Fixed critical bug related to item coloring
-	- Added SkyblockLocation
-	- Added SkyblockNPC
-	- Fixed some command-related bugs
-    </PackageReleaseNotes>
+    <PackageReleaseNotes>v1.0-final changelog: 
+ - Bugfixes,
+ - You can now summon Skyblock NPCs</PackageReleaseNotes>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <NeutralLanguage>C# .NET</NeutralLanguage>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
