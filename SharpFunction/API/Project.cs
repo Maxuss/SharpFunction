@@ -35,7 +35,7 @@ namespace SharpFunction.API
         /// <summary>
         /// Pack format shown in pack.mcmeta
         /// </summary>
-        public PackFormat Format { get; set; } = PackFormat.DotSixteen;
+        public PackFormat Format { get; set; } = PackFormat.v1_16;
 
         /// <summary>
         /// Allows the writing of minecraft functions.<br/>
@@ -97,18 +97,19 @@ namespace SharpFunction.API
         /// </summary>
         internal void GenerateLoad(string namespaced)
         {
-            Writer = new(this);
+            Writer = new FunctionWriter(this);
             Writer.Initialize(Path.Combine(namespaced, "functions"));
         }
 
-        /// <summary>Initializes a datapack, allowing the use of <see cref="Writer.FunctionWriter"/></summary>
+        /// <summary>Initializes a datapack, allowing the use of <see cref="FunctionWriter"/></summary>
         public void Generate()
         {
             Writer = new FunctionWriter(this);
             string mainDir = Path.Combine(ProjectPath, "src", ProjectName);
             Directory.CreateDirectory(mainDir);
-            string tmp = mcmeta_example
-                .Replace("{FORMAT}", $"{Array.IndexOf(Enum.GetValues(typeof(PackFormat)), Format)}")
+            
+            var tmp = mcmeta_example
+                .Replace("{FORMAT}", $"{(int)Format}")
                 .Replace("{DESCRIPTION}", Description);
             File.WriteAllText(Path.Combine(mainDir, "pack.mcmeta"), tmp);
             string namespaceDir = Path.Combine(mainDir, "data", Namespace);
