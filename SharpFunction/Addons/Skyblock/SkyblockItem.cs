@@ -164,7 +164,7 @@ namespace SharpFunction.Addons.Skyblock
         {
             Type = type;
             Rarity = rarity;
-            color = SkyblockEnumHelper.GetRarityColor(rarity);
+            color = rarity.GetRarityColor();
             ID = itemname;
             DisplayName = name;
         }
@@ -192,27 +192,21 @@ namespace SharpFunction.Addons.Skyblock
                 { "True Defense", TrueDefense},
                 { "Ferocity", Ferocity}
             };
-            List<string> percented = new[] { "Crit Chance", "Crit Damage", "Sea Creature Chance", "Bonus Attack Speed" }.ToList();
+            var percented = new[] { "Crit Chance", "Crit Damage", "Sea Creature Chance", "Bonus Attack Speed" }.ToList();
 
-            Action<RawText> space = VoidEncapsulator<RawText>.Encapsulate(m =>
+            var space = VoidEncapsulator<RawText>.Encapsulate(m =>
             {
                 if(MakeEmptyLines) m.AddField("");
             });
 
-            var a = red.Where(predicate => 
-            {
-                return !IsNull(predicate.Value); 
-            });
-            var b = green.Where(predicate =>
-            {
-                return !IsNull(predicate.Value);
-            });
+            var a = red.Where(predicate => !IsNull(predicate.Value));
+            var b = green.Where(predicate => !IsNull(predicate.Value));
 
             Action<KeyValuePair<string, int?>> addRed = VoidEncapsulator<KeyValuePair<string, int?>>.Encapsulate(p =>
             {
-                string name = p.Key;
-                string stat = percented.Contains(name) ? $"{ParseStat(p.Value)}%" : $"{ParseStat(p.Value)}";
-                string n = $"{name}: ";
+                var name = p.Key;
+                var stat = percented.Contains(name) ? $"{ParseStat(p.Value)}%" : $"{ParseStat(p.Value)}";
+                var n = $"{name}: ";
                 SuperRawText srt = new();
                 srt.Append(n, Color.Gray, RawTextFormatting.Straight);
                 srt.Append(stat, Color.Red, RawTextFormatting.Straight);
@@ -221,7 +215,7 @@ namespace SharpFunction.Addons.Skyblock
                     srt.Append($" ({ParseStat(p.Value)})", Color.DarkGray);
                 }
                 rt.AddField(srt);
-                if(a.Last().Equals(p) && b is not null)
+                if(a.Last().Equals(p))
                 {
                     space(rt);
                 }
@@ -247,16 +241,19 @@ namespace SharpFunction.Addons.Skyblock
                 rt.AddField(DungeonStats.GetGearScore());
             }
 
-            foreach(KeyValuePair<string, int?> r in a)
+            var valuePairs = a as KeyValuePair<string, int?>[] ?? a.ToArray();
+            foreach(var r in valuePairs)
             {
                 addRed(r);
             }
-            foreach(KeyValuePair<string, int?> g in b)
+
+            var keyValuePairs = b.ToList();
+            foreach(var g in keyValuePairs)
             {
                 addGreen(g);
             }
 
-            if(a is not null && b is not null)
+            if(valuePairs.Any() && keyValuePairs.Any())
             {
                 space(rt);
             }   
@@ -293,9 +290,8 @@ namespace SharpFunction.Addons.Skyblock
                 {
                     txt.AddField("Right click to view recipes!", Color.Yellow, RawTextFormatting.Straight);
                 }
-                txt.AddField($"{EnumHelper.GetStringValue(Rarity)} {EnumHelper.GetStringValue(Type)}", color, RawTextFormatting.Straight, RawTextFormatting.Bold);
+                txt.AddField($"{Rarity.GetStringValue()} {Type.GetStringValue()}", color, RawTextFormatting.Straight, RawTextFormatting.Bold);
             }
-
         }
 
         private string ParseStat(int? stat)
@@ -501,6 +497,14 @@ namespace SharpFunction.Addons.Skyblock
         {
             Lines.Add(line);
             return this;
+        }
+
+        /// <summary>
+        /// Converts description to deprecated format with colors as section signs
+        /// </summary>
+        public string OldValue()
+        {
+            return string.Join("\\n", Lines.ConvertAll(c => string.Join(" ", c.Deprecated)));
         }
 
         /// <summary>

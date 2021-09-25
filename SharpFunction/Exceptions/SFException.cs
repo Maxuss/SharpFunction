@@ -9,7 +9,7 @@ namespace SharpFunction.Exceptions
     /// <summary>
     /// Represents main class for SharpFunction exceptions inheritance
     /// </summary>
-    public abstract partial class SFException : Exception
+    public partial class SFException : Exception
     {
         public SFException() : base() { }
         public SFException(string message) : base(message) { }

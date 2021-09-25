@@ -16,7 +16,9 @@ namespace SharpFunction.Universal
         /// </summary>
         public string Line { get; private set; }
 
-        private List<string> lines = new List<string>();
+        private List<string> lines = new();
+        
+        internal List<string> Deprecated = new();
         /// <summary>
         /// Initialize new super raw text
         /// </summary>
@@ -29,6 +31,7 @@ namespace SharpFunction.Universal
         public SuperRawText Append(RawText text)
         {
             lines.Add(text._lines[0]);
+            Deprecated.Add(text._deprecated[0]);
             return this;
         }
 
@@ -44,6 +47,7 @@ namespace SharpFunction.Universal
             RawText txt = new();
             txt.AddField(text, color, format, formattings);
             lines.Add(txt._lines[0]);
+            Deprecated.Add(txt._deprecated[0]);
             return this;
         }
 
@@ -61,6 +65,5 @@ namespace SharpFunction.Universal
             Line = $"[{a}]";
             return Line;
         }
-
     }
 }

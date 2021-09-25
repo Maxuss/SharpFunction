@@ -11,23 +11,23 @@ namespace SharpFunction.Universal
     /// </summary>
     public enum Color
     {
-        [EnumValue(@"""color"": ""black""")] Black,
-        [EnumValue(@"""color"": ""dark_blue""")] DarkBlue,
-        [EnumValue(@"""color"": ""dark_green""")] DarkGreen,
-        [EnumValue(@"""color"": ""dark_aqua""")] DarkAqua,
-        [EnumValue(@"""color"": ""dark_red""")] DarkRed,
-        [EnumValue(@"""color"": ""dark_purple""")] DarkPurple,
-        [EnumValue(@"""color"": ""gold""")] Gold,
-        [EnumValue(@"""color"": ""gray""")] Gray,
-        [EnumValue(@"""color"": ""blue""")] Blue,
-        [EnumValue(@"""color"": ""green""")] Green,
-        [EnumValue(@"""color"": ""aqua""")] Aqua,
-        [EnumValue(@"""color"": ""red""")] Red,
-        [EnumValue(@"""color"": ""light_purple""")] LightPurple,
-        [EnumValue(@"""color"": ""yellow""")] Yellow,
-        [EnumValue(@"""color"": ""white""")] White,
-        [EnumValue(@"""color"": ""dark_gray""")] DarkGray,
-        [EnumValue(@"""color"": ""reset""")] Reset,
-        [EnumValue(@"""color"": ""white""")] Default
+        [DeprecatedValue("0")] [EnumValue(@"""color"": ""black""")] Black,
+        [DeprecatedValue("1")] [EnumValue(@"""color"": ""dark_blue""")] DarkBlue,
+        [DeprecatedValue("2")] [EnumValue(@"""color"": ""dark_green""")] DarkGreen,
+        [DeprecatedValue("3")] [EnumValue(@"""color"": ""dark_aqua""")] DarkAqua,
+        [DeprecatedValue("4")] [EnumValue(@"""color"": ""dark_red""")] DarkRed,
+        [DeprecatedValue("5")] [EnumValue(@"""color"": ""dark_purple""")] DarkPurple,
+        [DeprecatedValue("6")] [EnumValue(@"""color"": ""gold""")] Gold,
+        [DeprecatedValue("7")] [EnumValue(@"""color"": ""gray""")] Gray,
+        [DeprecatedValue("9")] [EnumValue(@"""color"": ""blue""")] Blue,
+        [DeprecatedValue("a")] [EnumValue(@"""color"": ""green""")] Green,
+        [DeprecatedValue("b")] [EnumValue(@"""color"": ""aqua""")] Aqua,
+        [DeprecatedValue("c")] [EnumValue(@"""color"": ""red""")] Red,
+        [DeprecatedValue("d")] [EnumValue(@"""color"": ""light_purple""")] LightPurple,
+        [DeprecatedValue("e")] [EnumValue(@"""color"": ""yellow""")] Yellow,
+        [DeprecatedValue("f")] [EnumValue(@"""color"": ""white""")] White,
+        [DeprecatedValue("8")] [EnumValue(@"""color"": ""dark_gray""")] DarkGray,
+        [DeprecatedValue("r")] [EnumValue(@"""color"": ""reset""")] Reset,
+        [DeprecatedValue("f")] [EnumValue(@"""color"": ""white""")] Default
     }
 }

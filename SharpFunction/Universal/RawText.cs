@@ -23,7 +23,9 @@ namespace SharpFunction.Universal
             }
         }
 
-        internal List<string> _lines = new List<string>();
+        internal List<string> _deprecated = new();
+
+        internal List<string> _lines = new();
         /// <summary>
         /// Generate starting raw json
         /// </summary>
@@ -38,17 +40,27 @@ namespace SharpFunction.Universal
         /// <param name="extraFormat">Extra formattings of the text</param>
         public RawText AddField(string text, Color color = Color.White, RawTextFormatting format = RawTextFormatting.None, params RawTextFormatting[] extraFormat)
         {
-            string clr = EnumHelper.GetStringValue(color);
-            string frm = EnumHelper.GetStringValue(format);
-            string extraF = string.Empty;
+            var clr = color.GetStringValue();
+            var frm = format.GetStringValue();
+            var deprecatedColor = color.GetDeprecatedValue();
+            deprecatedColor = string.IsNullOrEmpty(deprecatedColor) ? "" : $"&{deprecatedColor}";
+            var deprecatedFormatting = format.GetDeprecatedValue();
+            deprecatedFormatting = string.IsNullOrEmpty(deprecatedFormatting) ? "" : $"&{deprecatedFormatting}";
+            var extraF = string.Empty;
+            var deprecatedExtraF = string.Empty;
             if(extraFormat is not null)
             {
-                foreach (RawTextFormatting fr in extraFormat)
+                foreach (var fr in extraFormat)
                 {
-                    if (extraFormat.Last().Equals(fr)) extraF += $"{EnumHelper.GetStringValue(fr)}";
-                    else extraF += $"{EnumHelper.GetStringValue(fr)},";
+                    var df = fr.GetDeprecatedValue();
+                    deprecatedExtraF = $"{deprecatedExtraF}&{(string.IsNullOrEmpty(df) ? "" : $"&{df}")}";
+                    extraF =
+                        extraFormat.Last().Equals(fr) ? $"{extraF}{fr.GetStringValue()}" : $"{extraF}{fr.GetStringValue()},";
                 }
             }
+            var deprecatedString =
+                $"{deprecatedColor}{deprecatedFormatting}{deprecatedExtraF}{text}";
+            _deprecated.Add(deprecatedString);
             string full;
             if (!IsEmpty(extraF) && !IsEmpty(frm)) full = $@"{{""text"": ""{text}"", {clr}, {frm}, {extraF}}}";
             else if (IsEmpty(extraF) && !IsEmpty(frm)) full = $@"{{""text"": ""{text}"", {clr}, {frm}}}";
@@ -63,8 +75,9 @@ namespace SharpFunction.Universal
         /// <param name="srt">Pre-Made SuperRawText</param>
         public RawText AddField(SuperRawText srt)
         {
-            string compiled = srt.Compile();
+            var compiled = srt.Compile();
             _lines.Add(compiled);
+            _deprecated.Add(string.Join("", srt.Deprecated));
             return this;
         }
     }
@@ -74,15 +87,15 @@ namespace SharpFunction.Universal
     /// </summary>
     public enum RawTextFormatting
     {
-        [EnumValue(@"""bold"": true")] Bold,
-        [EnumValue(@"""italic"": true")] Italic,
-        [EnumValue(@"""obfuscated"": true")] Obfuscated,
-        [EnumValue(@"""strikethrough"": true")] Strikethrough,
-        [EnumValue(@"""underlined"": true")] Underlined,
+        [DeprecatedValue("l")] [EnumValue(@"""bold"": true")] Bold,
+        [DeprecatedValue("o")] [EnumValue(@"""italic"": true")] Italic,
+        [DeprecatedValue("k")] [EnumValue(@"""obfuscated"": true")] Obfuscated,
+        [DeprecatedValue("m")] [EnumValue(@"""strikethrough"": true")] Strikethrough,
+        [DeprecatedValue("n")] [EnumValue(@"""underlined"": true")] Underlined,
         /// <summary>
         /// Makes the text non-italic (italic by default)
         /// </summary>
-        [EnumValue(@"""italic"": false")] Straight,
-        [EnumValue(@"")] None
+        [DeprecatedValue(null)] [EnumValue(@"""italic"": false")] Straight,
+        [DeprecatedValue(null)] [EnumValue("")] None
     }
 }

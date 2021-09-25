@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using SharpFunction.Addons.Skyblock;
+using SharpFunction.API;
 
 namespace SFExample.Skyblock.Items
 {
@@ -30,7 +31,7 @@ namespace SFExample.Skyblock.Items
                 new AdvancedDescription().Append("Epic line", SharpFunction.Universal.Color.DarkGray));
 
             // output the command used to create it
-            Console.WriteLine(item.Compile());
+            Console.WriteLine(SkyblockItemSerializer.Serialize(item));
         }
     }
 }
