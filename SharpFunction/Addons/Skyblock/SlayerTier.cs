@@ -207,7 +207,7 @@ namespace SharpFunction.Addons.Skyblock
             nbt.Display.AddName(name);
 
             var give = new Item(Item, nbt);
-            Give = new Give(SimpleSelector.p);
+            Give = new Give(SimpleSelector.Nearest);
             Give.Compile(give);
             GiveCommand = Give.Compiled;
 

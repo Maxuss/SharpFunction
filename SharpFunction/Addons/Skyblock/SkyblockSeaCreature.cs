@@ -134,7 +134,7 @@ namespace SharpFunction.Addons.Skyblock
 
             item.NBT = nbt;
 
-            Give g = new(SimpleSelector.p);
+            Give g = new(SimpleSelector.Nearest);
             g.Compile(item);
             return g.Compiled;
         }

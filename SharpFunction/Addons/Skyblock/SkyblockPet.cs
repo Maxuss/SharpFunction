@@ -253,7 +253,7 @@ namespace SharpFunction.Addons.Skyblock
             nbt.Display.AddLore(fullDesc);
             nbt.Display.AddName(name);
             Item item = new("player_head", nbt);
-            Give g = new(SimpleSelector.p);
+            Give g = new(SimpleSelector.Nearest);
             g.Compile(item);
             return g;
         }

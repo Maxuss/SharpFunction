@@ -123,7 +123,7 @@ namespace SharpFunction.Addons.Skyblock
         /// <returns>Compiled give command</returns>
         public string Compile()
         {
-            Give g = new(SimpleSelector.p);
+            Give g = new(SimpleSelector.Nearest);
             g.Compile(item);
             return g.Compiled;
         }

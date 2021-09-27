@@ -339,7 +339,7 @@ namespace SharpFunction.Addons.Skyblock
             }
 
             var item = new Item(itemname, nbt);
-            var cmd = new Give(SimpleSelector.p);
+            var cmd = new Give(SimpleSelector.Nearest);
             cmd.Compile(item);
             Command = cmd;
             return cmd.Compiled;

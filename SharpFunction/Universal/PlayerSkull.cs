@@ -39,7 +39,7 @@ namespace SharpFunction.Universal
         /// <returns>Generated and compiled give command</returns>
         public Give GenerateCommand()
         {
-            Give give = new(SimpleSelector.p);
+            Give give = new(SimpleSelector.Nearest);
             Item item = new("player_head");
             ItemNBT nbt = new();
             nbt.Display = new ItemDisplay();

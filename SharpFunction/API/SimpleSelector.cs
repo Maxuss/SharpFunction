@@ -10,26 +10,26 @@ namespace SharpFunction.API
         /// <summary>
         ///     All players
         /// </summary>
-        public static EntitySelector a => new(Selector.AllPlayers);
+        public static EntitySelector All => new(Selector.AllPlayers);
 
         /// <summary>
         ///     Nearest player
         /// </summary>
-        public static EntitySelector p => new(Selector.Nearest);
+        public static EntitySelector Nearest => new(Selector.Nearest);
 
         /// <summary>
         ///     Current player
         /// </summary>
-        public static EntitySelector s => new(Selector.Current);
+        public static EntitySelector Current => new(Selector.Current);
 
         /// <summary>
         ///     All entities
         /// </summary>
-        public static EntitySelector e => new(Selector.AllEntities);
+        public static EntitySelector AllEntities => new(Selector.AllEntities);
 
         /// <summary>
         ///     Random player
         /// </summary>
-        public static EntitySelector r => new(Selector.Random);
+        public static EntitySelector Random => new(Selector.Random);
     }
 }

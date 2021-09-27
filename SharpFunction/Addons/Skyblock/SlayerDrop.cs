@@ -152,7 +152,7 @@ namespace SharpFunction.Addons.Skyblock
             nbt.Display = dis;
             nbt.HideFlags = 31;
             Item i = new(ID, nbt);
-            Give g = new(SimpleSelector.p);
+            Give g = new(SimpleSelector.Nearest);
             g.Compile(i);
             return g;
         }
@@ -163,7 +163,7 @@ namespace SharpFunction.Addons.Skyblock
         /// <returns>Compiled /tellraw message</returns>
         public Tellraw GetDropMessage()
         {
-            var tl = new Tellraw(SimpleSelector.p);
+            var tl = new Tellraw(SimpleSelector.Nearest);
             DropMessage msg = new(DropRarity, ItemName, Rarity.GetRarityColor());
             if (msg is null)
             {

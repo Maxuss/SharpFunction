@@ -42,7 +42,7 @@ namespace SharpFunction.Addons.Skyblock
                 : $"SkullOwner: \"{SkullOwner}\"";
             nbt.EnchantmentData = HasGlint ? "{}" : null;
             var item = new Item(itemname, nbt);
-            var cmd = new Give(SimpleSelector.p);
+            var cmd = new Give(SimpleSelector.Nearest);
             cmd.Compile(item);
             return cmd.Compiled;
         }

@@ -45,7 +45,7 @@ namespace SharpFunction.Addons.Skyblock
             List<string> ds = new();
             foreach (var r in replics)
             {
-                var tl = new Tellraw(SimpleSelector.p);
+                var tl = new Tellraw(SimpleSelector.Nearest);
                 var m = new SuperRawText().Append("[NPC] ", Color.Yellow).Append($" {Name}: ", NameColor)
                     .Append(r, ReplicColor);
                 tl.Compile(m);
