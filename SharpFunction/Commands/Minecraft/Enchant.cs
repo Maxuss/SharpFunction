@@ -1,41 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static SharpFunction.Universal.EnumHelper;
+﻿using static SharpFunction.Universal.EnumHelper;
 
 namespace SharpFunction.Commands.Minecraft
 {
     /// <summary>
-    /// Represents /enchant command. Equal to Minecraft's <code>/enchat {target: EntitySelector} {enchantment: ID} {level: int}</code>
+    ///     Represents /enchant command. Equal to Minecraft's
+    ///     <code>/enchat {target: EntitySelector} {enchantment: ID} {level: int}</code>
     /// </summary>
     public sealed class Enchant : ICommand, ISelectorCommand
     {
-        public EntitySelector Selector { get; set; }
+        /// <summary>
+        ///     Initialize Enchant Command class.<br />
+        ///     See also: <br />
+        ///     <seealso cref="EntitySelector" />
+        /// </summary>
+        public Enchant(EntitySelector sel)
+        {
+            Selector = sel;
+        }
 
         public string Compiled { get; private set; }
+        public EntitySelector Selector { get; set; }
 
         /// <summary>
-        /// Initialize Enchant Command class.<br/>
-        /// See also: <br/>
-        /// <seealso cref="EntitySelector"/>
-        /// </summary>
-        public Enchant(EntitySelector sel) => Selector = sel;
-
-        /// <summary>
-        /// Compile /enchant command
+        ///     Compile /enchant command
         /// </summary>
         /// <param name="enchant">Enchantment to enchant</param>
         /// <param name="lvl">Level of enchantment</param>
         public void Compile(Enchantment enchant, uint lvl)
         {
-            string ench = Universal.EnumHelper.GetStringValue(enchant);
+            var ench = enchant.GetStringValue();
             Compiled = $"/enchant {Selector.String()} {ench} {lvl}";
         }
     }
+
     /// <summary>
-    /// Represents minecraft enchantment id
+    ///     Represents minecraft enchantment id
     /// </summary>
     public enum Enchantment
     {

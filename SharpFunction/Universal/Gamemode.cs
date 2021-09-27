@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static SharpFunction.Universal.EnumHelper;
+﻿using static SharpFunction.Universal.EnumHelper;
+
 namespace SharpFunction.Universal
 {
     /// <summary>
-    /// Represents Minecraft's game mode
+    ///     Represents Minecraft's game mode
     /// </summary>
     public enum Gamemode
     {

@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SharpFunction.Universal
+﻿namespace SharpFunction.Universal
 {
     /// <summary>
-    /// Helper for null checks
+    ///     Helper for null checks
     /// </summary>
     public static class NullChecker
     {

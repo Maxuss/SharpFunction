@@ -1,15 +1,11 @@
-﻿using SharpFunction.Universal;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+using SharpFunction.Universal;
 
 namespace SharpFunction.Commands.Minecraft
 {
     /// <summary>
-    /// Text used by Tellraw
+    ///     Text used by Tellraw
     /// </summary>
     internal sealed class TellText
     {
@@ -17,7 +13,7 @@ namespace SharpFunction.Commands.Minecraft
 
         internal TellText(SuperRawText srt)
         {
-            string tmp = srt.Compile();
+            var tmp = srt.Compile();
             tmp = Regex.Replace(tmp, @"(\[)(?=(?:[^""]|""[^""]*"")*$)", "");
             Console.WriteLine(tmp);
             Compiled = $@"["""",{tmp}";

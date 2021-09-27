@@ -1,71 +1,18 @@
-﻿using SharpFunction.Commands.Minecraft;
+﻿using System.Collections.Generic;
+using SharpFunction.API;
+using SharpFunction.Commands.Minecraft;
 using SharpFunction.Universal;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static SharpFunction.Universal.EnumHelper;
 using static SharpFunction.Addons.Skyblock.SkyblockEnumHelper;
-using SharpFunction.API;
 
 namespace SharpFunction.Addons.Skyblock
 {
     /// <summary>
-    /// Represents an item that is dropped from slayer
+    ///     Represents an item that is dropped from slayer
     /// </summary>
     public sealed class SlayerDrop
     {
-        /// <summary>
-        /// Drop rarity of item
-        /// </summary>
-        public DropRarity DropRarity { get; set; }
-        /// <summary>
-        /// Item to drop
-        /// </summary>
-        public string ItemName { get; set; }
-        /// <summary>
-        /// ID of item to give
-        /// </summary>
-        public string ID { get; set; }
-        /// <summary>
-        /// Rarity of item
-        /// </summary>
-        public ItemRarity Rarity { get; set; }
-        /// <summary>
-        /// Slayer Level required to obtain the drop
-        /// </summary>
-        public int RequiredLVL { get; set; } = 0;
-
-        /// <summary>
-        /// Amount of drops per certain tier
-        /// </summary>
-        /// <returns></returns>
-        public Dictionary<string, string> TierAmounts = new()
-        {
-            { "Tier I", ""},
-            { "Tier II", "" },
-            { "Tier III", "" },
-            { "Tier IV", "" },
-            { "Tier V", "" },
-            { "Tier VI", "" }
-        };
-        /// <summary>
-        /// Minimum tier for this item to drop
-        /// </summary>
-        public int MinimumTier { get; set; }
-
-        private Dictionary<int, string> ts = new()
-        {
-            {1, "Tier I"},
-            {2, "Tier II"},
-            {3, "Tier III"},
-            {4, "Tier IV"},
-            {5, "Tier V"},
-            {6, "Tier VI"}
-        };
-
-        private Dictionary<int, Color> tc = new()
+        private readonly Dictionary<int, Color> tc = new()
         {
             {1, Color.Green},
             {2, Color.Yellow},
@@ -75,10 +22,33 @@ namespace SharpFunction.Addons.Skyblock
             {6, Color.Blue}
         };
 
+        /// <summary>
+        ///     Amount of drops per certain tier
+        /// </summary>
+        /// <returns></returns>
+        public Dictionary<string, string> TierAmounts = new()
+        {
+            {"Tier I", ""},
+            {"Tier II", ""},
+            {"Tier III", ""},
+            {"Tier IV", ""},
+            {"Tier V", ""},
+            {"Tier VI", ""}
+        };
+
+        private readonly Dictionary<int, string> ts = new()
+        {
+            {1, "Tier I"},
+            {2, "Tier II"},
+            {3, "Tier III"},
+            {4, "Tier IV"},
+            {5, "Tier V"},
+            {6, "Tier VI"}
+        };
 
 
         /// <summary>
-        /// Create new slayer drop
+        ///     Create new slayer drop
         /// </summary>
         /// <param name="name">Name of item</param>
         /// <param name="drop">Drop rarity of item</param>
@@ -93,7 +63,7 @@ namespace SharpFunction.Addons.Skyblock
         }
 
         /// <summary>
-        /// Generates slayer drop from pre-existing item
+        ///     Generates slayer drop from pre-existing item
         /// </summary>
         /// <param name="item">Item to steal data from</param>
         /// <param name="rarity">Rarity of item</param>
@@ -103,19 +73,48 @@ namespace SharpFunction.Addons.Skyblock
             ItemName = item.DisplayName;
             Rarity = item.Rarity;
             ID = item.ID;
-            
         }
 
         /// <summary>
-        /// Generates command to give the item
+        ///     Drop rarity of item
+        /// </summary>
+        public DropRarity DropRarity { get; set; }
+
+        /// <summary>
+        ///     Item to drop
+        /// </summary>
+        public string ItemName { get; set; }
+
+        /// <summary>
+        ///     ID of item to give
+        /// </summary>
+        public string ID { get; set; }
+
+        /// <summary>
+        ///     Rarity of item
+        /// </summary>
+        public ItemRarity Rarity { get; set; }
+
+        /// <summary>
+        ///     Slayer Level required to obtain the drop
+        /// </summary>
+        public int RequiredLVL { get; set; } = 0;
+
+        /// <summary>
+        ///     Minimum tier for this item to drop
+        /// </summary>
+        public int MinimumTier { get; set; }
+
+        /// <summary>
+        ///     Generates command to give the item
         /// </summary>
         /// <returns>Generated command</returns>
         public Give Generate()
         {
             RawText t = new();
-            foreach(string tier in TierAmounts.Keys)
+            foreach (var tier in TierAmounts.Keys)
             {
-                string tr = TierAmounts[tier];
+                var tr = TierAmounts[tier];
                 if (tr != "")
                 {
                     SuperRawText tx = new();
@@ -124,6 +123,7 @@ namespace SharpFunction.Addons.Skyblock
                     t.AddField(tx);
                 }
             }
+
             t.AddField(" ");
             SuperRawText min = new();
             min.Append("Minimum: ", Color.Gray);
@@ -131,10 +131,10 @@ namespace SharpFunction.Addons.Skyblock
             t.AddField(min);
             SuperRawText odd = new();
             odd.Append("Odds: ", Color.Gray);
-            odd.Append($"{EnumHelper.GetStringValue(DropRarity)}", SkyblockEnumHelper.GetRarityColor(DropRarity));
-            odd.Append($" {SkyblockEnumHelper.GetSlayerMessage(DropRarity)}", Color.Gray);
+            odd.Append($"{DropRarity.GetStringValue()}", DropRarity.GetRarityColor());
+            odd.Append($" {DropRarity.GetSlayerMessage()}", Color.Gray);
             t.AddField(odd);
-            if(RequiredLVL != 0)
+            if (RequiredLVL != 0)
             {
                 t.AddField("");
                 SuperRawText srt = new();
@@ -142,8 +142,9 @@ namespace SharpFunction.Addons.Skyblock
                 srt.Append($"{RequiredLVL}", Color.Yellow);
                 t.AddField(srt);
             }
+
             RawText n = new();
-            n.AddField($"{ItemName}", SkyblockEnumHelper.GetRarityColor(Rarity), RawTextFormatting.Straight);
+            n.AddField($"{ItemName}", Rarity.GetRarityColor(), RawTextFormatting.Straight);
             ItemDisplay dis = new();
             dis.AddLore(t);
             dis.AddName(n);
@@ -151,20 +152,20 @@ namespace SharpFunction.Addons.Skyblock
             nbt.Display = dis;
             nbt.HideFlags = 31;
             Item i = new(ID, nbt);
-            Give g = new(SimpleSelector.@p);
-            g.Compile(i, 1);
+            Give g = new(SimpleSelector.p);
+            g.Compile(i);
             return g;
         }
 
         /// <summary>
-        /// Gets drop message to display
+        ///     Gets drop message to display
         /// </summary>
         /// <returns>Compiled /tellraw message</returns>
         public Tellraw GetDropMessage()
         {
-            var tl = new Tellraw(SimpleSelector.@p);
-            DropMessage msg = new(DropRarity, ItemName, SkyblockEnumHelper.GetRarityColor(Rarity));
-            if(msg is null)
+            var tl = new Tellraw(SimpleSelector.p);
+            DropMessage msg = new(DropRarity, ItemName, Rarity.GetRarityColor());
+            if (msg is null)
             {
                 SuperRawText empty = new();
                 empty.Append("");
@@ -172,53 +173,34 @@ namespace SharpFunction.Addons.Skyblock
             }
             else
             {
-                SuperRawText final = msg.GetMessage();
+                var final = msg.GetMessage();
                 tl.Compile(final);
             }
+
             return tl;
         }
 
         /// <summary>
-        /// Generates and compiles the command, returning the string
+        ///     Generates and compiles the command, returning the string
         /// </summary>
         /// <returns>Compiled string command</returns>
         public string Compile()
         {
-            Give g = Generate();
+            var g = Generate();
             return g.Compiled;
         }
     }
 
     /// <summary>
-    /// Represents message to be displayed when item is dropped
+    ///     Represents message to be displayed when item is dropped
     /// </summary>
     public sealed class DropMessage
     {
-        /// <summary>
-        /// Rarity message to be displayed. E.G. **VERY RARE DROP!** or **CRAZY RARE DROP!**
-        /// </summary>
-        public string RarityMessage { get; set; }
-        /// <summary>
-        /// Color of rarity message.
-        /// </summary>
-        public Color RarityMessageColor { get; set; }
-        /// <summary>
-        /// Name of item to show drop
-        /// </summary>
-        public string ItemName { get; set; }
-        /// <summary>
-        /// Color of item drop to show
-        /// </summary>
-        public Color ItemColor { get; set; }
-        /// <summary>
-        /// Whether the message should not be displayed. Should be displayed by default
-        /// </summary>
-        public bool HideMessage { get; set; } = false;
         public DropMessage(DropRarity rarity, string name, Color color)
         {
             ItemName = name;
             ItemColor = color;
-            switch(rarity)
+            switch (rarity)
             {
                 case DropRarity.Rare:
                     RarityMessage = "RARE DROP!";
@@ -243,7 +225,32 @@ namespace SharpFunction.Addons.Skyblock
         }
 
         /// <summary>
-        /// Compiles the message to super raw text
+        ///     Rarity message to be displayed. E.G. **VERY RARE DROP!** or **CRAZY RARE DROP!**
+        /// </summary>
+        public string RarityMessage { get; set; }
+
+        /// <summary>
+        ///     Color of rarity message.
+        /// </summary>
+        public Color RarityMessageColor { get; set; }
+
+        /// <summary>
+        ///     Name of item to show drop
+        /// </summary>
+        public string ItemName { get; set; }
+
+        /// <summary>
+        ///     Color of item drop to show
+        /// </summary>
+        public Color ItemColor { get; set; }
+
+        /// <summary>
+        ///     Whether the message should not be displayed. Should be displayed by default
+        /// </summary>
+        public bool HideMessage { get; set; }
+
+        /// <summary>
+        ///     Compiles the message to super raw text
         /// </summary>
         /// <returns>Compiled super raw text ready to use</returns>
         public SuperRawText GetMessage()
@@ -258,38 +265,50 @@ namespace SharpFunction.Addons.Skyblock
                 srt.Append(" (+121% Magic Find)", Color.Aqua);
                 return srt;
             }
+
             return null;
         }
     }
 
     /// <summary>
-    /// Represents rarity of slayer drop
+    ///     Represents rarity of slayer drop
     /// </summary>
     public enum DropRarity
     {
         /// <summary>
-        /// 100%
+        ///     100%
         /// </summary>
-        [RarityColor(Color.Green)] [SlayerRarity("")] [EnumValue("Guaranteed")] Guaranteed,
+        [RarityColor(Color.Green)] [SlayerRarity("")] [EnumValue("Guaranteed")]
+        Guaranteed,
+
         /// <summary>
-        /// 20%
+        ///     20%
         /// </summary>
-        [RarityColor(Color.Blue)] [SlayerRarity("(20%)")] [EnumValue("Occasional")] Occasional,
+        [RarityColor(Color.Blue)] [SlayerRarity("(20%)")] [EnumValue("Occasional")]
+        Occasional,
+
         /// <summary>
-        /// 5%
+        ///     5%
         /// </summary>
-        [RarityColor(Color.Aqua)] [SlayerRarity("(5%)")] [EnumValue("Rare")] Rare,
+        [RarityColor(Color.Aqua)] [SlayerRarity("(5%)")] [EnumValue("Rare")]
+        Rare,
+
         /// <summary>
-        /// 1%
+        ///     1%
         /// </summary>
-        [RarityColor(Color.DarkPurple)] [SlayerRarity("(1%)")] [EnumValue("Extraordinary")] Extraordinary,
+        [RarityColor(Color.DarkPurple)] [SlayerRarity("(1%)")] [EnumValue("Extraordinary")]
+        Extraordinary,
+
         /// <summary>
-        /// lesser than 1%
+        ///     lesser than 1%
         /// </summary>
-        [RarityColor(Color.LightPurple)] [SlayerRarity("")] [EnumValue("Pray RNGesus")] PrayRNGesus,
+        [RarityColor(Color.LightPurple)] [SlayerRarity("")] [EnumValue("Pray RNGesus")]
+        PrayRNGesus,
+
         /// <summary>
-        /// lesser than 0.01%
+        ///     lesser than 0.01%
         /// </summary>
-        [RarityColor(Color.Red)] [SlayerRarity("")] [EnumValue("RNGesus Incarnate")] RNGesusIncarnate
+        [RarityColor(Color.Red)] [SlayerRarity("")] [EnumValue("RNGesus Incarnate")]
+        RNGesusIncarnate
     }
 }

@@ -1,14 +1,7 @@
-﻿using SharpFunction.Universal;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SharpFunction.Addons.Skyblock
+﻿namespace SharpFunction.Addons.Skyblock
 {
     /// <summary>
-    /// Helper for skyblock addon
+    ///     Helper for skyblock addon
     /// </summary>
     public static class SkyblockHelper
     {
@@ -42,28 +35,29 @@ namespace SharpFunction.Addons.Skyblock
 
         public static string ParseHP(int hp)
         {
-            string mult = "";
+            var mult = "";
             float php;
             // 1b
             if (hp > 1000000000)
             {
-                php = (hp / 1000000000);
+                php = hp / 1000000000;
                 mult = $"{php}B";
             }
-            else if(hp > 1000000)
+            else if (hp > 1000000)
             {
-                php = (hp / 1000000);
+                php = hp / 1000000;
                 mult = $"{php}M";
             }
-            else if(hp > 1000)
+            else if (hp > 1000)
             {
-                php = (hp / 1000);
+                php = hp / 1000;
                 mult = $"{php}k";
             }
             else
             {
                 mult = $"{hp}";
             }
+
             return mult;
         }
     }

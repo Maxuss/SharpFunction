@@ -1,53 +1,54 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-	<GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Version>1.1</Version>
-    <Authors>Maxus</Authors>
-    <Company>Maxus Industries</Company>
-    <Description>A .NET Library used for creating Minecraft datapacks, and most things related to them.</Description>
-    <PackageLicenseExpression></PackageLicenseExpression>
-    <PackageProjectUrl>https://maxus.space</PackageProjectUrl>
-    <PackageIcon>ICON.png</PackageIcon>
-    <RepositoryUrl>https://github.com/Maxuss/SharpFunction</RepositoryUrl>
-    <RepositoryType>GitHub Repository</RepositoryType>
-    <PackageTags>Minecraft, Datapacks, Skyblock</PackageTags>
-    <PackageReleaseNotes>v1.1 Patch Notes:
-    - You now can serialize items into Base64 data to be used for Skyblock Remake by MrSketchpad and me
-    - Numerous bugfixes</PackageReleaseNotes>
-    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-    <NeutralLanguage>en-US</NeutralLanguage>
-    <AssemblyVersion>1.1.2.0</AssemblyVersion>
-    <FileVersion>1.1.2.0</FileVersion>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+        <Version>1.1</Version>
+        <Authors>Maxus</Authors>
+        <Company>Maxus Industries</Company>
+        <Description>A .NET Library used for creating Minecraft datapacks, and most things related to them.</Description>
+        <PackageLicenseExpression></PackageLicenseExpression>
+        <PackageProjectUrl>https://maxus.space</PackageProjectUrl>
+        <PackageIcon>ICON.png</PackageIcon>
+        <RepositoryUrl>https://github.com/Maxuss/SharpFunction</RepositoryUrl>
+        <RepositoryType>GitHub Repository</RepositoryType>
+        <PackageTags>Minecraft, Datapacks, Skyblock</PackageTags>
+        <PackageReleaseNotes>v1.1 Patch Notes:
+            - You now can serialize items into Base64 data to be used for Skyblock Remake by MrSketchpad and me
+            - Numerous bugfixes
+        </PackageReleaseNotes>
+        <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+        <NeutralLanguage>en-US</NeutralLanguage>
+        <AssemblyVersion>1.1.2.0</AssemblyVersion>
+        <FileVersion>1.1.2.0</FileVersion>
+    </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-	  <GenerateDocumentationFile>true</GenerateDocumentationFile>
-  </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="Exceptions\InvalidSelectorParameters.cs~RF38db521.TMP" />
-    <None Include="..\..\..\ICON.png">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-    <None Include="..\LICENSE.txt">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-  </ItemGroup>
+    <ItemGroup>
+        <None Remove="Exceptions\InvalidSelectorParameters.cs~RF38db521.TMP"/>
+        <None Include="..\..\..\ICON.png">
+            <Pack>True</Pack>
+            <PackagePath></PackagePath>
+        </None>
+        <None Include="..\LICENSE.txt">
+            <Pack>True</Pack>
+            <PackagePath></PackagePath>
+        </None>
+    </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1"/>
+    </ItemGroup>
 
-  <ItemGroup>
-    <None Update="Meta\template.sfmeta">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
+    <ItemGroup>
+        <None Update="Meta\template.sfmeta">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
 
 </Project>

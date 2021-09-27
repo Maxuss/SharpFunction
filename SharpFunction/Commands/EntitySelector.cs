@@ -1,28 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SharpFunction.Commands
+﻿namespace SharpFunction.Commands
 {
     /// <summary>
-    /// Represents a selector for entities with it's parameters
+    ///     Represents a selector for entities with it's parameters
     /// </summary>
     public struct EntitySelector
     {
         /// <summary>
-        /// Type of entity to select
+        ///     Type of entity to select
         /// </summary>
         public readonly Selector Selector { get; }
 
         /// <summary>
-        /// Parameters for <see cref="Selector"/>
+        ///     Parameters for <see cref="Selector" />
         /// </summary>
         public readonly SelectorParameters Parameters { get; }
 
         /// <summary>
-        /// Create an Entity Selector with given arguments
+        ///     Create an Entity Selector with given arguments
         /// </summary>
         /// <param name="sel">Selector for entity</param>
         /// <param name="params">Parameters for selector</param>
@@ -33,7 +27,7 @@ namespace SharpFunction.Commands
         }
 
         /// <summary>
-        /// Create an entity selector without extra parameters
+        ///     Create an entity selector without extra parameters
         /// </summary>
         /// <param name="sel"></param>
         public EntitySelector(Selector sel)
@@ -43,7 +37,7 @@ namespace SharpFunction.Commands
         }
 
         /// <summary>
-        /// Initialize empty entity selector
+        ///     Initialize empty entity selector
         /// </summary>
         /// <param name="placeholder"></param>
         internal EntitySelector(string placeholder)
@@ -53,13 +47,13 @@ namespace SharpFunction.Commands
         }
 
         /// <summary>
-        /// Convert parameters to string
+        ///     Convert parameters to string
         /// </summary>
         /// <returns>Parameters as string</returns>
         public string String()
         {
-            string sel = string.Empty;
-            switch(Selector)
+            var sel = string.Empty;
+            switch (Selector)
             {
                 case Selector.AllEntities:
                     sel = "@e";
@@ -79,7 +73,8 @@ namespace SharpFunction.Commands
                 default:
                     goto case Selector.Nearest;
             }
-            string pr = Parameters.String();
+
+            var pr = Parameters.String();
             return $"{sel}{pr}";
         }
     }

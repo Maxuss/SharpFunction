@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SharpFunction.Commands.Helper
 {
     /// <summary>
-    /// Helper for commands
+    ///     Helper for commands
     /// </summary>
     internal static class CommandHelper
     {
@@ -27,7 +23,7 @@ namespace SharpFunction.Commands.Helper
 
         public static bool ByteToBool(string @byte)
         {
-            switch(@byte)
+            switch (@byte)
             {
                 case "0": return false;
                 case "1": return true;

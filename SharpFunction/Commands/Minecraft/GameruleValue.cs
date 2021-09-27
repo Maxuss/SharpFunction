@@ -1,20 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static SharpFunction.Universal.EnumHelper;
+﻿using static SharpFunction.Universal.EnumHelper;
 
 namespace SharpFunction.Commands.Minecraft
 {
     /// <summary>
-    /// Represents different game rules
+    ///     Represents different game rules
     /// </summary>
     public enum GameruleValue
     {
         [EnumValue("announceAdvancements")] AnnounceAdvancements,
         [EnumValue("commandBlocksOutput")] CommandBlockOutput,
-        [EnumValue("disableElytraMovementCheck")] DisableElytraMovementCheck,
+
+        [EnumValue("disableElytraMovementCheck")]
+        DisableElytraMovementCheck,
         [EnumValue("disableRaids")] DisableRaids,
         [EnumValue("doDayLightCycle")] DaylightCycle,
         [EnumValue("doEntityDrops")] EntityDrops,
@@ -43,7 +40,9 @@ namespace SharpFunction.Commands.Minecraft
         [EnumValue("sendCommandFeedback")] SendCommandFeedback,
         [EnumValue("showDeathMessages")] ShowDeathMessages,
         [EnumValue("spawnRadius")] SpawnRadius,
-        [EnumValue("spectatorsGenerateChunks")] SpectatorGenerateChunks,
-        [EnumValue("universalAnger")] UniversalAnger,
+
+        [EnumValue("spectatorsGenerateChunks")]
+        SpectatorGenerateChunks,
+        [EnumValue("universalAnger")] UniversalAnger
     }
 }

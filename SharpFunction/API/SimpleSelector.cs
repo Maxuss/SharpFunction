@@ -1,36 +1,35 @@
 ﻿using SharpFunction.Commands;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SharpFunction.API
 {
     /// <summary>
-    /// Represents simple selectors to use
+    ///     Represents simple selectors to use
     /// </summary>
     public struct SimpleSelector
     {
         /// <summary>
-        /// All players
+        ///     All players
         /// </summary>
-        public static EntitySelector @a { get => new EntitySelector(Selector.AllPlayers); }
+        public static EntitySelector a => new(Selector.AllPlayers);
+
         /// <summary>
-        /// Nearest player
+        ///     Nearest player
         /// </summary>
-        public static EntitySelector @p { get => new EntitySelector(Selector.Nearest); }
+        public static EntitySelector p => new(Selector.Nearest);
+
         /// <summary>
-        /// Current player
+        ///     Current player
         /// </summary>
-        public static EntitySelector @s { get => new EntitySelector(Selector.Current); }
+        public static EntitySelector s => new(Selector.Current);
+
         /// <summary>
-        /// All entities
+        ///     All entities
         /// </summary>
-        public static EntitySelector @e { get => new EntitySelector(Selector.AllEntities); }
+        public static EntitySelector e => new(Selector.AllEntities);
+
         /// <summary>
-        /// Random player
+        ///     Random player
         /// </summary>
-        public static EntitySelector @r { get => new EntitySelector(Selector.Random); }
+        public static EntitySelector r => new(Selector.Random);
     }
 }

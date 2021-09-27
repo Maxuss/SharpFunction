@@ -1,29 +1,12 @@
-﻿using SharpFunction.Commands;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SharpFunction.Commands.Minecraft;
-
-namespace SharpFunction.Universal
+﻿namespace SharpFunction.Universal
 {
     /// <summary>
-    /// Represents a Minecraft item
+    ///     Represents a Minecraft item
     /// </summary>
     public sealed class Item
     {
         /// <summary>
-        /// NBT data of item
-        /// </summary>
-        public ItemNBT NBT { get; set; } = null;
-        /// <summary>
-        /// ID of item
-        /// </summary>
-        public string ID { get; set; }
-
-        /// <summary>
-        /// Initialize an item
+        ///     Initialize an item
         /// </summary>
         /// <param name="id">name-id of item</param>
         /// <param name="nbt">nbt data of an item</param>
@@ -34,7 +17,7 @@ namespace SharpFunction.Universal
         }
 
         /// <summary>
-        /// Initialize an item without nbt data
+        ///     Initialize an item without nbt data
         /// </summary>
         /// <param name="id">id-name of an item</param>
         public Item(string id)
@@ -42,10 +25,19 @@ namespace SharpFunction.Universal
             ID = id;
         }
 
+        /// <summary>
+        ///     NBT data of item
+        /// </summary>
+        public ItemNBT NBT { get; set; }
+
+        /// <summary>
+        ///     ID of item
+        /// </summary>
+        public string ID { get; set; }
+
         public string GetCompiled()
         {
-
-            string nb = !NullChecker.IsNull(NBT) ? $"{NBT.Compile()}" : "";
+            var nb = !NullChecker.IsNull(NBT) ? $"{NBT.Compile()}" : "";
             return $"{ID}{nb}";
         }
     }

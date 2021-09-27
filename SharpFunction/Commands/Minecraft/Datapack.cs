@@ -1,34 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SharpFunction.Commands.Minecraft
+﻿namespace SharpFunction.Commands.Minecraft
 {
     /// <summary>
-    /// Represents minecraft datapack command. Equal to Minecraft's <code>/datapack {action} {ActionParams}</code>
+    ///     Represents minecraft datapack command. Equal to Minecraft's <code>/datapack {action} {ActionParams}</code>
     /// </summary>
     public sealed class Datapack : ICommand
     {
-
         public string Compiled { get; private set; }
 
         /// <summary>
-        /// Initialize Datapack Command class.<br/>
-        /// See also: <br/>
-        /// <seealso cref="EntitySelector"/>
-        /// </summary>
-        public Datapack(){ }
-
-        /// <summary>
-        /// Compiles /datapack command
+        ///     Compiles /datapack command
         /// </summary>
         /// <param name="action">Action to do with datapack</param>
         /// <param name="name">Name of datapack</param>
         public void Compile(DatapackAction action, string name)
         {
-            string s = string.Empty;
+            var s = string.Empty;
             switch (action)
             {
                 case DatapackAction.Enable:
@@ -38,22 +24,23 @@ namespace SharpFunction.Commands.Minecraft
                     s = "disable";
                     break;
             }
+
             Compiled = $"/datapack {s} {name}";
         }
 
         /// <summary>
-        /// Compile /datapack command
+        ///     Compile /datapack command
         /// </summary>
         /// <param name="name">Name of datapack</param>
         /// <param name="priority">Priority for datapack to be enabled</param>
         /// <param name="existing">Name of datapack to load current before or after. Disabled by default.</param>
         public void Compile(string name, DatapackPriority priority, string existing = "")
         {
-            string pr = string.Empty;
-            switch(existing)
+            var pr = string.Empty;
+            switch (existing)
             {
                 case "":
-                    switch(priority)
+                    switch (priority)
                     {
                         case DatapackPriority.High:
                             pr = "first";
@@ -62,9 +49,10 @@ namespace SharpFunction.Commands.Minecraft
                             pr = "last";
                             break;
                     }
+
                     break;
                 default:
-                    switch(priority)
+                    switch (priority)
                     {
                         case DatapackPriority.High:
                             pr = "after";
@@ -73,19 +61,21 @@ namespace SharpFunction.Commands.Minecraft
                             pr = "before";
                             break;
                     }
+
                     break;
             }
+
             Compiled = $"/datapack enable {name} {pr} {existing}";
         }
 
         /// <summary>
-        /// Compiled /datapack command as list of packs
+        ///     Compiled /datapack command as list of packs
         /// </summary>
         /// <param name="type">Type of datapacks to list</param>
         public void Compile(DatapackList type)
         {
-            string s = string.Empty;
-            switch(type)
+            var s = string.Empty;
+            switch (type)
             {
                 case DatapackList.Enabled:
                     s = "enabled";
@@ -94,12 +84,13 @@ namespace SharpFunction.Commands.Minecraft
                     s = "all";
                     break;
             }
+
             Compiled = $"/datapack list {s}";
         }
     }
 
     /// <summary>
-    /// Represents actions to do with "/datapack" command
+    ///     Represents actions to do with "/datapack" command
     /// </summary>
     public enum DatapackAction
     {
@@ -108,16 +99,16 @@ namespace SharpFunction.Commands.Minecraft
     }
 
     /// <summary>
-    /// Represents priority for enabled datapacks
+    ///     Represents priority for enabled datapacks
     /// </summary>
     public enum DatapackPriority
-    { 
+    {
         High,
         Low
     }
 
     /// <summary>
-    /// Represents types of datapacks to show
+    ///     Represents types of datapacks to show
     /// </summary>
     public enum DatapackList
     {

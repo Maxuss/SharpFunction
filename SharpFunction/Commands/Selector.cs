@@ -1,34 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SharpFunction.Commands
+﻿namespace SharpFunction.Commands
 {
     /// <summary>
-    /// Represents target selector for commands
+    ///     Represents target selector for commands
     /// </summary>
     public enum Selector
     {
         /// <summary>
-        /// Equal to @p
+        ///     Equal to @p
         /// </summary>
         Nearest,
+
         /// <summary>
-        /// Equal to @r
+        ///     Equal to @r
         /// </summary>
         Random,
+
         /// <summary>
-        /// Equal to @a
+        ///     Equal to @a
         /// </summary>
         AllPlayers,
+
         /// <summary>
-        /// Equal to @e
+        ///     Equal to @e
         /// </summary>
         AllEntities,
+
         /// <summary>
-        /// Equal to @s
+        ///     Equal to @s
         /// </summary>
         Current
     }

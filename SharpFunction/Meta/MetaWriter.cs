@@ -1,35 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SharpFunction.Universal;
 using SharpFunction.Commands.Helper;
+using SharpFunction.Universal;
+
 namespace SharpFunction.Meta
 {
     /// <summary>
-    /// Class required for writing .sfmeta files
+    ///     Class required for writing .sfmeta files
     /// </summary>
     public sealed class MetaWriter
     {
-        public string Directory { internal get; set; }
-        public string ProjectName { internal get; set; }
-        public string Namespace { internal get; set; }
-        /// <summary>
-        /// Initialize a new instance of meta file writer
-        /// </summary>
-        /// <param name="dir">Directory to write .sfmeta file. Should contain src folder!</param>
-        /// <param name="project">Non-formatted name of project</param>
-        public MetaWriter(string dir, string project)
-        {
-            Directory = dir;
-            ProjectName = project;
-            Namespace = ProjectName.ToLower().Replace(" ", "_");
-        }
-
-        private string template =
-@"
+        private readonly string template =
+            @"
 ! This file is used for storing 
 ! meta information related to
 ! SharpFunction project
@@ -53,17 +35,33 @@ GEN=${GENERATED}
 ";
 
         /// <summary>
-        /// Creates .sfmeta file to be written to src directory
+        ///     Initialize a new instance of meta file writer
+        /// </summary>
+        /// <param name="dir">Directory to write .sfmeta file. Should contain src folder!</param>
+        /// <param name="project">Non-formatted name of project</param>
+        public MetaWriter(string dir, string project)
+        {
+            Directory = dir;
+            ProjectName = project;
+            Namespace = ProjectName.ToLower().Replace(" ", "_");
+        }
+
+        public string Directory { internal get; set; }
+        public string ProjectName { internal get; set; }
+        public string Namespace { internal get; set; }
+
+        /// <summary>
+        ///     Creates .sfmeta file to be written to src directory
         /// </summary>
         public string CreateMeta()
         {
-            string src = Path.Combine(Directory, "src");
-            string prd = Path.Combine(src, ProjectName);
-            string data = Path.Combine(prd, "data");
-            string namespaced = Path.Combine(data, Namespace);
+            var src = Path.Combine(Directory, "src");
+            var prd = Path.Combine(src, ProjectName);
+            var data = Path.Combine(prd, "data");
+            var namespaced = Path.Combine(data, Namespace);
             bool initialized;
 
-            string[] dirs = new[]
+            string[] dirs =
             {
                 "functions", "loot_tables", "structures", "worldgen",
                 "advancements", "recipes", "tags", "predicates", "dimension"
@@ -73,9 +71,10 @@ GEN=${GENERATED}
                 return System.IO.Directory.Exists(Path.Combine(namespaced, p));
             });
             initialized = dirs.All(predicate);
-            string init = CommandHelper.BoolToByte(initialized).Replace("b", "");
+            var init = CommandHelper.BoolToByte(initialized).Replace("b", "");
 
-            string filled = template.Replace("${SOURCE}", src).Replace("${DATAPATH}", data).Replace("${NAME}", ProjectName).Replace("${GENERATED}", init);
+            var filled = template.Replace("${SOURCE}", src).Replace("${DATAPATH}", data).Replace("${NAME}", ProjectName)
+                .Replace("${GENERATED}", init);
             return filled;
         }
     }

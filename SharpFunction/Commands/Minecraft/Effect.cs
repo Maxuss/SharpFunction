@@ -1,120 +1,215 @@
-﻿using SharpFunction.Universal;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SharpFunction.Commands.Helper;
 using static SharpFunction.Universal.EnumHelper;
 
 namespace SharpFunction.Commands.Minecraft
 {
     /// <summary>
-    /// Represents effect command. Equal to Minecraft's <code>/effect (clear|give) {targets} {effect}</code>
+    ///     Represents effect command. Equal to Minecraft's <code>/effect (clear|give) {targets} {effect}</code>
     /// </summary>
     public sealed class Effect : ICommand, ISelectorCommand
     {
-        /// <inheritdoc cref="ISelectorCommand.Selector"/>
-        public EntitySelector Selector { get; set; }
-        /// <inheritdoc cref="ICommand.Compiled"/>
-        public string Compiled { get; private set; }
-
         /// <summary>
-        /// Initialize Effect Command class.<br/>
-        /// <seealso cref="EntitySelector"/>
+        ///     Initialize Effect Command class.<br />
+        ///     <seealso cref="EntitySelector" />
         /// </summary>
-        /// <param name="selector"><see cref="EntitySelector"/> to use</param>
+        /// <param name="selector"><see cref="EntitySelector" /> to use</param>
         public Effect(EntitySelector selector)
         {
             Selector = selector;
         }
+
+        /// <inheritdoc cref="ICommand.Compiled" />
+        public string Compiled { get; private set; }
+
+        /// <inheritdoc cref="ISelectorCommand.Selector" />
+        public EntitySelector Selector { get; set; }
+
         /// <summary>
-        /// Compiles the /effect *clear* command
+        ///     Compiles the /effect *clear* command
         /// </summary>
         /// <param name="effect">Effect to clear</param>
         public void Compile(StatusEffect effect)
         {
-            Compiled = $"/effect clear {Selector.String()} minecraft:{EnumHelper.GetStringValue(effect)}";
+            Compiled = $"/effect clear {Selector.String()} minecraft:{effect.GetStringValue()}";
         }
+
         /// <summary>
-        /// Compiles the /effect *give* command
+        ///     Compiles the /effect *give* command
         /// </summary>
         /// <param name="effect">Effect to give</param>
         /// <param name="timeSeconds">Time for this effect to last in seconds</param>
         /// <param name="amplifier">Amplifier of the effect starting from 0 index</param>
         /// <param name="hideParticles">Whether the particles will be hidden</param>
-        public void Compile(StatusEffect effect, uint timeSeconds=10, uint amplifier=1, bool hideParticles=false)
+        public void Compile(StatusEffect effect, uint timeSeconds = 10, uint amplifier = 1, bool hideParticles = false)
         {
-            Compiled = $"/effect give {Selector.String()} minecraft:{EnumHelper.GetStringValue(effect)} {timeSeconds} {amplifier} {Helper.CommandHelper.BoolToString(hideParticles)}";
+            Compiled =
+                $"/effect give {Selector.String()} minecraft:{effect.GetStringValue()} {timeSeconds} {amplifier} {CommandHelper.BoolToString(hideParticles)}";
         }
     }
+
     /// <summary>
-    /// Status effect to put on player
+    ///     Status effect to put on player
     /// </summary>
     public enum StatusEffect
     {
-        /// <summary><code>speed</code></summary>
+        /// <summary>
+        ///     <code>speed</code>
+        /// </summary>
         [EnumValue("speed")] Speed,
-        /// <summary><code>slowness</code></summary>
+
+        /// <summary>
+        ///     <code>slowness</code>
+        /// </summary>
         [EnumValue("slowness")] Slowness,
-        /// <summary><code>haste</code></summary>
+
+        /// <summary>
+        ///     <code>haste</code>
+        /// </summary>
         [EnumValue("haste")] Haste,
-        /// <summary><code>mining_fatigue</code></summary>
+
+        /// <summary>
+        ///     <code>mining_fatigue</code>
+        /// </summary>
         [EnumValue("mining_fatigue")] MiningFatigue,
-        /// <summary><code>strength</code></summary>
+
+        /// <summary>
+        ///     <code>strength</code>
+        /// </summary>
         [EnumValue("strength")] Strength,
-        /// <summary><code>instant_health</code></summary>
+
+        /// <summary>
+        ///     <code>instant_health</code>
+        /// </summary>
         [EnumValue("instant_health")] InstantHealth,
-        /// <summary><code>instant_damage</code></summary>
+
+        /// <summary>
+        ///     <code>instant_damage</code>
+        /// </summary>
         [EnumValue("instant_damage")] InstantDamage,
-        /// <summary><code>jump_boost</code></summary>
+
+        /// <summary>
+        ///     <code>jump_boost</code>
+        /// </summary>
         [EnumValue("jump_boost")] JumpBoost,
-        /// <summary><code>nausea</code></summary>
+
+        /// <summary>
+        ///     <code>nausea</code>
+        /// </summary>
         [EnumValue("nausea")] Nausea,
-        /// <summary><code>regeneration</code></summary>
+
+        /// <summary>
+        ///     <code>regeneration</code>
+        /// </summary>
         [EnumValue("regeneration")] Regeneration,
-        /// <summary><code>resistance</code></summary>
+
+        /// <summary>
+        ///     <code>resistance</code>
+        /// </summary>
         [EnumValue("resistance")] Resistance,
-        /// <summary><code>fire_resistance</code></summary>
+
+        /// <summary>
+        ///     <code>fire_resistance</code>
+        /// </summary>
         [EnumValue("fire_resistance")] FireResistance,
-        /// <summary><code>water_breathing</code></summary>
+
+        /// <summary>
+        ///     <code>water_breathing</code>
+        /// </summary>
         [EnumValue("water_breathing")] WaterBreathing,
-        /// <summary><code>invisibility</code></summary>
+
+        /// <summary>
+        ///     <code>invisibility</code>
+        /// </summary>
         [EnumValue("invisibility")] Invisibility,
-        /// <summary><code>blindness</code></summary>
+
+        /// <summary>
+        ///     <code>blindness</code>
+        /// </summary>
         [EnumValue("blindness")] Blindness,
-        /// <summary><code>night_vision</code></summary>
+
+        /// <summary>
+        ///     <code>night_vision</code>
+        /// </summary>
         [EnumValue("night_vision")] NightVision,
-        /// <summary><code>hunger</code></summary>
+
+        /// <summary>
+        ///     <code>hunger</code>
+        /// </summary>
         [EnumValue("hunger")] Hunger,
-        /// <summary><code>weakness</code></summary>
+
+        /// <summary>
+        ///     <code>weakness</code>
+        /// </summary>
         [EnumValue("weakness")] Weakness,
-        /// <summary><code>poison</code></summary>
+
+        /// <summary>
+        ///     <code>poison</code>
+        /// </summary>
         [EnumValue("poison")] Poison,
-        /// <summary><code>wither</code></summary>
+
+        /// <summary>
+        ///     <code>wither</code>
+        /// </summary>
         [EnumValue("wither")] Wither,
-        /// <summary><code>health_boost</code></summary>
+
+        /// <summary>
+        ///     <code>health_boost</code>
+        /// </summary>
         [EnumValue("health_boost")] HealthBoost,
-        /// <summary><code>absorption</code></summary>
+
+        /// <summary>
+        ///     <code>absorption</code>
+        /// </summary>
         [EnumValue("absorption")] Absorption,
-        /// <summary><code>saturation</code></summary>
+
+        /// <summary>
+        ///     <code>saturation</code>
+        /// </summary>
         [EnumValue("saturation")] Saturation,
-        /// <summary><code>glowing</code></summary>
+
+        /// <summary>
+        ///     <code>glowing</code>
+        /// </summary>
         [EnumValue("glowing")] Glowing,
-        /// <summary><code>levitation</code></summary>
+
+        /// <summary>
+        ///     <code>levitation</code>
+        /// </summary>
         [EnumValue("levitation")] Levitation,
-        /// <summary><code>luck</code></summary>
+
+        /// <summary>
+        ///     <code>luck</code>
+        /// </summary>
         [EnumValue("luck")] Luck,
-        /// <summary><code>unluck</code></summary>
+
+        /// <summary>
+        ///     <code>unluck</code>
+        /// </summary>
         [EnumValue("unluck")] BadLuck,
-        /// <summary><code>slow_falling</code></summary>
+
+        /// <summary>
+        ///     <code>slow_falling</code>
+        /// </summary>
         [EnumValue("slow_falling")] SlowFalling,
-        /// <summary><code>conduit_power</code></summary>
+
+        /// <summary>
+        ///     <code>conduit_power</code>
+        /// </summary>
         [EnumValue("conduit_power")] ConduitPower,
-        /// <summary><code>dolphins_grace</code></summary>
+
+        /// <summary>
+        ///     <code>dolphins_grace</code>
+        /// </summary>
         [EnumValue("dolphins_grace")] DolphinGrace,
-        /// <summary><code>bad_omen</code></summary>
+
+        /// <summary>
+        ///     <code>bad_omen</code>
+        /// </summary>
         [EnumValue("bad_omen")] BadOmen,
-        /// <summary><code>hero_of_the_village</code></summary>
+
+        /// <summary>
+        ///     <code>hero_of_the_village</code>
+        /// </summary>
         [EnumValue("hero_of_the_village")] VillageHero
     }
 }

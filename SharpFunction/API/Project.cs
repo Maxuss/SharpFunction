@@ -1,49 +1,33 @@
-﻿using System;
-using System.IO;
-using SharpFunction.Writer;
-using SharpFunction.Meta;
+﻿using System.IO;
 using SharpFunction.Exceptions;
+using SharpFunction.Meta;
+using SharpFunction.Writer;
 
 namespace SharpFunction.API
 {
     /// <summary>
-    /// Represents a Minecraft datapack project 
+    ///     Represents a Minecraft datapack project
     /// </summary>
     public sealed class Project
     {
-        
-        /// <summary>
-        /// Path to root folder of project
-        /// </summary>
-        public string ProjectPath { get; private set; }
+        private const string mcmeta_example =
+            @"
+{
+    ""pack"": {
+    ""pack_format"": {FORMAT},
+    ""description"": ""{DESCRIPTION}""
+  }
+}
+";
+
+        private readonly string[] requiredDirectories =
+        {
+            "functions", "loot_tables", "structures", "worldgen",
+            "advancements", "recipes", "tags", "predicates", "dimension"
+        };
 
         /// <summary>
-        /// Name of project
-        /// </summary>
-        public string ProjectName { get; private set; }
-
-        /// <summary>
-        /// Namespace of project
-        /// </summary>
-        public string Namespace { get; private set; }
-
-        /// <summary>
-        /// Description in pack.mcmeta
-        /// </summary>
-        public string Description { get; set; } = "Made with SharpFunction for Datapacks.";
-
-        /// <summary>
-        /// Pack format shown in pack.mcmeta
-        /// </summary>
-        public PackFormat Format { get; set; } = PackFormat.v1_16;
-
-        /// <summary>
-        /// Allows the writing of minecraft functions.<br/>
-        /// Can only be accessed after initializing the project using <see cref="Generate()"/>
-        /// </summary>
-        public FunctionWriter Writer { get; private set; } = null;
-        /// <summary>
-        /// Initialize a new empty Minecraft datapack project
+        ///     Initialize a new empty Minecraft datapack project
         /// </summary>
         /// <param name="name">Name of root datapack folder, a.k.a. datapack name.</param>
         /// <param name="path">Path where root folder should be created.</param>
@@ -54,18 +38,39 @@ namespace SharpFunction.API
             Namespace = name.ToLower().Replace(" ", "_");
         }
 
-        private const string mcmeta_example =
-@"
-{
-    ""pack"": {
-    ""pack_format"": {FORMAT},
-    ""description"": ""{DESCRIPTION}""
-  }
-}
-";
+        /// <summary>
+        ///     Path to root folder of project
+        /// </summary>
+        public string ProjectPath { get; }
 
         /// <summary>
-        /// Loads the project from directory if .sfmeta file exists
+        ///     Name of project
+        /// </summary>
+        public string ProjectName { get; }
+
+        /// <summary>
+        ///     Namespace of project
+        /// </summary>
+        public string Namespace { get; }
+
+        /// <summary>
+        ///     Description in pack.mcmeta
+        /// </summary>
+        public string Description { get; set; } = "Made with SharpFunction for Datapacks.";
+
+        /// <summary>
+        ///     Pack format shown in pack.mcmeta
+        /// </summary>
+        public PackFormat Format { get; set; } = PackFormat.v1_16;
+
+        /// <summary>
+        ///     Allows the writing of minecraft functions.<br />
+        ///     Can only be accessed after initializing the project using <see cref="Generate()" />
+        /// </summary>
+        public FunctionWriter Writer { get; private set; }
+
+        /// <summary>
+        ///     Loads the project from directory if .sfmeta file exists
         /// </summary>
         /// <param name="path">Path to directory with src folder and .sfmeta file</param>
         /// <returns>Loaded project</returns>
@@ -76,24 +81,18 @@ namespace SharpFunction.API
             {
                 MetaReader reader = new(path);
                 Project project = new(reader.ProjectName, reader.SourceDirectory);
-                if(reader.FullyGenerated) project.GenerateLoad(Path.Combine(reader.DataDirectory, project.Namespace));
+                if (reader.FullyGenerated) project.GenerateLoad(Path.Combine(reader.DataDirectory, project.Namespace));
                 else project.Generate();
                 return project;
             }
-            catch(FileNotFoundException)
+            catch (FileNotFoundException)
             {
                 throw new MetaFileNotFound();
             }
         }
 
-        private string[] requiredDirectories =
-        {
-            "functions", "loot_tables", "structures", "worldgen",
-            "advancements", "recipes", "tags", "predicates", "dimension"
-        };
-
         /// <summary>
-        /// Initializes the datapack without generating files
+        ///     Initializes the datapack without generating files
         /// </summary>
         internal void GenerateLoad(string namespaced)
         {
@@ -101,28 +100,25 @@ namespace SharpFunction.API
             Writer.Initialize(Path.Combine(namespaced, "functions"));
         }
 
-        /// <summary>Initializes a datapack, allowing the use of <see cref="FunctionWriter"/></summary>
+        /// <summary>Initializes a datapack, allowing the use of <see cref="FunctionWriter" /></summary>
         public void Generate()
         {
             Writer = new FunctionWriter(this);
-            string mainDir = Path.Combine(ProjectPath, "src", ProjectName);
+            var mainDir = Path.Combine(ProjectPath, "src", ProjectName);
             Directory.CreateDirectory(mainDir);
-            
+
             var tmp = mcmeta_example
-                .Replace("{FORMAT}", $"{(int)Format}")
+                .Replace("{FORMAT}", $"{(int) Format}")
                 .Replace("{DESCRIPTION}", Description);
             File.WriteAllText(Path.Combine(mainDir, "pack.mcmeta"), tmp);
-            string namespaceDir = Path.Combine(mainDir, "data", Namespace);
-            string workingDir = Path.Combine(mainDir,"data",Namespace);
+            var namespaceDir = Path.Combine(mainDir, "data", Namespace);
+            var workingDir = Path.Combine(mainDir, "data", Namespace);
             Directory.CreateDirectory(workingDir);
             Directory.CreateDirectory(namespaceDir);
-            foreach(string dir in requiredDirectories)
-            {
-                Directory.CreateDirectory(Path.Combine(namespaceDir, dir));
-            }
+            foreach (var dir in requiredDirectories) Directory.CreateDirectory(Path.Combine(namespaceDir, dir));
             Writer.Initialize(Path.Combine(namespaceDir, "functions"));
             MetaWriter writer = new(Path.Combine(ProjectPath), ProjectName);
-            string d = writer.CreateMeta();
+            var d = writer.CreateMeta();
             File.WriteAllText(Path.Combine(ProjectPath, ".sfmeta"), d);
         }
     }

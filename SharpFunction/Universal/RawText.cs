@@ -1,44 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static SharpFunction.Universal.EnumHelper;
 using static SharpFunction.Universal.NullChecker;
+
 namespace SharpFunction.Universal
 {
     /// <summary>
-    /// Represents raw json text used for give/tellraw commands
+    ///     Represents raw json text used for give/tellraw commands
     /// </summary>
     public sealed class RawText
     {
+        internal List<string> _deprecated = new();
+
+        internal List<string> _lines = new();
+
         /// <summary>
-        /// Represents generated raw json. Returns empty string if nothing is specified
+        ///     Represents generated raw json. Returns empty string if nothing is specified
         /// </summary>
-        public string RawJSON { 
+        public string RawJSON
+        {
             get
             {
-                string i = _lines.Count() == 0 ? "" : string.Join("','", _lines);
+                var i = _lines.Count() == 0 ? "" : string.Join("','", _lines);
                 return $"['{i}']";
             }
         }
 
-        internal List<string> _deprecated = new();
-
-        internal List<string> _lines = new();
         /// <summary>
-        /// Generate starting raw json
-        /// </summary>
-        public RawText() { }
-
-        /// <summary>
-        /// Adds a field to raw text
+        ///     Adds a field to raw text
         /// </summary>
         /// <param name="text">Text to be displayed</param>
         /// <param name="color">Color of the text</param>
         /// <param name="format">Formatting of the text</param>
         /// <param name="extraFormat">Extra formattings of the text</param>
-        public RawText AddField(string text, Color color = Color.White, RawTextFormatting format = RawTextFormatting.None, params RawTextFormatting[] extraFormat)
+        public RawText AddField(string text, Color color = Color.White,
+            RawTextFormatting format = RawTextFormatting.None, params RawTextFormatting[] extraFormat)
         {
             var clr = color.GetStringValue();
             var frm = format.GetStringValue();
@@ -48,16 +44,17 @@ namespace SharpFunction.Universal
             deprecatedFormatting = string.IsNullOrEmpty(deprecatedFormatting) ? "" : $"&{deprecatedFormatting}";
             var extraF = string.Empty;
             var deprecatedExtraF = string.Empty;
-            if(extraFormat is not null)
-            {
+            if (extraFormat is not null)
                 foreach (var fr in extraFormat)
                 {
                     var df = fr.GetDeprecatedValue();
                     deprecatedExtraF = $"{deprecatedExtraF}&{(string.IsNullOrEmpty(df) ? "" : $"&{df}")}";
                     extraF =
-                        extraFormat.Last().Equals(fr) ? $"{extraF}{fr.GetStringValue()}" : $"{extraF}{fr.GetStringValue()},";
+                        extraFormat.Last().Equals(fr)
+                            ? $"{extraF}{fr.GetStringValue()}"
+                            : $"{extraF}{fr.GetStringValue()},";
                 }
-            }
+
             var deprecatedString =
                 $"{deprecatedColor}{deprecatedFormatting}{deprecatedExtraF}{text}";
             _deprecated.Add(deprecatedString);
@@ -69,8 +66,9 @@ namespace SharpFunction.Universal
             _lines.Add(full);
             return this;
         }
+
         /// <summary>
-        /// Add field from super raw text
+        ///     Add field from super raw text
         /// </summary>
         /// <param name="srt">Pre-Made SuperRawText</param>
         public RawText AddField(SuperRawText srt)
@@ -83,19 +81,32 @@ namespace SharpFunction.Universal
     }
 
     /// <summary>
-    /// Represents options for text formatting
+    ///     Represents options for text formatting
     /// </summary>
     public enum RawTextFormatting
     {
-        [DeprecatedValue("l")] [EnumValue(@"""bold"": true")] Bold,
-        [DeprecatedValue("o")] [EnumValue(@"""italic"": true")] Italic,
-        [DeprecatedValue("k")] [EnumValue(@"""obfuscated"": true")] Obfuscated,
-        [DeprecatedValue("m")] [EnumValue(@"""strikethrough"": true")] Strikethrough,
-        [DeprecatedValue("n")] [EnumValue(@"""underlined"": true")] Underlined,
+        [DeprecatedValue("l")] [EnumValue(@"""bold"": true")]
+        Bold,
+
+        [DeprecatedValue("o")] [EnumValue(@"""italic"": true")]
+        Italic,
+
+        [DeprecatedValue("k")] [EnumValue(@"""obfuscated"": true")]
+        Obfuscated,
+
+        [DeprecatedValue("m")] [EnumValue(@"""strikethrough"": true")]
+        Strikethrough,
+
+        [DeprecatedValue("n")] [EnumValue(@"""underlined"": true")]
+        Underlined,
+
         /// <summary>
-        /// Makes the text non-italic (italic by default)
+        ///     Makes the text non-italic (italic by default)
         /// </summary>
-        [DeprecatedValue(null)] [EnumValue(@"""italic"": false")] Straight,
-        [DeprecatedValue(null)] [EnumValue("")] None
+        [DeprecatedValue(null)] [EnumValue(@"""italic"": false")]
+        Straight,
+
+        [DeprecatedValue(null)] [EnumValue("")]
+        None
     }
 }
