@@ -9,13 +9,16 @@
         <Authors>Maxus</Authors>
         <Company>Maxus Industries</Company>
         <Description>A .NET Library used for creating Minecraft datapacks, and most things related to them.</Description>
-        <PackageLicenseExpression></PackageLicenseExpression>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageProjectUrl>https://maxus.space</PackageProjectUrl>
         <PackageIcon>ICON.png</PackageIcon>
         <RepositoryUrl>https://github.com/Maxuss/SharpFunction</RepositoryUrl>
         <RepositoryType>GitHub Repository</RepositoryType>
         <PackageTags>Minecraft, Datapacks, Skyblock</PackageTags>
-        <PackageReleaseNotes>v1.1.6 Patch includes multiple bugfixes and code cleanups
+        <PackageReleaseNotes>v1.1.6 Patch notes:
+            - Fixed multiple bugs
+            - Did a huge code cleanup
+            - Working on porting to .NET Framework and older version support (not soon probably)
         </PackageReleaseNotes>
         <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
         <NeutralLanguage>en-US</NeutralLanguage>
@@ -31,11 +34,11 @@
         <None Remove="Exceptions\InvalidSelectorParameters.cs~RF38db521.TMP"/>
         <None Include="..\..\..\ICON.png">
             <Pack>True</Pack>
-            <PackagePath></PackagePath>
+            <PackagePath> </PackagePath>
         </None>
         <None Include="..\LICENSE.txt">
             <Pack>True</Pack>
-            <PackagePath></PackagePath>
+            <PackagePath> </PackagePath>
         </None>
     </ItemGroup>
 
