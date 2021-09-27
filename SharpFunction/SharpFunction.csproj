@@ -9,7 +9,6 @@
         <Authors>Maxus</Authors>
         <Company>Maxus Industries</Company>
         <Description>A .NET Library used for creating Minecraft datapacks, and most things related to them.</Description>
-        <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageProjectUrl>https://maxus.space</PackageProjectUrl>
         <PackageIcon>ICON.png</PackageIcon>
         <RepositoryUrl>https://github.com/Maxuss/SharpFunction</RepositoryUrl>
