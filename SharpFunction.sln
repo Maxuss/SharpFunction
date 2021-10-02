@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharpFunction", "SharpFunct
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SFExample", "SFExample\SFExample.csproj", "{032ED336-1975-40AD-B048-99F34CCC7DAE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFLang", "SFLang\SFLang.csproj", "{08C32977-B4DE-477D-844C-C6D5DB646BC3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{032ED336-1975-40AD-B048-99F34CCC7DAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{032ED336-1975-40AD-B048-99F34CCC7DAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{032ED336-1975-40AD-B048-99F34CCC7DAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08C32977-B4DE-477D-844C-C6D5DB646BC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08C32977-B4DE-477D-844C-C6D5DB646BC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08C32977-B4DE-477D-844C-C6D5DB646BC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08C32977-B4DE-477D-844C-C6D5DB646BC3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
