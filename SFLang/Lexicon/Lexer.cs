@@ -74,7 +74,7 @@ namespace SFLang.Lexicon
         * and actually compiles our code down to a lambda object.
         */
         static Lambda<TContext> Compile<TContext>(IEnumerable<string> tokens)
-        {
+        { 
             /*
              * Compiling main content of code.
              *
@@ -84,14 +84,14 @@ namespace SFLang.Lexicon
              */
             var tuples = CompileStatements<TContext>(tokens.GetEnumerator(), false);
             var functions = tuples.Item1;
-
+            
             /*
              * Creating a function wrapping evaluation of all of our root level functions in body,
              * making sure we always return the result of the last function invocation to caller,
              * also making sure we have our root level stack object available during evaluation of
              * our lambda.
              */
-            return new Lambda<TContext>((ctx, binder) => {
+            return (ctx, binder) => {
 
                 /*
                  * Looping through each symbolic delegate, returning the 
@@ -102,16 +102,16 @@ namespace SFLang.Lexicon
                     result = ix(ctx, binder, null);
                 }
                 return result;
-            });
+            };
         }
 
         
-        private static Tuple<List<Func<TContext, dynamic, Parameters, object>>, bool> CompileStatements<TContext>(
+        private static Tuple<List<Function<TContext>>, bool> CompileStatements<TContext>(
             IEnumerator<string> en,
             bool forceClose = true)
         {
             // Creating a list of functions and returning these to caller.
-            var content = new List<Func<TContext, dynamic, Parameters, object>>();
+            var content = new List<Function<TContext>>();
             var eof = !en.MoveNext();
             while (!eof && en.Current != "}")
             {
@@ -134,14 +134,14 @@ namespace SFLang.Lexicon
             if (!forceClose && !eof && en.Current == "}")
                 throw new PrettyException(31, -1, typeof(Lexer).FullName,
                     "Unexpected closing brace '}' in code, did you add one too many '}' characters?");
-            return new Tuple<List<Func<TContext, dynamic, Parameters, object>>, bool>(content, eof);
+            return new Tuple<List<Function<TContext>>, bool>(content, eof);
         }
 
         /*
          * Compiles a statement, which might be a constant, a lambda object,
          * or a function invocation.
          */
-        private static Tuple<Func<TContext, dynamic, Parameters, object>, bool> CompileStatement<TContext>(
+        private static Tuple<Function<TContext>, bool> CompileStatement<TContext>(
             IEnumerator<string> en)
         {
             // Checking type of token, and acting accordingly.
@@ -165,7 +165,7 @@ namespace SFLang.Lexicon
         /*
          * Compiles a lambda down to a function and returns the function to caller.
          */
-        private static Tuple<Func<TContext, dynamic, Parameters, object>, bool> CompileLambda<TContext>(
+        private static Tuple<Function<TContext>, bool> CompileLambda<TContext>(
             IEnumerator<string> en)
         {
             // Compiling body, and retrieving functions.
@@ -176,7 +176,7 @@ namespace SFLang.Lexicon
              * Creating a function that evaluates every function sequentially, and
              * returns the result of the last function evaluation to the caller.
              */
-            var function = new Func<TContext, dynamic, Parameters, object>((ctx, binder, arguments) =>
+            var function = new Function<TContext>((ctx, binder, arguments) =>
             {
                 object result = null;
                 foreach (var ix in functions) result = ix(ctx, binder, null);
@@ -193,15 +193,15 @@ namespace SFLang.Lexicon
              * evaluation".
              */
             var lazyFunction =
-                new Func<TContext, dynamic, Parameters, object>((ctx2, binder2, arguments2) => { return function; });
-            return new Tuple<Func<TContext, dynamic, Parameters, object>, bool>(lazyFunction,
+                new Function<TContext>((ctx2, binder2, arguments2) => { return function; });
+            return new Tuple<Function<TContext>, bool>(lazyFunction,
                 tuples.Item2 || !en.MoveNext());
         }
 
         /*
          * Compiles a literal reference down to a function and returns the function to caller.
          */
-        private static Tuple<Func<TContext, dynamic, Parameters, object>, bool> CompileSymbolReference<TContext>(
+        private static Tuple<Function<TContext>, bool> CompileSymbolReference<TContext>(
             IEnumerator<string> en)
         {
             // Sanity checking tokenizer's content, since an '@' must reference an actual symbol.
@@ -230,7 +230,7 @@ namespace SFLang.Lexicon
                  */
                 var tuple = ApplyArguments<TContext>(symbolName, en);
                 var functor = tuple.Item1;
-                return new Tuple<Func<TContext, dynamic, Parameters, object>, bool>(
+                return new Tuple<Function<TContext>, bool>(
                     (ctx, binder, arguments) => { return functor; },
                     tuple.Item2);
             }
@@ -240,14 +240,14 @@ namespace SFLang.Lexicon
                  * When you use the '@' character with a symbol, this implies simply returning the
                  * symbol's name.
                  */
-            return new Tuple<Func<TContext, dynamic, Parameters, object>, bool>(
+            return new Tuple<Function<TContext>, bool>(
                 (ctx, binder, arguments) => { return symbolName; }, eof);
         }
 
         /*
          * Compiles a constant string down to a symbol and returns to caller.
          */
-        private static Tuple<Func<TContext, dynamic, Parameters, object>, bool> CompileString<TContext>(
+        private static Tuple<Function<TContext>, bool> CompileString<TContext>(
             IEnumerator<string> en)
         {
             // Storing type of string literal quote.
@@ -262,17 +262,17 @@ namespace SFLang.Lexicon
             en.MoveNext();
 
             // Returning a function that evaluates to the actual string's constant value.
-            var function = new Func<TContext, dynamic, Parameters, object>((ctx, binder, arguments) =>
+            var function = new Function<TContext>((ctx, binder, arguments) =>
             {
                 return stringConstant;
             });
-            return new Tuple<Func<TContext, dynamic, Parameters, object>, bool>(function, !en.MoveNext());
+            return new Tuple<Function<TContext>, bool>(function, !en.MoveNext());
         }
 
         /*
          * Compiles a constant number down to a symbol and returns to caller.
          */
-        private static Tuple<Func<TContext, dynamic, Parameters, object>, bool> CompileNumber<TContext>(
+        private static Tuple<Function<TContext>, bool> CompileNumber<TContext>(
             IEnumerator<string> en)
         {
             // Holds our actual number, which might be double or long.
@@ -302,18 +302,18 @@ namespace SFLang.Lexicon
 
             // Creates a function that evaluates to the actual constant number.
             var function =
-                new Func<TContext, dynamic, Parameters, object>((ctx, binder, arguments) =>
+                new Function<TContext>((ctx, binder, arguments) =>
                 {
                     return numericConstant;
                 });
-            return new Tuple<Func<TContext, dynamic, Parameters, object>, bool>(function, !en.MoveNext());
+            return new Tuple<Function<TContext>, bool>(function, !en.MoveNext());
         }
 
         /*
          * Compiles a symbolic reference down to a function invocation and returns
          * that function to caller.
          */
-        private static Tuple<Func<TContext, dynamic, Parameters, object>, bool> CompileSymbol<TContext>(
+        private static Tuple<Function<TContext>, bool> CompileSymbol<TContext>(
             IEnumerator<string> en)
         {
             // Retrieving symbol's name and sanity checking it.
@@ -327,20 +327,20 @@ namespace SFLang.Lexicon
             if (!eof && en.Current == "(")
                 // Method invocation, making sure we apply arguments,
                 return ApplyArguments<TContext>(symbolName, en);
-            return new Tuple<Func<TContext, dynamic, Parameters, object>, bool>(
-                (ctx, binder, arguments) => { return binder[symbolName]; }, eof);
+            return new Tuple<Function<TContext>, bool>(
+                (_, binder, _) => binder[symbolName], eof);
         }
 
 
         /*
          * Applies arguments to a function invoction, such that they're evaluated at runtime.
          */
-        private static Tuple<Func<TContext, dynamic, Parameters, object>, bool> ApplyArguments<TContext>(
+        private static Tuple<Function<TContext>, bool> ApplyArguments<TContext>(
             string symbolName,
             IEnumerator<string> en)
         {
             // Used to hold arguments before they're being applied inside of function evaluation.
-            var arguments = new List<Func<TContext, dynamic, Parameters, object>>();
+            var arguments = new List<Function<TContext>>();
 
             // Sanity checking tokenizer's content.
             if (!en.MoveNext())
@@ -368,12 +368,12 @@ namespace SFLang.Lexicon
             /*
              * Creates a function invocation that evaluates its arguments at runtime.
              */
-            return new Tuple<Func<TContext, dynamic, Parameters, object>, bool>((ctx, binder, args) =>
+            return new Tuple<Function<TContext>, bool>((ctx, binder, args) =>
             {
                 // Applying arguments.
                 var appliedArguments =
                     new Parameters(
-                        arguments.Select<Func<TContext, dynamic, Parameters, object>, object>(ix =>
+                        arguments.Select(ix =>
                             ix(ctx, binder, new Parameters())));
                 if (appliedArguments.Count == 1 && appliedArguments.Get(0) is Parameters explicitlyApplied)
                     appliedArguments = explicitlyApplied;
@@ -382,7 +382,7 @@ namespace SFLang.Lexicon
                 var symbol = binder[symbolName];
                 if (symbol == null)
                     throw new EvaluationException(typeof(Lexer), $"Symbol '{symbolName}' is null.");
-                if (symbol is Func<TContext, dynamic, Parameters, object> functor)
+                if (symbol is Function<TContext> functor)
                     return functor(ctx, binder, appliedArguments); // Success!
                 throw new EvaluationException(typeof(Lexer),
                     $"'{symbolName}' is not a function, but a '{symbol.GetType().FullName}'");

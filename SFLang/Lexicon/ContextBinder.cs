@@ -11,11 +11,11 @@ namespace SFLang.Lexicon
         delegate object DeepStaticFunction(object[] arguments);
         
         // Statically bound variables/functions, and root level variables.
-        readonly Dictionary<string, object> _staticContextBinder = new();
+        public readonly Dictionary<string, object> StaticContextBinder = new();
 
 
         // Stack of dynamically created variables and functions.
-        readonly List<Dictionary<string, object>> _stackContextBinder = new();
+        public readonly List<Dictionary<string, object>> StackContextBinder = new();
 
 
         // Tracks if an instance context is provided or not.
@@ -26,7 +26,7 @@ namespace SFLang.Lexicon
         /// Creates a default ContextBinder, binding all bound methods in your context type.
         /// </summary>
         /// <param name="context">If not default then the constructor will perform binding on type of instance, and not on type of TContext.</param>
-        public ContextBinder(TContext context = default(TContext))
+        public ContextBinder(TContext context = default)
         {
             _contextIsDefault = EqualityComparer<TContext>.Default.Equals(context, default);
         }
@@ -60,14 +60,14 @@ namespace SFLang.Lexicon
         /// Gets the static item keys.
         /// </summary>
         /// <value>The static item keys for this instance.</value>
-        public IEnumerable<string> StaticItems => _staticContextBinder.Keys;
+        public IEnumerable<string> StaticItems => StaticContextBinder.Keys;
 
 
         /// <summary>
         /// Returns the count of stacks for this instance.
         /// </summary>
         /// <value>The stack count.</value>
-        public int StackCount => _stackContextBinder.Count;
+        public int StackCount => StackContextBinder.Count;
 
 
         /// <summary>
@@ -88,8 +88,6 @@ namespace SFLang.Lexicon
         public object this[string symbolName]
         {
             get {
-
-
                 /*
                  * Checking if we have a stack level object matching the specified symbol.
                  *
@@ -97,15 +95,11 @@ namespace SFLang.Lexicon
                  * Locally declared symbols are symbols declared inside of functions, or after the
                  * stack has been "pushed" at least once or more.
                  */
-                if (_stackContextBinder.Count > 0 && _stackContextBinder[_stackContextBinder.Count - 1].ContainsKey(symbolName))
-                    return _stackContextBinder[_stackContextBinder.Count - 1][symbolName];
-
-
-                // Defaulting to looking in "static" ContextBinder.
-                if (_staticContextBinder.ContainsKey(symbolName))
-                    return _staticContextBinder[symbolName];
-
-
+                if (StackContextBinder.Count > 0 && StackContextBinder[^1].ContainsKey(symbolName))
+                    return StackContextBinder[^1][symbolName];
+                if(StaticContextBinder.ContainsKey(symbolName))
+                    return StaticContextBinder[symbolName];
+                
                 // Oops, no such symbol!
                 throw new EvaluationException(typeof(ContextBinder<TContext>),$"The '{symbolName}' symbol has not been declared.");
             }
@@ -117,20 +111,10 @@ namespace SFLang.Lexicon
                  * do if the stack has not (yet) been pushed at least once, or the
                  * symbol already exists at the global scope.
                  */
-                if (_stackContextBinder.Count == 0 || _staticContextBinder.ContainsKey(symbolName)) {
-
-
-                    /*
-                     * Stack has not (yet) been pushed, or symbol exists in global scope.
-                     */
-                    _staticContextBinder[symbolName] = value;
-
-
+                if (StackContextBinder.Count == 0 || StaticContextBinder.ContainsKey(symbolName)) {
+                    StaticContextBinder[symbolName] = value;
                 } else {
-
-
-                    // Symbol not found on stack, hence setting global symbol's value.
-                    _stackContextBinder[_stackContextBinder.Count - 1][symbolName] = value;
+                    StackContextBinder[StackContextBinder.Count - 1][symbolName] = value;
                 }
             }
         }
@@ -145,12 +129,12 @@ namespace SFLang.Lexicon
         public bool ContainsKey(string symbolName)
         {
             // Checking if our stack contains symbol.
-            if (_stackContextBinder.Count > 0 && _stackContextBinder[_stackContextBinder.Count - 1].ContainsKey(symbolName))
+            if (StackContextBinder.Count > 0 && StackContextBinder[StackContextBinder.Count - 1].ContainsKey(symbolName))
                 return true;
 
 
             // Defaulting to static ContextBinder.
-            return _staticContextBinder.ContainsKey(symbolName);
+            return StaticContextBinder.ContainsKey(symbolName);
         }
 
 
@@ -162,8 +146,8 @@ namespace SFLang.Lexicon
         /// <param name="symbolName">Symbol name.</param>
         public bool ContainsDynamicKey(string symbolName)
         {
-            if (_stackContextBinder.Count > 0)
-                return _stackContextBinder[_stackContextBinder.Count - 1].ContainsKey(symbolName);
+            if (StackContextBinder.Count > 0)
+                return StackContextBinder[StackContextBinder.Count - 1].ContainsKey(symbolName);
             return false;
         }
 
@@ -176,7 +160,7 @@ namespace SFLang.Lexicon
         /// <param name="symbolName">Symbol name.</param>
         public bool ContainsStaticKey(string symbolName)
         {
-            return _staticContextBinder.ContainsKey(symbolName);
+            return StaticContextBinder.ContainsKey(symbolName);
         }
 
 
@@ -186,9 +170,9 @@ namespace SFLang.Lexicon
         /// <param name="symbolName">Symbol name of item to remove.</param>
         public void RemoveKey(string symbolName)
         {
-            if (_stackContextBinder.Count > 0)
-                _stackContextBinder[_stackContextBinder.Count - 1].Remove(symbolName);
-            _staticContextBinder.Remove(symbolName);
+            if (StackContextBinder.Count > 0)
+                StackContextBinder[StackContextBinder.Count - 1].Remove(symbolName);
+            StaticContextBinder.Remove(symbolName);
         }
 
 
@@ -197,9 +181,9 @@ namespace SFLang.Lexicon
         /// </summary>
         public void PushStack()
         {
-            if (_stackContextBinder.Count == MaxStackSize)
+            if (StackContextBinder.Count == MaxStackSize)
                 throw new EvaluationException(typeof(ContextBinder<TContext>),"Your maximum stack size has been exceeded");
-            _stackContextBinder.Add(new Dictionary<string, object>());
+            StackContextBinder.Add(new Dictionary<string, object>());
         }
 
 
@@ -208,7 +192,7 @@ namespace SFLang.Lexicon
         /// </summary>
         public void PopStack()
         {
-            _stackContextBinder.RemoveAt(_stackContextBinder.Count - 1);
+            StackContextBinder.RemoveAt(StackContextBinder.Count - 1);
         }
 
 
@@ -230,15 +214,15 @@ namespace SFLang.Lexicon
             var clone = new ContextBinder<TContext>(false) {
                 MaxStackSize = MaxStackSize
             };
-            foreach (var ix in _staticContextBinder.Keys) {
-                clone[ix] = _staticContextBinder[ix];
+            foreach (var ix in StaticContextBinder.Keys) {
+                clone[ix] = StaticContextBinder[ix];
             }
-            foreach (var ixStack in _stackContextBinder) {
+            foreach (var ixStack in StackContextBinder) {
                 var dictionary = new Dictionary<string, object>();
                 foreach (var ixKey in ixStack.Keys) {
                     dictionary[ixKey] = ixStack[ixKey];
                 }
-                clone._stackContextBinder.Add(dictionary);
+                clone.StackContextBinder.Add(dictionary);
             }
             return clone;
         }
@@ -252,7 +236,7 @@ namespace SFLang.Lexicon
         void BindMethod(MethodInfo method, string functionName)
         {
             SanityCheckSignature(method, functionName);
-            _staticContextBinder[functionName] = Delegate.CreateDelegate(typeof(Func<TContext>), method);
+            StaticContextBinder[functionName] = Delegate.CreateDelegate(typeof(Func<TContext>), method);
         }
 
         /*
@@ -274,22 +258,18 @@ namespace SFLang.Lexicon
              * Excactly how, depends upon whether or not the bound method is static or not.
              */
             if (!method.IsStatic) {
-
-
+                
                 var lateBound = CreateInstanceFunction(method);
-                _staticContextBinder[functionName] = new Func<TContext, ContextBinder<TContext>, Parameters, object>((ctx, binder, arguments) => {
+                StaticContextBinder[functionName] = new Func<TContext, ContextBinder<TContext>, Parameters, object>((ctx, binder, arguments) => {
                     return lateBound(ctx, new object[] { binder, arguments });
                 });
-
-
+                
             } else {
-
-
+                
                 var lateBound = CreateStaticFunction(method);
-                _staticContextBinder[functionName] = new Func<TContext, ContextBinder<TContext>, Parameters, object>((ctx, binder, arguments) => {
+                StaticContextBinder[functionName] = new Func<TContext, ContextBinder<TContext>, Parameters, object>((ctx, binder, arguments) => {
                     return lateBound(new object[] { ctx, binder, arguments });
                 });
-
 
             }
         }

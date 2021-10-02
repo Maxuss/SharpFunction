@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using Microsoft.CSharp.RuntimeBinder;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using SFLang.Exceptions;
@@ -10,6 +11,19 @@ namespace SFLang.Lexicon
 {
     public static class Lexic<TContext>
     {
+        public static Function<TContext> Out => (ctx, binder, args) =>
+        {
+            if (args.Count != 1)
+            {
+                throw new EvaluationException(typeof(Lexic<TContext>),
+                    $"'out' method expects one argument but got {args.Count} instead!");
+            }
+
+            var item = args.Get(0);
+            Console.WriteLine(item);
+            return item;
+        };
+
         public static Function<TContext> Exit => (ctx, binder, parameters) =>
         {
             if (parameters.Count == 1 && parameters.Get(0) is string str)

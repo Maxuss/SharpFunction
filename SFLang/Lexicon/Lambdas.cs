@@ -8,42 +8,49 @@ namespace SFLang.Lexicon
         /// Compiling the specified code to a lambda function, without requiring
         /// the caller to bind the evaluation towards a particular type.
         /// 
-        /// Will bind to all the default 'keywords' in Lizzie found in the
+        /// Will bind to all the default 'keywords' in SFLang found in the
         /// Lexic class.
         /// </summary>
         /// <returns>The compiled lambda function.</returns>
-        /// <param name="code">Lizzie code to compile.</param>
+        /// <param name="code">SFLang code to compile.</param>
         public static Func<object> Compile(string code)
         {
             var function = Lexer.Compile<Unit>(Parser.Default, code);
             var binder = new ContextBinder<Unit>();
             BindLexic(binder);
             var nothing = new Unit();
-            return new Func<object>(() => {
-                return function(nothing, binder);
-            });
+            return () => function(nothing, binder);
         }
 
+        public static Func<object> Compile(Parser parser)
+        {
+            var function = Lexer.Compile<Unit>(parser, parser.RawContents);
+            var binder = new ContextBinder<Unit>();
+            BindLexic(binder);
+            var nothing = new Unit();
+            return () => function(nothing, binder);
+        }
+        
         /// <summary>
         /// Compiles the specified code, binding to the specified context, and
         /// returns a function allowing you to evaluate the specified code.
         /// 
-        /// Will bind to all the default 'keywords' in Lizzie found in the
+        /// Will bind to all the default 'keywords' in SFLang found in the
         /// Lexic class.
         /// </summary>
         /// <returns>The compiled lambda function.</returns>
         /// <param name="context">Context to bind the evaluation towards.</param>
-        /// <param name="code">Lizzie code to compile.</param>
+        /// <param name="code">SFLang code to compile.</param>
         /// <param name="bindDeep">If true will perform binding on type of instance, and not on type TContext.</param>
         /// <typeparam name="TContext">The type of context you want to bind towards.</typeparam>
         public static Func<object> Compile<TContext>(TContext context, string code, bool bindDeep = false)
         {
             var function = Lexer.Compile<TContext>(Parser.Default, code);
-            var binder = new ContextBinder<TContext>(bindDeep ? context : default(TContext));
+            var binder = new ContextBinder<TContext>(bindDeep ? context : default);
             BindLexic(binder);
-            return new Func<object>(() => {
+            return () => {
                 return function(context, binder);
-            });
+            };
         }
 
         /// <summary>
@@ -62,7 +69,7 @@ namespace SFLang.Lexicon
         /// <returns>The compiled lambda function.</returns>
         /// <param name="context">Context to bind the lambda towards.</param>
         /// <param name="binder">Binder to use for your lambda.</param>
-        /// <param name="code">Lizzie code to compile.</param>
+        /// <param name="code">SFLang code to compile.</param>
         /// <typeparam name="TContext">The type of context you want to bind towards.</typeparam>
         public static Func<object> Compile<TContext>(TContext context, ContextBinder<TContext> binder, string code)
         {
@@ -73,7 +80,7 @@ namespace SFLang.Lexicon
         }
 
         /// <summary>
-        /// Binds the specified binder to all default Lexic in Lizzie from the Lexic class.
+        /// Binds the specified binder to all default Lexic in SFLang from the Lexic class.
         /// </summary>
         /// <param name="binder">Binder to bind.</param>
         /// <typeparam name="TContext">The type of context you want to use.</typeparam>
@@ -125,6 +132,8 @@ namespace SFLang.Lexicon
 
             binder["null"] = null;
             binder["error"] = Lexic<TContext>.Exit;
+
+            binder["out"] = Lexic<TContext>.Out;
         }
 
         public class Unit { };

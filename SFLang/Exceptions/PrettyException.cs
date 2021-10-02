@@ -27,7 +27,7 @@ namespace SFLang.Exceptions
 
         public void PrettyPrint()
         {
-            Console.WriteLine($"> ${GetType().FullName} Occured in file {FileName} in line {Line} at position {CharPos} >> ${Message}");
+            Console.WriteLine($"> ${GetType().FullName} F {FileName} <{Line}::{CharPos}> ${Message}");
             Cause?.PrettyPrint();
         }
     }

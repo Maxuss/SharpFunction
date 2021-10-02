@@ -5,6 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using SFLang.Lexicon;
 
 namespace SFLang.Language
 {
@@ -40,6 +41,11 @@ namespace SFLang.Language
             Default = this;
         }
 
+        public Lambda<TContext> Compile<TContext>(TContext ctx)
+        {
+            return Lexer.Compile<TContext>(this, Reader?.BaseStream);
+        }
+        
         public IEnumerable<string> Tokenize(Stream stream, Encoding? encoding = null)
         {
             // Notice! We do NOT take ownership over stream!
