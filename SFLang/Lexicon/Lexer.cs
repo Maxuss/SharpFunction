@@ -10,11 +10,11 @@ namespace SFLang.Lexicon
     {
         
         /// <summary>
-        /// Compile the Lizzie code found in the specified stream.
+        /// Compile the SFLang code found in the specified stream.
         /// </summary>
         /// <returns>The compiled lambda object.</returns>
         /// <param name="tokenizer">The tokenizer to use.</param>
-        /// <param name="stream">Stream containing Lizzie code. Notice, this method does not claim ownership over
+        /// <param name="stream">Stream containing SFLang code. Notice, this method does not claim ownership over
         /// your stream, and you are responsible for correctly disposing it yourself</param>
         /// <typeparam name="TContext">The type of your context object.</typeparam>
         public static Lambda<TContext> Compile<TContext>(Parser parser, Stream stream)
@@ -23,11 +23,11 @@ namespace SFLang.Lexicon
         }
 
         /// <summary>
-        /// Compile the Lizzie code found in the specified streams.
+        /// Compile the SFLang code found in the specified streams.
         /// </summary>
         /// <returns>The compiled lambda object.</returns>
         /// <param name="tokenizer">The tokenizer to use.</param>
-        /// <param name="streams">Streams containing Lizzie code. Notice, this method does not claim ownership over
+        /// <param name="streams">Streams containing SFLang code. Notice, this method does not claim ownership over
         /// your streams, and you are responsible for correctly disposing your streams yourself</param>
         /// <typeparam name="TContext">The type of your context object.</typeparam>
         public static Lambda<TContext> Compile<TContext>(Parser parser, IEnumerable<Stream> streams)
@@ -36,11 +36,11 @@ namespace SFLang.Lexicon
         }
 
         /// <summary>
-        /// Compile the specified Lizzie code.
+        /// Compile the specified SFLang code.
         /// </summary>
         /// <returns>The compiled lambda object.</returns>
         /// <param name="tokenizer">The tokenizer to use.</param>
-        /// <param name="snippet">Your Lizzie code.</param>
+        /// <param name="snippet">Your SFLang code.</param>
         /// <typeparam name="TContext">The type of your context object.</typeparam>
         public static Lambda<TContext> Compile<TContext>(Parser tokenizer, string snippet)
         {
@@ -48,11 +48,11 @@ namespace SFLang.Lexicon
         }
 
         /// <summary>
-        /// Compile the specified Lizzie code snippets.
+        /// Compile the specified SFLang code snippets.
         /// </summary>
         /// <returns>The compiled lambda object.</returns>
         /// <param name="tokenizer">The tokenizer to use.</param>
-        /// <param name="snippets">Snippets containing your Lizzie code.</param>
+        /// <param name="snippets">Snippets containing your SFLang code.</param>
         /// <typeparam name="TContext">The type of your context object.</typeparam>
         public static Lambda<TContext> Compile<TContext>(Parser tokenizer, IEnumerable<string> snippets)
         {
@@ -189,7 +189,7 @@ namespace SFLang.Lexicon
              * 
              * Notice!
              * A body is the only thing that is "by default" evaluated as "lazy" in
-             * Lizzie, and does not require the '@' character to accomplish "lazy
+             * SFLang, and does not require the '@' character to accomplish "lazy
              * evaluation".
              */
             var lazyFunction =
