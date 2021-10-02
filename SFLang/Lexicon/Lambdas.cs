@@ -4,6 +4,12 @@ namespace SFLang.Lexicon
 {
     public static class Lambdas
     {
+        public static void CreateScope<TContext>(ContextBinder<TContext> binder)
+        {
+            ContextBinder<TContext>.InstanceBinder = binder;
+            BindLexic(binder);
+        }
+        
         /// <summary>
         /// Compiling the specified code to a lambda function, without requiring
         /// the caller to bind the evaluation towards a particular type.
@@ -16,8 +22,16 @@ namespace SFLang.Lexicon
         public static Func<object> Compile(string code)
         {
             var function = Lexer.Compile<Unit>(Parser.Default, code);
-            var binder = new ContextBinder<Unit>();
-            BindLexic(binder);
+            ContextBinder<Unit> binder;
+            if (ContextBinder<Unit>.InstanceBinder != null)
+            {
+                binder = ContextBinder<Unit>.InstanceBinder;
+            }
+            else
+            {
+                binder = new ContextBinder<Unit>();
+                BindLexic(binder);
+            }
             var nothing = new Unit();
             return () => function(nothing, binder);
         }
@@ -25,8 +39,16 @@ namespace SFLang.Lexicon
         public static Func<object> Compile(Parser parser)
         {
             var function = Lexer.Compile<Unit>(parser, parser.RawContents);
-            var binder = new ContextBinder<Unit>();
-            BindLexic(binder);
+            ContextBinder<Unit> binder;
+            if (ContextBinder<Unit>.InstanceBinder != null)
+            {
+                binder = ContextBinder<Unit>.InstanceBinder;
+            }
+            else
+            {
+                binder = new ContextBinder<Unit>();
+                BindLexic(binder);
+            }
             var nothing = new Unit();
             return () => function(nothing, binder);
         }
@@ -46,8 +68,16 @@ namespace SFLang.Lexicon
         public static Func<object> Compile<TContext>(TContext context, string code, bool bindDeep = false)
         {
             var function = Lexer.Compile<TContext>(Parser.Default, code);
-            var binder = new ContextBinder<TContext>(bindDeep ? context : default);
-            BindLexic(binder);
+            ContextBinder<TContext> binder;
+            if (ContextBinder<TContext>.InstanceBinder != null)
+            {
+                binder = ContextBinder<TContext>.InstanceBinder;
+            }
+            else
+            {
+                binder = new ContextBinder<TContext>(bindDeep ? context : default);
+                BindLexic(binder);
+            }
             return () => {
                 return function(context, binder);
             };

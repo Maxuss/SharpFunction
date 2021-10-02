@@ -7,6 +7,8 @@ namespace SFLang.Lexicon
 {
     public class ContextBinder<TContext> : ICloneable
     {
+        public static ContextBinder<TContext> InstanceBinder { get; set; } = null;
+
         delegate object DeepFunction(object target, object[] arguments);
         delegate object DeepStaticFunction(object[] arguments);
         
