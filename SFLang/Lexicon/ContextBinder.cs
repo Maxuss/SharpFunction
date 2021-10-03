@@ -2,6 +2,7 @@
 using System.Linq.Expressions;
 using System.Reflection;
 using SFLang.Exceptions;
+using SFLang.Language;
 
 namespace SFLang.Lexicon
 {
@@ -23,70 +24,54 @@ namespace SFLang.Lexicon
         // Tracks if an instance context is provided or not.
         bool _contextIsDefault;
 
-
-        /// <summary>
-        /// Creates a default ContextBinder, binding all bound methods in your context type.
-        /// </summary>
-        /// <param name="context">If not default then the constructor will perform binding on type of instance, and not on type of TContext.</param>
         public ContextBinder(TContext context = default)
         {
             _contextIsDefault = EqualityComparer<TContext>.Default.Equals(context, default);
         }
 
-
-        /*
-         * Private CTOR to allow for cloning instances of class, without having
-         * to run through reflection necessary to bind the type.
-         */
+        
         ContextBinder(bool initialize, TContext context = default) { }
 
-
-        /// <summary>
-        /// Gets or sets the maximum size of the stack.
-        /// 
-        /// This becomes the maximum number of functions you can invoke recursively,
-        /// and is intended to avoid exhausting your CLR stack by entering into a
-        /// never ending recursive function invocation tree.
-        /// 
-        /// The default value is -1, implying no check.
-        /// For security reasons you might want to set this to some arbitrary number,
-        /// such as 50 or 100 to avoid malicious code eating up your CLR stack and
-        /// causing a stack overflow in your CLR.
-        /// </summary>
-        /// <value>The maximum size of your stack, or rather your maximum number of
-        /// stacks (function invocations).</value>
+        
         public int MaxStackSize { get; set; } = -1;
-
-
-        /// <summary>
-        /// Gets the static item keys.
-        /// </summary>
-        /// <value>The static item keys for this instance.</value>
+        
         public IEnumerable<string> StaticItems => StaticContextBinder.Keys;
 
-
-        /// <summary>
-        /// Returns the count of stacks for this instance.
-        /// </summary>
-        /// <value>The stack count.</value>
         public int StackCount => StackContextBinder.Count;
-
-
-        /// <summary>
-        /// Returns true if the instance has been "deeply bound".
-        /// </summary>
-        /// <value>The stack count.</value>
+        
         public bool DeeplyBound => !_contextIsDefault;
 
+        public void RegisterClass(SFClass klass)
+        {
+            var properties = klass.GetType().GetProperties();
+            var type = klass.GetType();
+            foreach(var property in properties)
+            {
+                this[type.Name+"::"+property.Name] = property.GetValue(klass);
+            }
 
-        /// <summary>
-        /// Gets or sets the value with the given key. You can set the content
-        /// to either a constant or a Lizzie function, at which point you can
-        /// retrieve the object by referencing it symbolically in your Lizzie code.
-        /// 
-        /// Will prioritize retrieving or setting the stack symbol before any global values.
-        /// </summary>
-        /// <param name="symbolName">Name or symbol for your value.</param>
+            foreach (var method in klass.GetType().GetMethods())
+            {
+                if (method.Name == "__typeof__")
+                {
+                    this[$"typeof<{klass.GetType().Name}>"] = Delegate.CreateDelegate(type, method);
+                }
+                else if (method.Name != "__init__")
+                {
+                    var para = method.GetParameters();
+                    if (para.Length > 0 && para[0].ParameterType != typeof(Parameters))
+                    {
+                        throw new ParsingException(message: "Expected the class in method to have parameter");
+                    }
+                    this[type.Name + "::" + method.Name] = Delegate.CreateDelegate(type, method);
+                }
+                else
+                {
+                    this[type.Name] = Delegate.CreateDelegate(type, method);
+                }
+            }
+        }
+        
         public object this[string symbolName]
         {
             get {

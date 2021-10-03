@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 
 namespace SFLang.Exceptions
 {
@@ -10,6 +11,18 @@ namespace SFLang.Exceptions
         public string Message { get; }
         public PrettyException Cause { get; set; }
 
+        public PrettyException() { }
+
+        public PrettyException(
+            string message,
+            PrettyException cause = null,
+            [CallerLineNumber] int line = 0,
+            [CallerMemberName] string member = "",
+            [CallerFilePath] string path = "")
+        {
+            throw new PrettyException(line, -1, path + "::" + member, message, cause);
+        }
+        
         public PrettyException(
             int line,
             int charpos,
@@ -27,7 +40,7 @@ namespace SFLang.Exceptions
 
         public void PrettyPrint()
         {
-            Console.WriteLine($"> ${GetType().FullName} F {FileName} <{Line}::{CharPos}> ${Message}");
+            Console.WriteLine($"> ${GetType().FullName} in file {FileName} <{Line}::{CharPos}> ${Message}");
             Cause?.PrettyPrint();
         }
     }

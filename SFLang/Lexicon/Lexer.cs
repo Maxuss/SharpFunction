@@ -65,8 +65,7 @@ namespace SFLang.Lexicon
         internal static void SanityCheckSymbolName(string symbolName)
         {
             if (symbolName.IndexOfAny(new[] {' ', '\r', '\n', '\t'}) != -1)
-                throw new ParsingException(-1, -1, typeof(Lexer).FullName,
-                    $"'{symbolName}' is not a valid symbol name.");
+                throw new ParsingException(message: $"'{symbolName}' is not a valid symbol name.");
         }
         
         /*
@@ -206,7 +205,7 @@ namespace SFLang.Lexicon
         {
             // Sanity checking tokenizer's content, since an '@' must reference an actual symbol.
             if (!en.MoveNext())
-                throw new ParsingException(-1, -1, typeof(Lexer).FullName, "Unexpected EOF after '@'.");
+                throw new ParsingException(message: "Unexpected EOF after '@'.");
 
             // Storing symbol's name and sanity checking its name.
             var symbolName = en.Current;
@@ -255,7 +254,7 @@ namespace SFLang.Lexicon
 
             // Sanity checking tokenizer's content.
             if (!en.MoveNext())
-                throw new ParsingException(-1, -1, typeof(Lexer).FullName, $"Unexpected EOF after {quote}.");
+                throw new ParsingException(message: $"Unexpected EOF after {quote}.");
 
             // Retrieving actual string constant, and discarding closing quote character.
             var stringConstant = en.Current;
@@ -344,8 +343,7 @@ namespace SFLang.Lexicon
 
             // Sanity checking tokenizer's content.
             if (!en.MoveNext())
-                throw new ParsingException(-1, -1, typeof(Lexer).FullName,
-                    "Unexpected EOF while parsing function invocation.");
+                throw new ParsingException(message: "Unexpected EOF while parsing function invocation.");
 
             // Looping through all arguments, if there are any.
             while (en.Current != ")")
@@ -358,10 +356,10 @@ namespace SFLang.Lexicon
 
                 // Sanity checking tokenizer's content, and discarding "," token.
                 if (en.Current != ",")
-                    throw new ParsingException(-1, -1, typeof(Lexer).FullName,
+                    throw new ParsingException(message:
                         $"Syntax error in arguments to '{symbolName}', expected ',' separating arguments and found '{en.Current}'.");
                 if (!en.MoveNext())
-                    throw new ParsingException(-1, -1, typeof(Lexer).FullName,
+                    throw new ParsingException(message:
                         "Unexpected EOF while parsing arguments to function invocation.");
             }
 

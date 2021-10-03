@@ -7,18 +7,9 @@ namespace SFLang.Lexicon
         public static void CreateScope<TContext>(ContextBinder<TContext> binder)
         {
             ContextBinder<TContext>.InstanceBinder = binder;
-            BindLexic(binder);
+            PopulateLexic(binder);
         }
         
-        /// <summary>
-        /// Compiling the specified code to a lambda function, without requiring
-        /// the caller to bind the evaluation towards a particular type.
-        /// 
-        /// Will bind to all the default 'keywords' in SFLang found in the
-        /// Lexic class.
-        /// </summary>
-        /// <returns>The compiled lambda function.</returns>
-        /// <param name="code">SFLang code to compile.</param>
         public static Func<object> Compile(string code)
         {
             var function = Lexer.Compile<Unit>(Parser.Default, code);
@@ -30,7 +21,7 @@ namespace SFLang.Lexicon
             else
             {
                 binder = new ContextBinder<Unit>();
-                BindLexic(binder);
+                PopulateLexic(binder);
             }
             var nothing = new Unit();
             return () => function(nothing, binder);
@@ -47,24 +38,12 @@ namespace SFLang.Lexicon
             else
             {
                 binder = new ContextBinder<Unit>();
-                BindLexic(binder);
+                PopulateLexic(binder);
             }
             var nothing = new Unit();
             return () => function(nothing, binder);
         }
         
-        /// <summary>
-        /// Compiles the specified code, binding to the specified context, and
-        /// returns a function allowing you to evaluate the specified code.
-        /// 
-        /// Will bind to all the default 'keywords' in SFLang found in the
-        /// Lexic class.
-        /// </summary>
-        /// <returns>The compiled lambda function.</returns>
-        /// <param name="context">Context to bind the evaluation towards.</param>
-        /// <param name="code">SFLang code to compile.</param>
-        /// <param name="bindDeep">If true will perform binding on type of instance, and not on type TContext.</param>
-        /// <typeparam name="TContext">The type of context you want to bind towards.</typeparam>
         public static Func<object> Compile<TContext>(TContext context, string code, bool bindDeep = false)
         {
             var function = Lexer.Compile<TContext>(Parser.Default, code);
@@ -76,31 +55,13 @@ namespace SFLang.Lexicon
             else
             {
                 binder = new ContextBinder<TContext>(bindDeep ? context : default);
-                BindLexic(binder);
+                PopulateLexic(binder);
             }
             return () => {
                 return function(context, binder);
             };
         }
-
-        /// <summary>
-        /// Compiles the specified code, binding to the specified context, and
-        /// returns a function allowing you to evaluate the specified code.
-        /// 
-        /// Will not bind the binder to any Lexic. If you wish to bind the
-        /// binder to the default Lexic, you can use 'LambdaCompiler.BindLexic'.
-        /// 
-        /// If you use this overload, and you cache your Binder, you will
-        /// experience significant performance improvements, since the process of creating
-        /// a Binder has some overhead, due to the compilation of lambda expressions,
-        /// and dependencies upon reflection. If you do, you must never use your
-        /// "master" Binder instance, but Clone it every time you want to use it.
-        /// </summary>
-        /// <returns>The compiled lambda function.</returns>
-        /// <param name="context">Context to bind the lambda towards.</param>
-        /// <param name="binder">Binder to use for your lambda.</param>
-        /// <param name="code">SFLang code to compile.</param>
-        /// <typeparam name="TContext">The type of context you want to bind towards.</typeparam>
+        
         public static Func<object> Compile<TContext>(TContext context, ContextBinder<TContext> binder, string code)
         {
             var function = Lexer.Compile<TContext>(Parser.Default, code);
@@ -108,13 +69,8 @@ namespace SFLang.Lexicon
                 return function(context, binder);
             });
         }
-
-        /// <summary>
-        /// Binds the specified binder to all default Lexic in SFLang from the Lexic class.
-        /// </summary>
-        /// <param name="binder">Binder to bind.</param>
-        /// <typeparam name="TContext">The type of context you want to use.</typeparam>
-        public static void BindLexic<TContext>(ContextBinder<TContext> binder)
+        
+        public static void PopulateLexic<TContext>(ContextBinder<TContext> binder)
         {
             binder["let"] = Lexic<TContext>.Let;
             binder["set"] = Lexic<TContext>.Set;
@@ -161,6 +117,12 @@ namespace SFLang.Lexicon
             binder["eval"] = Lexic<TContext>.Eval;
 
             binder["null"] = null;
+            binder["true"] = true;
+            binder["false"] = false;
+            binder["NaN"] = double.NaN;
+            binder["int::Max"] = int.MaxValue;
+            binder["int::Min"] = int.MinValue;
+            
             binder["error"] = Lexic<TContext>.Exit;
 
             binder["out"] = Lexic<TContext>.Out;

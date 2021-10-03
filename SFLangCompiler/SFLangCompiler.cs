@@ -1,9 +1,32 @@
 ﻿using System;
 using SFLang.Exceptions;
+using SFLang.Language;
 using SFLang.Lexicon;
 
 namespace SFLangCompiler
 {
+    internal class ExampleSFClass : SFClass
+    {
+        public override object __init__(Parameters args)
+        {
+            Console.WriteLine("Initialized class!");
+            if(args.Count > 0) Console.WriteLine($"Args: {args.Get(0)}");
+            return "Something";
+        }
+
+        public override object __dstr__(Parameters args)
+        {
+            Console.WriteLine("Destroyed class!");
+            return null;
+        }
+
+        public object __typeof__()
+        {
+            Console.WriteLine("Typeof invoked!");
+            return typeof(ExampleSFClass);
+        }
+    }
+    
     class SFLangCompiler
     {
         static void Main(string[] args)
@@ -12,7 +35,9 @@ namespace SFLangCompiler
             Console.WriteLine("Welcome to interactive SFLang Interpreter!");
             Console.WriteLine("Just enter code and we will evalutate it!");
             Console.WriteLine("(Type '!stop' to exit program)");
-            Lambdas.CreateScope(new ContextBinder<Lambdas.Unit>(new Lambdas.Unit()));
+            var binder = new ContextBinder<Lambdas.Unit>(new Lambdas.Unit());
+            binder.RegisterClass(new ExampleSFClass());
+            Lambdas.CreateScope(binder);
             while (true)
             {
                 Console.Write("> ");
