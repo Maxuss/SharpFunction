@@ -73,7 +73,7 @@ namespace SFLang.Lexicon
         * and actually compiles our code down to a lambda object.
         */
         static Lambda<TContext> Compile<TContext>(IEnumerable<string> tokens)
-        { 
+        {
             /*
              * Compiling main content of code.
              *
@@ -382,6 +382,8 @@ namespace SFLang.Lexicon
                     throw new EvaluationException(typeof(Lexer), $"Symbol '{symbolName}' is null.");
                 if (symbol is Function<TContext> functor)
                     return functor(ctx, binder, appliedArguments); // Success!
+                if (symbol is Func<TContext, ContextBinder<TContext>, Parameters, object> funct)
+                    return funct(ctx, binder, appliedArguments);
                 throw new EvaluationException(typeof(Lexer),
                     $"'{symbolName}' is not a function, but a '{symbol.GetType().FullName}'");
             }, !en.MoveNext());

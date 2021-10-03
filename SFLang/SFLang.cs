@@ -2,8 +2,8 @@
 {
     public static class SFLang
     {
-        public static readonly string Version = "0.3-BETA";
-        public static readonly string LexerVersion = "0.2-ALPHA";
+        public static readonly string Version = "0.5-PRIVATE-BETA";
+        public static readonly string LexerVersion = "0.45-PRIVATE-BETA";
         
         public static List<string> GetInformation()
         {

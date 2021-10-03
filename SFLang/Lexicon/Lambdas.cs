@@ -4,14 +4,33 @@ namespace SFLang.Lexicon
 {
     public static class Lambdas
     {
-        public static void CreateScope<TContext>(ContextBinder<TContext> binder)
+        public static void CreateScope<TContext>(ContextBinder<TContext> binder) 
         {
             ContextBinder<TContext>.InstanceBinder = binder;
             PopulateLexic(binder);
         }
+
+        public static Func<object> Compile<TContext>(string code, TContext ctx)
+        {
+            var trueCode = Parser.UpgradeCode(code);
+            var function = Lexer.Compile<TContext>(Parser.Default, trueCode);
+            ContextBinder<TContext> binder;
+            if (ContextBinder<TContext>.InstanceBinder != null)
+            {
+                binder = ContextBinder<TContext>.InstanceBinder;
+            }
+            else
+            {
+                binder = new ContextBinder<TContext>();
+                PopulateLexic(binder);
+            }
+
+            return () => function(ctx, binder);
+        }
         
         public static Func<object> Compile(string code)
         {
+            code = Parser.UpgradeCode(code);
             var function = Lexer.Compile<Unit>(Parser.Default, code);
             ContextBinder<Unit> binder;
             if (ContextBinder<Unit>.InstanceBinder != null)
@@ -23,13 +42,14 @@ namespace SFLang.Lexicon
                 binder = new ContextBinder<Unit>();
                 PopulateLexic(binder);
             }
+
             var nothing = new Unit();
             return () => function(nothing, binder);
         }
 
         public static Func<object> Compile(Parser parser)
         {
-            var function = Lexer.Compile<Unit>(parser, parser.RawContents);
+            var function = Lexer.Compile<Unit>(parser, Parser.UpgradeCode(parser.RawContents??"null"));
             ContextBinder<Unit> binder;
             if (ContextBinder<Unit>.InstanceBinder != null)
             {
@@ -46,6 +66,7 @@ namespace SFLang.Lexicon
         
         public static Func<object> Compile<TContext>(TContext context, string code, bool bindDeep = false)
         {
+            code = Parser.UpgradeCode(code);
             var function = Lexer.Compile<TContext>(Parser.Default, code);
             ContextBinder<TContext> binder;
             if (ContextBinder<TContext>.InstanceBinder != null)
@@ -64,6 +85,7 @@ namespace SFLang.Lexicon
         
         public static Func<object> Compile<TContext>(TContext context, ContextBinder<TContext> binder, string code)
         {
+            code = Parser.UpgradeCode(code);
             var function = Lexer.Compile<TContext>(Parser.Default, code);
             return new Func<object>(() => {
                 return function(context, binder);

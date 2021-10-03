@@ -1,10 +1,8 @@
 ﻿#nullable enable
-using System;
 using System.IO;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Text;
-using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 using SFLang.Lexicon;
 
 namespace SFLang.Language
@@ -34,8 +32,8 @@ namespace SFLang.Language
         public Parser(string file)
         {
             FileName = file;
-            RawContents = File.ReadAllText(FileName);
-            Reader = File.OpenText(FileName);
+            RawContents = UpgradeCode(File.ReadAllText(FileName));
+            Reader = new StreamReader(new MemoryStream(Encoding.UTF8.GetBytes(RawContents)));
             Lines = RawContents.Split("\n").ToList();
             Tokenizer = new Tokenizer(this);
             Default = this;
@@ -79,6 +77,160 @@ namespace SFLang.Language
                     yield return ixToken;
                 }
             }
+        }
+        public static string UpgradeCode(string code)
+        {
+            var lines = Regex.Replace(code, "\\s", " ");
+            // Replace v0.5+ let statements to old let(@name, value) statements
+            var firstReplaced = Regex.Replace(
+                        lines, "(let\\s+@(?<varname>.+)\\s*=\\s*(?<varval>.+))(?=([^\"']*\"'[^\"']*\"')*[^'\"]*$)", 
+                        match =>
+                        {
+                            var name = match.Groups["varname"];
+                            var val = match.Groups["varval"];
+                            if (!name.Success || !val.Success) return match.Value;
+                            
+                            return $"let(@{name.Captures[0].Value}, {val.Captures[0].Value})";
+                        }, RegexOptions.Multiline);
+            
+            // Replace v0.5+ set statements to old set(@name, value) statements
+            var secondReplaced = Regex
+                .Replace(
+                        firstReplaced,
+                        "(@(?<varname>.+)\\s*=(?<varval>.+))(?=([^\"']*\"'[^\"']*\"')*[^'\"]*$)", 
+                        match =>
+                        {
+                            var name = match.Groups["varname"];
+                            var val = match.Groups["varval"];
+                            if (!name.Success || !val.Success) return match.Value;
+                            return $"set(@{name.Captures[0].Value}, {val.Captures[0].Value})";
+                        }, RegexOptions.Multiline
+                    );
+
+            // Upgrade if's
+            var thirdReplaced = Regex
+                .Replace(
+                    secondReplaced,
+                    "(if[\\r\\n\\t\\s]*\\((?<condition>.+)\\)[\\r\\n\\t\\s]*{(?<evaluation>[\\r\\n\\t\\s]*.*)}[\\r\\n\\t\\s]*(else[\\r\\n\\t\\s]*{(?<elsecase>[\\r\\n\\t\\s]*.*)})*)(?=([^\"']*\"'[^\"']*\"')*[^'\"]*$)",
+                    match =>
+                    {
+                        var condition = match.Groups["condition"];
+                        var evaluation = match.Groups["evaluation"];
+                        var elsecase = match.Groups["elsecase"];
+
+                        if (!condition.Success || !evaluation.Success) return match.Value;
+                        var ret =  elsecase.Success
+                            ? $"if({condition.Captures[0].Value}, {{{evaluation.Captures[0].Value}}}, {{{elsecase.Captures[0].Value}}})"
+                            : $"if({condition.Captures[0].Value}, {{{evaluation.Captures[0].Value}}})";
+                        ret = ret.Replace("else", ",");
+                        return ret;
+                    }, RegexOptions.Multiline);
+
+            // replace equality and unequality
+            var eqReplaced = Regex.Replace(
+                thirdReplaced,
+                "((?<first>[^\"']+)\\s*==\\s*(?<second>[^\"']+))(?=([^\"']*\"'[^\"']*\"')*[^'\"]*$)",
+                match =>
+                {
+                    var first = match.Groups["first"];
+                    var second = match.Groups["second"];
+                    return !first.Success || !second.Success 
+                        ? match.Value 
+                        : $"eq({first.Captures[0].Value}, {second.Captures[0].Value})";
+                }, RegexOptions.Multiline);
+
+            var nEqReplaced = Regex.Replace(
+                eqReplaced,
+                "((?<first>[^\"']+)\\s*!=\\s*(?<second>[^\"']+))(?=([^\"']*\"'[^\"']*\"')*[^'\"]*$)",
+                match =>
+                {
+                    var first = match.Groups["first"];
+                    var second = match.Groups["second"];
+                    return !first.Success || !second.Success 
+                        ? match.Value 
+                        : $"not(eq({first.Captures[0].Value}, {second.Captures[0].Value}))";
+                }, RegexOptions.Multiline);
+
+            var ltReplaced = Regex.Replace(
+                nEqReplaced,
+                "((?<first>[^\"']+)\\s*<\\s*(?<second>[^\"']+))(?=([^\"']*\"'[^\"']*\"')*[^'\"]*$)",
+                match =>
+                {
+                    var first = match.Groups["first"];
+                    var second = match.Groups["second"];
+                    return !first.Success || !second.Success 
+                        ? match.Value 
+                        : $"lt({first.Captures[0].Value}, {second.Captures[0].Value})";
+                }, RegexOptions.Multiline);
+
+            var mtReplaced = Regex.Replace(
+                ltReplaced,
+                "((?<first>[^\"']+)\\s*>\\s*(?<second>[^\"']+))(?=([^\"']*\"'[^\"']*\"')*[^'\"]*$)",
+                match =>
+                {
+                    var first = match.Groups["first"];
+                    var second = match.Groups["second"];
+                    return !first.Success || !second.Success 
+                        ? match.Value 
+                        : $"mt({first.Captures[0].Value}, {second.Captures[0].Value})";
+                }, RegexOptions.Multiline);
+
+            var lteReplaced = Regex.Replace(
+                mtReplaced,
+                "((?<first>[^\"']+)\\s*<=\\s*(?<second>[^\"']+))(?=([^\"']*\"'[^\"']*\"')*[^'\"]*$)",
+                match =>
+                {
+                    var first = match.Groups["first"];
+                    var second = match.Groups["second"];
+                    return !first.Success || !second.Success 
+                        ? match.Value 
+                        : $"lte({first.Captures[0].Value}, {second.Captures[0].Value})";
+                }, RegexOptions.Multiline);
+
+            var mteReplaced = Regex.Replace(
+                lteReplaced,
+                "((?<first>[^\"']+)\\s*>=\\s*(?<second>[^\"']+))(?=([^\"']*\"'[^\"']*\"')*[^'\"]*$)",
+                match =>
+                {
+                    var first = match.Groups["first"];
+                    var second = match.Groups["second"];
+                    return !first.Success || !second.Success 
+                        ? match.Value 
+                        : $"mte({first.Captures[0].Value}, {second.Captures[0].Value})";
+                }, RegexOptions.Multiline);
+
+            // replace ! to not
+            var fourthReplaced = Regex.Replace(
+                mteReplaced,
+                "(!(?<vname>[^\"']+))(?=([^\"']*\"'[^\"']*\"')*[^'\"]*$)",
+                match =>
+                {
+                    var value = match.Groups["vname"];
+                    return !value.Success ? match.Value : $"not({value.Captures[0].Value})";
+                }, RegexOptions.Multiline
+            );
+            
+            // Upgrade methods
+            var methodReplaced = Regex.Replace(
+                fourthReplaced,
+                "(method\\((?<params>[^'\"]*)\\)[\\r\\t\\n\\s]*{[\\r\\t\\n\\s]*(?<body>[^\"']*)})(?=([^\"']*\"'[^\"']*\"')*[^'\"]*$)",
+                match =>
+                {
+                    var para = match.Groups["params"];
+                    var body = match.Groups["body"];
+                    var def = "method({%BODY%}%PARAMS%)";
+                    def = para.Success 
+                        ? def.Replace("%PARAMS%", ", " + para.Captures[0].Value) 
+                        : def.Replace("%PARAMS%", "");
+                    def = 
+                        def.Replace("%BODY%", body.Success 
+                            ? body.Captures[0].Value 
+                            : "");
+                    return def;
+                }, RegexOptions.Multiline);
+            lines = methodReplaced;
+            
+            return lines;
         }
 
         public string? Next(StreamReader reader)
@@ -161,17 +313,6 @@ namespace SFLang.Language
                 }
             }
             return retVal;
-        }
-    }
-
-    public class LambdaParser : Parser
-    {
-        public new string FileName => null;
-        public static readonly LambdaParser Default;
-
-        static LambdaParser()
-        {
-            Default = new LambdaParser();
         }
     }
 }

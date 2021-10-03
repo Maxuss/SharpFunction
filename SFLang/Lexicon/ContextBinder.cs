@@ -10,6 +10,13 @@ namespace SFLang.Lexicon
     {
         public static ContextBinder<TContext> InstanceBinder { get; set; } = null;
 
+        private static readonly HashSet<string> BlackListedMethods = new()
+        {
+            "GetType",
+            "ToString",
+            "Equals",
+            "GetHashCode"
+        };
         delegate object DeepFunction(object target, object[] arguments);
         delegate object DeepStaticFunction(object[] arguments);
         
@@ -28,11 +35,9 @@ namespace SFLang.Lexicon
         {
             _contextIsDefault = EqualityComparer<TContext>.Default.Equals(context, default);
         }
-
         
         ContextBinder(bool initialize, TContext context = default) { }
 
-        
         public int MaxStackSize { get; set; } = -1;
         
         public IEnumerable<string> StaticItems => StaticContextBinder.Keys;
@@ -41,7 +46,7 @@ namespace SFLang.Lexicon
         
         public bool DeeplyBound => !_contextIsDefault;
 
-        public void RegisterClass(SFClass klass)
+        public void RegisterClass(SFClass klass, TContext ctx)
         {
             var properties = klass.GetType().GetProperties();
             var type = klass.GetType();
@@ -52,26 +57,22 @@ namespace SFLang.Lexicon
 
             foreach (var method in klass.GetType().GetMethods())
             {
+                if (BlackListedMethods.Contains(method.Name)) continue;
                 if (method.Name == "__typeof__")
                 {
-                    this[$"typeof<{klass.GetType().Name}>"] = Delegate.CreateDelegate(type, method);
+                    BindDeepMethod(method, $"typeof<{klass.GetType().Name}>", ctx);
                 }
                 else if (method.Name != "__init__")
                 {
-                    var para = method.GetParameters();
-                    if (para.Length > 0 && para[0].ParameterType != typeof(Parameters))
-                    {
-                        throw new ParsingException(message: "Expected the class in method to have parameter");
-                    }
-                    this[type.Name + "::" + method.Name] = Delegate.CreateDelegate(type, method);
+                    BindDeepMethod(method, type.Name + "::" + method.Name, ctx);
                 }
                 else
                 {
-                    this[type.Name] = Delegate.CreateDelegate(type, method);
+                    BindDeepMethod(method, type.Name, ctx);
                 }
             }
         }
-        
+
         public object this[string symbolName]
         {
             get {
@@ -82,6 +83,7 @@ namespace SFLang.Lexicon
                  * Locally declared symbols are symbols declared inside of functions, or after the
                  * stack has been "pushed" at least once or more.
                  */
+                
                 if (StackContextBinder.Count > 0 && StackContextBinder[^1].ContainsKey(symbolName))
                     return StackContextBinder[^1][symbolName];
                 if(StaticContextBinder.ContainsKey(symbolName))
@@ -238,8 +240,6 @@ namespace SFLang.Lexicon
         void BindDeepMethod(MethodInfo method, string functionName, TContext context)
         {
             SanityCheckSignature(method, functionName);
-
-
             /*
              * Wrapping our "deep" delegate invocation inside a "normal" function invocation.
              * Excactly how, depends upon whether or not the bound method is static or not.
@@ -247,14 +247,13 @@ namespace SFLang.Lexicon
             if (!method.IsStatic) {
                 
                 var lateBound = CreateInstanceFunction(method);
-                StaticContextBinder[functionName] = new Func<TContext, ContextBinder<TContext>, Parameters, object>((ctx, binder, arguments) => {
+                StaticContextBinder[functionName] = new Function<TContext>((ctx, binder, arguments) => {
                     return lateBound(ctx, new object[] { binder, arguments });
                 });
-                
             } else {
                 
                 var lateBound = CreateStaticFunction(method);
-                StaticContextBinder[functionName] = new Func<TContext, ContextBinder<TContext>, Parameters, object>((ctx, binder, arguments) => {
+                StaticContextBinder[functionName] = new Function<TContext>((ctx, binder, arguments) => {
                     return lateBound(new object[] { ctx, binder, arguments });
                 });
 
@@ -333,8 +332,6 @@ namespace SFLang.Lexicon
             // Sanity checking method.
             var methodArgs = method.GetParameters();
             if (method.IsStatic) {
-
-
                 if (methodArgs.Length != 3)
                     throw new BindingException(typeof(ContextBinder<TContext>),$"Can't bind to {method.Name} since it doesn't take the right number of arguments");
                 if (methodArgs[0].ParameterType != typeof(TContext))
@@ -347,15 +344,11 @@ namespace SFLang.Lexicon
                     throw new BindingException(typeof(ContextBinder<TContext>),$"Can't bind to {method.Name} since it requires a generic argument.");
                 if (method.ReturnType != typeof(object))
                     throw new BindingException(typeof(ContextBinder<TContext>),$"Can't bind to {method.Name} since it doesn't return '{nameof(Object)}'.");
-
-
             } else {
-
-
                 if (methodArgs.Length != 2)
                     throw new BindingException(typeof(ContextBinder<TContext>),$"Can't bind to {method.Name} since it doesn't take the right number of arguments");
                 if (methodArgs[0].ParameterType != typeof(ContextBinder<TContext>))
-                    throw new BindingException(typeof(ContextBinder<TContext>),$"Can't bind to {method.Name} since it doesn't take a '{nameof(ContextBinder<TContext>)}' type of argument as its first argument.");
+                    throw new BindingException(typeof(ContextBinder<TContext>),$"Can't bind to {method.Name} since it doesn't take a '{typeof(ContextBinder<TContext>).FullName}' type of argument as its first argument.");
                 if (methodArgs[1].ParameterType != typeof(Parameters))
                     throw new BindingException(typeof(ContextBinder<TContext>),$"Can't bind to {method.Name} since it doesn't take an '{nameof(Parameters)}' type of argument as its second argument.");
                 if (method.ContainsGenericParameters)
