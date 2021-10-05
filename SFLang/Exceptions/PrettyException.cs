@@ -4,13 +4,9 @@ namespace SFLang.Exceptions
 {
     public class PrettyException : Exception
     {
-        public int Line { get; }
-        public int CharPos { get; }
-        public string FileName { get; }
-        public string Message { get; }
-        public PrettyException Cause { get; set; }
-
-        public PrettyException() { }
+        public PrettyException()
+        {
+        }
 
         public PrettyException(
             string message,
@@ -21,14 +17,14 @@ namespace SFLang.Exceptions
         {
             throw new PrettyException(line, -1, path + "::" + member, message, cause);
         }
-        
+
         public PrettyException(
             int line,
             int charpos,
             string file,
             string message = "No message provided",
             PrettyException cause = null
-            ) : base($"SFLang.Exceptions.PrettyException >>> Dumps {message}", cause)
+        ) : base($"SFLang.Exceptions.PrettyException >>> Dumps {message}", cause)
         {
             Line = line;
             CharPos = charpos;
@@ -36,6 +32,12 @@ namespace SFLang.Exceptions
             Message = message;
             Cause = cause;
         }
+
+        public int Line { get; }
+        public int CharPos { get; }
+        public string FileName { get; }
+        public string Message { get; }
+        public PrettyException Cause { get; set; }
 
         public void PrettyPrint()
         {

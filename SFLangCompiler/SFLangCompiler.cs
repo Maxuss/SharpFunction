@@ -6,28 +6,6 @@ using SFLang.Lexicon;
 
 namespace SFLangCompiler
 {
-    internal class ExampleSFClass : SFClass
-    {
-        public override object __init__(ContextBinder<Lambdas.Unit> binder, Parameters args)
-        {
-            Console.WriteLine("Initialized class!");
-            if(args.Count > 0) Console.WriteLine($"Args: {args.Get(0)}");
-            return "Something";
-        }
-
-        public override object __dstr__(ContextBinder<Lambdas.Unit> binder, Parameters args)
-        {
-            Console.WriteLine("Destroyed class!");
-            return null;
-        }
-
-        public object __typeof__(ContextBinder<Lambdas.Unit> binder, Parameters args)
-        {
-            Console.WriteLine("TypeOf invoked!");
-            return typeof(ExampleSFClass);
-        }
-    }
-
     class SFLangCompiler
     {
         static void Main(string[] args)
@@ -39,11 +17,12 @@ namespace SFLangCompiler
             var ctx = new Lambdas.Unit();
             var binder = new ContextBinder<Lambdas.Unit>(ctx);
             Lambdas.CreateScope(binder);
+            
             while (true)
             {
                 Console.Write("> ");
                 var input = Console.ReadLine() ?? "null";
-
+            
                 if (input?.ToLower() == "!stop")
                 {
                     return;

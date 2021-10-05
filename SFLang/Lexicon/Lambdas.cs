@@ -1,10 +1,11 @@
-﻿using SFLang.Language;
+﻿using System;
+using SFLang.Language;
 
 namespace SFLang.Lexicon
 {
     public static class Lambdas
     {
-        public static void CreateScope<TContext>(ContextBinder<TContext> binder) 
+        public static void CreateScope<TContext>(ContextBinder<TContext> binder)
         {
             ContextBinder<TContext>.InstanceBinder = binder;
             PopulateLexic(binder);
@@ -27,7 +28,7 @@ namespace SFLang.Lexicon
 
             return () => function(ctx, binder);
         }
-        
+
         public static Func<object> Compile(string code)
         {
             code = Parser.UpgradeCode(code);
@@ -49,7 +50,7 @@ namespace SFLang.Lexicon
 
         public static Func<object> Compile(Parser parser)
         {
-            var function = Lexer.Compile<Unit>(parser, Parser.UpgradeCode(parser.RawContents??"null"));
+            var function = Lexer.Compile<Unit>(parser, Parser.UpgradeCode(parser.RawContents ?? "null"));
             ContextBinder<Unit> binder;
             if (ContextBinder<Unit>.InstanceBinder != null)
             {
@@ -60,10 +61,11 @@ namespace SFLang.Lexicon
                 binder = new ContextBinder<Unit>();
                 PopulateLexic(binder);
             }
+
             var nothing = new Unit();
             return () => function(nothing, binder);
         }
-        
+
         public static Func<object> Compile<TContext>(TContext context, string code, bool bindDeep = false)
         {
             code = Parser.UpgradeCode(code);
@@ -78,20 +80,17 @@ namespace SFLang.Lexicon
                 binder = new ContextBinder<TContext>(bindDeep ? context : default);
                 PopulateLexic(binder);
             }
-            return () => {
-                return function(context, binder);
-            };
+
+            return () => { return function(context, binder); };
         }
-        
+
         public static Func<object> Compile<TContext>(TContext context, ContextBinder<TContext> binder, string code)
         {
             code = Parser.UpgradeCode(code);
             var function = Lexer.Compile<TContext>(Parser.Default, code);
-            return new Func<object>(() => {
-                return function(context, binder);
-            });
+            return new Func<object>(() => { return function(context, binder); });
         }
-        
+
         public static void PopulateLexic<TContext>(ContextBinder<TContext> binder)
         {
             binder["let"] = Lexic<TContext>.Let;
@@ -126,11 +125,12 @@ namespace SFLang.Lexicon
             binder["number"] = Lexic<TContext>.Number;
             binder["json"] = Lexic<TContext>.Json;
 
-            binder["+"] = Lexic<TContext>.Add;
-            binder["-"] = Lexic<TContext>.Subtract;
-            binder["*"] = Lexic<TContext>.Multiply;
-            binder["/"] = Lexic<TContext>.Divide;
-            binder["%"] = Lexic<TContext>.Modulo;
+            binder["sum"] = Lexic<TContext>.Add;
+            binder["sub"] = Lexic<TContext>.Subtract;
+            binder["mul"] = Lexic<TContext>.Multiply;
+            binder["div"] = Lexic<TContext>.Divide;
+            binder["mod"] = Lexic<TContext>.Modulo;
+            binder["pow"] = Lexic<TContext>.Power;
 
             binder["substr"] = Lexic<TContext>.Substr;
             binder["length"] = Lexic<TContext>.Length;
@@ -142,14 +142,14 @@ namespace SFLang.Lexicon
             binder["true"] = true;
             binder["false"] = false;
             binder["NaN"] = double.NaN;
-            binder["int::Max"] = int.MaxValue;
-            binder["int::Min"] = int.MinValue;
-            
+
             binder["error"] = Lexic<TContext>.Exit;
 
             binder["out"] = Lexic<TContext>.Out;
         }
 
-        public class Unit { };
+        public class Unit
+        {
+        }
     }
 }

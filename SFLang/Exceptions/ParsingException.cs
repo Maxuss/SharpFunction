@@ -8,6 +8,8 @@ namespace SFLang.Exceptions
             [CallerLineNumber] int line = 0,
             [CallerMemberName] string file = "undefined",
             string message = "A Parsing exception occurred!",
-            PrettyException cause = null) : base(line, -1, file, message, cause) { }
+            PrettyException cause = null) : base(line, -1, file, message, cause)
+        {
+        }
     }
 }

@@ -1,4 +1,6 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using SFLang.Exceptions;
@@ -8,14 +10,15 @@ namespace SFLang.Lexicon
 {
     public static class Lexer
     {
-        
         /// <summary>
-        /// Compile the SFLang code found in the specified stream.
+        ///     Compile the SFLang code found in the specified stream.
         /// </summary>
         /// <returns>The compiled lambda object.</returns>
         /// <param name="tokenizer">The tokenizer to use.</param>
-        /// <param name="stream">Stream containing SFLang code. Notice, this method does not claim ownership over
-        /// your stream, and you are responsible for correctly disposing it yourself</param>
+        /// <param name="stream">
+        ///     Stream containing SFLang code. Notice, this method does not claim ownership over
+        ///     your stream, and you are responsible for correctly disposing it yourself
+        /// </param>
         /// <typeparam name="TContext">The type of your context object.</typeparam>
         public static Lambda<TContext> Compile<TContext>(Parser parser, Stream stream)
         {
@@ -23,12 +26,14 @@ namespace SFLang.Lexicon
         }
 
         /// <summary>
-        /// Compile the SFLang code found in the specified streams.
+        ///     Compile the SFLang code found in the specified streams.
         /// </summary>
         /// <returns>The compiled lambda object.</returns>
         /// <param name="tokenizer">The tokenizer to use.</param>
-        /// <param name="streams">Streams containing SFLang code. Notice, this method does not claim ownership over
-        /// your streams, and you are responsible for correctly disposing your streams yourself</param>
+        /// <param name="streams">
+        ///     Streams containing SFLang code. Notice, this method does not claim ownership over
+        ///     your streams, and you are responsible for correctly disposing your streams yourself
+        /// </param>
         /// <typeparam name="TContext">The type of your context object.</typeparam>
         public static Lambda<TContext> Compile<TContext>(Parser parser, IEnumerable<Stream> streams)
         {
@@ -36,7 +41,7 @@ namespace SFLang.Lexicon
         }
 
         /// <summary>
-        /// Compile the specified SFLang code.
+        ///     Compile the specified SFLang code.
         /// </summary>
         /// <returns>The compiled lambda object.</returns>
         /// <param name="tokenizer">The tokenizer to use.</param>
@@ -47,32 +52,18 @@ namespace SFLang.Lexicon
             return Compile<TContext>(tokenizer.Tokenize(snippet));
         }
 
-        /// <summary>
-        /// Compile the specified SFLang code snippets.
-        /// </summary>
-        /// <returns>The compiled lambda object.</returns>
-        /// <param name="tokenizer">The tokenizer to use.</param>
-        /// <param name="snippets">Snippets containing your SFLang code.</param>
-        /// <typeparam name="TContext">The type of your context object.</typeparam>
         public static Lambda<TContext> Compile<TContext>(Parser tokenizer, IEnumerable<string> snippets)
         {
             return Compile<TContext>(tokenizer.Tokenize(snippets));
         }
-        
-        /*
-        * Sanity checks the name of a symbol.
-        */
+
         internal static void SanityCheckSymbolName(string symbolName)
         {
-            if (symbolName.IndexOfAny(new[] {' ', '\r', '\n', '\t'}) != -1)
+            if (symbolName.IndexOfAny(new[] {' ', '\r', '\n', '\t', '*', '/', '^', '%'}) != -1)
                 throw new ParsingException(message: $"'{symbolName}' is not a valid symbol name.");
         }
-        
-        /*
-        * Common helper method for above methods, that does the heavy lifting,
-        * and actually compiles our code down to a lambda object.
-        */
-        static Lambda<TContext> Compile<TContext>(IEnumerable<string> tokens)
+
+        private static Lambda<TContext> Compile<TContext>(IEnumerable<string> tokens)
         {
             /*
              * Compiling main content of code.
@@ -83,28 +74,26 @@ namespace SFLang.Lexicon
              */
             var tuples = CompileStatements<TContext>(tokens.GetEnumerator(), false);
             var functions = tuples.Item1;
-            
+
             /*
              * Creating a function wrapping evaluation of all of our root level functions in body,
              * making sure we always return the result of the last function invocation to caller,
              * also making sure we have our root level stack object available during evaluation of
              * our lambda.
              */
-            return (ctx, binder) => {
-
+            return (ctx, binder) =>
+            {
                 /*
                  * Looping through each symbolic delegate, returning the 
                  * return value from the last to caller.
                  */
                 object result = null;
-                foreach (var ix in functions) {
-                    result = ix(ctx, binder, null);
-                }
+                foreach (var ix in functions) result = ix(ctx, binder, null);
                 return result;
             };
         }
 
-        
+
         private static Tuple<List<Function<TContext>>, bool> CompileStatements<TContext>(
             IEnumerator<string> en,
             bool forceClose = true)
@@ -115,13 +104,13 @@ namespace SFLang.Lexicon
             while (!eof && en.Current != "}")
             {
                 // Compiling currently tokenized symbol.
-                var tuple = CompileStatement<TContext>(en);
+                var (item1, item2) = CompileStatement<TContext>(en);
 
                 // Adding function invocation to list of functions.
-                content.Add(tuple.Item1);
+                content.Add(item1);
 
                 // Checking if we're done compiling body.
-                eof = tuple.Item2;
+                eof = item2;
                 if (eof || en.Current == "}")
                     break; // Even if we're not at EOF, we might be at '}', ending the current body.
             }
@@ -261,10 +250,7 @@ namespace SFLang.Lexicon
             en.MoveNext();
 
             // Returning a function that evaluates to the actual string's constant value.
-            var function = new Function<TContext>((ctx, binder, arguments) =>
-            {
-                return stringConstant;
-            });
+            var function = new Function<TContext>((ctx, binder, arguments) => { return stringConstant; });
             return new Tuple<Function<TContext>, bool>(function, !en.MoveNext());
         }
 
@@ -301,10 +287,7 @@ namespace SFLang.Lexicon
 
             // Creates a function that evaluates to the actual constant number.
             var function =
-                new Function<TContext>((ctx, binder, arguments) =>
-                {
-                    return numericConstant;
-                });
+                new Function<TContext>((ctx, binder, arguments) => { return numericConstant; });
             return new Tuple<Function<TContext>, bool>(function, !en.MoveNext());
         }
 

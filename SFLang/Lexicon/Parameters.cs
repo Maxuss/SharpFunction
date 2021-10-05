@@ -1,14 +1,17 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Globalization;
 
 namespace SFLang.Lexicon
 {
     public class Parameters : IEnumerable<object>
     {
-        List<object> _list = new List<object>();
+        private List<object> _list = new List<object>();
 
         public Parameters()
-        { }
+        {
+        }
 
         public Parameters(params object[] arguments)
         {
@@ -20,9 +23,13 @@ namespace SFLang.Lexicon
             _list.AddRange(arguments);
         }
 
-        public int Count
+        public int Count => _list.Count;
+
+        public object this[int index] => Get(index);
+
+        IEnumerator IEnumerable.GetEnumerator()
         {
-            get { return _list.Count; }
+            return GetEnumerator();
         }
 
         public void Add(object value)
@@ -37,23 +44,19 @@ namespace SFLang.Lexicon
             return _list[index];
         }
 
-        public T Get<T>(int index, T defaultValue = default(T))
+        public T Get<T>(int index, T defaultValue = default)
         {
             // Retrieving argument and converting it to type specified by caller.
             var obj = Get(index);
             if (obj == null)
                 return defaultValue;
-            return (T)Convert.ChangeType(obj, typeof(T), CultureInfo.InvariantCulture);
+            return (T) Convert.ChangeType(obj, typeof(T), CultureInfo.InvariantCulture);
         }
-        
+
+
         public IEnumerator<object> GetEnumerator()
         {
             return _list.GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
         }
     }
 }

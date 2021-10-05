@@ -3,7 +3,6 @@ using System.Linq;
 using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using SFLang.Exceptions;
 
 namespace SFLang.Lexicon
 {
@@ -12,10 +11,8 @@ namespace SFLang.Lexicon
         public static Function<TContext> Out => (ctx, binder, args) =>
         {
             if (args.Count != 1)
-            {
                 throw new EvaluationException(typeof(Lexic<TContext>),
                     $"'out' method expects one argument but got {args.Count} instead!");
-            }
 
             var item = args.Get(0);
             Console.WriteLine(item);
@@ -25,19 +22,15 @@ namespace SFLang.Lexicon
         public static Function<TContext> Exit => (ctx, binder, parameters) =>
         {
             if (parameters.Count == 1 && parameters.Get(0) is string str)
-            {
                 throw new EvaluationException(typeof(Lexic<TContext>), $"Exit error: {str}");
-            }
 
-            if(parameters.Count > 0)
-            {
+            if (parameters.Count > 0)
                 throw new EvaluationException(typeof(Lexic<TContext>),
                     "'error' method expects either 0 or 1 string parameters!");
-            }
-            
+
             throw new EvaluationException(typeof(Lexic<TContext>), "Hardcoded error exit! Exit code: -1");
         };
-        
+
         public static Function<TContext> Let => (ctx, binder, parameters) =>
         {
             // Sanity checking invocation.
@@ -50,8 +43,7 @@ namespace SFLang.Lexicon
             if (symbolObject == null)
                 throw new EvaluationException(typeof(Lexic<TContext>),
                     "You'll need to supply a symbol name for 'let' to function correctly.");
-            var symbolName = symbolObject as string;
-            if (symbolName == null)
+            if (symbolObject is not string symbolName)
                 throw new EvaluationException(typeof(Lexic<TContext>),
                     "You'll need to supply a symbol name for 'let' to function correctly. Please use the '@' character in front of your symbol's declaration.");
             Lexer.SanityCheckSymbolName(symbolName);
@@ -73,23 +65,22 @@ namespace SFLang.Lexicon
             return value;
         };
 
-        public static Function<TContext> Method => (ctx, binder, Parameters) =>
+        public static Function<TContext> Method => (ctx, binder, parameters) =>
         {
             // Sanity checking code.
-            if (Parameters.Count == 0)
+            if (parameters.Count == 0)
                 throw new EvaluationException(typeof(Lexic<TContext>),
                     "The 'function' keyword requires at least 1 argument, and you tried to invoke it with fewer.");
 
             // Retrieving lambda of function and doing some basic sanity checks.
-            var lambda = Parameters.Get(0) as Function<TContext>;
-            if (lambda == null)
+            if (parameters.Get(0) is not Function<TContext> lambda)
                 throw new EvaluationException(typeof(Lexic<TContext>),
                     "When declaring a function, the first argument must be a lambda object, e.g. '{ ... some code ... }'.");
 
             // Retrieving argument declarations and sanity checking them.
-            var formallyDeclaredParameters = Parameters.Skip(1).Select(ix => ix as string).ToList();
+            var formallyDeclaredParameters = parameters.Skip(1).Select(ix => ix as string).ToList();
             foreach (var ix in formallyDeclaredParameters)
-                if (ix is string ixStr)
+                if (ix is { } ixStr)
                     Lexer.SanityCheckSymbolName(ixStr);
                 else
                     throw new EvaluationException(typeof(Lexic<TContext>),
@@ -145,19 +136,19 @@ namespace SFLang.Lexicon
             });
         };
 
-        public static Function<TContext> Set => (ctx, binder, Parameters) =>
+        public static Function<TContext> Set => (ctx, binder, parameters) =>
         {
             // Sanity checking invocation.
-            if (Parameters.Count == 0)
+            if (parameters.Count == 0)
                 throw new EvaluationException(typeof(Lexic<TContext>),
                     "No Parameters provided to 'set', provide at least a symbol name, e.g. 'set(@foo)'.");
 
             // Retrieving symbol name, and doing some more basic sanity checking.
-            var symbolName = Parameters.Get<string>(0);
+            var symbolName = parameters.Get<string>(0);
             if (symbolName == null)
                 throw new EvaluationException(typeof(Lexic<TContext>),
                     "You'll need to supply a symbol name as a string for 'set' to function correctly.");
-            if (Parameters.Count > 2)
+            if (parameters.Count > 2)
                 throw new EvaluationException(typeof(Lexic<TContext>),
                     $"The 'set' keyword can only handle at most two Parameters, and you tried to pass in more than two Parameters as you tried to change the value of '{symbolName}'.");
 
@@ -172,25 +163,40 @@ namespace SFLang.Lexicon
                     $"The symbol '{symbolName}' has not been declared in the scope of where you are trying to 'set' it.");
 
             // Retrieving the initial value of the variable, setting it, and returning the value to caller.
-            var value = Parameters.Get(1);
+            var value = parameters.Get(1);
             binder[symbolName] = value;
             return value;
         };
 
-        public static Function<TContext> Add => (ctx, binder, Parameters) =>
+        public static Function<TContext> Add => (ctx, binder, parameters) =>
         {
             // Sanity checking code.
-            if (Parameters.Count < 2)
+            if (parameters.Count < 2)
                 throw new EvaluationException(typeof(Lexic<TContext>),
                     "The 'add' keyword requires at least 2 Parameters, and you tried to invoke it with fewer.");
 
             // Retrieving the first value, making sure we retrieve it as a "dynamic type".
-            dynamic result = Parameters.Get(0);
-            foreach (dynamic ix in Parameters.Skip(1)) // Adding currently iterated argument.
+            dynamic result = parameters.Get(0);
+            foreach (dynamic ix in parameters.Skip(1)) // Adding currently iterated argument.
                 result += ix;
 
             // Returning the result of the operation to caller.
             return result;
+        };
+
+        public static Function<TContext> Power => (ctx, binder, parameters) =>
+        {
+            // Sanity checking code.
+            if (parameters.Count != 2)
+                throw new EvaluationException(typeof(Lexic<TContext>),
+                    $"The 'power' keyword requires 2 parameters, and you tried to invoke it with {parameters.Count}!");
+
+            // Retrieving the first value, making sure we retrieve it as a "dynamic type".
+            dynamic num = parameters.Get(0);
+            dynamic pow = parameters.Get(1);
+
+            // Returning the result of the operation to caller.
+            return Math.Pow(num, pow);
         };
 
         public static Function<TContext> Subtract => (ctx, binder, Parameters) =>
@@ -300,25 +306,20 @@ namespace SFLang.Lexicon
             var condition = Parameters.Get(0);
             if (condition != null)
             {
-                var lambdaIf = Parameters.Get(1) as Function<TContext>;
-                if (lambdaIf == null)
+                if (Parameters.Get(1) is not Function<TContext> lambdaIf)
                     throw new EvaluationException(typeof(Lexic<TContext>),
                         "The 'if' keyword requires a lambda argument as its second argument.");
                 return lambdaIf(ctx, binder, Parameters);
             }
 
             // Execute the else-clause, if one is present:
-            if (Parameters.Count > 2)
-            {
-                var lambdaElse = Parameters.Get(2) as Function<TContext>;
-                if (lambdaElse == null)
-                    throw new EvaluationException(typeof(Lexic<TContext>),
-                        "The 'if' keyword requires a lambda argument as its third (else) argument if you supply a third argument.");
-                return lambdaElse(ctx, binder, Parameters);
-            }
+            if (Parameters.Count <= 2) return null;
+            if (Parameters.Get(2) is not Function<TContext> lambdaElse)
+                throw new EvaluationException(typeof(Lexic<TContext>),
+                    "The 'if' keyword requires a lambda argument as its third (else) argument if you supply a third argument.");
+            return lambdaElse(ctx, binder, Parameters);
 
             // If yields false, and there is no "else lambda".
-            return null;
         };
 
         /// <summary>
@@ -796,12 +797,12 @@ namespace SFLang.Lexicon
         ///     Gets from string.
         /// </summary>
         /// <value>From string.</value>
-        public static Function<TContext> Json => (ctx, binder, Parameters) =>
+        public static Function<TContext> Json => (ctx, binder, parameters) =>
         {
-            if (Parameters.Count != 1)
+            if (parameters.Count != 1)
                 throw new EvaluationException(typeof(Lexic<TContext>),
                     "The 'json' function must be given exactly 1 argument.");
-            var json = Parameters.Get<string>(0);
+            var json = parameters.Get<string>(0);
             var result = JsonConvert.DeserializeObject(json);
             return ConvertJson(result);
         };
@@ -812,13 +813,13 @@ namespace SFLang.Lexicon
         ///     it is given. The function must be given exactly one argument.
         /// </summary>
         /// <value>The function wrapping the 'string keyword'.</value>
-        public static Function<TContext> String => (ctx, binder, Parameters) =>
+        public static Function<TContext> String => (ctx, binder, parameters) =>
         {
-            if (Parameters.Count != 1)
+            if (parameters.Count != 1)
                 throw new EvaluationException(typeof(Lexic<TContext>),
                     "The 'string' function must be given exactly 1 argument.");
             var builder = new StringBuilder();
-            ToString(Parameters.Get(0), builder);
+            ToString(parameters.Get(0), builder);
             return builder.ToString();
         };
 
@@ -974,7 +975,6 @@ namespace SFLang.Lexicon
             }
 
             if (result is JValue iVal)
-            {
                 // Some value of some sort.
                 switch (iVal.Type)
                 {
@@ -1005,7 +1005,6 @@ namespace SFLang.Lexicon
                     default:
                         return iVal.Value<string>();
                 }
-            }
 
             throw new EvaluationException(typeof(Lexic<TContext>), "Unsupported JSON type.");
         }

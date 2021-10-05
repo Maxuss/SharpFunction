@@ -1,24 +1,16 @@
 ﻿#nullable enable
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using SFLang.Lexicon;
 
 namespace SFLang.Language
 {
     public class Parser
     {
-        public string? FileName { get; }
-        public string? RawContents { get; set; }
-        public List<string>? Lines { get; set; }
-        public StreamReader? Reader { get; set; }
-        public Tokenizer Tokenizer { get; }
-        public int MaxStringSize { get; set; } = -1;
-        private Stack<string> Cached { get; } = new();
-
         public static Parser Default = new();
-        
+
         public Parser()
         {
             FileName = null;
@@ -39,73 +31,78 @@ namespace SFLang.Language
             Default = this;
         }
 
+        public string? FileName { get; }
+        public string? RawContents { get; set; }
+        public List<string>? Lines { get; set; }
+        public StreamReader? Reader { get; set; }
+        public Tokenizer Tokenizer { get; }
+        public int MaxStringSize { get; set; } = -1;
+        private Stack<string> Cached { get; } = new();
+
         public Lambda<TContext> Compile<TContext>(TContext ctx)
         {
             return Lexer.Compile<TContext>(this, Reader?.BaseStream);
         }
-        
+
         public IEnumerable<string> Tokenize(Stream stream, Encoding? encoding = null)
         {
             // Notice! We do NOT take ownership over stream!
             StreamReader reader = new(stream, encoding ?? Encoding.UTF8, true, 1024);
-            while (true) {
+            while (true)
+            {
                 var token = Next(reader);
                 if (token == null)
                     break;
                 yield return token;
             }
-            yield break;
         }
-        
+
         public IEnumerable<string> Tokenize(IEnumerable<Stream> streams, Encoding? encoding = null)
         {
             return streams.SelectMany(ixStream => Tokenize(ixStream, encoding));
         }
-        
+
         public IEnumerable<string> Tokenize(string code)
         {
             using var stream = new MemoryStream(Encoding.UTF8.GetBytes(code));
-            foreach (var ix in Tokenize(stream)) {
-                yield return ix;
-            }
+            foreach (var ix in Tokenize(stream)) yield return ix;
         }
-        
+
         public IEnumerable<string> Tokenize(IEnumerable<string> snippets)
         {
-            foreach (var ixCode in snippets) {
-                foreach (var ixToken in Tokenize(ixCode)) {
-                    yield return ixToken;
-                }
-            }
+            foreach (var ixCode in snippets)
+            foreach (var ixToken in Tokenize(ixCode))
+                yield return ixToken;
         }
+
         public static string UpgradeCode(string code)
         {
             var lines = Regex.Replace(code, "\\s", " ");
             // Replace v0.5+ let statements to old let(@name, value) statements
             var firstReplaced = Regex.Replace(
-                        lines, "(let\\s+@(?<varname>.+)\\s*=\\s*(?<varval>.+))(?=([^\"']*\"'[^\"']*\"')*[^'\"]*$)", 
-                        match =>
-                        {
-                            var name = match.Groups["varname"];
-                            var val = match.Groups["varval"];
-                            if (!name.Success || !val.Success) return match.Value;
-                            
-                            return $"let(@{name.Captures[0].Value}, {val.Captures[0].Value})";
-                        }, RegexOptions.Multiline);
-            
+                lines, "(let\\s+@(?<varname>.+)\\s*=\\s*(?<varval>.+))(?=([^\"']*\"'[^\"']*\"')*[^'\"]*$)",
+                match =>
+                {
+                    var name = match.Groups["varname"];
+                    var val = match.Groups["varval"];
+                    if (!name.Success || !val.Success) return match.Value;
+
+                    return $"let(@{name.Captures[0].Value}, {val.Captures[0].Value})";
+                }, RegexOptions.Multiline);
+
             // Replace v0.5+ set statements to old set(@name, value) statements
             var secondReplaced = Regex
                 .Replace(
-                        firstReplaced,
-                        "(@(?<varname>.+)\\s*=(?<varval>.+))(?=([^\"']*\"'[^\"']*\"')*[^'\"]*$)", 
-                        match =>
-                        {
-                            var name = match.Groups["varname"];
-                            var val = match.Groups["varval"];
-                            if (!name.Success || !val.Success) return match.Value;
-                            return $"set(@{name.Captures[0].Value}, {val.Captures[0].Value})";
-                        }, RegexOptions.Multiline
-                    );
+                    firstReplaced,
+                    "(@(?<varname>.+)\\s*=(?<varval>.+))(?=([^\"']*\"'[^\"']*\"')*[^'\"]*$)",
+                    match =>
+                    {
+                        var name = match.Groups["varname"];
+                        var val = match.Groups["varval"];
+                        if (!name.Success || !val.Success) return match.Value;
+                        return $"set(@{name.Captures[0].Value}, {val.Captures[0].Value})";
+                    }, RegexOptions.Multiline
+                );
 
             // Upgrade if's
             var thirdReplaced = Regex
@@ -119,7 +116,7 @@ namespace SFLang.Language
                         var elsecase = match.Groups["elsecase"];
 
                         if (!condition.Success || !evaluation.Success) return match.Value;
-                        var ret =  elsecase.Success
+                        var ret = elsecase.Success
                             ? $"if({condition.Captures[0].Value}, {{{evaluation.Captures[0].Value}}}, {{{elsecase.Captures[0].Value}}})"
                             : $"if({condition.Captures[0].Value}, {{{evaluation.Captures[0].Value}}})";
                         ret = ret.Replace("else", ",");
@@ -136,7 +133,7 @@ namespace SFLang.Language
                     return !value.Success ? match.Value : $"not({value.Captures[0].Value})";
                 }, RegexOptions.Multiline
             );
-            
+
             // Upgrade methods
             var methodReplaced = Regex.Replace(
                 fourthReplaced,
@@ -146,17 +143,17 @@ namespace SFLang.Language
                     var para = match.Groups["params"];
                     var body = match.Groups["body"];
                     var def = "method({%BODY%}%PARAMS%)";
-                    def = para.Success 
-                        ? def.Replace("%PARAMS%", ", " + para.Captures[0].Value) 
+                    def = para.Success
+                        ? def.Replace("%PARAMS%", ", " + para.Captures[0].Value)
                         : def.Replace("%PARAMS%", "");
-                    def = 
-                        def.Replace("%BODY%", body.Success 
-                            ? body.Captures[0].Value 
+                    def =
+                        def.Replace("%BODY%", body.Success
+                            ? body.Captures[0].Value
                             : "");
                     return def;
                 }, RegexOptions.Multiline);
             lines = methodReplaced;
-            
+
             return lines;
         }
 
@@ -174,11 +171,12 @@ namespace SFLang.Language
 
             // Finding next token from reader.
             string retVal = null;
-            while (!reader.EndOfStream) {
-
+            while (!reader.EndOfStream)
+            {
                 // Peeking next character in stream, and checking its classification.
-                var ch = (char)reader.Peek();
-                switch (ch) {
+                var ch = (char) reader.Peek();
+                switch (ch)
+                {
                     case ' ':
                     case '\r':
                     case '\n':
@@ -190,23 +188,23 @@ namespace SFLang.Language
                     case ')':
                     case '{':
                     case '}':
-                        return retVal ?? ((char)reader.Read()).ToString();
+                        return retVal ?? ((char) reader.Read()).ToString();
                     case '"':
                     case '\'':
 
                         reader.Read();
                         var strLiteral = Tokenizer.ReadString(reader, ch, MaxStringSize);
-                        
+
                         Cached.Push(ch == '\'' ? "'" : "\"");
                         Cached.Push(strLiteral);
                         return ch == '\'' ? "'" : "\"";
-                    
+
                     case '/':
 
-                        reader.Read(); 
-                        ch = (char)reader.Peek();
-                        if (ch == '/') {
-
+                        reader.Read();
+                        ch = (char) reader.Peek();
+                        if (ch == '/')
+                        {
                             Tokenizer.EatLine(reader);
 
                             // There might be some spaces at the front of our stream now ...
@@ -215,8 +213,9 @@ namespace SFLang.Language
                             // Checking if we currently have a token.
                             if (retVal != null)
                                 return retVal;
-
-                        } else if (ch == '*') {
+                        }
+                        else if (ch == '*')
+                        {
                             // Multiline comment, making sure we discard opening "*" character from stream.
                             reader.Read();
                             Tokenizer.EatUntil(reader, "*/", true);
@@ -227,10 +226,12 @@ namespace SFLang.Language
                             // Checking if we currently have a token.
                             if (!string.IsNullOrEmpty(retVal))
                                 return retVal;
-
-                        } else {
+                        }
+                        else
+                        {
                             return "/";
                         }
+
                         break;
 
                     default:
@@ -239,6 +240,7 @@ namespace SFLang.Language
                         break;
                 }
             }
+
             return retVal;
         }
     }

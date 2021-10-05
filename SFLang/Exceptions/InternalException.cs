@@ -6,6 +6,8 @@
             int line,
             int charpos,
             string file,
-            PrettyException cause = null) : base(line, charpos, file, "An internal exception occurred!", cause) { }
+            PrettyException cause = null) : base(line, charpos, file, "An internal exception occurred!", cause)
+        {
+        }
     }
 }
