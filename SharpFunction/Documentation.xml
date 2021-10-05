@@ -703,9 +703,9 @@
                 Leveling rewards for slayer
             </summary>
         </member>
-        <member name="P:SharpFunction.Addons.Skyblock.SkyblockSlayer.Writer">
+        <member name="P:SharpFunction.Addons.Skyblock.SkyblockSlayer.FunctionWriter">
             <summary>
-                Writer to write datapack functions
+                FunctionWriter to write datapack functions
             </summary>
         </member>
         <member name="P:SharpFunction.Addons.Skyblock.SkyblockSlayer.Minibosses">
@@ -718,7 +718,7 @@
                 Name of slayer boss
             </summary>
         </member>
-        <member name="M:SharpFunction.Addons.Skyblock.SkyblockSlayer.#ctor(SharpFunction.Addons.Skyblock.SkyblockItem[],SharpFunction.Addons.Skyblock.SlayerTier[],SharpFunction.Addons.Skyblock.SlayerDrop[],SharpFunction.Addons.Skyblock.SlayerLevel[],SharpFunction.Writer.FunctionWriter,System.String)">
+        <member name="M:SharpFunction.Addons.Skyblock.SkyblockSlayer.#ctor(SharpFunction.Addons.Skyblock.SkyblockItem[],SharpFunction.Addons.Skyblock.SlayerTier[],SharpFunction.Addons.Skyblock.SlayerDrop[],SharpFunction.Addons.Skyblock.SlayerLevel[],SharpFunction.FunctionWriter.FunctionWriter,System.String)">
             <summary>
                 Creates a new slayer
             </summary>
@@ -1215,7 +1215,7 @@
                 Pack format shown in pack.mcmeta
             </summary>
         </member>
-        <member name="P:SharpFunction.API.Project.Writer">
+        <member name="P:SharpFunction.API.Project.FunctionWriter">
             <summary>
                 Allows the writing of minecraft functions.
                 <br/>
@@ -1245,7 +1245,7 @@
         </member>
         <member name="M:SharpFunction.API.Project.Generate">
             <summary>Initializes a datapack, allowing the use of
-                <see cref="T:SharpFunction.Writer.FunctionWriter"/>
+                <see cref="T:SharpFunction.FunctionWriter.FunctionWriter"/>
             </summary>
         </member>
         <member name="T:SharpFunction.API.SimpleSelector">
@@ -3482,53 +3482,53 @@
             <param name="value">Float to be coverted</param>
             <returns>Value as minecraft float string</returns>
         </member>
-        <member name="T:SharpFunction.Writer.AbstractWriter">
+        <member name="T:SharpFunction.FunctionWriter.AbstractWriter">
             <summary>
                 Used for inheritance for all other writer classes
             </summary>
         </member>
-        <member name="F:SharpFunction.Writer.AbstractWriter.category">
+        <member name="F:SharpFunction.FunctionWriter.AbstractWriter.category">
             <summary>
                 ID of current category
             </summary>
         </member>
-        <member name="F:SharpFunction.Writer.AbstractWriter.categoryName">
+        <member name="F:SharpFunction.FunctionWriter.AbstractWriter.categoryName">
             <summary>
                 Name of current category
             </summary>
         </member>
-        <member name="F:SharpFunction.Writer.AbstractWriter.createdCategories">
+        <member name="F:SharpFunction.FunctionWriter.AbstractWriter.createdCategories">
             <summary>
                 Created categories
             </summary>
         </member>
-        <member name="F:SharpFunction.Writer.AbstractWriter.Writer">
+        <member name="F:SharpFunction.FunctionWriter.AbstractWriter.FunctionWriter">
             <summary>
-                Writer that will write data to files
+                FunctionWriter that will write data to files
             </summary>
         </member>
-        <member name="P:SharpFunction.Writer.AbstractWriter.Main">
+        <member name="P:SharpFunction.FunctionWriter.AbstractWriter.Main">
             <summary>
                 Represents main category where everything will be created
             </summary>
         </member>
-        <member name="P:SharpFunction.Writer.AbstractWriter.Category">
+        <member name="P:SharpFunction.FunctionWriter.AbstractWriter.Category">
             <summary>
                 Returns current category path. Can return null if not specified
             </summary>
         </member>
-        <member name="P:SharpFunction.Writer.AbstractWriter.CategoryName">
+        <member name="P:SharpFunction.FunctionWriter.AbstractWriter.CategoryName">
             <summary>
                 Returns current category name. Can return null if not specified
             </summary>
         </member>
-        <member name="M:SharpFunction.Writer.AbstractWriter.Initialize(System.String)">
+        <member name="M:SharpFunction.FunctionWriter.AbstractWriter.Initialize(System.String)">
             <summary>
                 Initialize a writer and lock it to functions directory
             </summary>
             <param name="path">Path to where all the functions are stored</param>
         </member>
-        <member name="M:SharpFunction.Writer.AbstractWriter.CreateCategory(System.String)">
+        <member name="M:SharpFunction.FunctionWriter.AbstractWriter.CreateCategory(System.String)">
             <summary>
                 Creates a category for commands.
                 <br/>
@@ -3536,7 +3536,7 @@
                 <code>*name*/function</code>
             </summary>
         </member>
-        <member name="M:SharpFunction.Writer.AbstractWriter.ChangeCategory(System.String)">
+        <member name="M:SharpFunction.FunctionWriter.AbstractWriter.ChangeCategory(System.String)">
             <summary>
                 Changes current category to specified.
                 <br/>
@@ -3544,41 +3544,41 @@
             </summary>
             <param name="name">Name of the category</param>
         </member>
-        <member name="M:SharpFunction.Writer.AbstractWriter.CategorySpecified">
+        <member name="M:SharpFunction.FunctionWriter.AbstractWriter.CategorySpecified">
             <summary>
                 Checks whether the category is specified.
             </summary>
             <returns>True if specified and False if not</returns>
         </member>
-        <member name="M:SharpFunction.Writer.AbstractWriter.CategoryExists(System.String)">
+        <member name="M:SharpFunction.FunctionWriter.AbstractWriter.CategoryExists(System.String)">
             <summary>
                 Checks whether the category with specified name exists
             </summary>
             <param name="name">Name of category</param>
             <returns>True if specified and False if not</returns>
         </member>
-        <member name="M:SharpFunction.Writer.AbstractWriter.GetCurrentCategory">
+        <member name="M:SharpFunction.FunctionWriter.AbstractWriter.GetCurrentCategory">
             <summary>
                 Gets current category
             </summary>
             <returns>Current category or default category if not created</returns>
         </member>
-        <member name="T:SharpFunction.Writer.FunctionWriter">
+        <member name="T:SharpFunction.FunctionWriter.FunctionWriter">
             <summary>
                 This class is used for writing functions to file
             </summary>
         </member>
-        <member name="P:SharpFunction.Writer.FunctionWriter.Path">
+        <member name="P:SharpFunction.FunctionWriter.FunctionWriter.Path">
             <summary>
                 Path for writer to write functions
             </summary>
         </member>
-        <member name="P:SharpFunction.Writer.FunctionWriter.Name">
+        <member name="P:SharpFunction.FunctionWriter.FunctionWriter.Name">
             <summary>
                 Name of project
             </summary>
         </member>
-        <member name="M:SharpFunction.Writer.FunctionWriter.#ctor(System.String,System.String)">
+        <member name="M:SharpFunction.FunctionWriter.FunctionWriter.#ctor(System.String,System.String)">
             <summary>
                 Initialize a function writer
             </summary>
@@ -3590,26 +3590,26 @@
             </param>
             <param name="name">Name of project to write in.</param>
         </member>
-        <member name="M:SharpFunction.Writer.FunctionWriter.#ctor(SharpFunction.API.Project)">
+        <member name="M:SharpFunction.FunctionWriter.FunctionWriter.#ctor(SharpFunction.API.Project)">
             <summary>
                 Initialize a function writer
             </summary>
             <param name="project">Project to get data from</param>
         </member>
-        <member name="M:SharpFunction.Writer.FunctionWriter.FunctionSpecified">
+        <member name="M:SharpFunction.FunctionWriter.FunctionWriter.FunctionSpecified">
             <summary>
                 Checks whether the function is specified.
             </summary>
             <returns>True if specified and False if not</returns>
         </member>
-        <member name="M:SharpFunction.Writer.FunctionWriter.FunctionExists(System.String)">
+        <member name="M:SharpFunction.FunctionWriter.FunctionWriter.FunctionExists(System.String)">
             <summary>
                 Checks whether the function with specified name (without .mcfunction extension) exists
             </summary>
             <param name="name">Name of function</param>
             <returns>True if specified and False if not</returns>
         </member>
-        <member name="M:SharpFunction.Writer.FunctionWriter.CreateFunction(System.String)">
+        <member name="M:SharpFunction.FunctionWriter.FunctionWriter.CreateFunction(System.String)">
             <summary>
                 Creates an empty function with specified name in current working category.
                 <br/>
@@ -3617,14 +3617,14 @@
             </summary>
             <param name="name">Name of function</param>
         </member>
-        <member name="M:SharpFunction.Writer.FunctionWriter.WriteCommand(System.String,System.String)">
+        <member name="M:SharpFunction.FunctionWriter.FunctionWriter.WriteCommand(System.String,System.String)">
             <summary>
                 Writes a simple command to function
             </summary>
             <param name="command">Command string</param>
             <param name="name">Name of function. Not case sensitive</param>
         </member>
-        <member name="M:SharpFunction.Writer.FunctionWriter.WriteCommand(SharpFunction.Commands.CommandModule,System.String)">
+        <member name="M:SharpFunction.FunctionWriter.FunctionWriter.WriteCommand(SharpFunction.Commands.CommandModule,System.String)">
             <summary>
                 Writes a command module to function
             </summary>

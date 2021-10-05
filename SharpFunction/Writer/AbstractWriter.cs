@@ -24,7 +24,7 @@ namespace SharpFunction.Writer
         protected string[] createdCategories = { };
 
         /// <summary>
-        ///     Writer that will write data to files
+        ///     FunctionWriter that will write data to files
         /// </summary>
         protected TextWriter Writer;
 

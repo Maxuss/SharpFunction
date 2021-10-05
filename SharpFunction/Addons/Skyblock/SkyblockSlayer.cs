@@ -54,7 +54,7 @@ namespace SharpFunction.Addons.Skyblock
         public SlayerLevel[] Levels { get; set; }
 
         /// <summary>
-        ///     Writer to write datapack functions
+        ///     FunctionWriter to write datapack functions
         /// </summary>
         public FunctionWriter Writer { get; set; }
 

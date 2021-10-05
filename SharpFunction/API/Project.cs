@@ -67,7 +67,13 @@ namespace SharpFunction.API
         ///     Allows the writing of minecraft functions.<br />
         ///     Can only be accessed after initializing the project using <see cref="Generate()" />
         /// </summary>
-        public FunctionWriter Writer { get; private set; }
+        public FunctionWriter FunctionWriter { get; private set; }
+        
+        /// <summary>
+        /// Main writer used for making world generation.<br/>
+        /// Can only be accessed after initialization by using <see cref="Generate()"/>
+        /// </summary>
+        public WorldWriter WorldWriter { get; private set; }
 
         /// <summary>
         ///     Loads the project from directory if .sfmeta file exists
@@ -96,14 +102,17 @@ namespace SharpFunction.API
         /// </summary>
         internal void GenerateLoad(string namespaced)
         {
-            Writer = new FunctionWriter(this);
-            Writer.Initialize(Path.Combine(namespaced, "functions"));
+            FunctionWriter = new FunctionWriter(this);
+            FunctionWriter.Initialize(Path.Combine(namespaced, "functions"));
+            WorldWriter = new WorldWriter(this);
+            WorldWriter.Initialize(Path.Combine(namespaced, "worldgen"));
         }
 
-        /// <summary>Initializes a datapack, allowing the use of <see cref="FunctionWriter" /></summary>
+        /// <summary>Initializes a datapack, allowing the use of <see cref="Writer.FunctionWriter" /></summary>
         public void Generate()
         {
-            Writer = new FunctionWriter(this);
+            FunctionWriter = new FunctionWriter(this);
+            WorldWriter = new WorldWriter(this);
             var mainDir = Path.Combine(ProjectPath, "src", ProjectName);
             Directory.CreateDirectory(mainDir);
 
@@ -116,7 +125,8 @@ namespace SharpFunction.API
             Directory.CreateDirectory(workingDir);
             Directory.CreateDirectory(namespaceDir);
             foreach (var dir in requiredDirectories) Directory.CreateDirectory(Path.Combine(namespaceDir, dir));
-            Writer.Initialize(Path.Combine(namespaceDir, "functions"));
+            FunctionWriter.Initialize(Path.Combine(namespaceDir, "functions"));
+            WorldWriter.Initialize(Path.Combine(namespaceDir, "worldgen"));
             MetaWriter writer = new(Path.Combine(ProjectPath), ProjectName);
             var d = writer.CreateMeta();
             File.WriteAllText(Path.Combine(ProjectPath, ".sfmeta"), d);

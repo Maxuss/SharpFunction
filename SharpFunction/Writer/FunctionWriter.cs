@@ -26,7 +26,7 @@ namespace SharpFunction.Writer
 
         private string function = "None";
 
-        private readonly string[] createdFunctions = { };
+        private readonly string[] createdFunctions = Array.Empty<string>();
 
         #endregion Data
 

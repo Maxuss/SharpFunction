@@ -30,7 +30,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <None Remove="Exceptions\InvalidSelectorParameters.cs~RF38db521.TMP"/>
+        <None Remove="Exceptions\InvalidSelectorParameters.cs~RF38db521.TMP" />
         <None Include="..\..\..\ICON.png">
             <Pack>True</Pack>
             <PackagePath> </PackagePath>
@@ -42,7 +42,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Newtonsoft.Json" Version="13.0.1"/>
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     </ItemGroup>
 
     <ItemGroup>

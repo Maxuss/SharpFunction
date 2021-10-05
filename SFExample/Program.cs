@@ -27,7 +27,7 @@ namespace SFExample
             //
             // // Reading the project
             // project = Project.Load($@"{Directory.GetCurrentDirectory()}\Sample2");
-            // FunctionWriter w = project.Writer;
+            // FunctionWriter w = project.FunctionWriter;
             //
             // // Make name of zombie
             // SuperRawText srt = new();

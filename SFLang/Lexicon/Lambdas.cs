@@ -1,6 +1,4 @@
-﻿using System;
-using SFLang.Language;
-
+﻿
 namespace SFLang.Lexicon
 {
     public static class Lambdas
