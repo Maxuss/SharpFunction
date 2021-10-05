@@ -126,82 +126,9 @@ namespace SFLang.Language
                         return ret;
                     }, RegexOptions.Multiline);
 
-            // replace equality and unequality
-            var eqReplaced = Regex.Replace(
-                thirdReplaced,
-                "((?<first>[^\"']+)\\s*==\\s*(?<second>[^\"']+))(?=([^\"']*\"'[^\"']*\"')*[^'\"]*$)",
-                match =>
-                {
-                    var first = match.Groups["first"];
-                    var second = match.Groups["second"];
-                    return !first.Success || !second.Success 
-                        ? match.Value 
-                        : $"eq({first.Captures[0].Value}, {second.Captures[0].Value})";
-                }, RegexOptions.Multiline);
-
-            var nEqReplaced = Regex.Replace(
-                eqReplaced,
-                "((?<first>[^\"']+)\\s*!=\\s*(?<second>[^\"']+))(?=([^\"']*\"'[^\"']*\"')*[^'\"]*$)",
-                match =>
-                {
-                    var first = match.Groups["first"];
-                    var second = match.Groups["second"];
-                    return !first.Success || !second.Success 
-                        ? match.Value 
-                        : $"not(eq({first.Captures[0].Value}, {second.Captures[0].Value}))";
-                }, RegexOptions.Multiline);
-
-            var ltReplaced = Regex.Replace(
-                nEqReplaced,
-                "((?<first>[^\"']+)\\s*<\\s*(?<second>[^\"']+))(?=([^\"']*\"'[^\"']*\"')*[^'\"]*$)",
-                match =>
-                {
-                    var first = match.Groups["first"];
-                    var second = match.Groups["second"];
-                    return !first.Success || !second.Success 
-                        ? match.Value 
-                        : $"lt({first.Captures[0].Value}, {second.Captures[0].Value})";
-                }, RegexOptions.Multiline);
-
-            var mtReplaced = Regex.Replace(
-                ltReplaced,
-                "((?<first>[^\"']+)\\s*>\\s*(?<second>[^\"']+))(?=([^\"']*\"'[^\"']*\"')*[^'\"]*$)",
-                match =>
-                {
-                    var first = match.Groups["first"];
-                    var second = match.Groups["second"];
-                    return !first.Success || !second.Success 
-                        ? match.Value 
-                        : $"mt({first.Captures[0].Value}, {second.Captures[0].Value})";
-                }, RegexOptions.Multiline);
-
-            var lteReplaced = Regex.Replace(
-                mtReplaced,
-                "((?<first>[^\"']+)\\s*<=\\s*(?<second>[^\"']+))(?=([^\"']*\"'[^\"']*\"')*[^'\"]*$)",
-                match =>
-                {
-                    var first = match.Groups["first"];
-                    var second = match.Groups["second"];
-                    return !first.Success || !second.Success 
-                        ? match.Value 
-                        : $"lte({first.Captures[0].Value}, {second.Captures[0].Value})";
-                }, RegexOptions.Multiline);
-
-            var mteReplaced = Regex.Replace(
-                lteReplaced,
-                "((?<first>[^\"']+)\\s*>=\\s*(?<second>[^\"']+))(?=([^\"']*\"'[^\"']*\"')*[^'\"]*$)",
-                match =>
-                {
-                    var first = match.Groups["first"];
-                    var second = match.Groups["second"];
-                    return !first.Success || !second.Success 
-                        ? match.Value 
-                        : $"mte({first.Captures[0].Value}, {second.Captures[0].Value})";
-                }, RegexOptions.Multiline);
-
             // replace ! to not
             var fourthReplaced = Regex.Replace(
-                mteReplaced,
+                thirdReplaced,
                 "(!(?<vname>[^\"']+))(?=([^\"']*\"'[^\"']*\"')*[^'\"]*$)",
                 match =>
                 {
