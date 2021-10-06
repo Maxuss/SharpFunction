@@ -115,6 +115,7 @@ namespace SharpFunction.RCON
         /// Sends the packet to server
         /// </summary>
         /// <param name="packet">Packet to be sent</param>
+        /// <param name="responsePacket">Response packet to be written response data into.</param>
         /// <returns>Success of this operation</returns>
         public bool SendPacket(RconPacket packet, out RconPacket responsePacket)
         {
