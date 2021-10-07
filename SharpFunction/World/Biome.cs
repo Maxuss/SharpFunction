@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using System.Drawing;
+using Newtonsoft.Json;
 
 namespace SharpFunction.World
 {
@@ -31,6 +33,35 @@ namespace SharpFunction.World
         }
     }
 
+    /// <summary>
+    /// Represents modifier for biome colors
+    /// </summary>
+    public struct BiomeColorModifier
+    {
+        /// <summary>
+        /// No color modifier
+        /// </summary>
+        public static readonly BiomeColorModifier None = new("none");
+        /// <summary>
+        /// Darker colors like in dark forest
+        /// </summary>
+        public static readonly BiomeColorModifier DarkForest = new("dark_forest");
+        /// <summary>
+        /// Greener colors with other water colors
+        /// </summary>
+        public static readonly BiomeColorModifier Swamp = new("swamp");
+        
+        /// <summary>
+        /// Value stored inside struct
+        /// </summary>
+        public readonly string Value;
+
+        internal BiomeColorModifier(string value)
+        {
+            Value = value;
+        }
+    }
+    
     /// <summary>
     /// Category for biome to be sorted inside
     /// </summary>
@@ -116,6 +147,9 @@ namespace SharpFunction.World
         }
     }
 
+    /// <summary>
+    /// Extra modifier for biome temperature
+    /// </summary>
     public struct BiomeTemperatureModifier
     {
         /// <summary>
@@ -136,6 +170,104 @@ namespace SharpFunction.World
         {
             Value = value;
         }
+    }
+
+    
+    
+
+    /// <summary>
+    /// Represents effects for biome
+    /// </summary>
+    public struct BiomeEffects
+    {
+        private int ColorToHex(Color clr) => clr.ToArgb();
+
+        private Color HexToColor(int hex)
+        {
+            var byteArray = BitConverter.GetBytes(hex);
+   
+            return Color.FromArgb(byteArray[3], byteArray[0], byteArray[1], byteArray[2]);
+        }
+        
+        [JsonProperty("fog_color")] private int fogColor;
+        [JsonProperty("foliage_color")] private int foliageColor;
+        [JsonProperty("grass_color")] private int grassColor;
+        [JsonProperty("sky_color")] private int skyColor;
+        [JsonProperty("water_color")] private int waterColor;
+        [JsonProperty("water_fog_color")] private int waterFogColor;
+        [JsonProperty("grass_color_modifier")] private string grassColorModifier;
+
+        /// <summary>
+        /// Hex value representing biome's fog color
+        /// </summary>
+        [JsonIgnore]
+        public Color FogColor
+        {
+            get => HexToColor(fogColor);
+            set => fogColor = ColorToHex(value);
+        }
+
+        /// <summary>
+        /// Color of tree foliage in biome
+        /// </summary>
+        [JsonIgnore]
+        public Color FoliageColor
+        {
+            get => HexToColor(foliageColor);
+            set => foliageColor = ColorToHex(value);
+        }
+        
+        /// <summary>
+        /// Color of grass in biome
+        /// </summary>
+        [JsonIgnore]
+        public Color GrassColor
+        {
+            get => HexToColor(grassColor);
+            set => grassColor = ColorToHex(value);
+        }
+        
+        /// <summary>
+        /// Color of sky in biome
+        /// </summary>
+        [JsonIgnore]
+        public Color SkyColor
+        {
+            get => HexToColor(skyColor);
+            set => skyColor = ColorToHex(value);
+        }
+        
+        /// <summary>
+        /// Color of water in biome
+        /// </summary>
+        [JsonIgnore]
+        public Color WaterColor
+        {
+            get => HexToColor(waterColor);
+            set => waterColor = ColorToHex(value);
+        }
+        
+        /// <summary>
+        /// Color of fog in water in biome
+        /// </summary>
+        [JsonIgnore]
+        public Color WaterFogColor
+        {
+            get => HexToColor(waterFogColor);
+            set => waterFogColor = ColorToHex(value);
+        }
+
+        /// <summary>
+        /// Extra color modifier for biome
+        /// </summary>
+        [JsonIgnore]
+        public BiomeColorModifier GrassColorModifier
+        {
+            get => new(grassColorModifier);
+            set => grassColorModifier = value.Value;
+        }
+        
+        
     }
     
     /// <summary>
@@ -158,6 +290,20 @@ namespace SharpFunction.World
         /// Temperature of the biome
         /// </summary>
         [JsonProperty("temperature")] public float Temperature { get; set; }
+        /// <summary>
+        /// Controls how hot will it be in the biome.<br/>
+        /// Values over 0.85 also speed up fire spread.
+        /// </summary>
+        [JsonProperty("downfall")] public float Downfall { get; set; }
+        /// <summary>
+        /// Whether can players spawn in this biome
+        /// </summary>
+        [JsonProperty("player_spawn_friendly")] public bool CanPlayersSpawn { get; set; }
+        /// <summary>
+        /// Chance for creature to spawn in the biome. Must be between 0 and 1
+        /// </summary>
+        [JsonProperty("creature_spawn_probability")] public float CreatureSpawnChance { get; set; }
+        
         /// <summary>
         /// Temperature modifier of the biome
         /// </summary>
