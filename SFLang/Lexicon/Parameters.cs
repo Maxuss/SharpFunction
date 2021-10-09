@@ -39,9 +39,7 @@ namespace SFLang.Lexicon
 
         public object Get(int index, object defaultValue = null)
         {
-            if (index >= _list.Count)
-                return defaultValue;
-            return _list[index];
+            return index >= _list.Count ? defaultValue : _list[index];
         }
 
         public T Get<T>(int index, T defaultValue = default)
@@ -50,6 +48,10 @@ namespace SFLang.Lexicon
             var obj = Get(index);
             if (obj == null)
                 return defaultValue;
+            if (obj.GetType() != typeof(T))
+            {
+                throw new ArgumentException($"Expected parameter of type {typeof(T)} but instead got {obj.GetType()}");
+            }
             return (T) Convert.ChangeType(obj, typeof(T), CultureInfo.InvariantCulture);
         }
 

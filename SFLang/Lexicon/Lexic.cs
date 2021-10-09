@@ -8,6 +8,14 @@ namespace SFLang.Lexicon
 {
     public static class Lexic<TContext>
     {
+        public static Function<TContext> Input => (ctx, binder, args) =>
+        {
+            if (args.Count != 1) return Console.ReadLine();
+            Console.Write(args[0]);
+            return Console.ReadLine();
+
+        };
+        
         public static Function<TContext> Out => (ctx, binder, args) =>
         {
             if (args.Count != 1)

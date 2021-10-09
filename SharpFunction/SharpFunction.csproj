@@ -23,7 +23,7 @@
         <PackageVersion>1.2</PackageVersion>
         <Title>SharpFunction</Title>
         <TargetFramework>net5.0</TargetFramework>
-        <PackageLicenseUrl>https://mit-license.org</PackageLicenseUrl>
+        <PackageLicenseUrl></PackageLicenseUrl>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
