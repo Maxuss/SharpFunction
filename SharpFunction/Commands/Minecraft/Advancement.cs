@@ -21,8 +21,7 @@ namespace SharpFunction.Commands.Minecraft
             Selector = selector;
         }
 
-        // im sorry ;-;
-        private Dictionary<VA, string> Achievment { get; } = new()
+        private dynamic Achievment { get; } = new Dictionary<VA, string>
         {
             {VA.ABalancedDiet, "minecraft:husbandry/balanced_diet"},
             {VA.ACompleteCatalogue, "minecraft:husbandry/complete_catalogue"},
