@@ -1,4 +1,6 @@
-﻿namespace SharpFunction.Commands
+﻿using SharpFunction.RCON;
+
+namespace SharpFunction.Commands
 {
     /// <summary>
     ///     Represents a selector for entities with it's parameters
@@ -16,6 +18,11 @@
         public readonly SelectorParameters Parameters { get; }
 
         /// <summary>
+        /// Name of player bound to selector. Null by default
+        /// </summary>
+        public string PlayerName { get; }
+
+        /// <summary>
         ///     Create an Entity Selector with given arguments
         /// </summary>
         /// <param name="sel">Selector for entity</param>
@@ -24,6 +31,7 @@
         {
             Selector = sel;
             Parameters = @params;
+            PlayerName = null;
         }
 
         /// <summary>
@@ -34,6 +42,14 @@
         {
             Selector = sel;
             Parameters = new SelectorParameters("placeholder");
+            PlayerName = null;
+        }
+
+        public EntitySelector(Player player)
+        {
+            Selector = new Selector();
+            Parameters = new SelectorParameters();
+            PlayerName = player.Name;
         }
 
         /// <summary>
@@ -44,6 +60,7 @@
         {
             Selector = new Selector();
             Parameters = new SelectorParameters();
+            PlayerName = null;
         }
 
         /// <summary>
@@ -52,27 +69,15 @@
         /// <returns>Parameters as string</returns>
         public string String()
         {
-            var sel = string.Empty;
-            switch (Selector)
+            var sel = Selector switch
             {
-                case Selector.AllEntities:
-                    sel = "@e";
-                    break;
-                case Selector.AllPlayers:
-                    sel = "@a";
-                    break;
-                case Selector.Random:
-                    sel = "@r";
-                    break;
-                case Selector.Current:
-                    sel = "@s";
-                    break;
-                case Selector.Nearest:
-                    sel = "@p";
-                    break;
-                default:
-                    goto case Selector.Nearest;
-            }
+                Selector.AllEntities => "@e",
+                Selector.AllPlayers => "@a",
+                Selector.Random => "@r",
+                Selector.Current => "@s",
+                Selector.Nearest => "@p",
+                _ => PlayerName
+            };
 
             var pr = Parameters.String();
             return $"{sel}{pr}";

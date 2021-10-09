@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using static SharpFunction.Universal.EnumHelper;
 using static SharpFunction.Universal.NullChecker;
@@ -21,7 +22,7 @@ namespace SharpFunction.Universal
         {
             get
             {
-                var i = _lines.Count() == 0 ? "" : string.Join("','", _lines);
+                var i = _lines.Count == 0 ? "" : string.Join("','", _lines);
                 return $"['{i}']";
             }
         }
@@ -39,30 +40,34 @@ namespace SharpFunction.Universal
             var clr = color.GetStringValue();
             var frm = format.GetStringValue();
             var deprecatedColor = color.GetDeprecatedValue();
-            deprecatedColor = string.IsNullOrEmpty(deprecatedColor) ? "" : $"&{deprecatedColor}";
+            deprecatedColor = string.IsNullOrEmpty(deprecatedColor) ? "" : deprecatedColor;
             var deprecatedFormatting = format.GetDeprecatedValue();
-            deprecatedFormatting = string.IsNullOrEmpty(deprecatedFormatting) ? "" : $"&{deprecatedFormatting}";
+            deprecatedFormatting = string.IsNullOrEmpty(deprecatedFormatting) ? "" : $"{deprecatedFormatting}";
             var extraF = string.Empty;
             var deprecatedExtraF = string.Empty;
             if (extraFormat is not null)
-                foreach (var fr in extraFormat)
+            {
+                var listed = extraFormat.ToList();
+                foreach (var fr in listed)
                 {
                     var df = fr.GetDeprecatedValue();
-                    deprecatedExtraF = $"{deprecatedExtraF}&{(string.IsNullOrEmpty(df) ? "" : $"&{df}")}";
+                    deprecatedExtraF = $"{deprecatedExtraF}{(string.IsNullOrEmpty(df) ? "" : df)}";
                     extraF =
-                        extraFormat.Last().Equals(fr)
-                            ? $"{extraF}{fr.GetStringValue()}"
+                        listed.IndexOf(listed.Last()) == listed.IndexOf(fr) 
+                            ? $"{extraF}{fr.GetStringValue()}" 
                             : $"{extraF}{fr.GetStringValue()},";
                 }
+            }
 
             var deprecatedString =
-                $"{deprecatedColor}{deprecatedFormatting}{deprecatedExtraF}{text}";
+                $"{deprecatedColor}{deprecatedFormatting}{deprecatedExtraF}{text}".Replace(";", "");
             _deprecated.Add(deprecatedString);
             string full;
+            text = text.Replace(";", "");
             if (!IsEmpty(extraF) && !IsEmpty(frm)) full = $@"{{""text"": ""{text}"", {clr}, {frm}, {extraF}}}";
             else if (IsEmpty(extraF) && !IsEmpty(frm)) full = $@"{{""text"": ""{text}"", {clr}, {frm}}}";
             else if (!IsEmpty(extraF) && IsEmpty(frm)) full = $@"{{""text"": ""{text}"", {clr}, {extraF}}}";
-            else full = $@"{{""text"": ""{text}"", {clr}}}";
+            else full = $@"{{""text"": ""{text}"", {clr}}}".Replace(";", "");
             _lines.Add(full);
             return this;
         }
@@ -85,19 +90,19 @@ namespace SharpFunction.Universal
     /// </summary>
     public enum RawTextFormatting
     {
-        [DeprecatedValue("l")] [EnumValue(@"""bold"": true")]
+        [DeprecatedValue("&l")] [EnumValue(@"""bold"": true")]
         Bold,
 
-        [DeprecatedValue("o")] [EnumValue(@"""italic"": true")]
+        [DeprecatedValue("&o")] [EnumValue(@"""italic"": true")]
         Italic,
 
-        [DeprecatedValue("k")] [EnumValue(@"""obfuscated"": true")]
+        [DeprecatedValue("&k")] [EnumValue(@"""obfuscated"": true")]
         Obfuscated,
 
-        [DeprecatedValue("m")] [EnumValue(@"""strikethrough"": true")]
+        [DeprecatedValue("&m")] [EnumValue(@"""strikethrough"": true")]
         Strikethrough,
 
-        [DeprecatedValue("n")] [EnumValue(@"""underlined"": true")]
+        [DeprecatedValue("&n")] [EnumValue(@"""underlined"": true")]
         Underlined,
 
         /// <summary>

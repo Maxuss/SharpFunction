@@ -4,7 +4,7 @@
         <TargetFramework>net5.0</TargetFramework>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
-        <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <Version>1.1.6</Version>
         <Authors>Maxus</Authors>
         <Company>Maxus Industries</Company>
@@ -14,15 +14,15 @@
         <RepositoryUrl>https://github.com/Maxuss/SharpFunction</RepositoryUrl>
         <RepositoryType>GitHub Repository</RepositoryType>
         <PackageTags>Minecraft, Datapacks, Skyblock</PackageTags>
-        <PackageReleaseNotes>v1.1.6 Patch notes:
-            - Fixed multiple bugs
-            - Did a huge code cleanup
-            - Working on porting to .NET Framework and older version support (not soon probably)
-        </PackageReleaseNotes>
+        <PackageReleaseNotes>v1.2-preview Patch Notes:
+- Started work on biomes
+- Numerous bug fixes and optimizations</PackageReleaseNotes>
         <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
         <NeutralLanguage>en-US</NeutralLanguage>
         <AssemblyVersion>1.1.6.0</AssemblyVersion>
         <FileVersion>1.1.6.0</FileVersion>
+        <PackageVersion>1.2-preview</PackageVersion>
+        <Title>SharpFunction</Title>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

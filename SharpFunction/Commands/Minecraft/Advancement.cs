@@ -2,7 +2,6 @@
 using System.Linq;
 using VA = SharpFunction.Commands.Minecraft.VanillaAdvancement;
 
-
 namespace SharpFunction.Commands.Minecraft
 {
     /// <summary>
@@ -22,7 +21,8 @@ namespace SharpFunction.Commands.Minecraft
             Selector = selector;
         }
 
-        private dynamic Achievment { get; } = new Dictionary<VA, string>
+        // im sorry ;-;
+        private Dictionary<VA, string> Achievment { get; } = new()
         {
             {VA.ABalancedDiet, "minecraft:husbandry/balanced_diet"},
             {VA.ACompleteCatalogue, "minecraft:husbandry/complete_catalogue"},
@@ -108,7 +108,6 @@ namespace SharpFunction.Commands.Minecraft
 
         /// <inheritdoc cref="ICommand.Compiled" />
         public string Compiled { get; private set; }
-
         public EntitySelector Selector { get; set; }
 
         /// <summary>

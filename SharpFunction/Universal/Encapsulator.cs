@@ -37,14 +37,14 @@ namespace SharpFunction.Universal
     /// <summary>
     ///     Class used for encapsulating void expressions
     /// </summary>
-    public static class VoidEncapsulator<V>
+    public static class VoidEncapsulator<TContained>
     {
         /// <summary>
         ///     Encapsulate void
         /// </summary>
         /// <param name="method">Lambda expression to encapsulate</param>
         /// <returns>Encapsulated lambda expression</returns>
-        public static Action<V> Encapsulate(Action<V> method)
+        public static Action<TContained> Encapsulate(Action<TContained> method)
         {
             return method;
         }
@@ -53,14 +53,14 @@ namespace SharpFunction.Universal
     /// <summary>
     ///     Class used for encapsulating complex void expressions
     /// </summary>
-    public static class VoidEncapsulator<V1, V2>
+    public static class VoidEncapsulator<T1, T2>
     {
         /// <summary>
         ///     Encapsulate complex void
         /// </summary>
         /// <param name="method">Lambda expression to encapsulate</param>
         /// <returns>Encapsulated lambda expression</returns>
-        public static Action<V1, V2> Encapsulate(Action<V1, V2> method)
+        public static Action<T1, T2> Encapsulate(Action<T1, T2> method)
         {
             return method;
         }

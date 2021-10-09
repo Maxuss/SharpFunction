@@ -9,17 +9,17 @@
         /// <summary>
         ///     X coordinate in space
         /// </summary>
-        public readonly Coordinate x { get; }
+        public readonly Coordinate X { get; }
 
         /// <summary>
         ///     Y coordinate in space
         /// </summary>
-        public readonly Coordinate y { get; }
+        public readonly Coordinate Y { get; }
 
         /// <summary>
         ///     Z coordinate in space
         /// </summary>
-        public readonly Coordinate z { get; }
+        public readonly Coordinate Z { get; }
 #nullable disable
         /// <summary>
         ///     Copy Vector from origin
@@ -27,9 +27,9 @@
         /// <param name="origin">Vector with specified coordinates</param>
         public Vector3(Vector3 origin)
         {
-            x = origin.x;
-            y = origin.y;
-            z = origin.z;
+            X = origin.X;
+            Y = origin.Y;
+            Z = origin.Z;
         }
 
         /// <summary>
@@ -40,9 +40,9 @@
         /// <param name="Z">Z Coordinate</param>
         public Vector3(Coordinate X, Coordinate Y, Coordinate Z)
         {
-            x = X;
-            y = Y;
-            z = Z;
+            this.X = X;
+            this.Y = Y;
+            this.Z = Z;
         }
 
         /// <summary>
@@ -53,9 +53,9 @@
         /// <param name="Z">Z Coordinate</param>
         public Vector3(float X, float Y, float Z)
         {
-            x = new Coordinate(X);
-            y = new Coordinate(Y);
-            z = new Coordinate(Z);
+            this.X = new Coordinate(X);
+            this.Y = new Coordinate(Y);
+            this.Z = new Coordinate(Z);
         }
 
         /// <summary>
@@ -65,9 +65,9 @@
         public Vector3(string coordinates)
         {
             var p = coordinates.Split(" ");
-            x = new Coordinate(p[0]);
-            y = new Coordinate(p[1]);
-            z = new Coordinate(p[2]);
+            X = new Coordinate(p[0]);
+            Y = new Coordinate(p[1]);
+            Z = new Coordinate(p[2]);
         }
 
         /// <summary>
@@ -79,9 +79,9 @@
         /// <param name="relative">Whether coordinates are relative</param>
         public Vector3(float X, float Y, float Z, bool relative)
         {
-            x = new Coordinate(X, relative);
-            y = new Coordinate(Y, relative);
-            z = new Coordinate(Z, relative);
+            this.X = new Coordinate(X, relative);
+            this.Y = new Coordinate(Y, relative);
+            this.Z = new Coordinate(Z, relative);
         }
 
 #nullable enable
@@ -91,7 +91,7 @@
         /// <returns>Vector as ingame coordinate string</returns>
         public string String()
         {
-            Coordinate[] coords = {x, y, z};
+            Coordinate[] coords = {X, Y, Z};
             string crd = string.Empty;
             foreach (var coord in coords)
             {

@@ -71,7 +71,7 @@ namespace SharpFunction.Universal
         /// <returns>Wrapped JSON NBT tag</returns>
         public string Compile()
         {
-            string disp = !IsNull(Display) ? $"{Display.DisplayJSON}" : "";
+            string disp = !IsNull(Display) ? $"{Display.DisplayJson}" : "";
             string unbr = !IsNull(Unbreakable) ? $"Unbreakable: {CommandHelper.BoolToByte((bool) Unbreakable)}" : "";
             string dmg = !IsNull(Damage) ? $"Damage: {Damage}" : "";
             string cmd = !IsNull(CustomModelData) ? $"CustomModelData: {CustomModelData}" : "";
@@ -82,8 +82,7 @@ namespace SharpFunction.Universal
             string md = !IsNull(ModifierData) ? $"AttributeModifiers: [{ModifierData}]" : "";
             string ed = !IsNull(EnchantmentData) ? $"Enchantments: [{EnchantmentData}]" : "";
             string[] all = {disp, unbr, dmg, cmd, ct, cpo, cd, hfl, md, ed};
-            string full = "";
-            foreach (string a in all) full += IsEmpty(a) ? "" : all.Last().Equals(a) ? $"{a}" : $"{a}, ";
+            string full = all.Aggregate("", (current, a) => current + (IsEmpty(a) ? "" : all.Last().Equals(a) ? $"{a}" : $"{a}, "));
             return $"{{{full}}}";
         }
 #nullable disable

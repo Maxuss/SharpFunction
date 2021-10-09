@@ -1,15 +1,8 @@
 ﻿using System;
-using System.IO;
-using SharpFunction.API;
-using SharpFunction.Writer;
-using SharpFunction.Commands;
+using System.Globalization;
 using SharpFunction.Addons.Skyblock;
-using static SharpFunction.Addons.Skyblock.SlayerDrop;
-using SharpFunction.Commands.Minecraft;
-using System.Collections.Generic;
 using SFExample.Skyblock.Items;
 using SharpFunction.Universal;
-using SFExample.Skyblock.Slayer;
 
 namespace SFExample
 {
@@ -55,9 +48,34 @@ namespace SFExample
             // cr.Requirements = reqs;
             // cr.Drops = drops;
 
-            // output generated stuff
-            var item = new Items();
+            // // output generated stuff
+            // var item = new Items();
+            var start = DateTime.Now;
+            
+            var legacy = new SkyblockItem(ItemType.Axe, ItemRarity.Divine, "Legacy Item Test", "diamond_sword")
+                {
+                    MakeEmptyLines = true,
+                    Ferocity = 100,
+                    Strength = 200,
+                    Damage = 500,
+                    CritChance = 77,
+                    MagicFind = 15,
+                    Health = 50,
+                    DungeonStats = new DungeonStats
+                    {
+                        GearScore = 6000,
+                        IsDungeon = true,
+                        Quality = 100
+                    }
+                };
+            
+            var compiled = legacy.Compile();
+
+            Console.WriteLine(compiled);
             Console.WriteLine("Finished generating datapack!");
+            var end = DateTime.Now - start;
+            var outp = end.TotalMilliseconds;
+            Console.WriteLine($"Execution time: {outp.ToString(CultureInfo.InvariantCulture).Replace(",", ".")}ms");
             Console.ReadLine();
         }
     }

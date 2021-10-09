@@ -7,58 +7,61 @@ namespace SharpFunction.Universal
     /// </summary>
     public enum Color
     {
-        [DeprecatedValue("0")] [EnumValue(@"""color"": ""black""")]
+        [DeprecatedValue("&0")] [EnumValue(@"""color"": ""black""")]
         Black,
 
-        [DeprecatedValue("1")] [EnumValue(@"""color"": ""dark_blue""")]
+        [DeprecatedValue("&1")] [EnumValue(@"""color"": ""dark_blue""")]
         DarkBlue,
 
-        [DeprecatedValue("2")] [EnumValue(@"""color"": ""dark_green""")]
+        [DeprecatedValue("&2")] [EnumValue(@"""color"": ""dark_green""")]
         DarkGreen,
 
-        [DeprecatedValue("3")] [EnumValue(@"""color"": ""dark_aqua""")]
+        [DeprecatedValue("&3")] [EnumValue(@"""color"": ""dark_aqua""")]
         DarkAqua,
 
-        [DeprecatedValue("4")] [EnumValue(@"""color"": ""dark_red""")]
+        [DeprecatedValue("&4")] [EnumValue(@"""color"": ""dark_red""")]
         DarkRed,
 
-        [DeprecatedValue("5")] [EnumValue(@"""color"": ""dark_purple""")]
+        [DeprecatedValue("&5")] [EnumValue(@"""color"": ""dark_purple""")]
         DarkPurple,
 
-        [DeprecatedValue("6")] [EnumValue(@"""color"": ""gold""")]
+        [DeprecatedValue("&6")] [EnumValue(@"""color"": ""gold""")]
         Gold,
 
-        [DeprecatedValue("7")] [EnumValue(@"""color"": ""gray""")]
+        [DeprecatedValue("&7")] [EnumValue(@"""color"": ""gray""")]
         Gray,
 
-        [DeprecatedValue("9")] [EnumValue(@"""color"": ""blue""")]
+        [DeprecatedValue("&9")] [EnumValue(@"""color"": ""blue""")]
         Blue,
 
-        [DeprecatedValue("a")] [EnumValue(@"""color"": ""green""")]
+        [DeprecatedValue("&a")] [EnumValue(@"""color"": ""green""")]
         Green,
 
-        [DeprecatedValue("b")] [EnumValue(@"""color"": ""aqua""")]
+        [DeprecatedValue("&b")] [EnumValue(@"""color"": ""aqua""")]
         Aqua,
 
-        [DeprecatedValue("c")] [EnumValue(@"""color"": ""red""")]
+        [DeprecatedValue("&c")] [EnumValue(@"""color"": ""red""")]
         Red,
 
-        [DeprecatedValue("d")] [EnumValue(@"""color"": ""light_purple""")]
+        [DeprecatedValue("&d")] [EnumValue(@"""color"": ""light_purple""")]
         LightPurple,
 
-        [DeprecatedValue("e")] [EnumValue(@"""color"": ""yellow""")]
+        [DeprecatedValue("&e")] [EnumValue(@"""color"": ""yellow""")]
         Yellow,
 
-        [DeprecatedValue("f")] [EnumValue(@"""color"": ""white""")]
+        [DeprecatedValue("&f")] [EnumValue(@"""color"": ""white""")]
         White,
 
-        [DeprecatedValue("8")] [EnumValue(@"""color"": ""dark_gray""")]
+        [DeprecatedValue("&8")] [EnumValue(@"""color"": ""dark_gray""")]
         DarkGray,
 
-        [DeprecatedValue("r")] [EnumValue(@"""color"": ""reset""")]
+        [DeprecatedValue("&r")] [EnumValue(@"""color"": ""reset""")]
         Reset,
 
-        [DeprecatedValue("f")] [EnumValue(@"""color"": ""white""")]
-        Default
+        [DeprecatedValue("&f")] [EnumValue(@"""color"": ""white""")]
+        Default,
+        
+        [DeprecatedValue("")] [EnumValue(@"""color"": ""white""")]
+        None
     }
 }

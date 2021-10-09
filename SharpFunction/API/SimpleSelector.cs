@@ -1,4 +1,5 @@
 ﻿using SharpFunction.Commands;
+using SharpFunction.RCON;
 
 namespace SharpFunction.API
 {
@@ -31,5 +32,16 @@ namespace SharpFunction.API
         ///     Random player
         /// </summary>
         public static EntitySelector Random => new(Selector.Random);
+
+        /// <summary>
+        /// Gets an entity selector for provided player name
+        /// </summary>
+        /// <param name="name">Name of player</param>
+        /// <returns>Compiled entity selector</returns>
+        public static EntitySelector Player(string name)
+        {
+            var sel = new EntitySelector(new Player(null, name));
+            return sel;
+        }
     }
 }

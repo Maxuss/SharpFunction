@@ -4,6 +4,8 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using SharpFunction.Commands;
+using SharpFunction.Commands.Minecraft;
+using SharpFunction.Universal;
 
 namespace SharpFunction.RCON
 {
@@ -46,7 +48,7 @@ namespace SharpFunction.RCON
         /// </summary>
         /// <param name="packet">Packet to be encoded</param>
         /// <returns>Byte data of packet</returns>
-        public byte[] EncodePacket(RconPacket packet)
+        public static byte[] EncodePacket(RconPacket packet)
         {
             var bytes = new List<byte>();
             
@@ -69,7 +71,7 @@ namespace SharpFunction.RCON
         /// </summary>
         /// <param name="bytes">Byte packet data</param>
         /// <returns>Decoded packet</returns>
-        public RconPacket DecodePacket(byte[] bytes)
+        public static RconPacket DecodePacket(byte[] bytes)
         {
             var length = BitConverter.ToInt32(bytes, 0);
             var requestId = BitConverter.ToInt32(bytes, 4);
@@ -109,6 +111,19 @@ namespace SharpFunction.RCON
             {
                 yield return ExecuteCommand(cmd);
             }
+        }
+        
+        /// <summary>
+        /// Summons entity at provided location
+        /// </summary>
+        /// <param name="entity">Entity to be summoned</param>
+        /// <param name="location">Location at which the entity will be summoned</param>
+        /// <returns>Response string of command</returns>
+        public string SummonEntity(Entity entity, Vector3 location)
+        {
+            var summon = new Summon();
+            summon.Compile(entity, location);
+            return ExecuteCommand(summon.Compiled);
         }
 
         /// <summary>

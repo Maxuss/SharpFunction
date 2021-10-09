@@ -78,6 +78,11 @@ namespace SharpFunction.Addons.Skyblock
         public bool MakeEmptyLines { get; set; } = true;
 
         /// <summary>
+        /// Whether the item will use legacy values on compilation
+        /// </summary>
+        public bool UseLegacy { get; private set; } = false;
+
+        /// <summary>
         ///     Extra color for name different from rarity color. Useful for creating runes.
         /// </summary>
         /// <value></value>
@@ -113,6 +118,8 @@ namespace SharpFunction.Addons.Skyblock
         /// </summary>
         public string LeatherColorHex { get; set; }
 
+        private bool bAddedDescription = false;
+        
         private RawText ParseStats()
         {
             RawText rt = new();
@@ -149,7 +156,7 @@ namespace SharpFunction.Addons.Skyblock
             var addRed = VoidEncapsulator<KeyValuePair<string, int?>>.Encapsulate(p =>
             {
                 var name = p.Key;
-                var stat = percented.Contains(name) ? $"{ParseStat(p.Value)}%" : $"{ParseStat(p.Value)}";
+                var stat = (percented.Contains(name) ? $"{ParseStat(p.Value)}%" : $"{ParseStat(p.Value)}").Replace(";", "");
                 var n = $"{name}: ";
                 SuperRawText srt = new();
                 srt.Append(n, Color.Gray);
@@ -162,7 +169,7 @@ namespace SharpFunction.Addons.Skyblock
             var addGreen = VoidEncapsulator<KeyValuePair<string, int?>>.Encapsulate(p =>
             {
                 var name = p.Key;
-                var stat = percented.Contains(name) ? $"{ParseStat(p.Value)}%" : $"{ParseStat(p.Value)}";
+                var stat = (percented.Contains(name) ? $"{ParseStat(p.Value)}%" : $"{ParseStat(p.Value)}").Replace(";", "");
                 var n = $"{name}: ";
                 SuperRawText srt = new();
                 srt.Append(n, Color.Gray);
@@ -187,8 +194,12 @@ namespace SharpFunction.Addons.Skyblock
         ///     Adds description to item
         /// </summary>
         /// <param name="description">Description string to add</param>
-        public void AddDescription(AdvancedDescription description)
+        /// <param name="legacy">Whether the item should be compiled in legacy format</param>
+        public void AddDescription(AdvancedDescription description=null, bool legacy=false)
         {
+            bAddedDescription = true;
+            description ??= AdvancedDescription.Empty;
+            UseLegacy = legacy;
             // parse name so custom color works
             if (color != NameColor && NameColor != Color.Default) color = NameColor;
             RawText _name = new();
@@ -212,56 +223,50 @@ namespace SharpFunction.Addons.Skyblock
             }
         }
 
-        private string ParseStat(int? stat)
+        private static string ParseStat(int? stat)
         {
-            if (stat <= 0) return $"{stat}";
-            return $"+{stat};";
+            return stat <= 0 ? $"{stat}" : $"+{stat};";
         }
 
         private RawText AddSlayerRequirement(RawText rt)
         {
-            if (Requirement is not null && Requirement.HasRequirement)
-            {
-                if (MakeEmptyLines) rt.AddField("");
-                rt.AddField(Requirement.Generate());
-            }
+            if (!Requirement.HasRequirement) return rt;
+            if (MakeEmptyLines) rt.AddField("");
+            rt.AddField(Requirement.Generate());
 
             return rt;
         }
 
         private RawText AddAbility(RawText txt)
         {
-            if (Abilities is not null)
-                foreach (var Ability in Abilities)
-                    if (Ability is not null)
-                    {
-                        if (!Abilities.First().Equals(Ability))
-                            if (MakeEmptyLines)
-                                txt.AddField("");
-                        var rawJson =
-                            $@"[{{""text"":""Item Ability: {Ability.Name} "",""italic"":false,""color"":""gold""}},{{""text"":""{Ability.Type.GetStringValue()}"",""color"":""yellow"",""bold"":true}}]";
-                        txt._lines.Add(rawJson);
+            if (Abilities.Count <= 0) return txt;
+            foreach (var ability in Abilities.Where(ability => ability is not null))
+            {
+                if (!Abilities.First().Equals(ability))
+                    if (MakeEmptyLines)
+                        txt.AddField("");
+                var rawJson = UseLegacy 
+                    ? $"&6Item Ability: {ability.Name} &e&l{ability.Type.GetStringValue()}&r" 
+                    : $@"[{{""text"":""Item Ability: {ability.Name} "",""italic"":false,""color"":""gold""}},{{""text"":""{ability.Type.GetStringValue()}"",""color"":""yellow"",""bold"":true}}]";
+                txt._lines.Add(rawJson);
 
-                        foreach (var line in Ability.Description.Lines)
-                            if (line != null)
-                                txt.AddField(line);
+                foreach (var line in ability.Description.Lines.Where(line => line != null))
+                    txt.AddField(line);
 
-                        if (Ability.ManaCost != 0)
-                        {
-                            SuperRawText mana = new();
-                            mana.Append("Mana cost: ", Color.DarkGray);
-                            mana.Append($"{Ability.ManaCost}", Color.DarkAqua);
-                            txt.AddField(mana);
-                        }
+                if (ability.ManaCost != 0)
+                {
+                    SuperRawText mana = new();
+                    mana.Append("Mana cost: ", Color.DarkGray);
+                    mana.Append($"{ability.ManaCost}", Color.DarkAqua);
+                    txt.AddField(mana);
+                }
 
-                        if (Ability.Cooldown != 0)
-                        {
-                            SuperRawText cd = new();
-                            cd.Append("Cooldown: ", Color.DarkGray);
-                            cd.Append($"{Ability.Cooldown}s", Color.Green);
-                            txt.AddField(cd);
-                        }
-                    }
+                if (ability.Cooldown == 0) continue;
+                SuperRawText cd = new();
+                cd.Append("Cooldown: ", Color.DarkGray);
+                cd.Append($"{ability.Cooldown}s", Color.Green);
+                txt.AddField(cd);
+            }
 
             return txt;
         }
@@ -323,12 +328,15 @@ namespace SharpFunction.Addons.Skyblock
         /// <returns>Compiled give command</returns>
         public virtual string Compile()
         {
+            if (!bAddedDescription) AddDescription();
             var itemname = ID;
-            var nbt = new ItemNBT();
-            nbt.HideFlags = 31;
+            var nbt = new ItemNBT
+            {
+                HideFlags = 31
+            };
             var display = new ItemDisplay();
-            display.AddLore(ItemDescription);
-            display.AddName(ItemName);
+            display.AddLore(ItemDescription, UseLegacy);
+            display.AddName(ItemName, UseLegacy);
             nbt.Display = display;
             nbt.Unbreakable = true;
             if (HasGlint) nbt.EnchantmentData = "{}";
@@ -337,7 +345,6 @@ namespace SharpFunction.Addons.Skyblock
                 var colorCode = ArmorHelper.ParseHex(LeatherColorHex);
                 nbt.Display.AddColor(colorCode);
             }
-
             var item = new Item(itemname, nbt);
             var cmd = new Give(SimpleSelector.Nearest);
             cmd.Compile(item);
@@ -484,6 +491,11 @@ namespace SharpFunction.Addons.Skyblock
     public sealed class AdvancedDescription
     {
         /// <summary>
+        /// Empty advanced item description
+        /// </summary>
+        public static readonly AdvancedDescription Empty = new();
+        
+        /// <summary>
         ///     Lines of super raw text
         /// </summary>
         public List<SuperRawText> Lines { get; set; } = Array.Empty<SuperRawText>().ToList();
@@ -524,7 +536,7 @@ namespace SharpFunction.Addons.Skyblock
     }
 
     /// <summary>
-    ///     Dungeon stats of an item
+    /// Dungeon stats of an item
     /// </summary>
     public sealed class DungeonStats
     {
@@ -697,6 +709,12 @@ namespace SharpFunction.Addons.Skyblock
         ///     <b>SUPREME</b>
         /// </summary>
         [RarityColor(Color.DarkRed)] [EnumValue("VERY SPECIAL")]
-        Supreme
+        Supreme,
+        
+        /// <summary>
+        /// <b>DIVINE</b>
+        /// </summary>
+        [RarityColor(Color.Aqua)] [EnumValue("DIVINE")]
+        Divine
     }
 }

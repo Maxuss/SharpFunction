@@ -47,5 +47,15 @@ namespace SharpFunction.RCON
             var auth = PacketManager.SendPacket(packetData, out pkt);
             if (!auth) throw new AuthenticationException($"Could not authenticate to server! Error: {pkt.Contents}");
         }
+
+        /// <summary>
+        /// Gets the player from the server
+        /// </summary>
+        /// <param name="name">Name of player</param>
+        /// <returns>Player on the server</returns>
+        public Player GetPlayer(string name)
+        {
+            return new Player(this, name);
+        }
     }
 }
