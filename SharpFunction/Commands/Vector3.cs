@@ -104,6 +104,11 @@
 
             return crd.Replace(",", ".");
         }
+
+        public override string ToString()
+        {
+            return String();
+        }
 #nullable disable
     }
 }

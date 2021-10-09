@@ -1,4 +1,6 @@
-﻿namespace SharpFunction.Commands.Minecraft
+﻿using System;
+
+namespace SharpFunction.Commands.Minecraft
 {
     /// <summary>
     ///     Represents minecraft datapack command. Equal to Minecraft's <code>/datapack {action} {ActionParams}</code>
@@ -23,6 +25,8 @@
                 case DatapackAction.Disable:
                     s = "disable";
                     break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(action), action, null);
             }
 
             Compiled = $"/datapack {s} {name}";
@@ -37,33 +41,21 @@
         public void Compile(string name, DatapackPriority priority, string existing = "")
         {
             var pr = string.Empty;
-            switch (existing)
+            pr = existing switch
             {
-                case "":
-                    switch (priority)
-                    {
-                        case DatapackPriority.High:
-                            pr = "first";
-                            break;
-                        case DatapackPriority.Low:
-                            pr = "last";
-                            break;
-                    }
-
-                    break;
-                default:
-                    switch (priority)
-                    {
-                        case DatapackPriority.High:
-                            pr = "after";
-                            break;
-                        case DatapackPriority.Low:
-                            pr = "before";
-                            break;
-                    }
-
-                    break;
-            }
+                "" => priority switch
+                {
+                    DatapackPriority.High => "first",
+                    DatapackPriority.Low => "last",
+                    _ => pr
+                },
+                _ => priority switch
+                {
+                    DatapackPriority.High => "after",
+                    DatapackPriority.Low => "before",
+                    _ => pr
+                }
+            };
 
             Compiled = $"/datapack enable {name} {pr} {existing}";
         }

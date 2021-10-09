@@ -144,10 +144,18 @@ namespace SFLang.Lexicon
             binder["error"] = Lexic<TContext>.Exit;
 
             binder["out"] = Lexic<TContext>.Out;
+            
+            
+            // SharpFunction related lexic
+
+            binder["command"] = MCLexic<TContext>.Command;
+            binder["vector"] = MCLexic<TContext>.Vector;
+            binder["extract"] = MCLexic<TContext>.Extract;
         }
 
         public class Unit
         {
+            
         }
     }
 }

@@ -14,7 +14,7 @@ namespace SFLang.Lexicon
         {
             if (args.Count <= 0) return null;
             var str = args.Get<string>(0);
-            var sselector = args.Get(0);
+            var sselector = args.Get(1);
             if (sselector is string && new[] {"@r", "@a", "@e", "@p"}.Contains(sselector))
             {
                 // With selector
@@ -139,7 +139,7 @@ namespace SFLang.Lexicon
                     case "ban":
                     {
                         var cmd = new Ban(selector);
-                        cmd.Compile(args.Count > 2 ? args.Get<string>(2) : "");
+                        cmd.Compile(args.Get(2, ""));
                         return cmd;
                     }
                     case "give":
@@ -155,11 +155,67 @@ namespace SFLang.Lexicon
 
             switch (str)
             {
+                case "summon":
+                {
+                    var cmd = new Summon();
+                    cmd.Compile(args.Get<Entity>(1), args.Get<Vector3>(2));
+                    return cmd;
+                }
+                case "say":
+                {
+                    var say = new Say();
+                    say.Compile(args.Get(1, "Hello World!"));
+                    return say;
+                }
+                case "help":
+                {
+                    var cmd = new Help();
+                    cmd.Compile(args.Get(1, ""));
+                    return cmd;
+                }
+                case "gamerule":
+                {
+                    var cmd = new Gamerule();
+                    var cult = CultureInfo.InvariantCulture.TextInfo.ToTitleCase(args.Get<string>(1).Replace("_", " "));
+                    Console.WriteLine(cult.Replace(" ", ""));
+                    Enum.TryParse(cult.Replace(" ", ""), out GameruleValue gm);
+                    GameruleValue[] integers = {GameruleValue.MaxCBChainLength, GameruleValue.MaxEntityCramming, GameruleValue.RandomTickSpeed, GameruleValue.SpawnRadius};
+                    if (integers.Contains(gm)) 
+                        cmd.Compile(gm, (int) args.Get<long>(2));
+                    else 
+                        cmd.Compile(gm, args.Get<bool>(2));
+
+                    return cmd;
+                }
+                case "function":
+                {
+                    var cmd = new Function();
+                    cmd.Compile(args.Get<string>(1));
+                    return cmd;
+                }
+                case "dgm":
+                case "defgm":
+                case "defaultgamemode":
+                {
+                    var cmd = new DefaultGamemode();
+                    var cult = CultureInfo.InvariantCulture.TextInfo.ToTitleCase(args.Get<string>(1));
+                    Enum.TryParse(cult, out Gamemode gm);
+                    cmd.Compile(gm);
+
+                    return cmd;
+                }
+                case "dp":
+                case "datapack":
+                {
+                    var cmd = new Datapack();
+                    cmd.Compile(DatapackAction.Disable, args.Get<string>(1));
+                    return cmd;
+                }
                 case "bossbar":
                 {
                     var cmd = new Bossbar();
-                    var id = args.Get<string>(2);
-                    var sec = args.Get<string>(3);
+                    var id = args.Get<string>(1);
+                    var sec = args.Get<string>(2);
                     var cult = CultureInfo.InvariantCulture.TextInfo.ToTitleCase(sec);
                     if (Enum.TryParse(cult, out BossbarGet get))
                     {
@@ -169,7 +225,7 @@ namespace SFLang.Lexicon
 
                     if (Enum.TryParse(cult, out BossbarSet set))
                     {
-                        cmd.Compile(id, set, args.Get(4));
+                        cmd.Compile(id, set, args.Get(3));
                         return cmd;
                     }
                     cmd.Compile(id, sec);
@@ -188,6 +244,30 @@ namespace SFLang.Lexicon
                     return cmd;
                 }
             }
+
+            return null;
+        };
+
+        public static Function<TContext> Vector = (ctx, binder, args) =>
+        {
+            if (args.Count != 3)
+                throw new PrettyException("'vector' keyword requires 3 arguments!");
+
+            return new Vector3((float) args.Get<double>(0), (float) args.Get<double>(1), (float) args.Get<double>(2));
+        };
+
+        public static Function<TContext> Extract = (ctx, binder, args) =>
+        {
+            if (args.Count != 1)
+                throw new PrettyException("'extract' keyword requires only 1 argument!");
+
+            var obj = args[0];
+            if (obj is ICommand cmd)
+            {
+                return cmd.Compiled;
+            }
+
+            throw new PrettyException("This argument can not be applied to 'extract' keyword!");
         };
     }
 }
