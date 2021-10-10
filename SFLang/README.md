@@ -137,6 +137,9 @@ with-param("Hello", "World")
 // > World
 ```
 
+**NOTE: Since SFLang v0.8 You no longer can delcare more than one method in a single file!**
+This was made due to parsing errors.
+
 ## Booleans
 
 In SFLang any value can be converted to boolean implicitly, which means that anything can be a bool in operation
