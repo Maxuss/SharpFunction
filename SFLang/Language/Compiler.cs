@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Security.Cryptography;
 using System.Text;
+using System.Xml;
 using Newtonsoft.Json;
 using SharpFunction.API;
 
@@ -16,6 +17,13 @@ namespace SFLang.Language
     
     public static class Compiler
     {
+        // public static void GenerateManifest(string executionPath)
+        // {
+        //     var xml = new XmlDocument();
+        //     xml.Load(executionPath);
+        //     xml.Schemas.Contai
+        // }
+        
         public static Lambda<TContext> ReadAssembly<TContext>(string path)
         {
             var start = DateTime.Now;
@@ -84,11 +92,13 @@ namespace SFLang.Language
             var stream = new FileStream(asm, FileMode.CreateNew);
             var writer = new BinaryWriter(stream, Encoding.UTF8);
             
-            // Start magic number
+            // Magic number
             writer.Write((byte)0xF);
+            
             // SFC version
             writer.Write($"sfc-ver: {SFLang.Version}");
             writer.Write(ComputeSha256Hash(assemblyName));
+            
             // Zipped bytes
             writer.Write7BitEncodedInt(zipped.Length);
             writer.Write(zipped);

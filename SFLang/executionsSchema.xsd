@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:element name="project">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="deployment"/>
+                <xs:element ref="includes"/>
+                <xs:element ref="entrypoint"/>
+                <xs:element ref="manifest"/>
+                <xs:element ref="dependencies"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="deployment">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="name"/>
+                <xs:element ref="author"/>
+                <xs:element ref="group"/>
+                <xs:element ref="upload" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="author" type="xs:NCName"/>
+    <xs:element name="includes" type="xs:string"/>
+    <xs:element name="entrypoint" type="xs:NCName"/>
+    <xs:element name="manifest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="option"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="option">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:NCName">
+                    <xs:attribute name="key" use="required" type="xs:NCName"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="dependencies">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="depends"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="depends">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="name"/>
+                <xs:element ref="group"/>
+                <xs:element ref="fetch"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="fetch" type="xs:anyURI"/>
+    <xs:element name="name" type="xs:NCName"/>
+    <xs:element name="group" type="xs:NCName"/>
+    <xs:element name="upload" type="xs:anyURI"/>
+</xs:schema>

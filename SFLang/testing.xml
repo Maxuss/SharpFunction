@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<project xmlns="C:\Users\maxus\RiderProjects\SharpFunction\SFLang\executionsSchema.xsd">
+    <deployment>
+        <name>Project</name>
+        <author>Maxuss</author>
+        <group>SFLang.Group</group>
+        <upload>https://url.com</upload>
+    </deployment>
+    <includes>
+        Files,
+        Files,
+        Files
+    </includes>
+    <dependencies>
+        <depends>
+            <name>CoolDependency</name>
+            <group>Project.Group</group>
+            <fetch>https://cool.url</fetch>
+        </depends>
+    </dependencies>
+    <entrypoint>Entry</entrypoint>
+    <manifest>
+        <option key="string">Value</option>
+        <option key="s">K</option>
+    </manifest>
+</project>
