@@ -13,7 +13,13 @@ namespace SFLangCompiler
         static void Main(string[] args)
         {
             Compiler.Compile(Directory.GetCurrentDirectory(), "testing-lib");
-            
+
+            var read = Compiler.ReadAssembly(Path.Combine(Directory.GetCurrentDirectory(), "build", "sfl", "lib"),
+                "testing-lib-sfl.sfr");
+            var contx = new Lambdas.Unit();
+            var bndr = new ContextBinder<Lambdas.Unit>(contx);
+            Lambdas.PopulateLexic(bndr);
+            read(contx, bndr);
             if (args.Length > 0)
             {
                 var first = args[0];

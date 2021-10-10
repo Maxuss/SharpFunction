@@ -23,9 +23,9 @@ namespace SFLang.Language
     
     public static class Compiler
     {
-        public static Lambda<Lambdas.Unit> ReadAssembly(string path)
+        public static Lambda<Lambdas.Unit> ReadAssembly(string path, string name)
         {
-            ZipFile.ExtractToDirectory(path, Path.Combine(path, "runtime"), Encoding.UTF8);
+            ZipFile.ExtractToDirectory(Path.Combine(path, name), Path.Combine(path, "runtime"), Encoding.UTF8);
             var mf = ReadManifest(Files.ReadAllText(Path.Combine(path, "runtime", "MANIFEST.MF")));
             Console.WriteLine($"Reading assembly of version {mf.Version}");
             Console.WriteLine($"Assembly {mf.ProjectName} by {mf.ProjectAuthor} on group {mf.ProjectGroup}");
@@ -36,7 +36,7 @@ namespace SFLang.Language
             var tf = mf.MainFile.Replace(".sf", ".sfc");
             var entry = ReadCompiledFile<Lambdas.Unit>(Path.Combine(path, "runtime", tf));
             var executables = 
-                (from file in Directory.GetFiles(Path.Combine(path, "runtime", ".sfc")) 
+                (from file in Directory.GetFiles(Path.Combine(path, "runtime"), "*.sfc") 
                     where Path.GetFileName(file) != tf 
                     select ReadCompiledFile<Lambdas.Unit>(file)).ToList();
             
@@ -79,11 +79,11 @@ namespace SFLang.Language
             return lambdas;
         }
 
-        public static ManifestInformation GetAssemblyManifest(string path)
+        public static ManifestInformation GetAssemblyManifest(string path, string name)
         {
             var tempDirectory = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
             Directory.CreateDirectory(tempDirectory);
-            ZipFile.ExtractToDirectory(path, tempDirectory, Encoding.UTF8);
+            ZipFile.ExtractToDirectory(Path.Combine(path, name), tempDirectory, Encoding.UTF8);
             var mf = ReadManifest(Files.ReadAllText(Path.Combine(path, "runtime", "MANIFEST.MF")));
             var dir = new DirectoryInfo(tempDirectory);
             dir.Delete(true);
@@ -92,7 +92,12 @@ namespace SFLang.Language
         
         public static IEnumerable<ManifestInformation> GetAssemblies(string file)
         {
-            return Directory.GetFiles(file, "*.sfr").Select(GetAssemblyManifest);
+            return Directory.GetFiles(file, "*.sfr").Select(s =>
+            {
+                var f = Path.GetFileName(s);
+                var path = s.Replace(f, "");
+                return GetAssemblyManifest(path, f);
+            });
         }
 
         public static void CompileFile(string path, string assembly="sf-lib")
