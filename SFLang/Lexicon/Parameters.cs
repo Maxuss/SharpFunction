@@ -42,13 +42,20 @@ namespace SFLang.Lexicon
             return index >= _list.Count ? defaultValue : _list[index];
         }
 
+        private readonly List<Type> allowedTypes = new List<Type>()
+        {
+            typeof(int),
+            typeof(long),
+            typeof(double),
+            typeof(float)
+        };
         public T Get<T>(int index, T defaultValue = default)
         {
             // Retrieving argument and converting it to type specified by caller.
             var obj = Get(index);
             if (obj == null)
                 return defaultValue;
-            if (obj.GetType() != typeof(T))
+            if (obj.GetType() != typeof(T) && !allowedTypes.Contains(typeof(T)) && !allowedTypes.Contains(obj.GetType()))
             {
                 throw new ArgumentException($"Expected parameter of type {typeof(T)} but instead got {obj.GetType()}");
             }

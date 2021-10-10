@@ -144,7 +144,10 @@ namespace SFLang.Lexicon
             binder["error"] = Lexic<TContext>.Exit;
 
             binder["out"] = Lexic<TContext>.Out;
-            
+            // binder["input"] = Lexic<TContext>.Out;
+
+            binder["include"] = Lexic<TContext>.Include;
+            binder["declare"] = Lexic<TContext>.Module;
             
             // SharpFunction related lexic
 

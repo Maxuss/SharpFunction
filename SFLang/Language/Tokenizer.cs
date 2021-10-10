@@ -117,6 +117,7 @@ namespace SFLang.Language
         {
             var builder = new StringBuilder();
             for (var c = reader.Read(); c != -1; c = reader.Read())
+            {
                 switch (c)
                 {
                     case '\\':
@@ -135,9 +136,10 @@ namespace SFLang.Language
                         builder.Append((char) c);
                         break;
                 }
-
-            throw new CompilerException(174, typeof(Tokenizer),
-                $"Syntax error, string literal not closed before EOF near '{builder}'");
+            }
+            
+            throw new CompilerException(141, typeof(Tokenizer),
+                 $"Syntax error, string literal not closed before EOF near '{builder}'");
         }
 
         /*
@@ -171,7 +173,7 @@ namespace SFLang.Language
                 default:
                     if (ch == stop)
                         return stop.ToString();
-                    throw new CompilerException(194, typeof(Tokenizer),
+                    throw new CompilerException(176, typeof(Tokenizer),
                         $"Invalid escape sequence character '{Convert.ToInt32(ch)}' found in string literal");
             }
         }

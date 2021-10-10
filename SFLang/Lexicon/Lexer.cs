@@ -143,10 +143,7 @@ namespace SFLang.Lexicon
                 case "'":
                     return CompileString<TContext>(en);
                 default:
-                    if (IsNumeric(en.Current))
-                        return CompileNumber<TContext>(en);
-                    else
-                        return CompileSymbol<TContext>(en);
+                    return IsNumeric(en.Current) ? CompileNumber<TContext>(en) : CompileSymbol<TContext>(en);
             }
         }
 
@@ -339,7 +336,7 @@ namespace SFLang.Lexicon
 
                 // Sanity checking tokenizer's content, and discarding "," token.
                 if (en.Current != ",")
-                    throw new ParsingException(message:
+                    throw new ParsingException(message: 
                         $"Syntax error in arguments to '{symbolName}', expected ',' separating arguments and found '{en.Current}'.");
                 if (!en.MoveNext())
                     throw new ParsingException(message:

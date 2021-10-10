@@ -3,17 +3,43 @@ using System.Linq;
 using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using SharpFunction.Commands;
 
 namespace SFLang.Lexicon
 {
     public static class Lexic<TContext>
     {
+        public static Function<TContext> Include => (ctx, binder, args) =>
+        {
+            if (args.Count != 1)
+                throw new PrettyException("Expected only 1 parameter for module import!");
+            var key = args.Get<string>(0);
+            if (!GlobalContext<TContext>.Contexts.ContainsKey(key))
+                throw new PrettyException("This module was not declared!");
+
+            var module = GlobalContext<TContext>.Contexts[key];
+            binder.Merge(module);
+            return null;
+        };
+
+        public static Function<TContext> Module => (ctx, binder, args) =>
+        {
+            if (args.Count != 1)
+                throw new PrettyException("Expected only 1 parameter for module declaration!");
+
+            var key = args.Get<string>(0);
+            binder.ModuleName = key;
+            
+            GlobalContext<TContext>.Contexts[key] = binder;
+            return null;
+        };
+
+        // Should not be used because of how buggy it is
         public static Function<TContext> Input => (ctx, binder, args) =>
         {
             if (args.Count != 1) return Console.ReadLine();
             Console.Write(args[0]);
             return Console.ReadLine();
-
         };
         
         public static Function<TContext> Out => (ctx, binder, args) =>
@@ -288,6 +314,8 @@ namespace SFLang.Lexicon
             // Checking type of invocation, which might be 'list' or 'map'.
             if (Parameters.Get(0) is List<object> list) // list of Parameters.
                 return new Parameters(list);
+            if (Parameters.Get(0) is Vector3 v3)
+                return new Parameters(v3.X.Value, v3.Y.Value, v3.Z.Value);
             throw new EvaluationException(typeof(Lexic<TContext>),
                 "The 'apply' keyword expects a 'list' as its only argument.");
         };

@@ -70,31 +70,52 @@ namespace SFLang.Language
 
         public IEnumerable<string> Tokenize(IEnumerable<string> snippets)
         {
-            foreach (var ixCode in snippets)
-            foreach (var ixToken in Tokenize(ixCode))
-                yield return ixToken;
+            return snippets.SelectMany(ixCode => Tokenize(ixCode));
         }
 
         public static string UpgradeCode(string code)
         {
-            var lines = Regex.Replace(code, "\\s", " ");
+            var lines = code;
+            var methodCount = 0;
+            // Upgrade methods
+            var methodReplaced = Regex.Replace(
+                lines,
+                "(method\\((?<params>[^\'\"]*)\\)[\\r\\t\\n\\s]*\\{[\\r\\t\\n\\s]*(?<body>(.|[\\n\\r\\t\\s])*)})",
+                match =>
+                {
+                    methodCount++;
+                    if (methodCount > 1) throw new PrettyException("Expected only 1 v0.6+ method in a single file");
+                    var para = match.Groups["params"];
+                    var body = match.Groups["body"];
+                    var def = "method({%BODY%}%PARAMS%)";
+                    def = para.Success
+                        ? def.Replace("%PARAMS%", ", " + para.Captures[0].Value)
+                        : def.Replace("%PARAMS%", "");
+                    def =
+                        def.Replace("%BODY%", body.Success
+                            ? body.Captures[0].Value
+                            : "");
+                    return $"{def}.mend";
+                }, RegexOptions.Multiline);
+            
             // Replace v0.5+ let statements to old let(@name, value) statements
             var firstReplaced = Regex.Replace(
-                lines, "(let\\s+@(?<varname>.+)\\s*=\\s*(?<varval>.+))(?=([^\"']*\"'[^\"']*\"')*[^'\"]*$)",
+                methodReplaced, "let\\s+@(?<varname>.+)\\s*=\\s*(?<varval>(.|[\\n\\r\\t\\s])+)",
                 match =>
                 {
                     var name = match.Groups["varname"];
                     var val = match.Groups["varval"];
                     if (!name.Success || !val.Success) return match.Value;
-
-                    return $"let(@{name.Captures[0].Value}, {val.Captures[0].Value})";
+                    if (!val.Captures[0].Value.Contains(".mend"))
+                        return $"let(@{name.Captures[0].Value}, {val.Captures[0].Value})";
+                    var split = val.Captures[0].Value.Split(".mend");
+                    return $"let(@{name.Captures[0].Value}, {split[0]}){split[1]}";
                 }, RegexOptions.Multiline);
-
-            // Replace v0.5+ set statements to old set(@name, value) statements
+            // Replace v0.5- set statements to old set(@name, value) statements
             var secondReplaced = Regex
                 .Replace(
                     firstReplaced,
-                    "(@(?<varname>.+)\\s*=(?<varval>.+))(?=([^\"']*\"'[^\"']*\"')*[^'\"]*$)",
+                    "(@(?<varname>.+)\\s*=(?<varval>.+))",
                     match =>
                     {
                         var name = match.Groups["varname"];
@@ -103,12 +124,11 @@ namespace SFLang.Language
                         return $"set(@{name.Captures[0].Value}, {val.Captures[0].Value})";
                     }, RegexOptions.Multiline
                 );
-
             // Upgrade if's
             var thirdReplaced = Regex
                 .Replace(
                     secondReplaced,
-                    "(if[\\r\\n\\t\\s]*\\((?<condition>.+)\\)[\\r\\n\\t\\s]*{(?<evaluation>[\\r\\n\\t\\s]*.*)}[\\r\\n\\t\\s]*(else[\\r\\n\\t\\s]*{(?<elsecase>[\\r\\n\\t\\s]*.*)})*)(?=([^\"']*\"'[^\"']*\"')*[^'\"]*$)",
+                    "(if[\\r\\n\\t\\s]*\\((?<condition>.+)\\)[\\r\\n\\t\\s]*{(?<evaluation>[\\r\\n\\t\\s]*.*)}[\\r\\n\\t\\s]*(else[\\r\\n\\t\\s]*{(?<elsecase>[\\r\\n\\t\\s]*.*)})*)",
                     match =>
                     {
                         var condition = match.Groups["condition"];
@@ -134,26 +154,26 @@ namespace SFLang.Language
                 }, RegexOptions.Multiline
             );
 
-            // Upgrade methods
-            var methodReplaced = Regex.Replace(
+             var moduleReplaced = Regex.Replace(
                 fourthReplaced,
-                "(method\\((?<params>[^'\"]*)\\)[\\r\\t\\n\\s]*{[\\r\\t\\n\\s]*(?<body>[^\"']*)})(?=([^\"']*\"'[^\"']*\"')*[^'\"]*$)",
+                "(include\\s+(?<mod>\\S+))",
                 match =>
                 {
-                    var para = match.Groups["params"];
-                    var body = match.Groups["body"];
-                    var def = "method({%BODY%}%PARAMS%)";
-                    def = para.Success
-                        ? def.Replace("%PARAMS%", ", " + para.Captures[0].Value)
-                        : def.Replace("%PARAMS%", "");
-                    def =
-                        def.Replace("%BODY%", body.Success
-                            ? body.Captures[0].Value
-                            : "");
-                    return def;
-                }, RegexOptions.Multiline);
-            lines = methodReplaced;
+                    var value = match.Groups["mod"];
+                    return !value.Success ? match.Value : $"include('{value.Captures[0].Value}')";
+                }, RegexOptions.Multiline
+            );
 
+            var declarationReplaced = Regex.Replace(
+                moduleReplaced,
+                "(declare\\s+(?<mod>\\S+))",
+                match =>
+                {
+                    var value = match.Groups["mod"];
+                    return !value.Success ? match.Value : $"declare('{value.Captures[0].Value}')";
+                }, RegexOptions.Multiline);
+            
+            lines = declarationReplaced.Replace(".mend", "");
             return lines;
         }
 
@@ -203,33 +223,36 @@ namespace SFLang.Language
 
                         reader.Read();
                         ch = (char) reader.Peek();
-                        if (ch == '/')
+                        switch (ch)
                         {
-                            Tokenizer.EatLine(reader);
+                            case '/':
+                            {
+                                Tokenizer.EatLine(reader);
 
-                            // There might be some spaces at the front of our stream now ...
-                            Tokenizer.EatSpace(reader);
+                                // There might be some spaces at the front of our stream now ...
+                                Tokenizer.EatSpace(reader);
 
-                            // Checking if we currently have a token.
-                            if (retVal != null)
-                                return retVal;
-                        }
-                        else if (ch == '*')
-                        {
-                            // Multiline comment, making sure we discard opening "*" character from stream.
-                            reader.Read();
-                            Tokenizer.EatUntil(reader, "*/", true);
+                                // Checking if we currently have a token.
+                                if (retVal != null)
+                                    return retVal;
+                                break;
+                            }
+                            case '*':
+                            {
+                                // Multiline comment, making sure we discard opening "*" character from stream.
+                                reader.Read();
+                                Tokenizer.EatUntil(reader, "*/", true);
 
-                            // There might be some spaces at the front of our stream now ...
-                            Tokenizer.EatSpace(reader);
+                                // There might be some spaces at the front of our stream now ...
+                                Tokenizer.EatSpace(reader);
 
-                            // Checking if we currently have a token.
-                            if (!string.IsNullOrEmpty(retVal))
-                                return retVal;
-                        }
-                        else
-                        {
-                            return "/";
+                                // Checking if we currently have a token.
+                                if (!string.IsNullOrEmpty(retVal))
+                                    return retVal;
+                                break;
+                            }
+                            default:
+                                return "/";
                         }
 
                         break;

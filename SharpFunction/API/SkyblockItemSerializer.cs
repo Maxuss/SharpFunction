@@ -54,42 +54,6 @@ namespace SharpFunction.API
     public static class SkyblockItemSerializer
     {
         /// <summary>
-        ///     Zips string into bytes
-        /// </summary>
-        /// <param name="str">String to be compressed</param>
-        /// <returns>Compressed string</returns>
-        public static byte[] Zip(string str)
-        {
-            var bytes = Encoding.UTF8.GetBytes(str);
-
-            using var msi = new MemoryStream(bytes);
-            using var mso = new MemoryStream();
-            using (var gs = new GZipStream(mso, CompressionMode.Compress))
-            {
-                msi.CopyTo(gs);
-            }
-
-            return mso.ToArray();
-        }
-
-        /// <summary>
-        ///     Decompresses the bytes into string
-        /// </summary>
-        /// <param name="bytes">Bytes to be decompressed</param>
-        /// <returns>Decompressed string</returns>
-        public static string Unzip(byte[] bytes)
-        {
-            using var msi = new MemoryStream(bytes);
-            using var mso = new MemoryStream();
-            using (var gs = new GZipStream(msi, CompressionMode.Decompress))
-            {
-                gs.CopyTo(mso);
-            }
-
-            return Encoding.UTF8.GetString(mso.ToArray());
-        }
-
-        /// <summary>
         ///     Serializes a <see cref="SkyblockItem" /> into deflated string to be used by SkyblockConcept parser
         /// </summary>
         /// <param name="item">Item to be serialized</param>
@@ -144,8 +108,8 @@ namespace SharpFunction.API
                 MakeEmptyLines = item.MakeEmptyLines
             };
             var str = JsonConvert.SerializeObject(obj, Formatting.None);
-            var base64 = Convert.ToBase64String(Zip(str));
-            Console.WriteLine(Unzip(Convert.FromBase64String(base64)));
+            var base64 = Convert.ToBase64String(ByteUtils.Zip(str));
+            Console.WriteLine(ByteUtils.Unzip(Convert.FromBase64String(base64)));
             return base64;
         }
     }

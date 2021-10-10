@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using SFLang.Exceptions;
+using SFLang.Language;
 using SFLang.Lexicon;
 
 namespace SFLangCompiler
@@ -10,6 +11,27 @@ namespace SFLangCompiler
     {
         static void Main(string[] args)
         {
+            var strdata = 
+                @"
+let @data = method(@some-param) {
+    out(@some-param)
+    out(""Hello!"")
+}
+
+data(""Testing"")
+data(""compiled!"")
+";
+
+            Compiler.Compile(strdata, "testing-lib");
+            var asm = Compiler
+                .ReadAssembly<Lambdas.Unit>(
+                    Path.Combine(Directory.GetCurrentDirectory(), "build", SFLang.SFLang.Framework, "testing-lib-sfl.sfc"));
+            
+            var unit = new Lambdas.Unit();
+            var tbinder = new ContextBinder<Lambdas.Unit>();
+            Lambdas.PopulateLexic(tbinder);
+            asm(unit, tbinder);
+            
             if (args.Length > 0)
             {
                 var first = args[0];

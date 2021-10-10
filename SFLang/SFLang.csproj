@@ -3,6 +3,19 @@
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
         <LangVersion>preview</LangVersion>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageId>SharpFunction.SFLang</PackageId>
+        <PackageVersion>0.6-BETA</PackageVersion>
+        <Title>SFLang</Title>
+        <Authors>Maxus</Authors>
+        <Description>Interpreted language wrapper for SharpFunction</Description>
+        <PackageProjectUrl>https://maxus.space</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/Maxuss/SharpFunction</RepositoryUrl>
+        <RepositoryType>GitHub Repository</RepositoryType>
+        <PackageTags>Language, Minecraft, Datapacks</PackageTags>
+        <PackageReleaseNotes>v0.6-BETA Pre-release:
+First pre-release</PackageReleaseNotes>
+        <PackageLicenseUrl>https://mit-license.org</PackageLicenseUrl>
     </PropertyGroup>
 
     <ItemGroup>

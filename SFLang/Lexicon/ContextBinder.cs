@@ -13,13 +13,8 @@ namespace SFLang.Lexicon
 
     public class ContextBinder<TContext> : ICloneable
     {
-        private static readonly HashSet<string> BlackListedMethods = new()
-        {
-            "GetType",
-            "ToString",
-            "Equals",
-            "GetHashCode"
-        };
+        // Name of current module
+        public string ModuleName = "<main>";
 
         // Stack of dynamically created variables and functions.
         public readonly List<Dictionary<string, object>> StackContextBinder = new();
@@ -82,10 +77,29 @@ namespace SFLang.Lexicon
                 if (StackContextBinder.Count == 0 || StaticContextBinder.ContainsKey(symbolName))
                     StaticContextBinder[symbolName] = value;
                 else
-                    StackContextBinder[StackContextBinder.Count - 1][symbolName] = value;
+                    StackContextBinder[^1][symbolName] = value;
             }
         }
 
+        public ContextBinder<TContext> Merge(ContextBinder<TContext> other)
+        {
+            if (StackContextBinder.Count > 0)
+            {
+                foreach (var stackKey in other.StackContextBinder[^1].Keys)
+                {
+                    var obj = other.StackContextBinder[^1][stackKey];
+                    if (!ContainsDynamicKey(stackKey)) StackContextBinder[^1][stackKey] = obj;
+                }
+            }
+
+            foreach (var staticKey in other.StaticContextBinder.Keys)
+            {
+                var obj = other.StaticContextBinder[staticKey];
+                if (!ContainsStaticKey(staticKey)) StaticContextBinder[staticKey] = obj;
+            }
+
+            return this;
+        }
 
         /// <summary>
         ///     Returns true if the named symbol exists. Notice, the symbol's value might
@@ -97,7 +111,7 @@ namespace SFLang.Lexicon
         {
             // Checking if our stack contains symbol.
             if (StackContextBinder.Count > 0 &&
-                StackContextBinder[StackContextBinder.Count - 1].ContainsKey(symbolName))
+                StackContextBinder[^1].ContainsKey(symbolName))
                 return true;
 
 
@@ -115,7 +129,7 @@ namespace SFLang.Lexicon
         public bool ContainsDynamicKey(string symbolName)
         {
             if (StackContextBinder.Count > 0)
-                return StackContextBinder[StackContextBinder.Count - 1].ContainsKey(symbolName);
+                return StackContextBinder[^1].ContainsKey(symbolName);
             return false;
         }
 
