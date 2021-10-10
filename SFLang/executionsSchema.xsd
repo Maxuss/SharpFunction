@@ -22,7 +22,13 @@
         </xs:complexType>
     </xs:element>
     <xs:element name="author" type="xs:NCName"/>
-    <xs:element name="includes" type="xs:string"/>
+    <xs:element name="includes">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="file"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
     <xs:element name="entrypoint" type="xs:NCName"/>
     <xs:element name="manifest">
         <xs:complexType>
@@ -40,6 +46,24 @@
             </xs:simpleContent>
         </xs:complexType>
     </xs:element>
+    <xs:element name="file">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:NCName">
+                    <xs:attribute name="path" use="required" type="xs:NCName"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="scope">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:NCName">
+                    <xs:attribute name="provided" use="required" type="xs:boolean"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
     <xs:element name="dependencies">
         <xs:complexType>
             <xs:sequence>
@@ -53,6 +77,7 @@
                 <xs:element ref="name"/>
                 <xs:element ref="group"/>
                 <xs:element ref="fetch"/>
+                <xs:element ref="scope" />
             </xs:sequence>
         </xs:complexType>
     </xs:element>

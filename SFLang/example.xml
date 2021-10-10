@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<project>
+    <deployment>
+        <name>ProjectName</name>
+        <author>Maxuss</author>
+        <group>com.maxuss.Group</group>
+        <upload>https://url.com/</upload>
+    </deployment>
+    <includes>
+        <file path="somepath/another.sf" />
+        <file path="first.sf" />
+        <file path="second.sf" />
+    </includes>
+    <entrypoint>first.sf</entrypoint>
+    <manifest>
+        <option key="Key">Value</option>
+        <option key="Another-Key">AnotherValue</option>
+    </manifest>
+    <dependencies>
+        <depends>
+            <name>CoolPlugin</name>
+            <group>com.maxuss.Group</group>
+            <fetch>https://url.com/another</fetch>
+            <scope provided="true" />
+        </depends>
+        <depends>
+            <name>AnotherPlugin</name>
+            <group>com.maxuss.Something</group>
+            <fetch>https://my.url/com</fetch>
+            <scope provided="false" />
+        </depends>
+        <depends>
+            <name>ExpectedPlugin</name>
+            <group>com.group.Another</group>
+            <fetch>https://another.url</fetch>
+            <scope provided="true" />
+        </depends>
+    </dependencies>
+</project>

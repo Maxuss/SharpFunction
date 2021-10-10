@@ -4,6 +4,7 @@ using System.Linq;
 using SFLang.Exceptions;
 using SFLang.Language;
 using SFLang.Lexicon;
+using File = System.IO.File;
 
 namespace SFLangCompiler
 {
@@ -11,26 +12,7 @@ namespace SFLangCompiler
     {
         static void Main(string[] args)
         {
-            var strdata = 
-                @"
-let @data = method(@some-param) {
-    out(@some-param)
-    out(""Hello!"")
-}
-
-data(""Testing"")
-data(""compiled!"")
-";
-
-            Compiler.Compile(strdata, "testing-lib");
-            var asm = Compiler
-                .ReadAssembly<Lambdas.Unit>(
-                    Path.Combine(Directory.GetCurrentDirectory(), "build", SFLang.SFLang.Framework, "testing-lib-sfl.sfc"));
-            
-            var unit = new Lambdas.Unit();
-            var tbinder = new ContextBinder<Lambdas.Unit>();
-            Lambdas.PopulateLexic(tbinder);
-            asm(unit, tbinder);
+            Compiler.Compile(Directory.GetCurrentDirectory(), "testing-lib");
             
             if (args.Length > 0)
             {
@@ -140,7 +122,7 @@ data(""compiled!"")
             else
             {
 
-                Console.WriteLine($"SFLang v{SFLang.SFLang.Version} with SFLexicon v{SFLang.SFLang.LexerVersion}");
+                Console.WriteLine($"SFLang v{SFLang.SFLang.LanguageVersion} with SFLexicon v{SFLang.SFLang.LexerVersion}");
                 Console.WriteLine("Welcome to interactive SFLang Interpreter!");
                 Console.WriteLine("Just enter code and we will evalutate it!");
                 Console.WriteLine("(Type '!stop' to exit program)");

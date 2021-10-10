@@ -24,7 +24,7 @@ namespace SFLang.Language
         public Parser(string file)
         {
             FileName = file;
-            RawContents = UpgradeCode(File.ReadAllText(FileName));
+            RawContents = UpgradeCode(System.IO.File.ReadAllText(FileName));
             Reader = new StreamReader(new MemoryStream(Encoding.UTF8.GetBytes(RawContents)));
             Lines = RawContents.Split("\n").ToList();
             Tokenizer = new Tokenizer(this);
