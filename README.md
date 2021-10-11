@@ -1,4 +1,6 @@
 # SharpFunction
+[![wakatime](https://wakatime.com/badge/github/Maxuss/SharpFunction.svg)](https://wakatime.com/badge/github/Maxuss/SharpFunction)
+
 A library for creating datapacks using .NET
 
 SharpFunction's main priority is to simplify the boring work
