@@ -11,6 +11,27 @@ namespace SFLang.Lexicon
 {
     public static class Lexic<TContext>
     {
+        public static Function<TContext> Loop => (ctx, binder, args) =>
+        {
+            if (args.Count != 2)
+                throw new PrettyException("The 'loop' keyword expects exactly 2 arguments!");
+
+            var count = args.Get<int>(0);
+            if (count < 0)
+                throw new PrettyException("The count parameter can not be less than zero!");
+            var fn = args.Get<Function<TContext>>(1);
+
+            binder.InLoop = true;
+            for (var i = 0; i < count; i++)
+            {
+                fn(ctx, binder, new Parameters());
+            }
+
+            binder.InLoop = false;
+
+            return null;
+        };
+
         public static Function<TContext> Dir => (ctx, binder, args) =>
         {
             if (args.Count < 1)

@@ -95,6 +95,7 @@ namespace SFLang.Lexicon
         {
             binder["PATH"] = new Constant { Value = Directory.GetCurrentDirectory() };
 
+            binder["loop"] = Lexic<TContext>.Loop;
             binder["dir"] = Lexic<TContext>.Dir;
             binder["extern"] = Lexic<TContext>.External;
             binder["const"] = Lexic<TContext>.Constant;

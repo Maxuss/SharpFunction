@@ -26,6 +26,7 @@ namespace SFLang.Lexicon
         // Tracks if an instance context is provided or not.
         private readonly bool _contextIsDefault;
         public List<ContextFlag> Flags = new();
+        public bool InLoop = false;
 
         public ContextBinder(TContext context = default)
         {

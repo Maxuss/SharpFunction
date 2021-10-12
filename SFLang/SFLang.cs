@@ -13,6 +13,7 @@
             {
                 $"SFLang-Version: {LanguageVersion}",
                 $"SFLang-Lexer-Version: {LexerVersion}",
+                $"Framework: {Framework}",
                 "Author: Maxuss"
             };
         }
