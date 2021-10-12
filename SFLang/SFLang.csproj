@@ -28,4 +28,8 @@
         <ProjectReference Include="..\SharpFunction\SharpFunction.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="monaco" />
+    </ItemGroup>
+
 </Project>

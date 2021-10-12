@@ -9,7 +9,7 @@ when making datapacks and focus on interesting parts!
 ## Installation
 SharpFunction is available on [NuGet](https://www.nuget.org/packages/SharpFunction/#).
 It is well documented, but if you have any questions, [create an issue](https://github.com/Maxuss/SharpFunction/issues),
-or contact me on discord: Void Moment#3333
+or contact me on discord: maxus#8805
 
 ## Usage
 It is recommended to have functional IDE such as Visual Studio or JetBrains Rider.
