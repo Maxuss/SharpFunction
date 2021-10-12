@@ -111,24 +111,11 @@ namespace SFLang.Language
                     var split = val.Captures[0].Value.Split(".mend");
                     return $"let(@{name.Captures[0].Value}, {split[0]}){split[1]}";
                 }, RegexOptions.Multiline);
-            // Replace v0.5- set statements to old set(@name, value) statements
-            var secondReplaced = Regex
-                .Replace(
-                    firstReplaced,
-                    "(@(?<varname>.+)\\s*=(?<varval>.+))",
-                    match =>
-                    {
-                        var name = match.Groups["varname"];
-                        var val = match.Groups["varval"];
-                        if (!name.Success || !val.Success) return match.Value;
-                        return $"set(@{name.Captures[0].Value}, {val.Captures[0].Value})";
-                    }, RegexOptions.Multiline
-                );
             // Upgrade if's
             var thirdReplaced = Regex
                 .Replace(
-                    secondReplaced,
-                    "(if[\\r\\n\\t\\s]*\\((?<condition>.+)\\)[\\r\\n\\t\\s]*{(?<evaluation>[\\r\\n\\t\\s]*.*)}[\\r\\n\\t\\s]*(else[\\r\\n\\t\\s]*{(?<elsecase>[\\r\\n\\t\\s]*.*)})*)",
+                    firstReplaced,
+                    "if[\\r\\n\\t\\s]*\\((?<condition>.+)\\)[\\r\\n\\t\\s]*{(?<evaluation>([\\r\\n\\t\\s]|.)*)}[\\r\\n\\t\\s]*(else[\\r\\n\\t\\s]*{(?<elsecase>[\\r\\n\\t\\s]*.*)})*",
                     match =>
                     {
                         var condition = match.Groups["condition"];
@@ -173,7 +160,35 @@ namespace SFLang.Language
                     return !value.Success ? match.Value : $"declare('{value.Captures[0].Value}')";
                 }, RegexOptions.Multiline);
             
-            lines = declarationReplaced.Replace(".mend", "");
+            var constReplaced = Regex.Replace(
+                declarationReplaced, "const\\s+@(?<varname>.+)\\s*=\\s*(?<varval>(.|[\\n\\r\\t\\s])+)",
+                match =>
+                {
+                    var name = match.Groups["varname"];
+                    var val = match.Groups["varval"];
+                    if (!name.Success || !val.Success) return match.Value;
+                    if (!val.Captures[0].Value.Contains(".mend"))
+                        return $"const(@{name.Captures[0].Value}, {val.Captures[0].Value})";
+                    var split = val.Captures[0].Value.Split(".mend");
+                    return $"const(@{name.Captures[0].Value}, {split[0]}){split[1]}";
+                }, RegexOptions.Multiline);
+            
+            // Replace v0.5- set statements to old set(@name, value) statements
+            var secondReplaced = Regex
+                .Replace(
+                    constReplaced,
+                    "(@(?<varname>.+)\\s*=(?<varval>.+))",
+                    match =>
+                    {
+                        var name = match.Groups["varname"];
+                        var val = match.Groups["varval"];
+                        if (!name.Success || !val.Success) return match.Value;
+                        return $"set(@{name.Captures[0].Value}, {val.Captures[0].Value})";
+                    }, RegexOptions.Multiline
+                );
+
+
+            lines = secondReplaced.Replace(".mend", "");
             return lines;
         }
 

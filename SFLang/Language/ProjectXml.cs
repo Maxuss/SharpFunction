@@ -2,99 +2,111 @@
 
 namespace SFLang.Language
 {
-    [XmlRoot(ElementName="deployment", Namespace="")]
-	public class Deployment { 
+	[XmlRoot(ElementName = "deployment")]
+	public class Deployment
+	{
 
-		[XmlElement(ElementName="name", Namespace="")] 
-		public string Name; 
+		[XmlElement(ElementName = "name")] public string Name { get; set; }
 
-		[XmlElement(ElementName="author", Namespace="")] 
-		public string Author; 
+		[XmlElement(ElementName = "author")] public string Author { get; set; }
 
-		[XmlElement(ElementName="group", Namespace="")] 
-		public string Group; 
+		[XmlElement(ElementName = "group")] public string Group { get; set; }
 
-		[XmlElement(ElementName="upload", Namespace="")] 
-		public string Upload; 
+		[XmlElement(ElementName = "upload")] public string Upload { get; set; }
 	}
 
-	[XmlRoot(ElementName="file", Namespace="")]
-	public class File { 
+	[XmlRoot(ElementName = "file")]
+	public class File
+	{
 
-		[XmlAttribute(AttributeName="path", Namespace="")] 
-		public string Path; 
+		[XmlAttribute(AttributeName = "path")] public string Path { get; set; }
 	}
 
-	[XmlRoot(ElementName="includes", Namespace="")]
-	public class Includes { 
+	[XmlRoot(ElementName = "includes")]
+	public class Includes
+	{
 
-		[XmlElement(ElementName="file", Namespace="")] 
-		public List<File> File; 
+		[XmlElement(ElementName = "file")] public List<File> File { get; set; }
 	}
 
-	[XmlRoot(ElementName="option", Namespace="")]
-	public class Option { 
+	[XmlRoot(ElementName = "mixin")]
+	public class Mixin
+	{
+		[XmlAttribute(AttributeName = "assembly")]
+		public string Assembly { get; set; }
 
-		[XmlAttribute(AttributeName="key", Namespace="")] 
-		public string Key; 
-
-		[XmlText] 
-		public string Text; 
+		[XmlAttribute(AttributeName = "class")]
+		public string Class { get; set; }
 	}
 
-	[XmlRoot(ElementName="manifest", Namespace="")]
-	public class Manifest { 
+	[XmlRoot(ElementName = "mixins")]
+	public class Mixins
+	{
 
-		[XmlElement(ElementName="option", Namespace="")] 
-		public List<Option> Option; 
+		[XmlElement(ElementName = "mixin")] public List<Mixin> Stored { get; set; }
 	}
 
-	[XmlRoot(ElementName="scope", Namespace="")]
-	public class Scope { 
+	[XmlRoot(ElementName = "option")]
+	public class Option
+	{
 
-		[XmlAttribute(AttributeName="provided", Namespace="")] 
-		public bool Provided;
+		[XmlAttribute(AttributeName = "key")] public string Key { get; set; }
+
+		[XmlText] public string Text { get; set; }
 	}
 
-	[XmlRoot(ElementName="depends", Namespace="")]
-	public class Depends { 
+	[XmlRoot(ElementName = "manifest")]
+	public class Manifest
+	{
 
-		[XmlElement(ElementName="name", Namespace="")] 
-		public string Name; 
-
-		[XmlElement(ElementName="group", Namespace="")] 
-		public string Group; 
-
-		[XmlElement(ElementName="fetch", Namespace="")] 
-		public string Fetch; 
-
-		[XmlElement(ElementName="scope", Namespace="")] 
-		public Scope Scope; 
+		[XmlElement(ElementName = "option")] public List<Option> Option { get; set; }
 	}
 
-	[XmlRoot(ElementName="dependencies", Namespace="")]
-	public class Dependencies { 
+	[XmlRoot(ElementName = "scope")]
+	public class Scope
+	{
 
-		[XmlElement(ElementName="depends", Namespace="")] 
-		public List<Depends> Depends; 
+		[XmlAttribute(AttributeName = "provided")]
+		public bool Provided { get; set; }
 	}
 
-	[XmlRoot(ElementName="project", Namespace="")]
-	public class Project { 
+	[XmlRoot(ElementName = "depends")]
+	public class Depends
+	{
 
-		[XmlElement(ElementName="deployment", Namespace="")] 
-		public Deployment Deployment; 
+		[XmlElement(ElementName = "name")] public string Name { get; set; }
 
-		[XmlElement(ElementName="includes", Namespace="")] 
-		public Includes Includes; 
+		[XmlElement(ElementName = "group")] public string Group { get; set; }
 
-		[XmlElement(ElementName="entrypoint", Namespace="")] 
-		public string Entrypoint; 
+		[XmlElement(ElementName = "fetch")] public string Fetch { get; set; }
 
-		[XmlElement(ElementName="manifest", Namespace="")] 
-		public Manifest Manifest; 
+		[XmlElement(ElementName = "scope")] public Scope Scope { get; set; }
+	}
 
-		[XmlElement(ElementName="dependencies", Namespace="")] 
-		public Dependencies Dependencies; 
+	[XmlRoot(ElementName = "dependencies")]
+	public class Dependencies
+	{
+
+		[XmlElement(ElementName = "depends")] public List<Depends> Depends { get; set; }
+	}
+
+	[XmlRoot(ElementName = "project")]
+	public class Project
+	{
+
+		[XmlElement(ElementName = "deployment")]
+		public Deployment Deployment { get; set; }
+
+		[XmlElement(ElementName = "includes")] public Includes Includes { get; set; }
+
+		[XmlElement(ElementName = "mixins")] public Mixins Mixins { get; set; }
+
+		[XmlElement(ElementName = "entrypoint")]
+		public string Entrypoint { get; set; }
+
+		[XmlElement(ElementName = "manifest")] public Manifest Manifest { get; set; }
+
+		[XmlElement(ElementName = "dependencies")]
+		public Dependencies Dependencies { get; set; }
 	}
 }

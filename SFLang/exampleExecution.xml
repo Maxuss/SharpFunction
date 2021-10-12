@@ -11,6 +11,10 @@
         <file path="first.sf" />
         <file path="second.sf" />
     </includes>
+    <mixins>
+        <mixin assembly="AssemblyName" class="CoolClass"/>
+        <mixin assembly="AnotherAssembly" class="AnotherClass" />
+    </mixins>
     <entrypoint>first.sf</entrypoint>
     <manifest>
         <option key="Key">Value</option>

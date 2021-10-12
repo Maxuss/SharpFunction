@@ -2,9 +2,9 @@
 {
     public static class SFLang
     {
-        public const string Version = "0.8.3";
-        public const string LanguageVersion = "0.8-PUBLIC-BETA";
-        public const string LexerVersion = "0.9-PRIVATE-BETA";
+        public const string Version = "0.9.4";
+        public const string LanguageVersion = "0.9-beta";
+        public const string LexerVersion = "0.9.6-pre";
         public const string Framework = "sfCORE";
 
         public static List<string> GetInformation()

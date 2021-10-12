@@ -1,4 +1,6 @@
 ﻿
+using System.IO;
+
 namespace SFLang.Lexicon
 {
     public static class Lambdas
@@ -91,6 +93,11 @@ namespace SFLang.Lexicon
 
         public static void PopulateLexic<TContext>(ContextBinder<TContext> binder)
         {
+            binder["PATH"] = new Constant { Value = Directory.GetCurrentDirectory() };
+
+            binder["dir"] = Lexic<TContext>.Dir;
+            binder["extern"] = Lexic<TContext>.External;
+            binder["const"] = Lexic<TContext>.Constant;
             binder["let"] = Lexic<TContext>.Let;
             binder["set"] = Lexic<TContext>.Set;
 

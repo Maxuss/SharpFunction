@@ -1,14 +1,122 @@
 ﻿using System.Globalization;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using SFLang.Mixins;
 using SharpFunction.Commands;
 
 namespace SFLang.Lexicon
 {
     public static class Lexic<TContext>
     {
+        public static Function<TContext> Dir => (ctx, binder, args) =>
+        {
+            if (args.Count < 1)
+                throw new PrettyException("The 'dir' keyword expects at least 1 parameter!");
+
+            var list = new List<string>();
+            foreach (var arg in args)
+            {
+                if (arg is string || arg is Constant cnt && cnt.Value is string)
+                {
+                    switch (arg)
+                    {
+                        case string strArg:
+                            list.Add(strArg);
+                            continue;
+                        case Constant {Value: string val}:
+                            list.Add(val);
+                            break;
+                    }
+                } 
+            }
+
+            return System.IO.Path.Join(list.ToArray());
+        };
+
+        public static Function<TContext> External => (ctx, binder, args) =>
+        {
+            if (args.Count < 1)
+                throw new PrettyException("The 'extern' keyword requires at least 1 parameter!");
+
+            if (args.Count == 1)
+            {
+                var t = args.Get<string>(0);
+                var asm = typeof(SFLang).Assembly;
+                var type = asm.GetType(t);
+                if(type == null) 
+                    throw new PrettyException(
+                        $"The type {t} can not be found in current assembly! Please specify special assembly!");
+
+                MixinManager.LoadClassMixins(type, binder as ContextBinder<Lambdas.Unit> ?? ContextBinder<Lambdas.Unit>.InstanceBinder);
+                var methods = type.GetMethods()
+                    .Where(m => m.GetCustomAttributes(typeof(MethodAttribute), false).Any());
+                return 
+                    methods
+                        .Select(
+                            method => (MethodAttribute) method
+                                .GetCustomAttributes(typeof(MethodAttribute)).First())
+                        .Select(attr => attr.Name)
+                        .ToList();
+            }
+            else
+            {
+                var a = args.Get<string>(0);
+                var t = args.Get<string>(1);
+                var asm = Assembly.LoadFrom(a);
+                var type = asm.GetType(t);
+                if(type == null) 
+                    throw new PrettyException(
+                        $"The type {t} can not be found in assembly in file {a}!");
+                MixinManager.LoadClassMixins(type, binder as ContextBinder<Lambdas.Unit> ?? ContextBinder<Lambdas.Unit>.InstanceBinder);
+                var methods = type.GetMethods()
+                    .Where(m => m.GetCustomAttributes(typeof(MethodAttribute), false).Any());
+                return 
+                    methods
+                        .Select(
+                            method => (MethodAttribute) method
+                                .GetCustomAttributes(typeof(MethodAttribute)).First())
+                        .Select(attr => attr.Name)
+                        .ToList();
+            }
+        };
+
+        public static Function<TContext> Constant => (ctx, binder, parameters) =>
+        {
+            // Sanity checking invocation.
+            if (parameters.Count == 0)
+                throw new EvaluationException(typeof(Lexic<TContext>),
+                    "No Parameters provided to 'const', provide at least a symbol name, e.g. 'const(@foo)'.");
+
+            // Expecting symbol name as the first argument and doing some basic sanity checking.
+            var symbolObject = parameters.Get(0);
+            if (symbolObject == null)
+                throw new EvaluationException(typeof(Lexic<TContext>),
+                    "You'll need to supply a symbol name for 'const' to function correctly.");
+            if (symbolObject is not string symbolName)
+                throw new EvaluationException(typeof(Lexic<TContext>),
+                    "You'll need to supply a symbol name for 'const' to function correctly. Please use the '@' character in front of your symbol's declaration.");
+            Lexer.SanityCheckSymbolName(symbolName);
+
+            if (binder.ContainsDynamicKey(symbolName))
+                throw new EvaluationException(typeof(Lexic<TContext>),
+                    $"The symbol '{symbolName}' has already been declared in the scope of where you are trying to declare it using the 'let' keyword.");
+            if (binder.StackCount == 0 && binder.ContainsStaticKey(symbolName))
+                throw new EvaluationException(typeof(Lexic<TContext>),
+                    $"The symbol '{symbolName}' has already been declared in the scope of where you are trying to declare it using the 'let' keyword.");
+
+            if (parameters.Count > 2)
+                throw new EvaluationException(typeof(Lexic<TContext>),
+                    $"The 'let' keyword can only handle at most two Parameters, and you tried to pass in more than two Parameters as you tried to declare '{symbolName}'.");
+
+            // Setting the symbol's initial value, if any.
+            var value = parameters.Get(1);
+            binder[symbolName] = new Constant { Value = value };
+            return value;
+        };
+        
         public static Function<TContext> Include => (ctx, binder, args) =>
         {
             if (args.Count != 1)
@@ -195,7 +303,11 @@ namespace SFLang.Lexicon
             if (!binder.ContainsKey(symbolName))
                 throw new EvaluationException(typeof(Lexic<TContext>),
                     $"The symbol '{symbolName}' has not been declared in the scope of where you are trying to 'set' it.");
-
+            var obj = binder[symbolName];
+            if (obj is Constant)
+                throw new EvaluationException(typeof(Lexic<TContext>),
+                    $"The symbol '{symbolName}' is a constant and cannot be changed");
+            
             // Retrieving the initial value of the variable, setting it, and returning the value to caller.
             var value = parameters.Get(1);
             binder[symbolName] = value;

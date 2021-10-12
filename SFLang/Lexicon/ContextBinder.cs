@@ -59,9 +59,16 @@ namespace SFLang.Lexicon
                  */
 
                 if (StackContextBinder.Count > 0 && StackContextBinder[^1].ContainsKey(symbolName))
-                    return StackContextBinder[^1][symbolName];
+                {
+                    var obj = StackContextBinder[^1][symbolName];
+                    return obj is Constant cnt ? cnt.Value : obj;
+                }
+
                 if (StaticContextBinder.ContainsKey(symbolName))
-                    return StaticContextBinder[symbolName];
+                {
+                    var obj = StaticContextBinder[symbolName];
+                    return obj is Constant cnt ? cnt.Value : obj;
+                }
 
                 // Oops, no such symbol!
                 throw new EvaluationException(typeof(ContextBinder<TContext>),
@@ -74,10 +81,16 @@ namespace SFLang.Lexicon
                  * do if the stack has not (yet) been pushed at least once, or the
                  * symbol already exists at the global scope.
                  */
+                if (StaticContextBinder.ContainsKey(symbolName) && StaticContextBinder[symbolName] is Constant)
+                    throw new PrettyException("Can not reassign constant!");
                 if (StackContextBinder.Count == 0 || StaticContextBinder.ContainsKey(symbolName))
                     StaticContextBinder[symbolName] = value;
                 else
+                {
+                    if(StackContextBinder[^1].ContainsKey(symbolName) && StackContextBinder[^1][symbolName] is Constant)
+                        throw new PrettyException("Can not reassign constant!");
                     StackContextBinder[^1][symbolName] = value;
+                }
             }
         }
 
@@ -213,7 +226,7 @@ namespace SFLang.Lexicon
         private delegate object DeepStaticFunction(object[] arguments);
 
 
-        #region [ -- Private helper methods -- ]
+        #region Helpers
 
         /*
          * Binds a single method as a "shallow" delegate.

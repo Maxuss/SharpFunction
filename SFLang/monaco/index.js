@@ -66,7 +66,7 @@ function registerLanguage() {
                 {
                     label: 'mixin',
                     kind: monaco.languages.CompletionItemKind.Snippet,
-                    insertText: 'const @${1:name} = extern(\'${2:assemblyName}\', \'${3:class}\', \'${4:method}\')',
+                    insertText: 'const @${1:name} = extern(\'${2:assemblyName}\', \'${3:class}\')',
                     insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
                     documentation: 'Mixin declaration.\nImports an external mixin from provided assembly.'
                 },

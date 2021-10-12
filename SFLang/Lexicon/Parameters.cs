@@ -39,10 +39,11 @@ namespace SFLang.Lexicon
 
         public object Get(int index, object defaultValue = null)
         {
-            return index >= _list.Count ? defaultValue : _list[index];
+            var obj = index >= _list.Count ? defaultValue : _list[index];
+            return obj is Constant cst ? cst.Value : obj;
         }
 
-        private readonly List<Type> allowedTypes = new List<Type>()
+        private readonly List<Type> allowedTypes = new()
         {
             typeof(int),
             typeof(long),
@@ -55,11 +56,11 @@ namespace SFLang.Lexicon
             var obj = Get(index);
             if (obj == null)
                 return defaultValue;
-            if (obj.GetType() != typeof(T) && !allowedTypes.Contains(typeof(T)) && !allowedTypes.Contains(obj.GetType()))
+            if (obj is Constant con && con.Value.GetType() != typeof(T) || (obj.GetType() != typeof(T) && !allowedTypes.Contains(typeof(T)) && !allowedTypes.Contains(obj.GetType())))
             {
                 throw new ArgumentException($"Expected parameter of type {typeof(T)} but instead got {obj.GetType()}");
             }
-            return (T) Convert.ChangeType(obj, typeof(T), CultureInfo.InvariantCulture);
+            return (T) Convert.ChangeType(obj is Constant cst ? cst.Value : obj, typeof(T), CultureInfo.InvariantCulture);
         }
 
 
