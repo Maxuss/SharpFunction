@@ -16,16 +16,20 @@ function registerLanguage() {
                 [/(@[a-zA-Z0-9]+)(?=\s*\(.*)/, "variable"],
                 [/(\s*declare\s*(\(|)(['"].*['"])(\)|)\s*include\s*(\(|)(['"].*['"])(\)|))(\s+)([\w\d$\/._-]*)/, "operator"],
                 [
-                    /(null|true|false|undefined|NaN|error)/,
+                    /(null|true|false|undefined|NaN|error|[A-Z\-_$*&]{3,})/,
                     "property"
                 ],
                 [
-                    /(if|else|loop|any|all|apply|slice|get|count|add|update|each|substr|replace|length|eval|out|command|vector|extract|let|set|const)/,
+                    /(if|else|loop|any|all|apply|slice|get|count|add|update|each|substr|replace|length|eval|out|command|vector|extract|let|set|const|startlocal|stoplocal)/,
                     "keyword"
                 ],
                 [
                     /(list|map|string|number|json|sum|sub|mul|div|mod|pow|let|set|eq|mt|lt|mte|lte|not|extern)/,
                     "keyword2"
+                ],
+                [
+                    /(nullptr|ref|deref|invoke-static|invoke|prop|field|(=?)\s*>\s(class|function|assembly)\s(\w.?)+)/,
+                    "pointer"
                 ]
             ]
         }
@@ -35,6 +39,8 @@ function registerLanguage() {
         brackets: [
             ["{", "}"],
             ["(", ")"],
+            ["'", "'"],
+            ['"', '"']
         ],
         comments: {
             lineComment: "//",
@@ -53,16 +59,24 @@ function registerLanguage() {
         rules: [
             {token: "number", foreground: "#97ecbc"},
             {token: "comment", foreground: "#7ca66e"},
-            {token: "keyword", foreground: "#5872d9"},
+            {token: "keyword", foreground: "#5899d9"},
             {token: "keyword2", foreground: "#9976d5"},
             {token: "string", foreground: "#e39a3c"},
             {token: "property", foreground: "#7d50c9"},
+            {token: "pointer", foreground: "#495CD5"}
         ],
     });
 
     monaco.languages.registerCompletionItemProvider('sflang', {
         provideCompletionItems: () => {
             const suggestions = [
+                {
+                    lavel: 'pointer',
+                    kind: monaco.languages.CompletionItemKind.Snippet,
+                    insertText: 'const @${1:pointerName} => ${2:pointerType} ${3:pointerPath};',
+                    insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
+                    documentation: 'Declares a single pointer to specific DLL.'
+                },
                 {
                     label: 'mixin',
                     kind: monaco.languages.CompletionItemKind.Snippet,

@@ -102,6 +102,8 @@ namespace SFLang.Lexicon
 
             binder["nullptr"] = null;
 
+            binder["assert"] = Lexic<TContext>.Assertion;
+            
             binder["invoke"] = Lexic<TContext>.Invoke;
             binder["invoke-static"] = Lexic<TContext>.InvokeStatic;
             binder["field"] = Lexic<TContext>.Field;

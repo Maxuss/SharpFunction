@@ -11,6 +11,17 @@ namespace SFLang.Lexicon
 {
     public static class Lexic<TContext>
     {
+        public static Function<TContext> Assertion => (ctx, binder, args) =>
+        {
+            if (args.Count < 1)
+                throw new CoreException("The 'assert' keyword requires at least 1 parameter!");
+            var cond = args.Get<bool>(0);
+            var msg = args.Count > 1 ? args.Get<string>(1) : "Assertion error occurred!";
+            if (!cond)
+                throw new AssertionError(msg);
+            return true;
+        };
+
         public static Function<TContext> Property => (ctx, binder, args) =>
         {
             if (args.Count != 2)

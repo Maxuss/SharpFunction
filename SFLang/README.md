@@ -22,7 +22,7 @@ can set integer to already defined string etc.
 
 Example:
 
-```let
+```js
 let(@int, 123)
 set(@int, 542)
 
@@ -31,7 +31,7 @@ set(@string, 123) // an integer value :O
 ```
 
 **NOTE: Since SFLang v0.6 you can now define variables like that:** 
-```c#
+```js
 let @name = 123
 @name = 542
 
@@ -42,7 +42,7 @@ let @another-var = "string"
 
 There are 5 kinds of basic operators in SFLang
 
-```c#
+````js`
 sum(first, second) // first + second
 sub(first, second) // first - second
 div(first, second) // first / second
@@ -55,10 +55,10 @@ pow(first, second) // first to power of second
 
 That is how you can make if/else in SFLang:
 
-```c#
-let @var = true
+```js
+let @variable = true
 
-if(var, {
+if(variable, {
     // Code here
 }, {
     // This is an alternative to else statements
@@ -67,7 +67,7 @@ if(var, {
 
 **NOTE: Since SFLang v0.6 you can also do it like that:**
 
-```c#
+```js
 let @cond = true
 
 if(cond) {
@@ -85,7 +85,7 @@ It means that anything at the end of a file, or at the end of a method will retu
 
 Here is an example of method:
 
-```c#
+```js
 let(@a-method, method({
     // This is a code inside a method
     
@@ -99,7 +99,7 @@ a-method()
 
 Lets see a method with parameters:
 
-```c#
+```js
 let(@parametrised-method, method({
     out(@param-one)
     out(@param-two)
@@ -121,7 +121,7 @@ You can invoke methods without certain params, and that will convert remaining o
 
 **NOTE: Since SFLang v0.6 you can do it like that too:**
 
-```c#
+```js
 let @no-param = method() {
     out("Something")
 }
@@ -149,7 +149,7 @@ It works the way, that if anything **is not null** it is **true** otherwise it i
 
 Example:
 
-```c#
+```js
 let(@a-val, "true") // converted to true
 let(@another-val, 514) // converted to true
 let(@null-var, null) // converted to false!
@@ -157,7 +157,7 @@ let(@null-var, null) // converted to false!
 
 You can operate with booleans with several main methods:
 
-```c#
+```js
 not(a-boolean) // inverts the boolean, converting true to false and vice-versa
 // or 
 !a-boolean // <- works since SFLang v0.6
@@ -179,7 +179,7 @@ all(@first, @second) // true if first AND second are both true
 
 There are 2 kinds of collection in SFLang: list and map. Map is equal to dictionary in C# and list... is a list.
 
-```c#
+```js
 // list:
 let(@a-list, list(123, 456, 789))
 // counting elements in the list
@@ -214,15 +214,68 @@ let(@from-json, json('{"key":"value", "anotherKey":[1, 4, 16]}')
 
 ## Working with strings
 
-```c#
-let(@a-str, 'Cool string')
+```js
+let @a-str = 'Cool string'
 // length of string
-length(a-str)
+length(a - str)
 // replacing word in string
-replace(a-str, 'Cool', 'Amazing')
+replace(a - str, 'Cool', 'Amazing')
 // substring from string
-substr(a-str, 1, 5)
+substr(a - str, 1, 5)
 
 // evaluating a string
 eval('let(@evaluated, +(123,123,123))')
+```
+
+### Pointers
+Pointers are type references, that can be *initialized*.
+
+Initializing pointer creates a new element of pointer's referencing type.
+
+Using pointers, you can invoke any functions from external .NET DLLs, and it doesn't even need to be in Mixin format!
+
+Examples:
+
+```js
+// Creates new pointer, referencing to
+// SFLang.AccessibleClass class
+// NOTE: Pointers REQUIRE a semicolon
+// at the end of pointer declaration!
+// It is also recommended for pointers to be
+// constants.
+const @ptr => class SFLang.AccessibleClass;
+// Method pointer
+const @mtd => function SFLang.AccessibleClass.SomeMethod;
+
+// You can put your initializer params here,
+// if there are no params provided, you will receive
+// object initialized with default provided empty
+// constructor
+let @instance = deref(ptr, ...)
+
+// Working with instance
+
+// Accessing .net field
+let @field-value = field(instance, 'FieldName')
+
+// Accessing .net property
+let @property-value = prop(instance, 'PropertyName')
+
+// Invoking methods
+let @static-invoke = invoke-static(mtd)
+
+// You can also supply your own parameters
+let @default-invoke = invoke(mtd, instance, ...)
+
+// Loading assemblies with pointers
+// It loads the assembly and also returns loaded
+// DLL so you can use it later
+const @asm-ref => assembly ..SFLangCompiler.dll;
+
+// Dereferencing items
+const @nullref = ref(null)
+const @stringref = ref("Some string")
+const @intref = ref(123456) // Actually a .net long pointer
+const @instanceref = ref(instance)
+assert(eq(instanceref, ptr)) // They will be equal
 ```
