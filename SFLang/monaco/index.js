@@ -14,23 +14,24 @@ function registerLanguage() {
                 [/method\s*\(.*\)\s*/, "keyword"],
                 [/(@[\w\-]*)/, "variable"],
                 [/(@[a-zA-Z0-9]+)(?=\s*\(.*)/, "variable"],
-                [/(\s*declare\s*(\(|)(['"].*['"])(\)|)\s*include\s*(\(|)(['"].*['"])(\)|))(\s+)([\w\d$\/._-]*)/, "operator"],
+                [/(\s*declare\s*(\(|)(['"].*['"])(\)|)\s*include\s*(\(|)(['"].*['"])(\)|))(\s+)([\w\d$\/._-]*)/, "keyword"],
+				[
+                    /(nullptr|ref|deref|invoke-static|invoke|prop|field|(=?)\s*>\s(class|function|assembly)\s(\w.?)+)/,
+                    "pointer"
+                ],
                 [
                     /(null|true|false|undefined|NaN|error|[A-Z\-_$*&]{3,})/,
                     "property"
                 ],
                 [
-                    /(if|else|loop|any|all|apply|slice|get|count|add|update|each|substr|replace|length|eval|out|command|vector|extract|let|set|const|startlocal|stoplocal)/,
+                    /(if|else|loop|any|all|apply|slice|get|count|add|update|each|substr|replace|length|eval|out|command|vector|extract|let|set|local|const|startlocal|stoplocal)/,
                     "keyword"
                 ],
                 [
                     /(list|map|string|number|json|sum|sub|mul|div|mod|pow|let|set|eq|mt|lt|mte|lte|not|extern)/,
                     "keyword2"
-                ],
-                [
-                    /(nullptr|ref|deref|invoke-static|invoke|prop|field|(=?)\s*>\s(class|function|assembly)\s(\w.?)+)/,
-                    "pointer"
                 ]
+
             ]
         }
     })
