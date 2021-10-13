@@ -7,7 +7,7 @@ namespace SFLang.Lexicon
 {
     public class Parameters : IEnumerable<object>
     {
-        private List<object> _list = new List<object>();
+        internal List<object> _list = new();
 
         public Parameters()
         {
@@ -30,6 +30,13 @@ namespace SFLang.Lexicon
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
+        }
+
+        public object Pop(int index = 0)
+        {
+            var obj = Get(index);
+            _list.RemoveAt(index);
+            return obj ?? default;
         }
 
         public void Add(object value)

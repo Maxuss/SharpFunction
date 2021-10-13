@@ -95,11 +95,27 @@ namespace SFLang.Lexicon
         {
             binder["PATH"] = new Constant { Value = Directory.GetCurrentDirectory() };
 
+            binder["&"] = Lexic<TContext>.Dereference;
+            binder["deref"] = Lexic<TContext>.Dereference;
+            binder["*"] = Lexic<TContext>.Reference;
+            binder["ref"] = Lexic<TContext>.Reference;
+
+            binder["nullptr"] = null;
+
+            binder["invoke"] = Lexic<TContext>.Invoke;
+            binder["invoke-static"] = Lexic<TContext>.InvokeStatic;
+            binder["field"] = Lexic<TContext>.Field;
+            binder["prop"] = Lexic<TContext>.Property;
+
+            binder["startlocal"] = Lexic<TContext>.StartLocalScope;
+            binder["stoplocal"] = Lexic<TContext>.StartLocalScope;
+
             binder["loop"] = Lexic<TContext>.Loop;
             binder["dir"] = Lexic<TContext>.Dir;
             binder["extern"] = Lexic<TContext>.External;
             binder["const"] = Lexic<TContext>.Constant;
             binder["let"] = Lexic<TContext>.Let;
+            binder["local"] = Lexic<TContext>.Local;
             binder["set"] = Lexic<TContext>.Set;
 
             binder["if"] = Lexic<TContext>.If;

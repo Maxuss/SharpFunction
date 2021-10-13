@@ -11,23 +11,185 @@ namespace SFLang.Lexicon
 {
     public static class Lexic<TContext>
     {
+        public static Function<TContext> Property => (ctx, binder, args) =>
+        {
+            if (args.Count != 2)
+                throw new CoreException("The 'prop' keyword expects exactly 2 parameters!");
+            var typeRef = args[0]; 
+            var fieldRef = args.Get<string>(1);
+
+            var field  = typeRef.GetType().GetProperty(fieldRef);
+            if (field is null)
+                throw new CoreException("This property does not exist! Maybe you meant field?");
+
+            return field.GetValue(typeRef);
+        };
+
+        
+        public static Function<TContext> Field => (ctx, binder, args) =>
+        {
+            if (args.Count != 2)
+                throw new CoreException("The 'field' keyword expects exactly 2 parameters!");
+            var typeRef = args[0]; 
+            var fieldRef = args.Get<string>(1);
+
+            var field  = typeRef.GetType().GetField(fieldRef);
+            if (field is null)
+                throw new CoreException("This field does not exist! Maybe you meant property?");
+
+            if (field?.IsStatic ?? false) return field.GetValue(null);
+            return field?.GetValue(typeRef);
+        };
+
+        public static Function<TContext> Invoke => (ctx, binder, args) =>
+        {
+            if (args.Count < 2)
+                throw new CoreException("The 'invoke' keyword expects at least 2 parameters!");
+
+            var methodRef = args.Pop();
+            if (methodRef is not MethodInfo method)
+                throw new CoreException(
+                    $"The 'invoke' keyword expects first parameter to be method pointer, not {methodRef.GetType()}!");
+
+            var typeRef = args.Pop();
+            var param = args._list.ToArray();
+
+            return method.Invoke(typeRef, param);
+        };
+
+        public static Function<TContext> InvokeStatic => (ctx, binder, args) =>
+        {
+            if (args.Count < 1)
+                throw new CoreException("The 'invoke-static' keyword expects at least 1 parameter!");
+
+            var methodRef = args.Pop();
+            if (methodRef is not MethodInfo method)
+                throw new CoreException(
+                    $"The 'invoke-static' keyword expects first parameter to be method pointer, not {methodRef.GetType()}!");
+
+            return method.Invoke(null, args._list.ToArray());
+        };
+        
+        public static Function<TContext> Reference => (ctx, binder, args) =>
+        {
+            if (args.Count != 1)
+                throw new CoreException("The 'reference' keyword expects exactly 1 parameter!");
+
+            return args[0]?.GetType();
+        };
+        
+        public static Function<TContext> Dereference => (ctx, binder, args) =>
+        {
+            if (args.Count < 1)
+                throw new CoreException("The 'dereference' keyword expects at least 1 parameter!");
+
+            var type = args.Pop(0) as Type ?? throw new CoreException("First argument must be pointer type!");
+            var param = args._list;
+            if (param.Count == 0)
+                return Activator.CreateInstance(type);
+            foreach (var constr in type.GetConstructors(BindingFlags.Public | BindingFlags.Instance))
+            { 
+                var @params = constr.GetParameters();
+                if(@params.Length == 0) continue;
+                
+                var matches = new bool[@params.Length];
+                for (var i = 0; i < @params.Length; i++)
+                {
+                    var par = @params[i];
+                    if (i < param.Count)
+                    {
+                        var typ = param[i].GetType();
+                        matches[i] = par.ParameterType == typ;
+                    }
+                    else matches[i] = false;
+                }
+                
+                if (matches.All(m => m))
+                    return constr.Invoke(param.Count == 0 ? Array.Empty<object>() : param.ToArray());
+            }
+            throw new CoreException("Invalid construct parameters for dereference provided!");
+        };
+
+        public static Function<TContext> StopLocalScope => (ctx, binder, args) =>
+        {
+            if (args.Count > 0) throw new CoreException("'stoplocal' does not expect any parameters!");
+            if (!binder.LocalScope)
+                throw new CoreException("We are not in local scope yet!");
+
+            binder.LocalScope = false;
+            return true;
+        };
+
+        public static Function<TContext> StartLocalScope => (ctx, binder, args) =>
+        {
+            if (args.Count > 0) throw new CoreException("'startlocal' does not expect any parameters!");
+            if (binder.LocalScope)
+                throw new CoreException("We are already in local scope!");
+
+            binder.LocalScope = true;
+            return true;
+        };
+        
+        public static Function<TContext> Local => (ctx, binder, parameters) =>
+        {
+            if (!binder.LocalScope)
+                throw new CoreException(
+                    "Can only declare local variables inside local scope, like method or lambda!\n" +
+                    "TIP: You can also do 'startlocal' and 'stoplocal' to start and stop local scopes!");
+
+            // Sanity checking invocation.
+            if (parameters.Count == 0)
+                throw new EvaluationException(typeof(Lexic<TContext>),
+                    "No Parameters provided to 'local', provide at least a symbol name, e.g. 'let(@foo)'.");
+
+            // Expecting symbol name as the first argument and doing some basic sanity checking.
+            var symbolObject = parameters.Get(0);
+            if (symbolObject == null)
+                throw new EvaluationException(typeof(Lexic<TContext>),
+                    "You'll need to supply a symbol name for 'local' to function correctly.");
+            if (symbolObject is not string symbolName)
+                throw new EvaluationException(typeof(Lexic<TContext>),
+                    "You'll need to supply a symbol name for 'local' to function correctly. Please use the '@' character in front of your symbol's declaration.");
+            Lexer.SanityCheckSymbolName(symbolName);
+
+            if (binder.ContainsDynamicKey(symbolName))
+                throw new EvaluationException(typeof(Lexic<TContext>),
+                    $"The symbol '{symbolName}' has already been declared in the scope of where you are trying to declare it using the 'local' keyword.");
+            if (binder.StackCount == 0 && binder.ContainsStaticKey(symbolName))
+                throw new EvaluationException(typeof(Lexic<TContext>),
+                    $"The symbol '{symbolName}' has already been declared in the scope of where you are trying to declare it using the 'local' keyword.");
+
+            if (parameters.Count > 2)
+                throw new EvaluationException(typeof(Lexic<TContext>),
+                    $"The 'local' keyword can only handle at most two Parameters, and you tried to pass in more than two Parameters as you tried to declare '{symbolName}'.");
+
+            // Setting the symbol's initial value, if any.
+            var value = parameters.Get(1);
+            binder[symbolName] = value;
+            binder.LeaveLocalScope += bndr =>
+            {
+                bndr.RemoveKey(symbolName);
+            };
+            return value;
+        };
+
         public static Function<TContext> Loop => (ctx, binder, args) =>
         {
             if (args.Count != 2)
-                throw new PrettyException("The 'loop' keyword expects exactly 2 arguments!");
+                throw new CoreException("The 'loop' keyword expects exactly 2 arguments!");
 
             var count = args.Get<int>(0);
             if (count < 0)
-                throw new PrettyException("The count parameter can not be less than zero!");
+                throw new CoreException("The count parameter can not be less than zero!");
             var fn = args.Get<Function<TContext>>(1);
 
-            binder.InLoop = true;
+            binder.LocalScope = true;
             for (var i = 0; i < count; i++)
             {
                 fn(ctx, binder, new Parameters());
             }
 
-            binder.InLoop = false;
+            binder.LocalScope = false;
 
             return null;
         };
@@ -35,7 +197,7 @@ namespace SFLang.Lexicon
         public static Function<TContext> Dir => (ctx, binder, args) =>
         {
             if (args.Count < 1)
-                throw new PrettyException("The 'dir' keyword expects at least 1 parameter!");
+                throw new CoreException("The 'dir' keyword expects at least 1 parameter!");
 
             var list = new List<string>();
             foreach (var arg in args)
@@ -60,7 +222,7 @@ namespace SFLang.Lexicon
         public static Function<TContext> External => (ctx, binder, args) =>
         {
             if (args.Count < 1)
-                throw new PrettyException("The 'extern' keyword requires at least 1 parameter!");
+                throw new CoreException("The 'extern' keyword requires at least 1 parameter!");
 
             if (args.Count == 1)
             {
@@ -68,7 +230,7 @@ namespace SFLang.Lexicon
                 var asm = typeof(SFLang).Assembly;
                 var type = asm.GetType(t);
                 if(type == null) 
-                    throw new PrettyException(
+                    throw new CoreException(
                         $"The type {t} can not be found in current assembly! Please specify special assembly!");
 
                 MixinManager.LoadClassMixins(type, binder as ContextBinder<Lambdas.Unit> ?? ContextBinder<Lambdas.Unit>.InstanceBinder);
@@ -89,7 +251,7 @@ namespace SFLang.Lexicon
                 var asm = Assembly.LoadFrom(a);
                 var type = asm.GetType(t);
                 if(type == null) 
-                    throw new PrettyException(
+                    throw new CoreException(
                         $"The type {t} can not be found in assembly in file {a}!");
                 MixinManager.LoadClassMixins(type, binder as ContextBinder<Lambdas.Unit> ?? ContextBinder<Lambdas.Unit>.InstanceBinder);
                 var methods = type.GetMethods()
@@ -123,10 +285,10 @@ namespace SFLang.Lexicon
 
             if (binder.ContainsDynamicKey(symbolName))
                 throw new EvaluationException(typeof(Lexic<TContext>),
-                    $"The symbol '{symbolName}' has already been declared in the scope of where you are trying to declare it using the 'let' keyword.");
+                    $"The symbol '{symbolName}' has already been declared in the scope of where you are trying to declare it using the 'const' keyword.");
             if (binder.StackCount == 0 && binder.ContainsStaticKey(symbolName))
                 throw new EvaluationException(typeof(Lexic<TContext>),
-                    $"The symbol '{symbolName}' has already been declared in the scope of where you are trying to declare it using the 'let' keyword.");
+                    $"The symbol '{symbolName}' has already been declared in the scope of where you are trying to declare it using the 'const' keyword.");
 
             if (parameters.Count > 2)
                 throw new EvaluationException(typeof(Lexic<TContext>),
@@ -141,10 +303,10 @@ namespace SFLang.Lexicon
         public static Function<TContext> Include => (ctx, binder, args) =>
         {
             if (args.Count != 1)
-                throw new PrettyException("Expected only 1 parameter for module import!");
+                throw new CoreException("Expected only 1 parameter for module import!");
             var key = args.Get<string>(0);
             if (!GlobalContext<TContext>.Contexts.ContainsKey(key))
-                throw new PrettyException("This module was not declared!");
+                throw new CoreException("This module was not declared!");
 
             var module = GlobalContext<TContext>.Contexts[key];
             binder.Merge(module);
@@ -154,7 +316,7 @@ namespace SFLang.Lexicon
         public static Function<TContext> Module => (ctx, binder, args) =>
         {
             if (args.Count != 1)
-                throw new PrettyException("Expected only 1 parameter for module declaration!");
+                throw new CoreException("Expected only 1 parameter for module declaration!");
 
             var key = args.Get<string>(0);
             binder.ModuleName = key;
@@ -257,6 +419,7 @@ namespace SFLang.Lexicon
              */
             return new Function<TContext>((invocationContext, invocationBinder, invocationParameters) =>
             {
+                invocationBinder.LocalScope = true;
                 /*
                  * Sanity checking that caller did not supply more Parameters than
                  * the function is declared to at maximum being able to handle.
@@ -296,6 +459,8 @@ namespace SFLang.Lexicon
                     // Popping stack.
                     invocationBinder.PopStack();
                 }
+                
+                invocationBinder.LocalScope = false;
             });
         };
 

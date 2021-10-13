@@ -1,7 +1,6 @@
 ﻿using System;
 using SFLang.Exceptions;
 using SFLang.Lexicon;
-using SFLang.Mixins;
 
 namespace SFLangCompiler
 {
@@ -31,9 +30,9 @@ namespace SFLangCompiler
                 {
                     Lambdas.Compile(input, ctx)();
                 }
-                catch (PrettyException pretty)
+                catch (CoreException pretty)
                 {
-                    var handler = new PrettyException(29, -1, typeof(SFLangCompiler).FullName,
+                    var handler = new CoreException(29, -1, typeof(SFLangCompiler).FullName,
                         "Thread Exception handler", pretty);
                     handler.PrettyPrint();
                 }
@@ -41,10 +40,10 @@ namespace SFLangCompiler
                 {
                     try
                     {
-                        var handler = new PrettyException("An error occurred in main thread!",
-                            new PrettyException(normal.Message + $" Cause: {normal.InnerException?.Message}"));
+                        var handler = new CoreException("An error occurred in main thread!",
+                            new CoreException(normal.Message + $" Cause: {normal.InnerException?.Message}"));
                     }
-                    catch (PrettyException expected)
+                    catch (CoreException expected)
                     {
                         expected.PrettyPrint();
                     }

@@ -84,7 +84,7 @@ namespace SFLang.Language
                 match =>
                 {
                     methodCount++;
-                    if (methodCount > 1) throw new PrettyException("Expected only 1 v0.6+ method in a single file");
+                    if (methodCount > 1) throw new CoreException("Expected only 1 v0.6+ method in a single file");
                     var para = match.Groups["params"];
                     var body = match.Groups["body"];
                     var def = "method({%BODY%}%PARAMS%)";
@@ -192,6 +192,7 @@ namespace SFLang.Language
             return lines;
         }
 
+        private readonly string[] Allowed = new[] { "class", "function", "assembly" };
         public string? Next(StreamReader reader)
         {
             reader = Reader ?? reader;
@@ -205,13 +206,27 @@ namespace SFLang.Language
                 return null; // No more tokens.
 
             // Finding next token from reader.
-            string retVal = null;
+            string? retVal = null;
             while (!reader.EndOfStream)
             {
                 // Peeking next character in stream, and checking its classification.
                 var ch = (char) reader.Peek();
                 switch (ch)
                 {
+                    case '>':
+                        reader.Read();
+
+                        Tokenizer.EatSpace(reader);
+                        var type = Tokenizer.ReadString(reader, ' ', 15).Replace(" ", "");
+                        if (!Allowed.Contains(type))
+                            throw new ParsingException(
+                                message:
+                                $"Pointer contains invalid type '{type}'! Expected one of [{string.Join(',', Allowed)}]");
+                        var path = Tokenizer.ReadString(reader, ';');
+                        path = path.Replace(";", "");
+                        Cached.Push(path);
+                        
+                        return $"> {type}";
                     case ' ':
                     case '\r':
                     case '\n':

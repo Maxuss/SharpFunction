@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Text.RegularExpressions;
 using SFLang.Exceptions;
 using SFLang.Language;
+using File = System.IO.File;
 
 namespace SFLang.Lexicon
 {
@@ -59,7 +62,7 @@ namespace SFLang.Lexicon
 
         internal static void SanityCheckSymbolName(string symbolName)
         {
-            if (symbolName.IndexOfAny(new[] {' ', '\r', '\n', '\t', '*', '/', '^', '%'}) != -1)
+            if (symbolName.IndexOfAny(new[] {' ', '\r', '\n', '\t'}) != -1)
                 throw new ParsingException(message: $"'{symbolName}' is not a valid symbol name.");
         }
 
@@ -117,10 +120,10 @@ namespace SFLang.Lexicon
 
             // Sanity checking tokenizer's content, before returning functions to caller.
             if (forceClose && en.Current != "}")
-                throw new PrettyException(29, -1, typeof(Lexer).FullName,
+                throw new CoreException(29, -1, typeof(Lexer).FullName,
                     "Premature EOF while parsing code, missing an '}' character.");
             if (!forceClose && !eof && en.Current == "}")
-                throw new PrettyException(31, -1, typeof(Lexer).FullName,
+                throw new CoreException(31, -1, typeof(Lexer).FullName,
                     "Unexpected closing brace '}' in code, did you add one too many '}' characters?");
             return new Tuple<List<Function<TContext>>, bool>(content, eof);
         }
@@ -142,6 +145,12 @@ namespace SFLang.Lexicon
                 case "\"":
                 case "'":
                     return CompileString<TContext>(en);
+                case "> assembly":
+                    return CompileAssemblyPointer<TContext>(en);
+                case "> class":
+                    return CompileClassPointer<TContext>(en);
+                case "> method":
+                    return CompileMethodPointer<TContext>(en);
                 default:
                     return IsNumeric(en.Current) ? CompileNumber<TContext>(en) : CompileSymbol<TContext>(en);
             }
@@ -248,6 +257,77 @@ namespace SFLang.Lexicon
 
             // Returning a function that evaluates to the actual string's constant value.
             var function = new Function<TContext>((ctx, binder, arguments) => { return stringConstant; });
+            return new Tuple<Function<TContext>, bool>(function, !en.MoveNext());
+        }
+        
+        public static Tuple<Function<TContext>, bool> CompileAssemblyPointer<TContext>(
+            IEnumerator<string> en
+        )
+        {
+            // Pointer:
+            // > class SFLang.Lexicon.Lexer
+            // > function SFLang.Lexicon.Lexer.CompilerPointer
+            // If method is specified it tries to access it and invoke
+            // If class is specified it instantiates the class
+            if (!en.MoveNext())
+                throw new ParsingException(message: "Unexpected EOF after assembly pointer declaration.");
+
+            var pointer = en.Current ?? "null";
+            en.MoveNext();
+
+            if (pointer.StartsWith(".."))
+                pointer = Path.Join(Directory.GetCurrentDirectory(), pointer.Replace("..", ""));
+
+            var function = new Function<TContext>((ctx, binder, arguments) => Assembly.LoadFile(pointer ?? "null"));
+            return new Tuple<Function<TContext>, bool>(function, !en.MoveNext());
+        }
+
+
+        public static Tuple<Function<TContext>, bool> CompileMethodPointer<TContext>(
+            IEnumerator<string> en
+        )
+        {
+            if (!en.MoveNext())
+                throw new ParsingException(message: "Unexpected EOF after pointer declaration.");
+
+            var pointer = en.Current;
+            var split = Regex.Split(pointer ?? "null.null", "\\.");
+            var method = split[^1];
+            var m = split.ToList().Remove(method);
+            en.MoveNext();
+            
+            var function = new Function<TContext>((ctx, binder, arguments) =>
+            {
+                var type =  typeof(Lexer).Assembly.GetType(string.Join('.', m));
+                if (type == null) throw new ParsingException(message: "Could not find specified type pointer!");
+                var mtd = type.GetMethod(method) ?? throw new ParsingException(message: "Could not find specified method pointer!");
+                return mtd;
+            });
+            return new Tuple<Function<TContext>, bool>(function, !en.MoveNext());
+        }
+
+        
+        public static Tuple<Function<TContext>, bool> CompileClassPointer<TContext>(
+            IEnumerator<string> en
+        )
+        {
+            // Pointer:
+            // > class SFLang.Lexicon.Lexer
+            // > function SFLang.Lexicon.Lexer.CompilerPointer
+            // If method is specified it tries to access it and invoke
+            // If class is specified it instantiates the class
+            if (!en.MoveNext())
+                throw new ParsingException(message: "Unexpected EOF after pointer declaration.");
+
+            var pointer = en.Current;
+            en.MoveNext();
+            
+            var function = new Function<TContext>((ctx, binder, arguments) =>
+            {
+                var type =  typeof(Lexer).Assembly.GetType(string.Join('.', pointer));
+                if (type == null) throw new ParsingException(message: "Could not find specified type pointer!");
+                return type;
+            });
             return new Tuple<Function<TContext>, bool>(function, !en.MoveNext());
         }
 

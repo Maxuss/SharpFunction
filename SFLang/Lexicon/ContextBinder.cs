@@ -26,7 +26,17 @@ namespace SFLang.Lexicon
         // Tracks if an instance context is provided or not.
         private readonly bool _contextIsDefault;
         public List<ContextFlag> Flags = new();
-        public bool InLoop = false;
+
+        private bool local;
+        public bool LocalScope
+        {
+            get => local;
+            set
+            {
+                local = value;
+                if (!value) LeaveLocalScope?.Invoke(this);
+            }
+        }
 
         public ContextBinder(TContext context = default)
         {
@@ -42,7 +52,7 @@ namespace SFLang.Lexicon
         public int MaxStackSize { get; set; } = -1;
 
         public IEnumerable<string> StaticItems => StaticContextBinder.Keys;
-
+        public event Action<ContextBinder<TContext>> LeaveLocalScope;
         public int StackCount => StackContextBinder.Count;
 
         public bool DeeplyBound => !_contextIsDefault;
@@ -83,13 +93,13 @@ namespace SFLang.Lexicon
                  * symbol already exists at the global scope.
                  */
                 if (StaticContextBinder.ContainsKey(symbolName) && StaticContextBinder[symbolName] is Constant)
-                    throw new PrettyException("Can not reassign constant!");
+                    throw new CoreException("Can not reassign constant!");
                 if (StackContextBinder.Count == 0 || StaticContextBinder.ContainsKey(symbolName))
                     StaticContextBinder[symbolName] = value;
                 else
                 {
                     if(StackContextBinder[^1].ContainsKey(symbolName) && StackContextBinder[^1][symbolName] is Constant)
-                        throw new PrettyException("Can not reassign constant!");
+                        throw new CoreException("Can not reassign constant!");
                     StackContextBinder[^1][symbolName] = value;
                 }
             }

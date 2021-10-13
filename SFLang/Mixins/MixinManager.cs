@@ -41,7 +41,7 @@ namespace SFLang.Mixins
                 Function<Lambdas.Unit> fn = (ctx, contextBinder, args) =>
                 {
                     if (attr.ExpectedParameters != -1 && args.Count > attr.ExpectedParameters)
-                        throw new PrettyException(
+                        throw new CoreException(
                             $"Method expected {attr.ExpectedParameters} parameters but instead got {args.Count}");
                     Parameters newParams = new();
                     if (attr.ExpectedParameters != -1)

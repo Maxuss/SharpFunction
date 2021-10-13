@@ -36,17 +36,17 @@ namespace SFLang.Language
 
         public IEnumerable<string> Tokenize(string code)
         {
-            using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(code)))
-            {
-                foreach (var ix in Tokenize(stream)) yield return ix;
-            }
+            using var stream = new MemoryStream(Encoding.UTF8.GetBytes(code));
+            foreach (var ix in Tokenize(stream)) yield return ix;
         }
 
         public IEnumerable<string> Tokenize(IEnumerable<string> snippets)
         {
             foreach (var ixCode in snippets)
-            foreach (var ixToken in Tokenize(ixCode))
-                yield return ixToken;
+            {
+                foreach (var ixToken in Tokenize(ixCode))
+                    yield return ixToken;
+            }
         }
 
         public void EatSpace(StreamReader reader)
@@ -54,7 +54,7 @@ namespace SFLang.Language
             while (!reader.EndOfStream)
             {
                 var ch = (char) reader.Peek();
-                if (ch == ' ' || ch == '\t' || ch == '\r' || ch == '\n')
+                if (ch is ' ' or '\t' or '\r' or '\n')
                 {
                     reader.Read();
                     continue;
@@ -72,6 +72,7 @@ namespace SFLang.Language
         {
             reader.ReadLine();
         }
+        
 
         /// <summary>
         ///     Eats and discards characters from the reader until the specified sequence is found.
@@ -83,7 +84,7 @@ namespace SFLang.Language
         {
             // Sanity checking invocation.
             if (string.IsNullOrEmpty(sequence))
-                throw new CompilerException(174, typeof(Tokenizer), "No stop sequence specified to EatUntil.");
+                throw new CompilerException(86, typeof(Tokenizer), "No stop sequence specified to EatUntil.");
 
             /*
              * Not sure if this is the optimal method to do this, but I think it
@@ -94,9 +95,9 @@ namespace SFLang.Language
             {
                 buffer.Add((char) reader.Read());
                 if (buffer.Count > sequence.Length) buffer.RemoveAt(0);
-                if (buffer[0] == sequence[0])
-                    if (sequence == new string(buffer.ToArray()))
-                        return; // Done!
+                if (buffer[0] != sequence[0]) continue;
+                if (sequence == new string(buffer.ToArray()))
+                    return; // Done!
             }
 
             // Sanity checking that stream is not corrupted, if we're told to do so.
@@ -173,7 +174,7 @@ namespace SFLang.Language
                 default:
                     if (ch == stop)
                         return stop.ToString();
-                    throw new CompilerException(176, typeof(Tokenizer),
+                    throw new CompilerException(174, typeof(Tokenizer),
                         $"Invalid escape sequence character '{Convert.ToInt32(ch)}' found in string literal");
             }
         }

@@ -32,7 +32,7 @@ namespace SFLang.Language
             Console.WriteLine($"Assembly {mf.ProjectName} by {mf.ProjectAuthor} on group {mf.ProjectGroup}");
             Manifests = GetAssemblies(path).ToList();
             if (!mf.ExpectedDependencies.All(asm => Manifests.Any(a => a.ProjectName == asm)))
-                throw new PrettyException($"Could not find all dependencies for assembly {mf.ProjectName}");
+                throw new CoreException($"Could not find all dependencies for assembly {mf.ProjectName}");
 
             var tf = mf.MainFile.Replace(".sf", ".sfc");
             var entry = ReadCompiledFile<Lambdas.Unit>(Path.Combine(path, "runtime", tf));

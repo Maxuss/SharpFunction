@@ -251,7 +251,7 @@ namespace SFLang.Lexicon
         public static Function<TContext> Vector = (ctx, binder, args) =>
         {
             if (args.Count != 3)
-                throw new PrettyException("'vector' keyword requires 3 arguments!");
+                throw new CoreException("'vector' keyword requires 3 arguments!");
 
             return new Vector3((float) args.Get<double>(0), (float) args.Get<double>(1), (float) args.Get<double>(2));
         };
@@ -259,7 +259,7 @@ namespace SFLang.Lexicon
         public static Function<TContext> Extract = (ctx, binder, args) =>
         {
             if (args.Count != 1)
-                throw new PrettyException("'extract' keyword requires only 1 argument!");
+                throw new CoreException("'extract' keyword requires only 1 argument!");
 
             var obj = args[0];
             if (obj is ICommand cmd)
@@ -267,7 +267,7 @@ namespace SFLang.Lexicon
                 return cmd.Compiled;
             }
 
-            throw new PrettyException("This argument can not be applied to 'extract' keyword!");
+            throw new CoreException("This argument can not be applied to 'extract' keyword!");
         };
     }
 }

@@ -2,29 +2,29 @@
 
 namespace SFLang.Exceptions
 {
-    public class PrettyException : Exception
+    public class CoreException : Exception
     {
-        public PrettyException()
+        public CoreException()
         {
         }
 
-        public PrettyException(
+        public CoreException(
             string message,
-            PrettyException cause = null,
+            CoreException cause = null,
             [CallerLineNumber] int line = 0,
             [CallerMemberName] string member = "",
             [CallerFilePath] string path = "")
         {
-            throw new PrettyException(line, -1, path + "::" + member, message, cause);
+            throw new CoreException(line, -1, path + "::" + member, message, cause);
         }
 
-        public PrettyException(
+        public CoreException(
             int line,
             int charpos,
             string file,
             string message = "No message provided",
-            PrettyException cause = null
-        ) : base($"SFLang.Exceptions.PrettyException >>> Dumps {message}", cause)
+            CoreException cause = null
+        ) : base($"SFLang.Exceptions.CoreException >>> Dumps {message}", cause)
         {
             Line = line;
             CharPos = charpos;
@@ -37,7 +37,7 @@ namespace SFLang.Exceptions
         public int CharPos { get; }
         public string FileName { get; }
         public string Message { get; }
-        public PrettyException Cause { get; set; }
+        public CoreException Cause { get; set; }
 
         public void PrettyPrint()
         {

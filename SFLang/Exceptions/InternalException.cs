@@ -1,12 +1,12 @@
 ﻿namespace SFLang.Exceptions
 {
-    public class InternalException : PrettyException
+    public class InternalException : CoreException
     {
         public InternalException(
             int line,
             int charpos,
             string file,
-            PrettyException cause = null) : base(line, charpos, file, "An internal exception occurred!", cause)
+            CoreException cause = null) : base(line, charpos, file, "An internal exception occurred!", cause)
         {
         }
     }
