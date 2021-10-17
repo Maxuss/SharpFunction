@@ -1,7 +1,10 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using SFLang.Exceptions;
+using SFLang.Language;
 
 namespace SFLang.Lexicon
 {
@@ -81,6 +84,7 @@ namespace SFLang.Lexicon
                     return obj is Constant cnt ? cnt.Value : obj;
                 }
 
+                if (symbolName.StartsWith(".bignore")) return null;
                 // Oops, no such symbol!
                 throw new EvaluationException(typeof(ContextBinder<TContext>),
                     $"The '{symbolName}' symbol has not been declared.");

@@ -1,4 +1,7 @@
-﻿namespace SFLang.Mixins
+﻿using System;
+using SFLang.Lexicon;
+
+namespace SFLang.Mixins
 {
     [Mixin]
     public static class TestMixin

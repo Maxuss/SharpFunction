@@ -1,4 +1,6 @@
-﻿namespace SFLang.Lexicon
+﻿using System.Collections.Generic;
+
+namespace SFLang.Lexicon
 {
     public static class GlobalContext<TContext>
     {

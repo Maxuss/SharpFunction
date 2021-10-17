@@ -1,4 +1,6 @@
-﻿namespace SFLang.Lexicon
+﻿using SFLang.Exceptions;
+
+namespace SFLang.Lexicon
 {
     public class AssertionError : CoreException
     {

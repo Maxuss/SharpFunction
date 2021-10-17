@@ -1,4 +1,6 @@
-﻿namespace SFLang
+﻿using System.Collections.Generic;
+
+namespace SFLang
 {
     public static class SFLang
     {

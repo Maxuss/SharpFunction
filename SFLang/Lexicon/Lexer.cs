@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -13,6 +14,9 @@ namespace SFLang.Lexicon
 {
     public static class Lexer
     {
+
+        public static bool UseStrict { get; set; } = false;
+        
         /// <summary>
         ///     Compile the SFLang code found in the specified stream.
         /// </summary>
@@ -25,7 +29,9 @@ namespace SFLang.Lexicon
         /// <typeparam name="TContext">The type of your context object.</typeparam>
         public static Lambda<TContext> Compile<TContext>(Parser parser, Stream stream)
         {
-            return Compile<TContext>(parser.Tokenize(stream));
+            var tokenized = parser.Tokenize(stream).ToList();
+            Console.WriteLine($"TOKENIZED: {string.Join(',', tokenized)}");
+            return Compile<TContext>(tokenized);
         }
 
         /// <summary>
@@ -50,9 +56,10 @@ namespace SFLang.Lexicon
         /// <param name="tokenizer">The tokenizer to use.</param>
         /// <param name="snippet">Your SFLang code.</param>
         /// <typeparam name="TContext">The type of your context object.</typeparam>
-        public static Lambda<TContext> Compile<TContext>(Parser tokenizer, string snippet)
+        public static Lambda<TContext> Compile<TContext>(Parser parser, string snippet)
         {
-            return Compile<TContext>(tokenizer.Tokenize(snippet));
+            var tokenized = parser.Tokenize(snippet).ToList();
+            return Compile<TContext>(tokenized);
         }
 
         public static Lambda<TContext> Compile<TContext>(Parser tokenizer, IEnumerable<string> snippets)
@@ -91,7 +98,11 @@ namespace SFLang.Lexicon
                  * return value from the last to caller.
                  */
                 object result = null;
-                foreach (var ix in functions) result = ix(ctx, binder, null);
+                foreach (var ix in functions)
+                {
+                    Console.WriteLine("INVOKING");
+                    result = ix(ctx, binder, null);
+                }
                 return result;
             };
         }
@@ -118,14 +129,15 @@ namespace SFLang.Lexicon
                     break; // Even if we're not at EOF, we might be at '}', ending the current body.
             }
 
-            // Sanity checking tokenizer's content, before returning functions to caller.
-            if (forceClose && en.Current != "}")
-                throw new CoreException(29, -1, typeof(Lexer).FullName,
-                    "Premature EOF while parsing code, missing an '}' character.");
-            if (!forceClose && !eof && en.Current == "}")
-                throw new CoreException(31, -1, typeof(Lexer).FullName,
-                    "Unexpected closing brace '}' in code, did you add one too many '}' characters?");
-            return new Tuple<List<Function<TContext>>, bool>(content, eof);
+            return forceClose switch
+            {
+                // Sanity checking tokenizer's content, before returning functions to caller.
+                true when en.Current != "}" => throw new CoreException(
+                    "Premature EOF while parsing code, missing an '}' character."),
+                false when !eof && en.Current == "}" => throw new CoreException(
+                    "Unexpected closing brace '}' in code, did you add one too many '}' characters?"),
+                _ => new Tuple<List<Function<TContext>>, bool>(content, eof)
+            };
         }
 
         /*
@@ -138,6 +150,8 @@ namespace SFLang.Lexicon
             // Checking type of token, and acting accordingly.
             switch (en.Current)
             {
+                case "if":
+                    return CompileIfStatement<TContext>(en);
                 case "{":
                     return CompileLambda<TContext>(en);
                 case "@":
@@ -156,6 +170,81 @@ namespace SFLang.Lexicon
             }
         }
 
+        private static void SanitizeEnumerator(bool move, string message = "Unexpected EOF when iteration Enumerator!")
+        {
+            if (!move)
+                throw new ParsingException(message: message);
+        }
+        
+        private static Tuple<Function<TContext>, bool> CompileIfStatement<TContext>(IEnumerator<string> en)
+        {
+            if (!en.MoveNext())
+                throw new ParsingException(message: "Unexpected EOF after if statement declaration!");
+
+            while (en.Current == "(")
+                SanitizeEnumerator(en.MoveNext());
+            
+            var condition = en.Current;
+            Console.WriteLine(condition);
+            SanitizeEnumerator(en.MoveNext());
+            
+            while (en.Current == ")")
+                SanitizeEnumerator(en.MoveNext());
+            
+            // Checking if we are entering lambda scope
+            if (en.Current != "then")
+                throw new ParsingException(message: "Expected a method to come after if statement!");
+
+            SanitizeEnumerator(en.MoveNext());
+            var oper = en.Current;
+            Function<TContext> lazy = null;
+            switch (oper)
+            {
+                case ".lambda":
+                {
+                    SanitizeEnumerator(en.MoveNext());
+                    var lambda = CompileLambda<TContext>(en);
+                    var testEnum = Parser.Default.Tokenizer.Tokenize("{ out('test') }").ToList();
+                    Console.WriteLine(string.Concat(testEnum));
+                    var enumerator = testEnum.GetEnumerator();
+                    var testLambda = CompileLambda<TContext>(enumerator);
+                    lazy = (ctx, binder, args) =>
+                    {
+                        var condt = binder[condition];
+
+                        testLambda.Item1(ctx, binder, new Parameters());
+                        var invk = lambda.Item1;
+                        if (UseStrict)
+                            return condt is true ? lambda.Item1(ctx, binder, new Parameters()) : false;
+                        return condt != null ? invk(ctx, binder, new Parameters()) : null;
+                    };
+                    break;
+                }
+                case ".invoke":
+                {
+                    SanitizeEnumerator(en.MoveNext());
+                    var mtd = en.Current;
+                    lazy = (ctx, binder, args) =>
+                    {
+                        var condt = binder[condition];
+                        var methodRef = binder[mtd];
+                        if (methodRef is not Function<TContext> cnd)
+                            throw new ParsingException(
+                                message: $"Expected a lambda or method reference but instead got {methodRef.GetType()}");
+
+                        var isTrue = condt != null;
+                        Console.WriteLine($"TRUE? {condt is true} {isTrue}");
+                        if (UseStrict)
+                            return condt is true ? cnd(ctx, binder, new Parameters()) : false;
+                        return condt != null ? cnd(ctx, binder, new Parameters()) : null;
+                    };
+                    break;
+                }
+            }
+
+            return new Tuple<Function<TContext>, bool>(lazy, !en.MoveNext());
+        }
+        
         /*
          * Compiles a lambda down to a function and returns the function to caller.
          */
@@ -163,8 +252,7 @@ namespace SFLang.Lexicon
             IEnumerator<string> en)
         {
             // Compiling body, and retrieving functions.
-            var tuples = CompileStatements<TContext>(en);
-            var functions = tuples.Item1;
+            var (functions, item2) = CompileStatements<TContext>(en);
 
             /*
              * Creating a function that evaluates every function sequentially, and
@@ -173,7 +261,10 @@ namespace SFLang.Lexicon
             var function = new Function<TContext>((ctx, binder, arguments) =>
             {
                 object result = null;
-                foreach (var ix in functions) result = ix(ctx, binder, null);
+                foreach (var ix in functions)
+                {
+                    result = ix(ctx, binder, new Parameters());
+                }
 
                 return result;
             });
@@ -189,7 +280,7 @@ namespace SFLang.Lexicon
             var lazyFunction =
                 new Function<TContext>((ctx2, binder2, arguments2) => { return function; });
             return new Tuple<Function<TContext>, bool>(lazyFunction,
-                tuples.Item2 || !en.MoveNext());
+                item2 || !en.MoveNext());
         }
 
         /*
@@ -438,14 +529,15 @@ namespace SFLang.Lexicon
 
                 // Retrieving symbol's value and doing some basic sanity checks.
                 var symbol = binder[symbolName];
-                if (symbol == null)
-                    throw new EvaluationException(typeof(Lexer), $"Symbol '{symbolName}' is null.");
-                if (symbol is Function<TContext> functor)
-                    return functor(ctx, binder, appliedArguments); // Success!
-                if (symbol is Func<TContext, ContextBinder<TContext>, Parameters, object> funct)
-                    return funct(ctx, binder, appliedArguments);
-                throw new EvaluationException(typeof(Lexer),
-                    $"'{symbolName}' is not a function, but a '{symbol.GetType().FullName}'");
+                return symbol switch
+                {
+                    null => throw new EvaluationException(typeof(Lexer), $"Symbol '{symbolName}' is null."),
+                    Function<TContext> functor => functor(ctx, binder, appliedArguments),
+                    Func<TContext, ContextBinder<TContext>, Parameters, object> funct => funct(ctx, binder,
+                        appliedArguments),
+                    _ => throw new EvaluationException(typeof(Lexer),
+                        $"'{symbolName}' is not a function, but a '{symbol.GetType().FullName}'")
+                };
             }, !en.MoveNext());
         }
 

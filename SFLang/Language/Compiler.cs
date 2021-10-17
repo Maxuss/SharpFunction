@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Reflection;
@@ -7,6 +9,8 @@ using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 using Newtonsoft.Json;
+using SFLang.Exceptions;
+using SFLang.Lexicon;
 using SharpFunction.API;
 
 using Files = System.IO.File;

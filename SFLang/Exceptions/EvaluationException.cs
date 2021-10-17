@@ -1,4 +1,6 @@
-﻿namespace SFLang.Exceptions
+﻿using System;
+
+namespace SFLang.Exceptions
 {
     public class EvaluationException : CoreException
     {

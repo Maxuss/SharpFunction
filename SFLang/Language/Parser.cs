@@ -1,9 +1,13 @@
 ﻿#nullable enable
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
+using SFLang.Exceptions;
+using SFLang.Lexicon;
 
 namespace SFLang.Language
 {
@@ -37,7 +41,7 @@ namespace SFLang.Language
         public StreamReader? Reader { get; set; }
         public Tokenizer Tokenizer { get; }
         public int MaxStringSize { get; set; } = -1;
-        private Stack<string> Cached { get; } = new();
+        private Stack<string> Cached { get; set; } = new();
 
         public Lambda<TContext> Compile<TContext>(TContext ctx)
         {
@@ -97,7 +101,7 @@ namespace SFLang.Language
                             : "");
                     return $"{def}.mend";
                 }, RegexOptions.Multiline);
-            
+
             // Replace v0.5+ let statements to old let(@name, value) statements
             var firstReplaced = Regex.Replace(
                 methodReplaced, "let\\s+@(?<varname>.+)\\s*=\\s*(?<varval>(.|[\\n\\r\\t\\s])+)",
@@ -111,28 +115,10 @@ namespace SFLang.Language
                     var split = val.Captures[0].Value.Split(".mend");
                     return $"let(@{name.Captures[0].Value}, {split[0]}){split[1]}";
                 }, RegexOptions.Multiline);
-            // Upgrade if's
-            var thirdReplaced = Regex
-                .Replace(
-                    firstReplaced,
-                    "if[\\r\\n\\t\\s]*\\((?<condition>.+)\\)[\\r\\n\\t\\s]*{(?<evaluation>([\\r\\n\\t\\s]|.)*)}[\\r\\n\\t\\s]*(else[\\r\\n\\t\\s]*{(?<elsecase>[\\r\\n\\t\\s]*.*)})*",
-                    match =>
-                    {
-                        var condition = match.Groups["condition"];
-                        var evaluation = match.Groups["evaluation"];
-                        var elsecase = match.Groups["elsecase"];
-
-                        if (!condition.Success || !evaluation.Success) return match.Value;
-                        var ret = elsecase.Success
-                            ? $"if({condition.Captures[0].Value}, {{{evaluation.Captures[0].Value}}}, {{{elsecase.Captures[0].Value}}})"
-                            : $"if({condition.Captures[0].Value}, {{{evaluation.Captures[0].Value}}})";
-                        ret = ret.Replace("else", ",");
-                        return ret;
-                    }, RegexOptions.Multiline);
 
             // replace ! to not
             var fourthReplaced = Regex.Replace(
-                thirdReplaced,
+                firstReplaced,
                 "(!(?<vname>[^\"']+))(?=([^\"']*\"'[^\"']*\"')*[^'\"]*$)",
                 match =>
                 {
@@ -141,7 +127,7 @@ namespace SFLang.Language
                 }, RegexOptions.Multiline
             );
 
-             var moduleReplaced = Regex.Replace(
+            var moduleReplaced = Regex.Replace(
                 fourthReplaced,
                 "(include\\s+(?<mod>\\S+))",
                 match =>
@@ -159,7 +145,7 @@ namespace SFLang.Language
                     var value = match.Groups["mod"];
                     return !value.Success ? match.Value : $"declare('{value.Captures[0].Value}')";
                 }, RegexOptions.Multiline);
-            
+
             var constReplaced = Regex.Replace(
                 declarationReplaced, "const\\s+@(?<varname>.+)\\s*=\\s*(?<varval>(.|[\\n\\r\\t\\s])+)",
                 match =>
@@ -172,7 +158,7 @@ namespace SFLang.Language
                     var split = val.Captures[0].Value.Split(".mend");
                     return $"const(@{name.Captures[0].Value}, {split[0]}){split[1]}";
                 }, RegexOptions.Multiline);
-            
+
             // Replace v0.5- set statements to old set(@name, value) statements
             var secondReplaced = Regex
                 .Replace(
@@ -192,12 +178,20 @@ namespace SFLang.Language
             return lines;
         }
 
-        private readonly string[] Allowed = new[] { "class", "function", "assembly" };
-        public string? Next(StreamReader reader)
+        private readonly string[] allowed = {"class", "function", "assembly"};
+
+        private readonly Dictionary<string, string> replaceable = new()
+        {
+            {"(", ")"},
+            {")", "("},
+            {"{", "}"},
+            {"}", "{"}
+        };
+        public string? Next(StreamReader reader, bool checkCached = true)
         {
             reader = Reader ?? reader;
             // Checking if we have cached tokens.
-            if (Cached.Count > 0)
+            if (checkCached && Cached.Count > 0)
                 return Cached.Pop(); // Returning cached token and popping it off our stack.
 
             // Eating white space from stream.
@@ -213,15 +207,82 @@ namespace SFLang.Language
                 var ch = (char) reader.Peek();
                 switch (ch)
                 {
+                    // If statement
+                    case '?':
+                        reader.Read();
+                        Tokenizer.EatSpace(reader);
+                        if (reader.Peek() != '(')
+                            throw new ParsingException(message: "Expected parenthesis after if statement declaration!");
+                        reader.Read();
+                        Console.WriteLine("Successfully read Parenthesis condition.");
+                        Console.WriteLine($"Cache before pushing: {string.Concat(Cached)}");
+                        Cached.Push(")");
+                        var read = Tokenizer.ReadScope(reader, '(', ')');
+                        
+                        reader.Read();
+                        
+                        Cached.Push(read);
+                        Cached.Push("(");
+                        
+                        Console.WriteLine($"Cache after pushing: {string.Concat(Cached)}");
+                        
+                        Tokenizer.EatSpace(reader);
+                        
+                        if(reader.Read() != '=' && reader.Peek() != '>')
+                            throw new ParsingException(message: "Expected curly brackets after if statement declaration!");
+                        
+                        reader.Read();
+                        Tokenizer.EatSpace(reader);
+                        Console.WriteLine("Successfully read Brackets body.");
+                        Console.WriteLine($"Cache before pushing: {string.Concat(Cached)}");
+                        
+                        // Cached.Push("then");
+                        
+                        var methodRef = Tokenizer.ReadUntil(reader, ';');
+                        if (methodRef.StartsWith("{"))
+                        {
+                            var lambda = Tokenizer.Tokenize(methodRef).ToList();
+                            var index = lambda.IndexOf("{");
+                            lambda.Insert(index, "then");
+                            lambda.Insert(index+1, ".lambda");
+                            Cached = new Stack<string>(lambda);
+                            Cached = ReverseStack(Cached);
+                        }
+                        else
+                        {
+                            Cached.Push("then");
+                            Cached.Push(".invoke");
+                            Cached.Push(methodRef);
+                            Cached = ReverseStack(Cached, el => replaceable.ContainsKey(el) ? replaceable[el] : el);
+                        }
+
+                        Console.WriteLine($"Cache after pushing: {string.Concat(Cached)}");
+                        reader.Read();
+                        
+                        if (reader.Peek() != ':') return "if";
+                        
+                        reader.Read();
+                        Cached.Push("else");
+                        Tokenizer.EatSpace(reader);
+                        if (reader.Peek() != '{')
+                            throw new ParsingException(
+                                message: "Expected curly brackets after else statement declaration!");
+                        reader.Read();
+                        var elseScope = Tokenizer.Tokenize(Tokenizer.ReadScope(reader, '{', '}')).ToList();
+                        foreach (var cnd in elseScope)
+                            Cached.Push(cnd);
+                        reader.Read();
+                        Cached.Push("}");
+                        return "if";
                     case '>':
                         reader.Read();
 
                         Tokenizer.EatSpace(reader);
                         var type = Tokenizer.ReadString(reader, ' ', 15).Replace(" ", "");
-                        if (!Allowed.Contains(type))
+                        if (!allowed.Contains(type))
                             throw new ParsingException(
                                 message:
-                                $"Pointer contains invalid type '{type}'! Expected one of [{string.Join(',', Allowed)}]");
+                                $"Pointer contains invalid type '{type}'! Expected one of [{string.Join(',', allowed)}]");
                         var path = Tokenizer.ReadString(reader, ';');
                         path = path.Replace(";", "");
                         Cached.Push(path);
@@ -295,6 +356,18 @@ namespace SFLang.Language
             }
 
             return retVal;
+        }
+
+        public static Stack<T> ReverseStack<T>(Stack<T> stack, Func<T, T>? forEach = null)
+        {
+            var rev = new Stack<T>();
+            while (stack.Count != 0)
+            {
+                var el = stack.Pop();
+                var conv = forEach != null ? forEach(el) : el;
+                rev.Push(conv);
+            }
+            return rev;
         }
     }
 }

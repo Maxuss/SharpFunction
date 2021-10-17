@@ -9,7 +9,6 @@
         <Company>Maxus Industries</Company>
         <Description>A .NET Library used for creating Minecraft datapacks, and most things related to them.</Description>
         <PackageProjectUrl>https://maxus.space</PackageProjectUrl>
-        <PackageIcon>ICON.png</PackageIcon>
         <RepositoryUrl>https://github.com/Maxuss/SharpFunction</RepositoryUrl>
         <RepositoryType>GitHub Repository</RepositoryType>
         <PackageTags>Minecraft, Datapacks, Skyblock</PackageTags>

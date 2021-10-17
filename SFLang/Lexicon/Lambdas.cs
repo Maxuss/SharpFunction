@@ -1,5 +1,7 @@
 ﻿
+using System;
 using System.IO;
+using SFLang.Language;
 
 namespace SFLang.Lexicon
 {
@@ -88,7 +90,7 @@ namespace SFLang.Lexicon
         {
             code = Parser.UpgradeCode(code);
             var function = Lexer.Compile<TContext>(Parser.Default, code);
-            return new Func<object>(() => { return function(context, binder); });
+            return () => { return function(context, binder); };
         }
 
         public static void PopulateLexic<TContext>(ContextBinder<TContext> binder)

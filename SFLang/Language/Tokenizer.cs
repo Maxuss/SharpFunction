@@ -1,7 +1,10 @@
-﻿using System.IO;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Linq;
+using SFLang.Exceptions;
 
 namespace SFLang.Language
 {
@@ -14,30 +17,30 @@ namespace SFLang.Language
 
         public Parser Parser { get; }
 
-        public IEnumerable<string> Tokenize(Stream stream, Encoding encoding = null)
+        public IEnumerable<string> Tokenize(Stream stream, Encoding encoding = null, bool checkCache = true)
         {
             // Notice! We do NOT take ownership over stream!
             var reader = new StreamReader(stream, encoding ?? Encoding.UTF8, true, 1024);
             while (true)
             {
-                var token = Parser.Next(reader);
+                var token = Parser.Next(reader, checkCache);
                 if (token == null)
-                    break;
+                    yield break;
                 yield return token;
             }
         }
 
-        public IEnumerable<string> Tokenize(IEnumerable<Stream> streams, Encoding encoding = null)
+        public IEnumerable<string> Tokenize(IEnumerable<Stream> streams, Encoding encoding = null, bool checkCache = true)
         {
             foreach (var ixStream in streams)
-            foreach (var ixToken in Tokenize(ixStream, encoding))
+            foreach (var ixToken in Tokenize(ixStream, encoding, checkCache))
                 yield return ixToken;
         }
 
-        public IEnumerable<string> Tokenize(string code)
+        public IEnumerable<string> Tokenize(string code, bool checkCached=true)
         {
             using var stream = new MemoryStream(Encoding.UTF8.GetBytes(code));
-            foreach (var ix in Tokenize(stream)) yield return ix;
+            foreach (var ix in Tokenize(stream, checkCache: checkCached)) yield return ix;
         }
 
         public IEnumerable<string> Tokenize(IEnumerable<string> snippets)
@@ -102,10 +105,53 @@ namespace SFLang.Language
 
             // Sanity checking that stream is not corrupted, if we're told to do so.
             if (throwIfNotFound)
-                throw new CompilerException(174, typeof(Tokenizer),
+                throw new CompilerException(105, typeof(Tokenizer),
                     $"The '{sequence}' sequence was not found before EOF.");
         }
 
+        public string ReadScope(StreamReader reader, char begin, char stop, int maxDepth = -1)
+        {
+            var builder = new StringBuilder();
+            var depth = 1;
+            for (var c = reader.Read(); c != -1; c = reader.Read())
+            {
+                if (c == begin)
+                {
+                    builder.Append((char) c);
+                    depth++;
+                    if (maxDepth != -1 && depth > maxDepth)
+                        throw new ParsingException(message: "Max allowed depth reached for this scope!");
+                } else if (c == stop)
+                {
+                    depth--;
+                    if (depth <= 0)
+                        return builder.ToString();
+                    builder.Append((char) c);
+                }
+
+                builder.Append((char) c);
+            }
+            
+            throw new ParsingException(message:
+                $"Syntax error: line not closed before EOF at '{builder}'");
+        }
+        
+        public string ReadUntil(StreamReader reader, char stop)
+        {
+            var builder = new StringBuilder();
+            for (var c = reader.Read(); c != -1; c = reader.Read())
+            {
+                if (c == stop)
+                {
+                    return builder.ToString();
+                }
+                builder.Append((char) c);
+            }
+            
+            throw new ParsingException(message:
+                $"Syntax error: line not closed before EOF at '{builder}'");
+        }
+        
         /// <summary>
         ///     Reads a single line string literal from the reader, escaping characters if necessary,
         ///     and also supporting UNICODE hex syntax to reference UNICODE characters.

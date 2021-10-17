@@ -1,4 +1,6 @@
-﻿namespace SFLang.Lexicon
+﻿using System;
+
+namespace SFLang.Lexicon
 {
     /// <summary>
     ///     Delegate for all function invocations evaluated by SFLang in its lambda delegate.

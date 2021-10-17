@@ -1,4 +1,6 @@
-﻿#nullable enable
+﻿using System;
+
+#nullable enable
 namespace SFLang.Mixins
 {
     
@@ -11,7 +13,7 @@ namespace SFLang.Mixins
     [AttributeUsage(AttributeTargets.Method)]
     public class MethodAttribute : Attribute
     {
-        public string Name { get; set; } = $"{Guid.NewGuid().ToString()}";
+        public string Name { get; set; } = Guid.NewGuid().ToString();
         public int ExpectedParameters { get; set; } = -1;
     }
 }
