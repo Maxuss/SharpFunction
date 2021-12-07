@@ -1,4 +1,8 @@
-﻿# SFLang
+# SFLang
+SFLANG was moved to GemCode!
+See [GemCode](https://github.com/Maxuss/GemCode)
+
+This repository will stay as an archive!
 
 ### What is SFLang?
 
