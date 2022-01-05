@@ -1,5 +1,11 @@
+# Deprecated
+SharpFunction was deprecated! Back when I was actively working on it, I used some very questionable coding practices, such as building JSON for components myself, or creating 10 thousands Command classes. 
+
+Because of that SharpFunction is being migrated to _CopperSharp_. You can check it out there: https://github.com/Maxuss/CopperSharp.
+
+Thanks for understanding!
+
 # SharpFunction
-[![wakatime](https://wakatime.com/badge/github/Maxuss/SharpFunction.svg)](https://wakatime.com/badge/github/Maxuss/SharpFunction)
 
 A library for creating datapacks using .NET
 
