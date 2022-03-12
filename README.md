@@ -1,7 +1,7 @@
 # Deprecated
 SharpFunction was deprecated! Back when I was actively working on it, I used some very questionable coding practices, such as building JSON for components myself, or creating 10 thousands Command classes. 
 
-Because of that SharpFunction is being migrated to _CopperSharp_. You can check it out there: https://github.com/Maxuss/CopperSharp.
+Because of that SharpFunction is being migrated to project flux, written in Rust. You can check it out there: https://github.com/Maxuss/flux.
 
 Thanks for understanding!
 
